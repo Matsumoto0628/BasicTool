@@ -4,7 +4,8 @@
 // 定数定義
 const wchar_t* Window::NAME_WINDOW = L"ParticleTool";
 
-Window::Window(HINSTANCE hInstance) : m_sizeWindow(), m_hInstance(hInstance)
+Window::Window(HINSTANCE hInstance) 
+    : m_sizeWindow(), m_hInstance(hInstance)
 {
 	m_sizeWindow.cx = WIDTH;
 	m_sizeWindow.cy = HEIGHT;
@@ -47,7 +48,8 @@ bool Window::Initialize()
         rect.bottom = m_sizeWindow.cy;
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-        m_hWnd = CreateWindow(m_wc.lpszClassName,
+        m_hWnd = CreateWindow(
+            m_wc.lpszClassName,
             NAME_WINDOW,
             WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT,
@@ -57,7 +59,8 @@ bool Window::Initialize()
             nullptr,
             nullptr,
             m_hInstance,
-            nullptr);
+            nullptr
+        );
 
         if (m_hWnd == nullptr) 
         {

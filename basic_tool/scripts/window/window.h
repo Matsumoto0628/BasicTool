@@ -10,7 +10,7 @@ public:
 	void Finalize();
 	bool MessageLoop();
 	static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	const HWND GetWindowHandle() const { return m_hWnd; }
+	HWND GetWindowHandle() const { return m_hWnd; }
 
 private:
 	WNDCLASS m_wc;
