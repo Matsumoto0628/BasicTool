@@ -13,7 +13,7 @@ public:
 	void Finalize();
 
 private:
-	HWND m_hWnd = nullptr;
+	HWND m_hWnd = nullptr; // HWNDを参照として持つのは危険かもしれない
 	Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pDeviceContext = nullptr;
 };
