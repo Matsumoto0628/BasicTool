@@ -30,7 +30,7 @@ void Application::Loop()
             }
         }
 
-        // ゲームの更新、描画
+        // ゲームの更新と描画
         {
             bool result = gameLoop();
             if (result == false)
