@@ -4,6 +4,8 @@
 class Application
 {
 public:
+    Application();
+    ~Application();
     void Initialize(HINSTANCE hInst); // 初期化
     void Start(); // 開始
     void Loop(); // 更新、描画

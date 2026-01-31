@@ -1,5 +1,13 @@
 ﻿#include "application.h"
 
+Application::Application() 
+{
+}
+
+Application::Application() 
+{
+}
+
 void Application::Initialize(HINSTANCE hInst)
 {
     m_window.Initialize(hInst);
