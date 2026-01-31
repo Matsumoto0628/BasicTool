@@ -1,6 +1,6 @@
 ﻿#include "application.h"
 
-Application::Application() 
+Application::Application() : m_window()
 {
 }
 
