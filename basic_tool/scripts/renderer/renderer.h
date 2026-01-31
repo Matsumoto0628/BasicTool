@@ -36,7 +36,7 @@ private:
     D3D_FEATURE_LEVEL m_pFeatureLevels[FEATURE_LEVELS_NUM] = {};
     D3D_FEATURE_LEVEL m_featureLevelsSupported;
 
-    UINT m_backBufferNum = 3;
+    static const UINT BACK_BUFFER_NUM = 3;
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
 

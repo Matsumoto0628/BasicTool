@@ -157,7 +157,7 @@ bool Renderer::initDeviceAndSwapChain()
     // スワップチェインの設定
     DXGI_SWAP_CHAIN_DESC sd;
     ZeroMemory(&sd, sizeof(sd));
-    sd.BufferCount = m_backBufferNum;
+    sd.BufferCount = BACK_BUFFER_NUM;
     sd.BufferDesc.Width = m_screenWidth;
     sd.BufferDesc.Height = m_screenHeight;
     sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
