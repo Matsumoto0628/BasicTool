@@ -12,6 +12,11 @@ Window::Window() : m_sizeWindow()
 
 Window::~Window()
 {
+    if (m_hWindow) 
+    {
+        delete m_hWindow;
+        m_hWindow = nullptr;
+    }
 }
 
 bool Window::Initialize(HINSTANCE hInst) 
@@ -76,8 +81,6 @@ void Window::Finalize()
 
     // ウインドウクラスの登録解除
     UnregisterClass(m_wc.lpszClassName, m_wc.hInstance);
-
-    m_hWindow = nullptr;
 }
 
 bool Window::MessageLoop()
