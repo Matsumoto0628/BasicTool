@@ -4,7 +4,7 @@ Application::Application()
 {
 }
 
-Application::Application() 
+Application::~Application() 
 {
 }
 
