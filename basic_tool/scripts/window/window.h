@@ -24,4 +24,5 @@ private:
 	// 配列の数で使うのであれば、enumハックを使う
 	static const int m_width = 960;
 	static const int m_height = 540;
+	static const wchar_t* m_nameWindow;
 };
