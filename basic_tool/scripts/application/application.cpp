@@ -1,6 +1,7 @@
 ﻿#include "application.h"
 
-Application::Application() : m_window()
+Application::Application(HINSTANCE hInstance)
+    : m_window(hInstance)
 {
 }
 
@@ -8,9 +9,9 @@ Application::~Application()
 {
 }
 
-void Application::Initialize(HINSTANCE hInst)
+void Application::Initialize()
 {
-    m_window.Initialize(hInst);
+    m_window.Initialize();
 }
 
 void Application::Start()

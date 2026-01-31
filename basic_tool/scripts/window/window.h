@@ -4,19 +4,20 @@
 class Window 
 {
 public:
-	Window(); // 必要に応じてexplicitをつける
+	explicit Window(HINSTANCE hInstance);
 	~Window(); // 必要に応じてvirtualをつける
-	bool Initialize(HINSTANCE hInst);
+	bool Initialize();
 	void Finalize();
 	bool MessageLoop();
 	static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	const HWND GetWindowHandle() const { return m_hWindow; }
+	const HWND GetWindowHandle() const { return m_hWnd; }
 
 private:
 	WNDCLASS m_wc;
-	HWND m_hWindow = nullptr;
+	HWND m_hWnd = nullptr;
 	SIZE m_sizeWindow;
 	MSG m_msg = {};
+	HINSTANCE m_hInstance;
 
 	// 定数
 	// インスタンス間で1つなので、staticにして宣言のみ行う

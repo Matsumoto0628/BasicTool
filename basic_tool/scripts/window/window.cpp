@@ -4,7 +4,7 @@
 // 定数定義
 const wchar_t* Window::NAME_WINDOW = L"ParticleTool";
 
-Window::Window() : m_sizeWindow()
+Window::Window(HINSTANCE hInstance) : m_sizeWindow(), m_hInstance(hInstance)
 {
 	m_sizeWindow.cx = WIDTH;
 	m_sizeWindow.cy = HEIGHT;
@@ -12,14 +12,13 @@ Window::Window() : m_sizeWindow()
 
 Window::~Window()
 {
-    if (m_hWindow) 
+    if (m_hWnd) 
     {
-        delete m_hWindow;
-        m_hWindow = nullptr;
+        m_hWnd = nullptr;
     }
 }
 
-bool Window::Initialize(HINSTANCE hInst) 
+bool Window::Initialize() 
 {
     // ウインドウクラスの登録
     {
@@ -27,9 +26,9 @@ bool Window::Initialize(HINSTANCE hInst)
         m_wc.lpfnWndProc = (WNDPROC)Window::MainWndProc;
         m_wc.cbClsExtra = 0;
         m_wc.cbWndExtra = 0;
-        m_wc.hInstance = hInst;
-        m_wc.hIcon = LoadIcon(hInst, IDI_APPLICATION);
-        m_wc.hCursor = LoadCursor(hInst, IDC_ARROW);
+        m_wc.hInstance = m_hInstance;
+        m_wc.hIcon = LoadIcon(m_hInstance, IDI_APPLICATION);
+        m_wc.hCursor = LoadCursor(m_hInstance, IDC_ARROW);
         m_wc.hbrBackground = GetSysColorBrush(COLOR_WINDOW);
         m_wc.lpszMenuName = nullptr;
         m_wc.lpszClassName = NAME_WINDOW;
@@ -48,7 +47,7 @@ bool Window::Initialize(HINSTANCE hInst)
         rect.bottom = m_sizeWindow.cy;
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-        m_hWindow = CreateWindow(m_wc.lpszClassName,
+        m_hWnd = CreateWindow(m_wc.lpszClassName,
             NAME_WINDOW,
             WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT,
@@ -57,10 +56,10 @@ bool Window::Initialize(HINSTANCE hInst)
             rect.bottom - rect.top,
             nullptr,
             nullptr,
-            hInst,
+            m_hInstance,
             nullptr);
 
-        if (m_hWindow == nullptr) 
+        if (m_hWnd == nullptr) 
         {
             return false;
         }
@@ -68,8 +67,8 @@ bool Window::Initialize(HINSTANCE hInst)
 
     // ウインドウ表示
     {
-        ShowWindow(m_hWindow, SW_SHOWNORMAL);
-        UpdateWindow(m_hWindow);
+        ShowWindow(m_hWnd, SW_SHOWNORMAL);
+        UpdateWindow(m_hWnd);
     }
 
     return true;
