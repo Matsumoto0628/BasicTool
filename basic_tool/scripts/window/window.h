@@ -22,7 +22,7 @@ private:
 	// インスタンス間で1つなので、staticにして宣言のみ行う
 	// 整数型以外や古いコンパイラの場合は定義をソースで行う
 	// 配列の数で使うのであれば、enumハックを使う
-	static const int m_width = 960;
-	static const int m_height = 540;
-	static const wchar_t* m_nameWindow;
+	static const int WIDTH = 960;
+	static const int HEIGHT = 540;
+	static const wchar_t* NAME_WINDOW;
 };

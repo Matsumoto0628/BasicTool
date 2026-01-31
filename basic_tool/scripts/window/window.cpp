@@ -2,12 +2,12 @@
 #include <tchar.h>
 
 // 定数定義
-const wchar_t* Window::m_nameWindow = L"ParticleTool";
+const wchar_t* Window::NAME_WINDOW = L"ParticleTool";
 
 Window::Window() : m_sizeWindow()
 {
-	m_sizeWindow.cx = m_width;
-	m_sizeWindow.cy = m_height;
+	m_sizeWindow.cx = WIDTH;
+	m_sizeWindow.cy = HEIGHT;
 }
 
 Window::~Window()
@@ -32,7 +32,7 @@ bool Window::Initialize(HINSTANCE hInst)
         m_wc.hCursor = LoadCursor(hInst, IDC_ARROW);
         m_wc.hbrBackground = GetSysColorBrush(COLOR_WINDOW);
         m_wc.lpszMenuName = nullptr;
-        m_wc.lpszClassName = m_nameWindow;
+        m_wc.lpszClassName = NAME_WINDOW;
         if (!RegisterClass(&m_wc)) 
         {
             return false;
@@ -49,7 +49,7 @@ bool Window::Initialize(HINSTANCE hInst)
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
         m_hWindow = CreateWindow(m_wc.lpszClassName,
-            m_nameWindow,
+            NAME_WINDOW,
             WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT,
             CW_USEDEFAULT,
