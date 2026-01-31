@@ -10,6 +10,7 @@ Gui::Gui(HWND hWnd, ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext)
 
 Gui::~Gui() 
 {
+	m_hWnd = nullptr;
 }
 
 void Gui::Initialize() 

@@ -13,7 +13,9 @@ public:
 	void Finalize();
 
 private:
-	HWND m_hWnd = nullptr; // HWNDを参照として持つのは危険かもしれない
+	// HWNDを参照として持つのは危険かもしれない
+	// HWNDをnullptrにするだけで破棄は任せる
+	HWND m_hWnd = nullptr; 
 	Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pDeviceContext = nullptr;
 };
