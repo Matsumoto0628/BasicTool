@@ -4,8 +4,12 @@
 
 class RenderContext;
 
+// TODO: 派生先でVertex、ConstantBufferを定義する
+// TODO: m_pVertexBuffer,m_pIndexBufferを初期化する
 // TODO: m_pVertexBuffer,m_pIndexBufferをIAに渡す
 // TODO: m_pConstantBufferをVS,PSに渡す
+// TODO: カメラとライトを実装
+// TODO: Transformクラスで位置回転スケール、親子関係を実装
 class Renderable
 {
 public:
@@ -13,7 +17,7 @@ public:
 	virtual bool Initialize() = 0;
 	virtual void Start() = 0;
 	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Draw() = 0; // Draw()かDrawIndexed()を呼び出す
 	virtual void Terminate() = 0;
 	virtual void Finalize() = 0;
 

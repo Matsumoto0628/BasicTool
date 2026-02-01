@@ -1,10 +1,6 @@
-﻿#include "render_context.h"
+#include "render_context.h"
 #include "rotation_converter.h"
 #include "vec4.h"
-
-// TODO: ブレンド、深度ステンシル、Shader、InputLayout、
-// Vertex/Index Buffer、ConstantBuffer、Topologyをオブジェクトごとに持たせる
-// TODO: カメラとライトのクラスを作成し、コンストラクタで渡す
 
 // 定数
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 0 };
