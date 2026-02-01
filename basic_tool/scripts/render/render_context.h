@@ -18,21 +18,15 @@ public:
 private:
     bool initDeviceAndSwapChain();
     bool initBackBuffer();
-    bool initDepthStencil();
-    bool initBlend();
+    bool initDepthStencilView();
     void initViewPort();
-    void initInputLayout();
 
     Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice = nullptr;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pDeviceContext = nullptr;
     Microsoft::WRL::ComPtr<IDXGISwapChain> m_pSwapChain = nullptr;
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_pRenderTargetView = nullptr;
-    Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout = nullptr;
-    D3D11_VIEWPORT m_viewPort[1];
-
-    Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendState = nullptr;
     Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView = nullptr;
-    Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthState = nullptr;
+    D3D11_VIEWPORT m_viewPort[1];
 
     static const UINT FEATURE_LEVELS_NUM = 4;
     D3D_FEATURE_LEVEL m_pFeatureLevels[FEATURE_LEVELS_NUM] = {};
@@ -49,5 +43,4 @@ private:
     HWND m_hWnd = nullptr;
 
     static const Vec4 BACK_BUFFER_COLOR;
-    static const Vec4 BLEND_FACTOR;
 };

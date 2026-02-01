@@ -8,7 +8,6 @@
 
 // 定数
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 0 };
-const Vec4 RenderContext::BLEND_FACTOR = { 0, 0, 0, 0 };
 
 RenderContext::RenderContext(HWND hWnd)
     : m_hWnd(hWnd), m_nearClipDist(0.1f), m_farClipDist(1000.0f), m_fov(DegToRad(30.0f))
@@ -32,7 +31,6 @@ bool RenderContext::Initialize()
         m_screenHeight = rc.bottom - rc.top;
     }
     
-    // 必須
     {
         bool result = initDeviceAndSwapChain();
         if (!result)
@@ -40,8 +38,7 @@ bool RenderContext::Initialize()
             return false;
         }
     }
-
-    // 必須
+    
     {
         bool result = initBackBuffer();
         if (!result)
@@ -50,26 +47,15 @@ bool RenderContext::Initialize()
         }
     }
 
-    // 必須
+    {
+        bool result = initDepthStencilView();
+        if (!result)
+        {
+            return false;
+        }
+    }
+    
     initViewPort();
-
-    // 描画を順序正しく行うために実装(ほぼ必須)
-    {
-        bool result = initDepthStencil();
-        if (!result)
-        {
-            return false;
-        }
-    }
-
-    // 半透明のものを表示するために実装
-    {
-        bool result = initBlend();
-        if (!result)
-        {
-            return false;
-        }
-    }
 
     return true;
 }
@@ -84,21 +70,16 @@ void RenderContext::Update()
 
 void RenderContext::Draw()
 {
-    if (!m_pDeviceContext || !m_pRenderTargetView)
+    if (!m_pDeviceContext || !m_pRenderTargetView || !m_pDepthStencilView)
     {
         return;
     }
-    
-    float blendFactor[4];
-    BLEND_FACTOR.ToFloat4(blendFactor);
 
     float color[4];
     BACK_BUFFER_COLOR.ToFloat4(color);
 
     // 全てのオブジェクト共通で行う処理
     m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView.Get());
-    m_pDeviceContext->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-    m_pDeviceContext->OMSetDepthStencilState(m_pDepthState.Get(), 0);
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView.Get(), color);
     m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
@@ -228,7 +209,7 @@ bool RenderContext::initDeviceAndSwapChain()
     return true;
 }
 
-bool RenderContext::initDepthStencil()
+bool RenderContext::initDepthStencilView()
 {
     // 深度ステンシル用のテクスチャの設定
     D3D11_TEXTURE2D_DESC depthDesc = {};
@@ -270,31 +251,6 @@ bool RenderContext::initDepthStencil()
     return true;
 }
 
-bool RenderContext::initBlend()
-{
-    // ブレンド用のテクスチャの設定
-    D3D11_BLEND_DESC BlendState;
-    ZeroMemory(&BlendState, sizeof(D3D11_BLEND_DESC));
-    BlendState.AlphaToCoverageEnable = FALSE;
-    BlendState.IndependentBlendEnable = FALSE;
-    BlendState.RenderTarget[0].BlendEnable = TRUE;
-    BlendState.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-    BlendState.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-    BlendState.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-    BlendState.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-    BlendState.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-    BlendState.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-    BlendState.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-    
-    HRESULT hr = m_pDevice->CreateBlendState(&BlendState, &m_pBlendState);
-    if (FAILED(hr))
-    {
-        return false;
-    }
-
-    return true;
-}
-
 void RenderContext::initViewPort() 
 {
     m_viewPort[0].TopLeftX = 0.0f;
@@ -303,32 +259,4 @@ void RenderContext::initViewPort()
     m_viewPort[0].Height = static_cast<float>(m_screenHeight);
     m_viewPort[0].MinDepth = 0.0f;
     m_viewPort[0].MaxDepth = 1.0f;
-}
-
-void RenderContext::initInputLayout() 
-{
-    // 位置のレイアウト
-    D3D11_INPUT_ELEMENT_DESC position = { 
-        "POSITION",
-        0,
-        DXGI_FORMAT_R32G32B32_FLOAT,
-        0,
-        0,
-        D3D11_INPUT_PER_VERTEX_DATA,
-        0
-    };
-
-    D3D11_INPUT_ELEMENT_DESC layout[] = {
-        position 
-    };
-
-    m_pDevice->CreateInputLayout(
-        layout,
-        _countof(layout),
-        vsBlob->GetBufferPointer(),
-        vsBlob->GetBufferSize(),
-        &m_pInputLayout
-    );
-
-    m_pDeviceContext->IASetInputLayout(m_pInputLayout.Get());
 }
