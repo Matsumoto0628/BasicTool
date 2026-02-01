@@ -86,3 +86,15 @@ void Empty::Terminate()
 void Empty::Finalize()
 {
 }
+
+bool Empty::initVertexBuffer() 
+{
+}
+
+bool Empty::initIndexBuffer()
+{
+}
+
+bool Empty::updateConstantBufferA() 
+{
+}

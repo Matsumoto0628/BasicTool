@@ -4,10 +4,14 @@
 
 class RenderContext;
 
-// TODO: 派生先でVertex、ConstantBufferを定義する
 // TODO: m_pVertexBuffer,m_pIndexBufferを初期化する
 // TODO: m_pVertexBuffer,m_pIndexBufferをIAに渡す
-// TODO: m_pConstantBufferをVS,PSに渡す
+// TODO: m_pConstantBufferを毎フレーム初期化する
+// TODO: m_pConstantBufferを毎フレームVS,PSに渡す
+
+// TODO: ConstantBufferは複数持てるようにする
+
+// TODO: imguiのテスト
 // TODO: カメラとライトを実装
 // TODO: Transformクラスで位置回転スケール、親子関係を実装
 class Renderable
@@ -29,13 +33,14 @@ protected:
 	virtual bool initVertexShader();
 	virtual bool initInputLayout(ID3DBlob* vsBlob);
 	virtual bool initPixelShader();
+	virtual bool initVertexBuffer() = 0;
+	virtual bool initIndexBuffer() = 0;
 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_pVertexShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pVertexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pIndexBuffer = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilState = nullptr;
 
