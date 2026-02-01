@@ -1,25 +1,28 @@
-﻿#include "renderer.h"
+﻿#include "render_context.h"
+#include "rotation_converter.h"
+#include "vec4.h"
 
-// TODO: クリアの色を定数にする
-// TODO: InputLayoutを定義する
-// TODO: 自作vector3クラス、ラジアン変換関数を作成する
+// TODO: ブレンド、深度ステンシル、Shader、InputLayout、
+// Vertex/Index Buffer、ConstantBuffer、Topologyをオブジェクトごとに持たせる
+// TODO: カメラとライトのクラスを作成し、コンストラクタで渡す
 
-Renderer::Renderer(HWND hWnd)
-    : m_hWnd(hWnd),
-    m_nearClipDist(0.1f),
-    m_farClipDist(1000.f),
-    m_fov(DirectX::XMConvertToRadians(30.f))
+// 定数
+const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 0 };
+const Vec4 RenderContext::BLEND_FACTOR = { 0, 0, 0, 0 };
+
+RenderContext::RenderContext(HWND hWnd)
+    : m_hWnd(hWnd), m_nearClipDist(0.1f), m_farClipDist(1000.0f), m_fov(DegToRad(30.0f))
 {
     m_pFeatureLevels[0] = D3D_FEATURE_LEVEL_11_1;
     m_pFeatureLevels[1] = D3D_FEATURE_LEVEL_11_0;
 }
 
-Renderer::~Renderer()
+RenderContext::~RenderContext()
 {
     m_hWnd = nullptr;
 }
 
-bool Renderer::Initialize()
+bool RenderContext::Initialize()
 {
     // ウィンドウに合わせてスクリーンサイズ初期化
     {
@@ -71,37 +74,41 @@ bool Renderer::Initialize()
     return true;
 }
 
-void Renderer::Start() 
+void RenderContext::Start() 
 {
 }
 
-void Renderer::Update() 
+void RenderContext::Update() 
 {
 }
 
-void Renderer::Draw()
+void RenderContext::Draw()
 {
     if (!m_pDeviceContext || !m_pRenderTargetView)
     {
         return;
     }
     
-    FLOAT BlendFactor[4] = { 0.f, 0.f, 0.f, 0.f };
-    float color[] = { 0.f, 0.f, 1.f, 0.f };
+    float blendFactor[4];
+    BLEND_FACTOR.ToFloat4(blendFactor);
+
+    float color[4];
+    BACK_BUFFER_COLOR.ToFloat4(color);
+
+    // 全てのオブジェクト共通で行う処理
     m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView.Get());
-    m_pDeviceContext->OMSetBlendState(m_pBlendState.Get(), BlendFactor, 0xffffffff);
+    m_pDeviceContext->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pDeviceContext->OMSetDepthStencilState(m_pDepthState.Get(), 0);
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView.Get(), color);
     m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-    m_pDeviceContext->IASetInputLayout();
-    m_pDeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
 }
 
-void Renderer::Terminate()
+void RenderContext::Terminate()
 {
 }
 
-void Renderer::Finalize() 
+void RenderContext::Finalize() 
 {
     if (m_pDeviceContext)
     {
@@ -115,12 +122,12 @@ void Renderer::Finalize()
     }
 }
 
-void Renderer::Swap()
+void RenderContext::Swap()
 {
     m_pSwapChain->Present(0, 0);
 }
 
-bool Renderer::initBackBuffer()
+bool RenderContext::initBackBuffer()
 {
     Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBuffer;
 
@@ -155,7 +162,7 @@ bool Renderer::initBackBuffer()
     return true;
 }
 
-bool Renderer::initDeviceAndSwapChain()
+bool RenderContext::initDeviceAndSwapChain()
 {
     // スワップチェインの設定
     DXGI_SWAP_CHAIN_DESC sd;
@@ -221,7 +228,7 @@ bool Renderer::initDeviceAndSwapChain()
     return true;
 }
 
-bool Renderer::initDepthStencil()
+bool RenderContext::initDepthStencil()
 {
     // 深度ステンシル用のテクスチャの設定
     D3D11_TEXTURE2D_DESC depthDesc = {};
@@ -263,7 +270,7 @@ bool Renderer::initDepthStencil()
     return true;
 }
 
-bool Renderer::initBlend()
+bool RenderContext::initBlend()
 {
     // ブレンド用のテクスチャの設定
     D3D11_BLEND_DESC BlendState;
@@ -288,7 +295,7 @@ bool Renderer::initBlend()
     return true;
 }
 
-void Renderer::initViewPort() 
+void RenderContext::initViewPort() 
 {
     m_viewPort[0].TopLeftX = 0.0f;
     m_viewPort[0].TopLeftY = 0.0f;
@@ -296,5 +303,32 @@ void Renderer::initViewPort()
     m_viewPort[0].Height = static_cast<float>(m_screenHeight);
     m_viewPort[0].MinDepth = 0.0f;
     m_viewPort[0].MaxDepth = 1.0f;
-    m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
+}
+
+void RenderContext::initInputLayout() 
+{
+    // 位置のレイアウト
+    D3D11_INPUT_ELEMENT_DESC position = { 
+        "POSITION",
+        0,
+        DXGI_FORMAT_R32G32B32_FLOAT,
+        0,
+        0,
+        D3D11_INPUT_PER_VERTEX_DATA,
+        0
+    };
+
+    D3D11_INPUT_ELEMENT_DESC layout[] = {
+        position 
+    };
+
+    m_pDevice->CreateInputLayout(
+        layout,
+        _countof(layout),
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        &m_pInputLayout
+    );
+
+    m_pDeviceContext->IASetInputLayout(m_pInputLayout.Get());
 }
