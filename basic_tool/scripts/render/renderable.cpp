@@ -93,13 +93,14 @@ void Renderable::initInputLayout()
         position
     };
 
-    m_pContext->GetDevice()->CreateInputLayout(
+    // 一時的にコメントアウト
+    /*m_pContext->GetDevice()->CreateInputLayout(
         layout,
         _countof(layout),
         vsBlob->GetBufferPointer(),
         vsBlob->GetBufferSize(),
         &m_pInputLayout
-    );
+    );*/
 
     m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
 }

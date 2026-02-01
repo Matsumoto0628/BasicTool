@@ -1,4 +1,5 @@
-﻿#pragma once
+#pragma once
+#include "vec4.h"
 
 class RenderContext
 {

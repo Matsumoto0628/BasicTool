@@ -1,4 +1,4 @@
-﻿#include "rotation_converter.h"
+#include "rotation_converter.h"
 #include "vec3.h"
 #include "vec4.h"
 #include <DirectXMath.h>
