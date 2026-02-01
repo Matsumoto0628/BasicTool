@@ -76,6 +76,7 @@ void Empty::Draw()
 
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+    m_pContext->GetDeviceContext()->Draw();
 }
 
 void Empty::Terminate()
