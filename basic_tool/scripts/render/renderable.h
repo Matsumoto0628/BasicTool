@@ -4,11 +4,13 @@
 
 class RenderContext;
 
+// TODO: m_pVertexBuffer,m_pIndexBufferをIAに渡す
+// TODO: m_pConstantBufferをVS,PSに渡す
 class Renderable
 {
 public:
 	virtual ~Renderable() = default; // virtualにしないと派生のデストラクタが呼び出されない
-	virtual bool Initialize();
+	virtual bool Initialize() = 0;
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;

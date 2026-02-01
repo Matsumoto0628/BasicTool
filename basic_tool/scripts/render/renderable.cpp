@@ -11,49 +11,6 @@ Renderable::Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_
 {
 }
 
-bool Renderable::Initialize()
-{
-    {
-        bool result = initDepthStencil();
-        if (!result)
-        {
-            return false;
-        }
-    }
-
-    {
-        bool result = initBlend();
-        if (!result)
-        {
-            return false;
-        }
-    }
-
-    // ここでInputLayoutも初期化
-    {
-        bool result = initVertexShader();
-        if (!result)
-        {
-            return false;
-        }
-    }
-
-    {
-        bool result = initPixelShader();
-        if (!result)
-        {
-            return false;
-        }
-    }
-
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
-
-    return true;
-}
-
 bool Renderable::initDepthStencil()
 {
     D3D11_DEPTH_STENCIL_DESC desc = {};

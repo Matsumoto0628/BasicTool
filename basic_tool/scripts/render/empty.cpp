@@ -1,4 +1,4 @@
-﻿#include "empty.h"
+#include "empty.h"
 #include "render_context.h"
 
 // 定数
@@ -16,6 +16,49 @@ Empty::Empty(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY t
 
 Empty::~Empty()
 {
+}
+
+bool Empty::Initialize() 
+{
+    {
+        bool result = initDepthStencil();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initBlend();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    // ここでInputLayoutも初期化
+    {
+        bool result = initVertexShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initPixelShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+
+    return true;
 }
 
 void Empty::Start()
