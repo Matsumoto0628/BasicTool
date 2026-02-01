@@ -29,7 +29,26 @@ bool Renderable::Initialize()
         }
     }
 
-    initInputLayout();
+    // ここでInputLayoutも初期化
+    {
+        bool result = initVertexShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initPixelShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
     m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
     return true;
@@ -77,7 +96,42 @@ bool Renderable::initBlend()
     return true;
 }
 
-void Renderable::initInputLayout()
+bool Renderable::initVertexShader() 
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
+
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_vs.cso", &vsBlob);
+    if (FAILED(hr)) 
+    {
+        return false;
+    }
+
+    hr = m_pContext->GetDevice()->CreateVertexShader(
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        nullptr,
+        &m_pVertexShader
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    // vsBlobが必要なのでここでInputLayout初期化
+    {
+        bool result = initInputLayout(vsBlob.Get());
+        if (!result) 
+        {
+            return false;
+        }
+    }
+
+    vsBlob = nullptr;
+
+    return true;
+}
+
+bool Renderable::initInputLayout(ID3DBlob* vsBlob)
 {
     D3D11_INPUT_ELEMENT_DESC position = {
         "POSITION",
@@ -93,45 +147,43 @@ void Renderable::initInputLayout()
         position
     };
 
-    // 一時的にコメントアウト
-    /*m_pContext->GetDevice()->CreateInputLayout(
+    HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
         layout,
         _countof(layout),
         vsBlob->GetBufferPointer(),
         vsBlob->GetBufferSize(),
         &m_pInputLayout
-    );*/
-
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-}
-
-void Renderable::initVertexShader() 
-{
-    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
-
-    D3DReadFileToBlob(L"shader/test_vs.cso", &vsBlob);
-
-    m_pContext->GetDevice()->CreateVertexShader(
-        vsBlob->GetBufferPointer(),
-        vsBlob->GetBufferSize(),
-        nullptr,
-        &m_pVertexShader
     );
+    if (FAILED(hr))
+    {
+        return false;
+    }
 
-    vsBlob = nullptr;
+    return true;
 }
 
-void Renderable::initPixelShader()
+bool Renderable::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
-    D3DReadFileToBlob(L"shader/test_ps.cso", &psBlob);
 
-    m_pContext->GetDevice()->CreatePixelShader(
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_ps.cso", &psBlob);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    hr = m_pContext->GetDevice()->CreatePixelShader(
         psBlob->GetBufferPointer(),
         psBlob->GetBufferSize(),
         nullptr,
         &m_pPixelShader
     );
+    if (FAILED(hr))
+    {
+        return false;
+    }
 
     psBlob = nullptr;
+
+    return true;
 }

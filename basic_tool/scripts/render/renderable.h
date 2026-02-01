@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "vec4.h"
 #include <memory>
 
@@ -20,9 +20,9 @@ protected:
 	Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
-	virtual void initInputLayout();
-	virtual void initVertexShader();
-	virtual void initPixelShader();
+	virtual bool initVertexShader();
+	virtual bool initInputLayout(ID3DBlob* vsBlob);
+	virtual bool initPixelShader();
 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_pVertexShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader = nullptr;
