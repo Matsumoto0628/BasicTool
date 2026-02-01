@@ -1,6 +1,8 @@
-cbuffer Transform : register(b0)
+cbuffer WVP : register(b0)
 {
-    float4x4 WorldViewProj;
+    float4x4 World;
+    float4x4 View;
+    float4x4 Proj;
 };
 
 struct Input
@@ -16,6 +18,8 @@ struct Output
 Output main(Input input)
 {
     Output output;
-    output.pos = mul(float4(input.pos, 1), WorldViewProj);
+    output.pos = mul(float4(input.pos, 1), World);
+    output.pos = mul(output.pos, View);
+    output.pos = mul(output.pos, Proj);
     return output;
 }
