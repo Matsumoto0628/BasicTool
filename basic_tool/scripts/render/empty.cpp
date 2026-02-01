@@ -45,8 +45,8 @@ void Empty::Draw()
     float blendFactor[4];
     BLEND_FACTOR.ToFloat4(blendFactor);
 
-    m_pDeviceContext->OMSetdesc(m_pdesc.Get(), blendFactor, 0xffffffff);
-    m_pDeviceContext->OMSetDepthStencilState(m_pDepthState.Get(), 0);
+    m_pDeviceContext->OMSetdesc(m_pBlendState.Get(), blendFactor, 0xffffffff);
+    m_pDeviceContext->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
 }
 
 void Empty::Terminate()
@@ -67,7 +67,7 @@ bool Empty::initDepthStencil()
     desc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
     desc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
 
-    HRESULT hr = m_pDevice->CreateDepthStencilState(&desc, &m_pBlendState);
+    HRESULT hr = m_pDevice->CreateDepthStencilState(&desc, &m_pDepthStencilState);
     if (FAILED(hr))
     {
         return false;

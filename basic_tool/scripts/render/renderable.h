@@ -25,7 +25,7 @@ protected:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pIndexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendState = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthState = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilState = nullptr;
 
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 

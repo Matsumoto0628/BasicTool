@@ -6,7 +6,6 @@ class Empty : public Renderable
 public:
     Empty();
     ~Empty() override;
-
     bool Initialize() override;
     void Start() override;
     void Update() override;
