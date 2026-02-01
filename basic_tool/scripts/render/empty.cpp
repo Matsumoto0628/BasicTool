@@ -4,6 +4,7 @@
 const Vec4 Empty::BLEND_FACTOR = { 0, 0, 0, 0 };
 
 Empty::Empty()
+    : m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 {
 }
 
@@ -47,6 +48,8 @@ void Empty::Draw()
 
     m_pDeviceContext->OMSetdesc(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pDeviceContext->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+    m_pDeviceContext->IASetInputLayout(m_pInputLayout);
+    m_pDeviceContext->IASetPrimitiveTopology(m_topology);
 }
 
 void Empty::Terminate()
