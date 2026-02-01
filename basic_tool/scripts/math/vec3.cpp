@@ -58,3 +58,8 @@ Vec3 Vec3::Normalize() const
 {
 	return Vec3(DirectX::XMVector3Normalize(vec));
 }
+
+void Vec3::ToFloat3(float out[3]) const
+{
+	DirectX::XMStoreFloat3(reinterpret_cast<DirectX::XMFLOAT3*>(out), vec);
+}

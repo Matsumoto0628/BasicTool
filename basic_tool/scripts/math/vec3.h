@@ -19,6 +19,7 @@ public:
     float Z() const;
     float Length() const;
     Vec3 Normalize() const;
+    void ToFloat3(float out[3]) const;
 
 private:
     Vec3(const DirectX::XMVECTOR& v); // DirectXMathのコンストラクタは自分だけ使う

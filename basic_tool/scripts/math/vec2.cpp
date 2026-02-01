@@ -53,3 +53,8 @@ Vec2 Vec2::Normalize() const
 {
     return Vec2(DirectX::XMVector2Normalize(vec));
 }
+
+void Vec2::ToFloat2(float out[2]) const
+{
+    DirectX::XMStoreFloat2(reinterpret_cast<DirectX::XMFLOAT2*>(out), vec);
+}

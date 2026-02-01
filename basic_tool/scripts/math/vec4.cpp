@@ -63,3 +63,8 @@ Vec4 Vec4::Normalize() const
 {
     return Vec4(DirectX::XMVector4Normalize(vec));
 }
+
+void Vec4::ToFloat4(float out[4]) const
+{
+    DirectX::XMStoreFloat4(reinterpret_cast<DirectX::XMFLOAT4*>(out), vec);
+}

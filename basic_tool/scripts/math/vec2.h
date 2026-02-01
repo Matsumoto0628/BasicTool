@@ -17,6 +17,7 @@ public:
     float Y() const;
     float Length() const;
     Vec2 Normalize() const;
+    void ToFloat2(float out[2]) const;
 
 private:
     Vec2(const DirectX::XMVECTOR& v);
