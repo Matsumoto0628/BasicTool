@@ -29,6 +29,7 @@ bool Renderer::Initialize()
         m_screenHeight = rc.bottom - rc.top;
     }
     
+    // 必須
     {
         bool result = initDeviceAndSwapChain();
         if (!result)
@@ -37,6 +38,7 @@ bool Renderer::Initialize()
         }
     }
 
+    // 必須
     {
         bool result = initBackBuffer();
         if (!result)
@@ -45,9 +47,10 @@ bool Renderer::Initialize()
         }
     }
 
+    // 必須
     initViewPort();
 
-    // 描画を順序正しく行うために実装
+    // 描画を順序正しく行うために実装(ほぼ必須)
     {
         bool result = initDepthStencil();
         if (!result)
