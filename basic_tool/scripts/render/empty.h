@@ -27,7 +27,7 @@ private:
 
     };
 
-    bool updateConstantBufferA(); // シェーダーに必要な分だけ増やす
+    void updateConstantBufferA(); // シェーダーに必要な分だけ増やす
     Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr; // シェーダーに必要な分だけ増やす
     struct ConstantBufferA // シェーダーに必要な分だけ増やす
     {

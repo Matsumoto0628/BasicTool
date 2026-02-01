@@ -1,6 +1,4 @@
 #include "render_context.h"
-#include "rotation_converter.h"
-#include "vec4.h"
 
 // 定数
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 0 };

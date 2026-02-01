@@ -76,7 +76,7 @@ void Empty::Draw()
 
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->Draw();
+    //m_pContext->GetDeviceContext()->Draw();
 }
 
 void Empty::Terminate()
@@ -89,12 +89,14 @@ void Empty::Finalize()
 
 bool Empty::initVertexBuffer() 
 {
+    return true;
 }
 
 bool Empty::initIndexBuffer()
 {
+    return true;
 }
 
-bool Empty::updateConstantBufferA() 
+void Empty::updateConstantBufferA() 
 {
 }

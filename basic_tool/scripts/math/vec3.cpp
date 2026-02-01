@@ -1,5 +1,3 @@
-﻿#include "vec3.h"
-
 Vec3::Vec3()
 	: vec(DirectX::XMVectorZero())
 {
