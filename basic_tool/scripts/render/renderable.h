@@ -1,11 +1,14 @@
 ﻿#pragma once
 #include "vec4.h"
+#include <memory>
+
+class RenderContext;
 
 class Renderable
 {
 public:
 	virtual ~Renderable() = default; // virtualにしないと派生のデストラクタが呼び出されない
-	virtual bool Initialize() = 0;
+	virtual bool Initialize();
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
@@ -13,10 +16,11 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	Renderable() = default; // Renderable自体を生成することを禁止する
-	virtual bool initDepthStencil() = 0; // ほぼ共通なので普通の仮想関数でいいかも
-	virtual bool initBlend() = 0;
-	virtual void initInputLayout() = 0;
+	Renderable(std::shared_ptr<RenderContext> pContext);
+	Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+	virtual bool initDepthStencil();
+	virtual bool initBlend();
+	virtual void initInputLayout();
 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_pVertexShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader = nullptr;
@@ -29,6 +33,11 @@ protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 
+	std::shared_ptr<RenderContext> m_pContext = nullptr;
+
 	// 定数
 	static const Vec4 BLEND_FACTOR;
+
+private:
+	Renderable() = delete; // 必ずRenderContextを渡して初期化
 };
