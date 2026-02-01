@@ -1,15 +1,13 @@
-﻿#include "renderable.h"
+#include "renderable.h"
 #include "render_context.h"
 
 Renderable::Renderable(std::shared_ptr<RenderContext> pContext)
-    : m_pContext(std::move(pContext)),
-    m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+    : m_pContext(std::move(pContext)), m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 {
 }
 
 Renderable::Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : m_pContext(std::move(pContext)),
-    m_topology(topology)
+    : m_pContext(std::move(pContext)), m_topology(topology)
 {
 }
 
@@ -104,4 +102,35 @@ void Renderable::initInputLayout()
     );
 
     m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+}
+
+void Renderable::initVertexShader() 
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
+
+    D3DReadFileToBlob(L"shader/test_vs.cso", &vsBlob);
+
+    m_pContext->GetDevice()->CreateVertexShader(
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        nullptr,
+        &m_pVertexShader
+    );
+
+    vsBlob = nullptr;
+}
+
+void Renderable::initPixelShader()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
+    D3DReadFileToBlob(L"shader/test_ps.cso", &psBlob);
+
+    m_pContext->GetDevice()->CreatePixelShader(
+        psBlob->GetBufferPointer(),
+        psBlob->GetBufferSize(),
+        nullptr,
+        &m_pPixelShader
+    );
+
+    psBlob = nullptr;
 }

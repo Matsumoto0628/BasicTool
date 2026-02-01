@@ -21,6 +21,8 @@ protected:
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual void initInputLayout();
+	virtual void initVertexShader();
+	virtual void initPixelShader();
 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_pVertexShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader = nullptr;
