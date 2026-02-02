@@ -40,9 +40,6 @@ protected:
 
 	std::shared_ptr<RenderContext> m_pContext = nullptr;
 
-	// 定数
-	static const Vec4 BLEND_FACTOR;
-
 private:
 	Renderable() = delete; // 必ずRenderContextを渡して初期化
 };
