@@ -69,6 +69,14 @@ bool Empty::Initialize()
         }
     }
 
+    {
+        bool result = initConstantBufferA();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
     UINT stride = sizeof(Vertex);
     UINT offset = 0;
     
