@@ -4,6 +4,7 @@
 
 class RenderContext;
 class Renderable;
+class Gui;
 
 class Application
 {
@@ -23,4 +24,5 @@ private:
     Window m_window; // 寿命がApplicationと同じなので実体
     std::shared_ptr<RenderContext> m_pRenderContext; // 共有したいのでポインタ
     std::unique_ptr<Renderable> m_pRenderable; // ポリモーフィズムしたいのでポインタ
+    std::unique_ptr<Gui> m_pGui; // 明示的にコンストラクタで生成したいのでポインタ
 };

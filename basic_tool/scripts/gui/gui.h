@@ -1,9 +1,12 @@
-﻿#pragma once
+#pragma once
+#include <memory>
+
+class RenderContext;
 
 class Gui 
 {
 public:
-	Gui(HWND hWnd, ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext);
+	Gui(HWND hWnd, std::shared_ptr<RenderContext> pContext);
 	~Gui();
 	void Initialize();
 	void Start();
@@ -13,9 +16,9 @@ public:
 	void Finalize();
 
 private:
+	Gui() = delete;
 	// HWNDを参照として持つのは危険かもしれない
 	// HWNDをnullptrにするだけで破棄は任せる
 	HWND m_hWnd = nullptr; 
-	Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pDeviceContext = nullptr;
+	std::shared_ptr<RenderContext> m_pContext = nullptr;
 };

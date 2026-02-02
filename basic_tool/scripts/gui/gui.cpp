@@ -1,10 +1,11 @@
-﻿#include "gui.h"
+#include "gui.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
+#include "render_context.h"
 
-Gui::Gui(HWND hWnd, ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext)
-	: m_hWnd(hWnd), m_pDevice(pDevice), m_pDeviceContext(pDeviceContext)
+Gui::Gui(HWND hWnd, std::shared_ptr<RenderContext> pContext)
+	: m_hWnd(hWnd), m_pContext(std::move(pContext))
 {
 }
 
@@ -26,7 +27,7 @@ void Gui::Initialize()
 	// バックエンドの初期化
 	{
 		ImGui_ImplWin32_Init(m_hWnd);
-		ImGui_ImplDX11_Init(m_pDevice.Get(), m_pDeviceContext.Get());
+		ImGui_ImplDX11_Init(m_pContext->GetDevice(), m_pContext->GetDeviceContext());
 	}
 }
 
