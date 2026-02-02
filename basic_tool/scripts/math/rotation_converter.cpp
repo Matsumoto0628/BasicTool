@@ -1,7 +1,7 @@
 #include <DirectXMath.h>
 
 // 定数
-static const float PI = 3.14159265358979323846f;
+const float PI = 3.14159265358979323846f;
 
 float DegToRad(float deg)
 {
@@ -13,7 +13,7 @@ float RadToDeg(float rad)
     return rad * 180.0f / PI;
 }
 
-Vec4 EulerToQuaternion(const Vec3& euler)
+const Vec4& EulerToQuaternion(const Vec3& euler)
 {
     DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationRollPitchYaw(
         euler.X(),
@@ -29,7 +29,7 @@ Vec4 EulerToQuaternion(const Vec3& euler)
     );
 }
 
-Vec4 AxisToQuaternion(const Vec3& axis, float rad)
+const Vec4& AxisToQuaternion(const Vec3& axis, float rad)
 {
     DirectX::XMVECTOR axisVec = DirectX::XMVectorSet(
         axis.X(),

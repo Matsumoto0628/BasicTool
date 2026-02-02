@@ -1,7 +1,8 @@
 #include "application.h"
 #include "render_context.h"
-#include "empty.h"
+#include "sphere.h"
 #include "gui.h"
+#include "camera.h"
 
 Application::Application(HINSTANCE hInstance)
     : m_window(hInstance)
@@ -17,14 +18,20 @@ void Application::Initialize()
     m_window.Initialize();
 
     // m_windowが初期化してないとコンストラクタが呼び出せない
-    m_pRenderContext = std::make_shared<RenderContext>(m_window.GetWindowHandle());
-    m_pRenderContext->Initialize();
+    {
+        m_pRenderContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
+        m_pRenderContext->Initialize();
+        m_pCamera = std::make_unique<Camera>(m_pRenderContext->GetWidth(), m_pRenderContext->GetHeight());
+        m_pCamera->Initialize();
+    }
 
     // m_pRenderContextが初期化していないとコンストラクタが呼び出せない
-    m_pRenderable = std::make_unique<Empty>(m_pRenderContext);
-    m_pRenderable->Initialize();
-    m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pRenderContext);
-    m_pGui->Initialize();
+    {
+        m_pRenderable = std::make_unique<Sphere>(m_pRenderContext.get(), m_pCamera.get());
+        m_pRenderable->Initialize();
+        m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pRenderContext.get());
+        m_pGui->Initialize();
+    }
 }
 
 void Application::Start()

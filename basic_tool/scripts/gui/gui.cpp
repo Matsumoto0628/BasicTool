@@ -4,8 +4,8 @@
 #include "imgui_impl_dx11.h"
 #include "render_context.h"
 
-Gui::Gui(HWND hWnd, std::shared_ptr<RenderContext> pContext)
-	: m_hWnd(hWnd), m_pContext(std::move(pContext))
+Gui::Gui(HWND hWnd, RenderContext* pContext)
+	: m_hWnd(hWnd), m_pContext(pContext)
 {
 }
 

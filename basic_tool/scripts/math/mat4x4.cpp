@@ -1,3 +1,8 @@
+Mat4x4::Mat4x4() 
+    : mat(DirectX::XMMatrixIdentity())
+{
+}
+
 Mat4x4::~Mat4x4()
 {
 }
@@ -35,9 +40,24 @@ Mat4x4 Mat4x4::Translation(float x, float y, float z)
     return Mat4x4(DirectX::XMMatrixTranslation(x, y, z));
 }
 
+Mat4x4 Mat4x4::PerspectiveFovLH(float fov, float aspect, float nearZ, float farZ)
+{
+    return Mat4x4(DirectX::XMMatrixPerspectiveFovLH(
+        fov,
+        aspect,
+        nearZ,
+        farZ
+    ));
+}
+
 Mat4x4 Mat4x4::Transpose() const
 {
     return Mat4x4(DirectX::XMMatrixTranspose(mat));
+}
+
+Mat4x4 Mat4x4::Inverse() const
+{
+    return Mat4x4(DirectX::XMMatrixInverse(nullptr, mat));
 }
 
 // 引数の配列に、行列の値を入れる
@@ -47,4 +67,37 @@ void Mat4x4::ToFloat4x4(float out[4][4]) const
         reinterpret_cast<DirectX::XMFLOAT4X4*>(out), // reinterpret_castで無理やりキャストは危険
         mat
     ); 
+}
+
+void Mat4x4::ToPosRotScale(Vec3& outPos, Vec4& outRot, Vec3& outScale) const
+{
+    DirectX::XMVECTOR scale = { outScale.X(), outScale.Y(), outScale.Z() };
+    DirectX::XMVECTOR rotation = { outRot.X(), outRot.Y(), outRot.Z() };;
+    DirectX::XMVECTOR translation = { outPos.X(), outPos.Y(), outPos.Z() };;
+
+    DirectX::XMMatrixDecompose(
+        &scale,
+        &rotation,
+        &translation,
+        mat
+    );
+
+    outPos = {
+        DirectX::XMVectorGetX(translation),
+        DirectX::XMVectorGetY(translation),
+        DirectX::XMVectorGetZ(translation),
+    };
+
+    outRot = {
+        DirectX::XMVectorGetX(rotation),
+        DirectX::XMVectorGetY(rotation),
+        DirectX::XMVectorGetZ(rotation),
+        DirectX::XMVectorGetW(rotation),
+    };
+
+    outScale = {
+        DirectX::XMVectorGetX(scale),
+        DirectX::XMVectorGetY(scale),
+        DirectX::XMVectorGetZ(scale),
+    };
 }

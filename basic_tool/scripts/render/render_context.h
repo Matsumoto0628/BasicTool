@@ -14,6 +14,8 @@ public:
     void Swap();
     ID3D11Device* GetDevice() const { return m_pDevice.Get(); }
     ID3D11DeviceContext* GetDeviceContext() const { return m_pDeviceContext.Get(); }
+    unsigned int GetWidth() const { return m_screenWidth; }
+    unsigned int GetHeight() const { return m_screenHeight; }
 
 private:
     bool initDeviceAndSwapChain();
@@ -35,10 +37,6 @@ private:
     static const UINT BACK_BUFFER_NUM = 3;
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
-
-    float m_nearClipDist = 0.0f;
-    float m_farClipDist = 0.0f;
-    float m_fov = 0.0f;
 
     HWND m_hWnd = nullptr;
 

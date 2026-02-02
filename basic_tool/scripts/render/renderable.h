@@ -1,11 +1,9 @@
 #pragma once
-#include <memory>
+#include "transform.h"
 
 class RenderContext;
+class Camera;
 
-// TODO: imguiのテスト
-// TODO: カメラとライトを実装
-// TODO: Transformクラスで位置回転スケール、親子関係を実装
 class Renderable
 {
 public:
@@ -18,8 +16,8 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	explicit Renderable(std::shared_ptr<RenderContext> pContext);
-	Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+	Renderable(RenderContext* pContext, Camera* pCamera);
+	Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual bool initVertexShader();
@@ -38,10 +36,9 @@ protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 
-	std::shared_ptr<RenderContext> m_pContext = nullptr;
-
-	// 定数
-	static const Vec4 BLEND_FACTOR;
+	RenderContext* m_pContext = nullptr;
+	Camera* m_pCamera = nullptr;
+	Transform m_transform;
 
 private:
 	Renderable() = delete; // 必ずRenderContextを渡して初期化

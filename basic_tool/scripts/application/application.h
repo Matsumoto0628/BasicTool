@@ -5,7 +5,12 @@
 class RenderContext;
 class Renderable;
 class Gui;
+class Camera;
 
+// TODO: Sceneクラスの実装
+// TODO: GetRenderable()でここで一気に描画
+// TODO: RenderableクラスでGetTransform()して操作する
+// TODO: InputManagerで操作できるようにする
 class Application
 {
 public:
@@ -20,9 +25,9 @@ public:
 private:
     bool gameLoop();
 
-private:
-    Window m_window; // 寿命がApplicationと同じなので実体
-    std::shared_ptr<RenderContext> m_pRenderContext; // 共有したいのでポインタ
-    std::unique_ptr<Renderable> m_pRenderable; // ポリモーフィズムしたいのでポインタ
-    std::unique_ptr<Gui> m_pGui; // 明示的にコンストラクタで生成したいのでポインタ
+    Window m_window;
+    std::unique_ptr<RenderContext> m_pRenderContext = nullptr;
+    std::unique_ptr<Renderable> m_pRenderable = nullptr;
+    std::unique_ptr<Gui> m_pGui = nullptr;
+    std::unique_ptr<Camera> m_pCamera = nullptr;
 };
