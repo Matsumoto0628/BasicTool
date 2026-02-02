@@ -3,13 +3,6 @@
 
 class RenderContext;
 
-// TODO: m_pVertexBuffer,m_pIndexBufferを初期化する
-// TODO: m_pVertexBuffer,m_pIndexBufferをIAに渡す
-// TODO: m_pConstantBufferを毎フレーム初期化する
-// TODO: m_pConstantBufferを毎フレームVS,PSに渡す
-
-// TODO: ConstantBufferは複数持てるようにする
-
 // TODO: imguiのテスト
 // TODO: カメラとライトを実装
 // TODO: Transformクラスで位置回転スケール、親子関係を実装

@@ -53,9 +53,30 @@ bool Empty::Initialize()
         }
     }
 
+    {
+        bool result = initVertexBuffer();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initIndexBuffer();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
+    
     m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
     m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
     m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
     m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
     return true;
@@ -67,6 +88,7 @@ void Empty::Start()
 
 void Empty::Update()
 {
+    updateConstantBufferA();
 }
 
 void Empty::Draw()
@@ -76,7 +98,8 @@ void Empty::Draw()
 
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    //m_pContext->GetDeviceContext()->Draw();
+    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf()); // 必要ならPSにも渡す
+    m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
 }
 
 void Empty::Terminate()
@@ -89,14 +112,98 @@ void Empty::Finalize()
 
 bool Empty::initVertexBuffer() 
 {
+    m_vertices[0] = { Vec3(0, 1, 0) };
+    m_vertices[1] = { Vec3(1,-1,0) };
+    m_vertices[2] = { Vec3(-1,-1,0) };
+
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(m_vertices);
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    desc.CPUAccessFlags = 0;
+
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = m_vertices;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        &initData,
+        &m_pVertexBuffer
+    );
+    if (FAILED(hr)) 
+    {
+        return false;
+    }
+
     return true;
 }
 
 bool Empty::initIndexBuffer()
 {
+    unsigned int indices[] = { 0,1,2 };
+
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(indices);
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = indices;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        &initData,
+        &m_pIndexBuffer
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool Empty::initConstantBufferA() 
+{
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(ConstantBufferA);
+    desc.Usage = D3D11_USAGE_DYNAMIC; // Map/Unmapで書き換える
+    desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        nullptr,
+        &m_pConstantBufferA
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
     return true;
 }
 
 void Empty::updateConstantBufferA() 
 {
+    // 渡すもの
+    ConstantBufferA cb;
+    Mat4x4::Identity().ToFloat4x4(cb.world);
+    Mat4x4::Identity().ToFloat4x4(cb.view);
+    Mat4x4::Identity().ToFloat4x4(cb.proj);
+
+    D3D11_MAPPED_SUBRESOURCE mapped = {};
+
+    HRESULT hr = m_pContext->GetDeviceContext()->Map(
+        m_pConstantBufferA.Get(),
+        0,
+        D3D11_MAP_WRITE_DISCARD,
+        0,
+        &mapped
+    );
+    if (SUCCEEDED(hr))
+    {
+        memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
+        m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
+    }
 }

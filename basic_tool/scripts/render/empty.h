@@ -24,13 +24,19 @@ protected:
 private:
     struct Vertex // オブジェクトによって差異がなければ、共通で定義するかも
     {
-
+        Vec3 pos;
     };
-
-    void updateConstantBufferA(); // シェーダーに必要な分だけ増やす
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr; // シェーダーに必要な分だけ増やす
-    struct ConstantBufferA // シェーダーに必要な分だけ増やす
+    static const int VERTEX_COUNT = 3;
+    Vertex m_vertices[VERTEX_COUNT];
+    
+    // シェーダーに必要な分だけ増やす
+    bool initConstantBufferA();
+    void updateConstantBufferA(); 
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
+    struct ConstantBufferA
     {
-
+        float world[4][4];
+        float view[4][4];
+        float proj[4][4];
     };
 };
