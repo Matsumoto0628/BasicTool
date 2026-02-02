@@ -1,0 +1,68 @@
+Vec4::Vec4()
+    : vec(DirectX::XMVectorZero())
+{
+}
+
+Vec4::~Vec4() 
+{
+}
+
+Vec4::Vec4(float x, float y, float z, float w)
+    : vec(DirectX::XMVectorSet(x, y, z, w))
+{
+}
+
+Vec4::Vec4(const DirectX::XMVECTOR& v)
+    : vec(v)
+{
+}
+
+Vec4 Vec4::operator+(const Vec4& rhs) const 
+{
+    return Vec4(DirectX::XMVectorAdd(vec, rhs.vec));
+}
+
+Vec4 Vec4::operator-(const Vec4& rhs) const 
+{
+    return Vec4(DirectX::XMVectorSubtract(vec, rhs.vec));
+}
+
+Vec4 Vec4::operator*(float s) const 
+{
+    return Vec4(DirectX::XMVectorScale(vec, s));
+}
+
+float Vec4::X() const 
+{ 
+    return DirectX::XMVectorGetX(vec); 
+}
+
+float Vec4::Y() const 
+{ 
+    return DirectX::XMVectorGetY(vec); 
+}
+
+float Vec4::Z() const 
+{ 
+    return DirectX::XMVectorGetZ(vec); 
+}
+
+float Vec4::W() const 
+{ 
+    return DirectX::XMVectorGetW(vec); 
+}
+
+float Vec4::Length() const 
+{
+    return DirectX::XMVectorGetX(DirectX::XMVector4Length(vec));
+}
+
+Vec4 Vec4::Normalize() const 
+{
+    return Vec4(DirectX::XMVector4Normalize(vec));
+}
+
+void Vec4::ToFloat4(float out[4]) const
+{
+    DirectX::XMStoreFloat4(reinterpret_cast<DirectX::XMFLOAT4*>(out), vec);
+}

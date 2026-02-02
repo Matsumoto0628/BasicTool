@@ -1,12 +1,17 @@
-﻿#pragma once
+#pragma once
 #include "window.h"
+#include <memory>
+
+class RenderContext;
+class Renderable;
+class Gui;
 
 class Application
 {
 public:
-    Application();
+    explicit Application(HINSTANCE handleInstance);
     ~Application();
-    void Initialize(HINSTANCE hInst); // 初期化
+    void Initialize(); // 初期化
     void Start(); // 開始
     void Loop(); // 更新、描画
     void Terminate(); // 終了
@@ -16,5 +21,8 @@ private:
     bool gameLoop();
 
 private:
-    Window m_window;
+    Window m_window; // 寿命がApplicationと同じなので実体
+    std::shared_ptr<RenderContext> m_pRenderContext; // 共有したいのでポインタ
+    std::unique_ptr<Renderable> m_pRenderable; // ポリモーフィズムしたいのでポインタ
+    std::unique_ptr<Gui> m_pGui; // 明示的にコンストラクタで生成したいのでポインタ
 };

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -143,20 +143,60 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="scripts\application\application.cpp" />
+    <ClCompile Include="scripts\gui\gui.cpp" />
     <ClCompile Include="scripts\main.cpp" />
+    <ClCompile Include="scripts\math\mat4x4.cpp" />
+    <ClCompile Include="scripts\math\rotation_converter.cpp" />
+    <ClCompile Include="scripts\math\vec2.cpp" />
+    <ClCompile Include="scripts\math\vec3.cpp" />
+    <ClCompile Include="scripts\math\vec4.cpp" />
     <ClCompile Include="scripts\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="scripts\render\empty.cpp" />
+    <ClCompile Include="scripts\render\renderable.cpp" />
+    <ClCompile Include="scripts\render\render_context.cpp" />
     <ClCompile Include="scripts\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="scripts\application\application.h" />
+    <ClInclude Include="scripts\gui\gui.h" />
+    <ClInclude Include="scripts\math\mat4x4.h" />
+    <ClInclude Include="scripts\math\rotation_converter.h" />
+    <ClInclude Include="scripts\math\vec2.h" />
+    <ClInclude Include="scripts\math\vec3.h" />
+    <ClInclude Include="scripts\math\vec4.h" />
     <ClInclude Include="scripts\pch.h" />
+    <ClInclude Include="scripts\render\empty.h" />
+    <ClInclude Include="scripts\render\renderable.h" />
+    <ClInclude Include="scripts\render\render_context.h" />
     <ClInclude Include="scripts\window\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="scripts\shader\test_ps.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_vs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

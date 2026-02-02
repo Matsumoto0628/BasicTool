@@ -3,11 +3,12 @@
 #include "application.h"
 
 // エントリポイント
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
-    std::unique_ptr<Application> pApplication = std::make_unique<Application>();
+    std::unique_ptr<Application> pApplication 
+        = std::make_unique<Application>(hInstance);
 
-    pApplication->Initialize(hInst);
+    pApplication->Initialize();
     pApplication->Start();
     pApplication->Loop();
     pApplication->Terminate();

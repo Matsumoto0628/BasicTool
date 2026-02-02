@@ -7,6 +7,24 @@
     <Filter Include="window">
       <UniqueIdentifier>{f28cae38-8b5b-49f0-a124-93d52e718d19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{e34d6438-9394-4f97-b0bb-e8f4739920ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\backends">
+      <UniqueIdentifier>{49fbfc5e-f0d0-4983-95de-dceec14dd1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui">
+      <UniqueIdentifier>{7ae5bf9d-a71b-4d19-b8f9-c77a11c18d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{135b9787-d335-4698-a234-db5f2e6dd5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{444726d4-5717-44cf-86f2-7aeae9cf000b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{af14bdcc-995d-40fe-93f7-f5642451b440}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scripts\main.cpp" />
@@ -17,6 +35,51 @@
     <ClCompile Include="scripts\application\application.cpp">
       <Filter>application</Filter>
     </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\backends\imgui_impl_win32.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\gui\gui.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\mat4x4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\rotation_converter.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\render\render_context.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\render\empty.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\render\renderable.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -26,5 +89,46 @@
     <ClInclude Include="scripts\application\application.h">
       <Filter>application</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\backends\imgui_impl_dx11.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\backends\imgui_impl_win32.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\gui\gui.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\mat4x4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\rotation_converter.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\render\render_context.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\render\renderable.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\render\empty.h">
+      <Filter>render</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="scripts\shader\test_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
