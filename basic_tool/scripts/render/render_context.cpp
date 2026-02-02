@@ -1,7 +1,7 @@
 #include "render_context.h"
 
 // 定数
-const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 0 };
+const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 1.0f };
 
 RenderContext::RenderContext(HWND hWnd)
     : m_hWnd(hWnd), m_nearClipDist(0.1f), m_farClipDist(1000.0f), m_fov(DegToRad(30.0f))
@@ -73,7 +73,7 @@ void RenderContext::Draw()
     BACK_BUFFER_COLOR.ToFloat4(color);
 
     // 全てのオブジェクト共通で行う処理
-    m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView.Get());
+    m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetView.GetAddressOf(), m_pDepthStencilView.Get());
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView.Get(), color);
     m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
