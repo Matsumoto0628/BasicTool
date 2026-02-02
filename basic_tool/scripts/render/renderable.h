@@ -1,6 +1,7 @@
 #pragma once
 
 class RenderContext;
+class Camera;
 
 class Renderable
 {
@@ -14,8 +15,8 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	explicit Renderable(RenderContext* pContext);
-	Renderable(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+	Renderable(RenderContext* pContext, Camera* pCamera);
+	Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual bool initVertexShader();
@@ -35,6 +36,7 @@ protected:
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 
 	RenderContext* m_pContext = nullptr;
+	Camera* m_pCamera = nullptr;
 
 private:
 	Renderable() = delete; // 必ずRenderContextを渡して初期化

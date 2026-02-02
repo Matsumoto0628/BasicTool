@@ -2,12 +2,13 @@
 #include "renderable.h"
 
 class RenderContext;
+class Camera;
 
 class Sphere : public Renderable
 {
 public:
-    explicit Sphere(RenderContext* pContext);
-    Sphere(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+    Sphere(RenderContext* pContext, Camera* pCamera);
+    Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~Sphere() override;
 
     bool Initialize() override;

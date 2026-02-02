@@ -1,13 +1,18 @@
 #include "renderable.h"
 #include "render_context.h"
+#include "camera.h"
 
-Renderable::Renderable(RenderContext* pContext)
-    : m_pContext(pContext), m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+Renderable::Renderable(RenderContext* pContext, Camera* pCamera)
+    : m_pContext(pContext), 
+    m_pCamera(pCamera),
+    m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 {
 }
 
-Renderable::Renderable(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : m_pContext(pContext), m_topology(topology)
+Renderable::Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : m_pContext(pContext),
+    m_pCamera(pCamera),
+    m_topology(topology)
 {
 }
 

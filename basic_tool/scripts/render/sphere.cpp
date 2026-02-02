@@ -4,19 +4,20 @@
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(RenderContext* pContext)
-    : Renderable(pContext)
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera)
+    : Renderable(pContext, pCamera)
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, topology)
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderable(pContext, pCamera, topology)
 {
 }
 
 Sphere::~Sphere()
 {
     m_pContext = nullptr;
+    m_pCamera = nullptr;
 }
 
 bool Sphere::Initialize()

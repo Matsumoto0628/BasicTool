@@ -2,12 +2,13 @@
 #include "renderable.h"
 
 class RenderContext;
+class Camera;
 
 class TriangleTest : public Renderable
 {
 public:
-    explicit TriangleTest(RenderContext* pContext);
-    TriangleTest(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+    TriangleTest(RenderContext* pContext, Camera* pCamera);
+    TriangleTest(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~TriangleTest() override;
     bool Initialize() override;
     void Start() override;
