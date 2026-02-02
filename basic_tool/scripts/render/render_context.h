@@ -14,6 +14,8 @@ public:
     void Swap();
     ID3D11Device* GetDevice() const { return m_pDevice.Get(); }
     ID3D11DeviceContext* GetDeviceContext() const { return m_pDeviceContext.Get(); }
+    unsigned int GetWidth() const { return m_screenWidth; }
+    unsigned int GetHeight() const { return m_screenHeight; }
 
 private:
     bool initDeviceAndSwapChain();
