@@ -1,6 +1,7 @@
 #include "sphere.h"
 #include "render_context.h"
 #include <vector>
+#include "camera.h"
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
@@ -94,6 +95,8 @@ bool Sphere::Initialize()
 
 void Sphere::Start() 
 {
+    m_transform.SetPosition({ 0,0,1 });
+    m_transform.SetScale({ 0.1f,0.1f,0.1f });
 }
 
 void Sphere::Update() 
@@ -199,9 +202,9 @@ bool Sphere::initConstantBufferA()
 void Sphere::updateConstantBufferA()
 {
     ConstantBufferA cb;
-    Mat4x4::Identity().ToFloat4x4(cb.world);
-    Mat4x4::Identity().ToFloat4x4(cb.view);
-    Mat4x4::Identity().ToFloat4x4(cb.proj);
+    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
+    m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 
     D3D11_MAPPED_SUBRESOURCE mapped = {};
     if (SUCCEEDED(m_pContext->GetDeviceContext()->Map(m_pConstantBufferA.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))

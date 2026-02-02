@@ -25,6 +25,9 @@
     <Filter Include="shader">
       <UniqueIdentifier>{af14bdcc-995d-40fe-93f7-f5642451b440}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component">
+      <UniqueIdentifier>{ab40463b-283f-4aba-bf78-2d392b8258f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scripts\main.cpp" />
@@ -74,10 +77,19 @@
     <ClCompile Include="scripts\render\render_context.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\render\empty.cpp">
+    <ClCompile Include="scripts\render\triangle_test.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="scripts\render\renderable.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\render\sphere.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\transform.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\render\camera.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,7 +131,16 @@
     <ClInclude Include="scripts\render\renderable.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\render\empty.h">
+    <ClInclude Include="scripts\render\triangle_test.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\render\sphere.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\transform.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\render\camera.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

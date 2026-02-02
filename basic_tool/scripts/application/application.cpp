@@ -27,7 +27,7 @@ void Application::Initialize()
 
     // m_pRenderContextが初期化していないとコンストラクタが呼び出せない
     {
-        m_pRenderable = std::make_unique<Sphere>(m_pRenderContext.get());
+        m_pRenderable = std::make_unique<Sphere>(m_pRenderContext.get(), m_pCamera.get());
         m_pRenderable->Initialize();
         m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pRenderContext.get());
         m_pGui->Initialize();

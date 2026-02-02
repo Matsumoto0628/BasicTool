@@ -1,4 +1,5 @@
 #pragma once
+#include "transform.h"
 
 class RenderContext;
 class Camera;
@@ -37,6 +38,7 @@ protected:
 
 	RenderContext* m_pContext = nullptr;
 	Camera* m_pCamera = nullptr;
+	Transform m_transform;
 
 private:
 	Renderable() = delete; // 必ずRenderContextを渡して初期化

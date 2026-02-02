@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -150,6 +150,7 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="scripts\application\application.cpp" />
+    <ClCompile Include="scripts\component\transform.cpp" />
     <ClCompile Include="scripts\gui\gui.cpp" />
     <ClCompile Include="scripts\main.cpp" />
     <ClCompile Include="scripts\math\mat4x4.cpp" />
@@ -163,7 +164,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="scripts\render\empty.cpp" />
+    <ClCompile Include="scripts\render\camera.cpp" />
+    <ClCompile Include="scripts\render\sphere.cpp" />
+    <ClCompile Include="scripts\render\triangle_test.cpp" />
     <ClCompile Include="scripts\render\renderable.cpp" />
     <ClCompile Include="scripts\render\render_context.cpp" />
     <ClCompile Include="scripts\window\window.cpp" />
@@ -172,6 +175,7 @@
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="scripts\application\application.h" />
+    <ClInclude Include="scripts\component\transform.h" />
     <ClInclude Include="scripts\gui\gui.h" />
     <ClInclude Include="scripts\math\mat4x4.h" />
     <ClInclude Include="scripts\math\rotation_converter.h" />
@@ -179,7 +183,9 @@
     <ClInclude Include="scripts\math\vec3.h" />
     <ClInclude Include="scripts\math\vec4.h" />
     <ClInclude Include="scripts\pch.h" />
-    <ClInclude Include="scripts\render\empty.h" />
+    <ClInclude Include="scripts\render\camera.h" />
+    <ClInclude Include="scripts\render\sphere.h" />
+    <ClInclude Include="scripts\render\triangle_test.h" />
     <ClInclude Include="scripts\render\renderable.h" />
     <ClInclude Include="scripts\render\render_context.h" />
     <ClInclude Include="scripts\window\window.h" />

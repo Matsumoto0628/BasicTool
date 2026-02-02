@@ -15,6 +15,8 @@ Camera::~Camera()
 void Camera::Initialize() 
 {
 	initProj();
+
+	m_transform.SetPosition({0,0,-3});
 }
 
 void Camera::initProj() 
