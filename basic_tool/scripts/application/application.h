@@ -1,5 +1,9 @@
-﻿#pragma once
+#pragma once
 #include "window.h"
+#include <memory>
+
+class RenderContext;
+class Renderable;
 
 class Application
 {
@@ -17,4 +21,6 @@ private:
 
 private:
     Window m_window;
+    std::shared_ptr<RenderContext> m_pRenderContext;
+    std::unique_ptr<Renderable> m_pRenderable;
 };
