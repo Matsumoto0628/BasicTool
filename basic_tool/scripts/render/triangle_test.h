@@ -1,14 +1,13 @@
 #pragma once
 #include "renderable.h"
-#include <memory>
 
 class RenderContext;
 
 class TriangleTest : public Renderable
 {
 public:
-    explicit TriangleTest(std::shared_ptr<RenderContext> pContext);
-    TriangleTest(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+    explicit TriangleTest(RenderContext* pContext);
+    TriangleTest(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~TriangleTest() override;
     bool Initialize() override;
     void Start() override;

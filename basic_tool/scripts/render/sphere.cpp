@@ -4,18 +4,19 @@
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(std::shared_ptr<RenderContext> pContext)
-    : Renderable(std::move(pContext))
+Sphere::Sphere(RenderContext* pContext)
+    : Renderable(pContext)
 {
 }
 
-Sphere::Sphere(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(std::move(pContext), topology)
+Sphere::Sphere(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderable(pContext, topology)
 {
 }
 
 Sphere::~Sphere()
 {
+    m_pContext = nullptr;
 }
 
 bool Sphere::Initialize()

@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 
 class RenderContext;
 
@@ -15,8 +14,8 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	explicit Renderable(std::shared_ptr<RenderContext> pContext);
-	Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+	explicit Renderable(RenderContext* pContext);
+	Renderable(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual bool initVertexShader();
@@ -35,7 +34,7 @@ protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 
-	std::shared_ptr<RenderContext> m_pContext = nullptr;
+	RenderContext* m_pContext = nullptr;
 
 private:
 	Renderable() = delete; // 必ずRenderContextを渡して初期化

@@ -4,18 +4,19 @@
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-TriangleTest::TriangleTest(std::shared_ptr<RenderContext> pContext)
-    : Renderable(std::move(pContext)) // protectedのメンバ変数は基底クラスで初期化
+TriangleTest::TriangleTest(RenderContext* pContext)
+    : Renderable(pContext) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
-TriangleTest::TriangleTest(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(std::move(pContext), topology)
+TriangleTest::TriangleTest(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderable(pContext, topology)
 {
 }
 
 TriangleTest::~TriangleTest()
 {
+    m_pContext = nullptr;
 }
 
 bool TriangleTest::Initialize() 

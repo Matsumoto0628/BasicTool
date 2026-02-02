@@ -1,14 +1,13 @@
 #pragma once
 #include "renderable.h"
-#include <memory>
 
 class RenderContext;
 
 class Sphere : public Renderable
 {
 public:
-    explicit Sphere(std::shared_ptr<RenderContext> pContext);
-    Sphere(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+    explicit Sphere(RenderContext* pContext);
+    Sphere(RenderContext* pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~Sphere() override;
 
     bool Initialize() override;
