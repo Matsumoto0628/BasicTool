@@ -28,7 +28,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView = nullptr;
     D3D11_VIEWPORT m_viewPort[1];
 
-    static const UINT FEATURE_LEVELS_NUM = 4;
+    static const UINT FEATURE_LEVELS_NUM = 2;
     D3D_FEATURE_LEVEL m_pFeatureLevels[FEATURE_LEVELS_NUM] = {};
     D3D_FEATURE_LEVEL m_featureLevelsSupported;
 
