@@ -11,6 +11,7 @@ public:
     Mat4x4 Transpose() const;
     Mat4x4 Inverse() const;
     void ToFloat4x4(float out[4][4]) const;
+    void ToPosRotScaleVec(Vec3& outPos, Vec4& outRot, Vec3& outScale) const;
 
     // ファクトリメソッド
     // Vecクラスには依存しない
