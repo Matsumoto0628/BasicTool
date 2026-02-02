@@ -40,6 +40,11 @@ Mat4x4 Mat4x4::Transpose() const
     return Mat4x4(DirectX::XMMatrixTranspose(mat));
 }
 
+Mat4x4 Mat4x4::Inverse() const
+{
+    return Mat4x4(DirectX::XMMatrixInverse(nullptr, mat));
+}
+
 // 引数の配列に、行列の値を入れる
 void Mat4x4::ToFloat4x4(float out[4][4]) const 
 {

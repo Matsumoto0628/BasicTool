@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <DirectXMath.h>
 
 class Mat4x4 
@@ -9,6 +9,7 @@ public:
     Mat4x4 operator*(const Mat4x4& rhs) const;
 
     Mat4x4 Transpose() const;
+    Mat4x4 Inverse() const;
     void ToFloat4x4(float out[4][4]) const;
 
     // ファクトリメソッド
