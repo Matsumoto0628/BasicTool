@@ -36,10 +36,6 @@ private:
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
 
-    float m_nearClipDist = 0.0f;
-    float m_farClipDist = 0.0f;
-    float m_fov = 0.0f;
-
     HWND m_hWnd = nullptr;
 
     static const Vec4 BACK_BUFFER_COLOR;

@@ -4,7 +4,7 @@
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 1.0f };
 
 RenderContext::RenderContext(HWND hWnd)
-    : m_hWnd(hWnd), m_nearClipDist(0.1f), m_farClipDist(1000.0f), m_fov(DegToRad(30.0f))
+    : m_hWnd(hWnd)
 {
     m_pFeatureLevels[0] = D3D_FEATURE_LEVEL_11_1;
     m_pFeatureLevels[1] = D3D_FEATURE_LEVEL_11_0;
