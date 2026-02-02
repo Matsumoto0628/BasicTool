@@ -7,7 +7,10 @@ class Renderable;
 class Gui;
 class Camera;
 
-// TODO: shered_ptrをunique_ptrにする
+// TODO: Sceneクラスの実装
+// TODO: GetRenderable()でここで一気に描画
+// TODO: RenderableクラスでGetTransform()して操作する
+// TODO: InputManagerで操作できるようにする
 class Application
 {
 public:
