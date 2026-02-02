@@ -7,7 +7,7 @@ class RenderContext;
 class Empty : public Renderable
 {
 public:
-    Empty(std::shared_ptr<RenderContext> pContext);
+    explicit Empty(std::shared_ptr<RenderContext> pContext);
     Empty(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~Empty() override;
     bool Initialize() override;

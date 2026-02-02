@@ -18,7 +18,7 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	Renderable(std::shared_ptr<RenderContext> pContext);
+	explicit Renderable(std::shared_ptr<RenderContext> pContext);
 	Renderable(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();

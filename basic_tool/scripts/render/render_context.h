@@ -3,7 +3,7 @@
 class RenderContext
 {
 public:
-    RenderContext(HWND hWnd);
+    explicit RenderContext(HWND hWnd);
     ~RenderContext();
     bool Initialize();
     void Start();

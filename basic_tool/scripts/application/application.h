@@ -20,7 +20,7 @@ private:
     bool gameLoop();
 
 private:
-    Window m_window;
-    std::shared_ptr<RenderContext> m_pRenderContext;
-    std::unique_ptr<Renderable> m_pRenderable;
+    Window m_window; // 寿命がApplicationと同じなので実体
+    std::shared_ptr<RenderContext> m_pRenderContext; // 共有したいのでポインタ
+    std::unique_ptr<Renderable> m_pRenderable; // ポリモーフィズムしたいのでポインタ
 };
