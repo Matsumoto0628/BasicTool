@@ -1,6 +1,6 @@
 #include "application.h"
 #include "render_context.h"
-#include "empty.h"
+#include "triangle_test.h"
 #include "gui.h"
 
 Application::Application(HINSTANCE hInstance)
@@ -21,7 +21,7 @@ void Application::Initialize()
     m_pRenderContext->Initialize();
 
     // m_pRenderContextが初期化していないとコンストラクタが呼び出せない
-    m_pRenderable = std::make_unique<Empty>(m_pRenderContext);
+    m_pRenderable = std::make_unique<TriangleTest>(m_pRenderContext);
     m_pRenderable->Initialize();
     m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pRenderContext);
     m_pGui->Initialize();

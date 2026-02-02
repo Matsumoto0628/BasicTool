@@ -3,7 +3,7 @@
 
 class RenderContext;
 
-// TODO: imguiのテスト
+// TODO: 球と立方体の作成
 // TODO: カメラとライトを実装
 // TODO: Transformクラスで位置回転スケール、親子関係を実装
 class Renderable

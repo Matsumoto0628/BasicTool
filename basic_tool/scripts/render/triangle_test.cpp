@@ -1,24 +1,24 @@
-#include "empty.h"
+#include "triangle_test.h"
 #include "render_context.h"
 
 // 定数
-const Vec4 Empty::BLEND_FACTOR = { 0, 0, 0, 0 };
+const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Empty::Empty(std::shared_ptr<RenderContext> pContext)
+TriangleTest::TriangleTest(std::shared_ptr<RenderContext> pContext)
     : Renderable(std::move(pContext)) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
-Empty::Empty(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
+TriangleTest::TriangleTest(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology)
     : Renderable(std::move(pContext), topology)
 {
 }
 
-Empty::~Empty()
+TriangleTest::~TriangleTest()
 {
 }
 
-bool Empty::Initialize() 
+bool TriangleTest::Initialize() 
 {
     {
         bool result = initDepthStencil();
@@ -90,16 +90,16 @@ bool Empty::Initialize()
     return true;
 }
 
-void Empty::Start()
+void TriangleTest::Start()
 {
 }
 
-void Empty::Update()
+void TriangleTest::Update()
 {
     updateConstantBufferA();
 }
 
-void Empty::Draw()
+void TriangleTest::Draw()
 {
     float blendFactor[4];
     BLEND_FACTOR.ToFloat4(blendFactor);
@@ -110,28 +110,30 @@ void Empty::Draw()
     m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
 }
 
-void Empty::Terminate()
+void TriangleTest::Terminate()
 {
 }
 
-void Empty::Finalize()
+void TriangleTest::Finalize()
 {
 }
 
-bool Empty::initVertexBuffer() 
+bool TriangleTest::initVertexBuffer() 
 {
-    m_vertices[0] = { Vec3(0, 1, 0) };
-    m_vertices[1] = { Vec3(1,-1,0) };
-    m_vertices[2] = { Vec3(-1,-1,0) };
+    Vertex vertices[VERTEX_COUNT] = {
+        { Vec3(0, 1, 0) },
+        { Vec3(1,-1,0) },
+        { Vec3(-1,-1,0) }
+    };
 
     D3D11_BUFFER_DESC desc = {};
-    desc.ByteWidth = sizeof(m_vertices);
+    desc.ByteWidth = sizeof(vertices);
     desc.Usage = D3D11_USAGE_DEFAULT;
     desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     desc.CPUAccessFlags = 0;
 
     D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = m_vertices;
+    initData.pSysMem = vertices;
 
     HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
         &desc,
@@ -146,7 +148,7 @@ bool Empty::initVertexBuffer()
     return true;
 }
 
-bool Empty::initIndexBuffer()
+bool TriangleTest::initIndexBuffer()
 {
     unsigned int indices[] = { 0,1,2 };
 
@@ -171,7 +173,7 @@ bool Empty::initIndexBuffer()
     return true;
 }
 
-bool Empty::initConstantBufferA() 
+bool TriangleTest::initConstantBufferA() 
 {
     D3D11_BUFFER_DESC desc = {};
     desc.ByteWidth = sizeof(ConstantBufferA);
@@ -192,7 +194,7 @@ bool Empty::initConstantBufferA()
     return true;
 }
 
-void Empty::updateConstantBufferA() 
+void TriangleTest::updateConstantBufferA() 
 {
     // 渡すもの
     ConstantBufferA cb;

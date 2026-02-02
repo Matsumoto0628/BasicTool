@@ -4,12 +4,12 @@
 
 class RenderContext;
 
-class Empty : public Renderable
+class TriangleTest : public Renderable
 {
 public:
-    explicit Empty(std::shared_ptr<RenderContext> pContext);
-    Empty(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
-    ~Empty() override;
+    explicit TriangleTest(std::shared_ptr<RenderContext> pContext);
+    TriangleTest(std::shared_ptr<RenderContext> pContext, D3D11_PRIMITIVE_TOPOLOGY topology);
+    ~TriangleTest() override;
     bool Initialize() override;
     void Start() override;
     void Update() override;
@@ -27,7 +27,6 @@ private:
         Vec3 pos;
     };
     static const int VERTEX_COUNT = 3;
-    Vertex m_vertices[VERTEX_COUNT];
     
     // シェーダーに必要な分だけ増やす
     bool initConstantBufferA();
