@@ -1,7 +1,7 @@
 #include <DirectXMath.h>
 
 // 定数
-static const float PI = 3.14159265358979323846f;
+const float PI = 3.14159265358979323846f;
 
 float DegToRad(float deg)
 {
