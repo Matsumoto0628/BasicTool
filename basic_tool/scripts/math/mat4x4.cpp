@@ -35,6 +35,16 @@ Mat4x4 Mat4x4::Translation(float x, float y, float z)
     return Mat4x4(DirectX::XMMatrixTranslation(x, y, z));
 }
 
+Mat4x4 Mat4x4::PerspectiveFovLH(float fov, float aspect, float nearZ, float farZ)
+{
+    return Mat4x4(DirectX::XMMatrixPerspectiveFovLH(
+        fov,
+        aspect,
+        nearZ,
+        farZ
+    ));
+}
+
 Mat4x4 Mat4x4::Transpose() const
 {
     return Mat4x4(DirectX::XMMatrixTranspose(mat));

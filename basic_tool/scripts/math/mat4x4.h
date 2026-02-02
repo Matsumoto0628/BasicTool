@@ -18,6 +18,7 @@ public:
     static Mat4x4 Scale(float x, float y, float z);
     static Mat4x4 Rotation(float x, float y, float z, float w);
     static Mat4x4 Translation(float x, float y, float z);
+    static Mat4x4 PerspectiveFovLH(float fov, float aspect, float nearZ, float farZ);
 
 private:
     Mat4x4() = delete; // 必ずファクトリメソッドでインスタンスを生成
