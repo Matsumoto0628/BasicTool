@@ -38,4 +38,7 @@ private:
         float view[4][4];
         float proj[4][4];
     };
+
+    // 定数
+    static const Vec4 BLEND_FACTOR;
 };
