@@ -1,8 +1,7 @@
 #pragma once
-#include <memory>
 #include <vector>
 
-class Transform : public std::enable_shared_from_this<Transform>
+class Transform
 {
 public:
 	Transform();
@@ -20,9 +19,11 @@ public:
 	void SetLocalPosition(const Vec3& position);
 	void SetLocalRotation(const Vec4& rotation);
 	void SetLocalScale(const Vec3& scale);
-	void SetParent(const std::shared_ptr<Transform>& parent);
+	void SetParent(Transform* pParent);
 
 private:
+	void setWorld();
+	void setLocal();
 	void setMatrix();
 	Vec3 m_position;
 	Vec4 m_rotation;
@@ -31,7 +32,9 @@ private:
 	Vec4 m_localRotation;
 	Vec3 m_localScale;
 	Mat4x4 m_matrix;
+	Mat4x4 m_world;
+	Mat4x4 m_local;
 
-	std::vector<std::shared_ptr<Transform>> m_pChildren;
-	std::weak_ptr<Transform> m_pParent;
+	std::vector<Transform*> m_pChildren;
+	Transform* m_pParent;
 };
