@@ -19,53 +19,40 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	std::unique_ptr<Renderer> pSquare = std::make_unique<Square>(m_pContext, m_pCamera);
-	pSquare->Initialize();
+	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>();
+	pGameObject->Initialize();
 
-	m_pRenderers.push_back(std::move(pSquare));
+	m_pGameObjects.push_back(std::move(pGameObject));
 }
 
 void TestScene::Start()
 {
-	for (auto& pRenderer : m_pRenderers) 
+	for (auto& pGameObject : m_pGameObjects)
 	{
-		pRenderer->Start();
+		pGameObject->Start();
 	}
-
-	Transform* pTransform = &(m_pRenderers[0]->GetTransform());
-	pTransform->SetPosition({0,0,10});
 }
 
 void TestScene::Update()
 {
-	for (auto& pRenderer : m_pRenderers)
+	for (auto& pGameObject : m_pGameObjects)
 	{
-		pRenderer->Update();
-	}
-
-	static float time = 0;
-	time += 0.017f;
-	Transform* pTransform = &(m_pRenderers[0]->GetTransform());
-	pTransform->SetRotation(EulerToQuaternion({ 0,time,0 }));
-
-	for (auto& pRenderer : m_pRenderers)
-	{
-		pRenderer->Draw();
+		pGameObject->Update();
 	}
 }
 
 void TestScene::Terminate()
 {
-	for (auto& pRenderer : m_pRenderers)
+	for (auto& pGameObject : m_pGameObjects)
 	{
-		pRenderer->Terminate();
+		pGameObject->Terminate();
 	}
 }
 
 void TestScene::Finalize()
 {
-	for (auto& pRenderer : m_pRenderers)
+	for (auto& pGameObject : m_pGameObjects)
 	{
-		pRenderer->Finalize();
+		pGameObject->Finalize();
 	}
 }

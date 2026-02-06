@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "renderer.h"
+#include "game_object.h"
 
 class RenderContext;
 class Camera;
@@ -20,7 +20,7 @@ protected:
 	Scene(RenderContext* pContext, Camera* pCamera);
 	RenderContext* m_pContext;
 	Camera* m_pCamera;
-	std::vector<std::unique_ptr<Renderer>> m_pRenderers;
+	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
 	
 private:
 	Scene() = delete;
