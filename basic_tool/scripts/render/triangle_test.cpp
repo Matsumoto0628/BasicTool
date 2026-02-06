@@ -1,5 +1,6 @@
 #include "triangle_test.h"
 #include "render_context.h"
+#include "camera.h"
 
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
@@ -197,9 +198,9 @@ void TriangleTest::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    Mat4x4::Identity().ToFloat4x4(cb.world);
-    Mat4x4::Identity().ToFloat4x4(cb.view);
-    Mat4x4::Identity().ToFloat4x4(cb.proj);
+    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
+    m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 
     D3D11_MAPPED_SUBRESOURCE mapped = {};
 
