@@ -1,32 +1,27 @@
-#include "sphere.h"
+#include "square.h"
 #include "render_context.h"
-#include <vector>
 #include "camera.h"
 
-const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
+// 定数
+const Vec4 Square::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera), m_color{1,1,1,1}
+Square::Square(RenderContext* pContext, Camera* pCamera)
+    : Renderable(pContext, pCamera) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology), m_color{ 1,1,1,1 }
+Square::Square(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderable(pContext, pCamera, topology)
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color)
-    : Renderable(pContext, pCamera), m_color{ color }
-{
-}
-
-Sphere::~Sphere()
+Square::~Square()
 {
     m_pContext = nullptr;
     m_pCamera = nullptr;
 }
 
-bool Sphere::Initialize()
+bool Square::Initialize()
 {
     {
         bool result = initDepthStencil();
@@ -45,6 +40,14 @@ bool Sphere::Initialize()
     }
 
     {
+        bool result = initSampler();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
         bool result = initRasterizer();
         if (!result)
         {
@@ -55,6 +58,14 @@ bool Sphere::Initialize()
     // ここでInputLayoutも初期化
     {
         bool result = initVertexShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initTexture();
         if (!result)
         {
             return false;
@@ -96,16 +107,16 @@ bool Sphere::Initialize()
     return true;
 }
 
-void Sphere::Start() 
+void Square::Start()
 {
 }
 
-void Sphere::Update() 
-{ 
-    updateConstantBufferA(); 
+void Square::Update()
+{
+    updateConstantBufferA();
 }
 
-void Sphere::Draw()
+void Square::Draw()
 {
     float blendFactor[4];
     BLEND_FACTOR.ToFloat4(blendFactor);
@@ -115,104 +126,120 @@ void Sphere::Draw()
 
     m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
     m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
     m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
     m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
     m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
     m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+    m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
     m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
     m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
-    m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
+    m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
 }
 
-void Sphere::Terminate() 
+void Square::Terminate()
 {
 }
 
-void Sphere::Finalize() 
+void Square::Finalize()
 {
 }
 
-bool Sphere::initVertexBuffer()
+bool Square::initRasterizer()
 {
-    std::vector<Vertex> vertices((LAT_DIV + 1) * (LON_DIV + 1));
+    D3D11_RASTERIZER_DESC desc = {};
+    desc.FillMode = D3D11_FILL_SOLID;
+    desc.CullMode = D3D11_CULL_NONE;   // 両面描画
+    desc.FrontCounterClockwise = FALSE;
+    desc.DepthClipEnable = TRUE;
 
-    for (int i = 0; i <= LAT_DIV; i++)
-    {
-        float theta = i * PI / LAT_DIV;
-        float sinTheta = sinf(theta);
-        float cosTheta = cosf(theta);
+    HRESULT hr = m_pContext->GetDevice()->CreateRasterizerState(
+        &desc,
+        &m_pRasterizerState
+    );
 
-        for (int j = 0; j <= LON_DIV; j++)
-        {
-            float phi = j * 2.0f * PI / LON_DIV;
-            float sinPhi = sinf(phi);
-            float cosPhi = cosf(phi);
+    return SUCCEEDED(hr);
+}
 
-            int index = i * (LON_DIV + 1) + j;
-            vertices[index].pos = Vec3(sinTheta * cosPhi, cosTheta, sinTheta * sinPhi);
-            vertices[index].color = m_color;
-        }
-    }
+bool Square::initVertexBuffer()
+{
+    Vertex vertices[4] = {
+        { {-1.0f,  1.0f, 0.0f}, {0,0} }, // 左上
+        { {1.0f,  1.0f, 0.0f}, {1,0} }, // 右上
+        { {-1.0f, -1.0f, 0.0f}, {0,1} }, // 左下
+        { {1.0f, -1.0f, 0.0f}, {1,1} }  // 右下
+    };
 
     D3D11_BUFFER_DESC desc = {};
-    desc.ByteWidth = sizeof(Vertex) * vertices.size();
+    desc.ByteWidth = sizeof(vertices);
     desc.Usage = D3D11_USAGE_DEFAULT;
     desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    desc.CPUAccessFlags = 0;
 
     D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = vertices.data();
+    initData.pSysMem = vertices;
 
-    return SUCCEEDED(m_pContext->GetDevice()->CreateBuffer(&desc, &initData, &m_pVertexBuffer));
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        &initData,
+        &m_pVertexBuffer
+    );
+
+    return SUCCEEDED(hr);
 }
 
-bool Sphere::initIndexBuffer()
+
+bool Square::initIndexBuffer()
 {
-    std::vector<unsigned int> indices;
-
-    for (int i = 0; i < LAT_DIV; i++)
-    {
-        for (int j = 0; j < LON_DIV; j++)
-        {
-            int first = i * (LON_DIV + 1) + j;
-            int second = first + LON_DIV + 1;
-
-            indices.push_back(first);
-            indices.push_back(second);
-            indices.push_back(first + 1);
-
-            indices.push_back(second);
-            indices.push_back(second + 1);
-            indices.push_back(first + 1);
-        }
-    }
+    unsigned int indices[6] = {
+        0, 1, 2, // 左上三角形
+        2, 1, 3  // 右下三角形
+    };
 
     D3D11_BUFFER_DESC desc = {};
-    desc.ByteWidth = sizeof(unsigned int) * indices.size();
+    desc.ByteWidth = sizeof(indices);
     desc.Usage = D3D11_USAGE_DEFAULT;
     desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
     D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = indices.data();
+    initData.pSysMem = indices;
 
-    return SUCCEEDED(m_pContext->GetDevice()->CreateBuffer(&desc, &initData, &m_pIndexBuffer));
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        &initData,
+        &m_pIndexBuffer
+    );
+
+    return SUCCEEDED(hr);
 }
 
-bool Sphere::initConstantBufferA()
+bool Square::initConstantBufferA()
 {
     D3D11_BUFFER_DESC desc = {};
     desc.ByteWidth = sizeof(ConstantBufferA);
-    desc.Usage = D3D11_USAGE_DYNAMIC;
+    desc.Usage = D3D11_USAGE_DYNAMIC; // Map/Unmapで書き換える
     desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-    return SUCCEEDED(m_pContext->GetDevice()->CreateBuffer(&desc, nullptr, &m_pConstantBufferA));
+    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+        &desc,
+        nullptr,
+        &m_pConstantBufferA
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
 }
 
-void Sphere::updateConstantBufferA()
+void Square::updateConstantBufferA()
 {
+    // 渡すもの
     ConstantBufferA cb;
     m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
@@ -226,11 +253,11 @@ void Sphere::updateConstantBufferA()
     }
 }
 
-bool Sphere::initVertexShader()
+bool Square::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_uv_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -261,7 +288,7 @@ bool Sphere::initVertexShader()
     return true;
 }
 
-bool Sphere::initInputLayout(ID3DBlob* vsBlob)
+bool Square::initInputLayout(ID3DBlob* vsBlob)
 {
     D3D11_INPUT_ELEMENT_DESC positionDesc = {
         "POSITION",
@@ -273,19 +300,19 @@ bool Sphere::initInputLayout(ID3DBlob* vsBlob)
         0
     };
 
-    D3D11_INPUT_ELEMENT_DESC colorDesc = {
+    D3D11_INPUT_ELEMENT_DESC uvDesc = {
         "TEXCOORD",
         0,
-        DXGI_FORMAT_R32G32B32A32_FLOAT,
+        DXGI_FORMAT_R32G32_FLOAT,
         0,
-        offsetof(Vertex, color),
+        offsetof(Vertex, uv),
         D3D11_INPUT_PER_VERTEX_DATA,
         0
     };
 
     D3D11_INPUT_ELEMENT_DESC layout[] = {
         positionDesc,
-        colorDesc
+        uvDesc
     };
 
     HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
@@ -303,11 +330,11 @@ bool Sphere::initInputLayout(ID3DBlob* vsBlob)
     return true;
 }
 
-bool Sphere::initPixelShader()
+bool Square::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_uv_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;
@@ -325,6 +352,39 @@ bool Sphere::initPixelShader()
     }
 
     psBlob = nullptr;
+
+    return true;
+}
+
+bool Square::initTexture() 
+{
+    HRESULT hr = DirectX::CreateWICTextureFromFile(
+        m_pContext->GetDevice(),
+        L"images/star.jpg",
+        nullptr,
+        &m_pTexture
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool Square::initSampler()
+{
+    D3D11_SAMPLER_DESC desc = {};
+    desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+    desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateSamplerState(&desc, &m_pSamplerState);
+    if (FAILED(hr))
+    {
+        return false;
+    }
 
     return true;
 }

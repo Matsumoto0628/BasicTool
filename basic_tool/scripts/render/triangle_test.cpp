@@ -1,5 +1,6 @@
 #include "triangle_test.h"
 #include "render_context.h"
+#include "camera.h"
 
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
@@ -32,6 +33,14 @@ bool TriangleTest::Initialize()
 
     {
         bool result = initBlend();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initRasterizer();
         if (!result)
         {
             return false;
@@ -79,16 +88,6 @@ bool TriangleTest::Initialize()
         }
     }
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
-    
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
-
     return true;
 }
 
@@ -106,9 +105,20 @@ void TriangleTest::Draw()
     float blendFactor[4];
     BLEND_FACTOR.ToFloat4(blendFactor);
 
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
+
+    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf()); // 必要ならPSにも渡す
+    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+
     m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
 }
 
@@ -200,9 +210,9 @@ void TriangleTest::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    Mat4x4::Identity().ToFloat4x4(cb.world);
-    Mat4x4::Identity().ToFloat4x4(cb.view);
-    Mat4x4::Identity().ToFloat4x4(cb.proj);
+    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
+    m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 
     D3D11_MAPPED_SUBRESOURCE mapped = {};
 

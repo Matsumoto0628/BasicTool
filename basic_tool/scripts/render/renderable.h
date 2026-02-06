@@ -21,6 +21,7 @@ protected:
 	Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
+	virtual bool initRasterizer();
 	virtual bool initVertexShader();
 	virtual bool initInputLayout(ID3DBlob* vsBlob);
 	virtual bool initPixelShader();
@@ -34,6 +35,7 @@ protected:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_pIndexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilState = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState = nullptr;
 
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
 

@@ -1,17 +1,17 @@
 #pragma once
 #include "renderable.h"
+#include <wincodec.h>
+#include <WICTextureLoader.h>
 
 class RenderContext;
 class Camera;
 
-class Sphere : public Renderable
+class Square : public Renderable
 {
 public:
-    Sphere(RenderContext* pContext, Camera* pCamera);
-    Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
-    Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color);
-    ~Sphere() override;
-
+    Square(RenderContext* pContext, Camera* pCamera);
+    Square(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
+    ~Square() override;
     bool Initialize() override;
     void Start() override;
     void Update() override;
@@ -20,6 +20,7 @@ public:
     void Finalize() override;
 
 protected:
+    bool initRasterizer() override;
     bool initVertexBuffer() override;
     bool initIndexBuffer() override;
     bool initVertexShader() override;
@@ -27,12 +28,14 @@ protected:
     bool initPixelShader() override;
 
 private:
-    struct Vertex
+    struct Vertex // オブジェクトによって差異がなければ、共通で定義するかも
     {
         Vec3 pos;
-        Vec4 color;
+        Vec2 uv;
     };
+    static const int VERTEX_COUNT = 4;
 
+    // シェーダーに必要な分だけ増やす
     bool initConstantBufferA();
     void updateConstantBufferA();
     Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
@@ -43,10 +46,11 @@ private:
         float proj[4][4];
     };
 
-    Vec4 m_color;
+    bool initSampler();
+    bool initTexture();
+    Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture;
 
     // 定数
-    static const int LAT_DIV = 20;
-    static const int LON_DIV = 20;
     static const Vec4 BLEND_FACTOR;
 };
