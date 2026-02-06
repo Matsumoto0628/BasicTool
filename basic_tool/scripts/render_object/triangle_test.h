@@ -1,14 +1,15 @@
 #pragma once
-#include "renderable.h"
+#include "renderer.h"
 
 class RenderContext;
 class Camera;
+class Transform;
 
-class TriangleTest : public Renderable
+class TriangleTest : public Renderer
 {
 public:
-    TriangleTest(RenderContext* pContext, Camera* pCamera);
-    TriangleTest(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
+    TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
+    TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~TriangleTest() override;
     bool Initialize() override;
     void Start() override;

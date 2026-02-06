@@ -1,17 +1,18 @@
 #include "triangle_test.h"
 #include "render_context.h"
 #include "camera.h"
+#include "transform.h"
 
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera) // protectedのメンバ変数は基底クラスで初期化
+TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+    : Renderer(pContext, pCamera, pTransform) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
-TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology)
+TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderer(pContext, pCamera, pTransform, topology)
 {
 }
 
@@ -210,7 +211,7 @@ void TriangleTest::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pTransform->Matrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
     m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 

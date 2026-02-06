@@ -2,21 +2,22 @@
 #include "render_context.h"
 #include <vector>
 #include "camera.h"
+#include "transform.h"
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera), m_color{1,1,1,1}
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+    : Renderer(pContext, pCamera, pTransform), m_color{1,1,1,1}
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology), m_color{ 1,1,1,1 }
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderer(pContext, pCamera, pTransform, topology), m_color{ 1,1,1,1 }
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color)
-    : Renderable(pContext, pCamera), m_color{ color }
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color)
+    : Renderer(pContext, pCamera, pTransform), m_color{ color }
 {
 }
 
@@ -214,7 +215,7 @@ bool Sphere::initConstantBufferA()
 void Sphere::updateConstantBufferA()
 {
     ConstantBufferA cb;
-    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pTransform->Matrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
     m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 

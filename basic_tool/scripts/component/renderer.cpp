@@ -1,22 +1,25 @@
-#include "renderable.h"
+#include "renderer.h"
 #include "render_context.h"
 #include "camera.h"
+#include "transform.h"
 
-Renderable::Renderable(RenderContext* pContext, Camera* pCamera)
-    : m_pContext(pContext), 
+Renderer::Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+    : m_pContext(pContext),
     m_pCamera(pCamera),
+    m_pTransform(pTransform),
     m_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 {
 }
 
-Renderable::Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
+Renderer::Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
     : m_pContext(pContext),
     m_pCamera(pCamera),
+    m_pTransform(pTransform),
     m_topology(topology)
 {
 }
 
-bool Renderable::initDepthStencil()
+bool Renderer::initDepthStencil()
 {
     D3D11_DEPTH_STENCIL_DESC desc = {};
     desc.DepthEnable = TRUE;
@@ -35,7 +38,7 @@ bool Renderable::initDepthStencil()
     return true;
 }
 
-bool Renderable::initBlend()
+bool Renderer::initBlend()
 {
     D3D11_BLEND_DESC desc = {};
     desc.AlphaToCoverageEnable = FALSE;
@@ -58,7 +61,7 @@ bool Renderable::initBlend()
     return true;
 }
 
-bool Renderable::initRasterizer()
+bool Renderer::initRasterizer()
 {
     D3D11_RASTERIZER_DESC desc = {};
     desc.FillMode = D3D11_FILL_SOLID;
@@ -75,7 +78,7 @@ bool Renderable::initRasterizer()
     return true;
 }
 
-bool Renderable::initVertexShader() 
+bool Renderer::initVertexShader() 
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
@@ -110,7 +113,7 @@ bool Renderable::initVertexShader()
     return true;
 }
 
-bool Renderable::initInputLayout(ID3DBlob* vsBlob)
+bool Renderer::initInputLayout(ID3DBlob* vsBlob)
 {
     D3D11_INPUT_ELEMENT_DESC positionDesc = {
         "POSITION",
@@ -141,7 +144,7 @@ bool Renderable::initInputLayout(ID3DBlob* vsBlob)
     return true;
 }
 
-bool Renderable::initPixelShader()
+bool Renderer::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
