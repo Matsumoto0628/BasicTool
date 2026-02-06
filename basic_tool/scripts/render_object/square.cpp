@@ -241,7 +241,7 @@ void Square::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    m_pTransform->Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pTransform->GetMatrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
     m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 

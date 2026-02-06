@@ -7,7 +7,7 @@ public:
 	Camera(unsigned int width, unsigned int height);
 	~Camera();
 	void Initialize();
-	const Mat4x4& GetView() const { return m_transform.Matrix().Inverse(); };
+	const Mat4x4& GetView() const { return m_transform.GetMatrix().Inverse(); };
 	const Mat4x4& GetProj() const { return m_proj; };
 
 private:
