@@ -8,7 +8,6 @@ public:
     bool Initialize();
     void Start();
     void Update();
-    void Draw();
     void Terminate();
     void Finalize();
     void Swap();

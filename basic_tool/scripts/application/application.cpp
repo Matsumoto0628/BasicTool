@@ -82,17 +82,9 @@ void Application::Finalize()
 
 bool Application::gameLoop()
 {
-    {
-        m_pContext->Update();
-        m_pScene->Update();
-        m_pGui->Update();
-    }
-
-    {
-        m_pContext->Draw();
-        m_pScene->Draw();
-        m_pGui->Draw();
-    }
+    m_pContext->Update();
+    m_pScene->Update();
+    m_pGui->Update();
     
     m_pContext->Swap();
 

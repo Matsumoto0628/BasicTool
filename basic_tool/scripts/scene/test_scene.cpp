@@ -47,10 +47,7 @@ void TestScene::Update()
 	time += 0.017f;
 	Transform* pTransform = &(m_pRenderers[0]->GetTransform());
 	pTransform->SetRotation(EulerToQuaternion({ 0,time,0 }));
-}
 
-void TestScene::Draw()
-{
 	for (auto& pRenderer : m_pRenderers)
 	{
 		pRenderer->Draw();

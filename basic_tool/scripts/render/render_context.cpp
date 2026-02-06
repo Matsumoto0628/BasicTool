@@ -60,10 +60,6 @@ void RenderContext::Start()
 
 void RenderContext::Update() 
 {
-}
-
-void RenderContext::Draw()
-{
     if (!m_pDeviceContext || !m_pRenderTargetView || !m_pDepthStencilView)
     {
         return;
