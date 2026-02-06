@@ -7,8 +7,9 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: 親子関係の回転を実装する
-// TODO: カメラとSphereの最初の移動を辞める
+// TODO: UpdateとDrawを統合する
+// TODO: AddComponentとGetComponentを実装
+// TODO: カメラをコンポーネント化する
 class Application
 {
 public:
