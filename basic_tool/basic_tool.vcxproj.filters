@@ -101,6 +101,9 @@
     <ClCompile Include="scripts\scene\test_scene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\render\square.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -158,13 +161,31 @@
     <ClInclude Include="scripts\scene\test_scene.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="scripts\render\square.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="scripts\shader\test_vs.hlsl">
+    <FxCompile Include="scripts\shader\test_pos_color_vs.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
-    <FxCompile Include="scripts\shader\test_ps.hlsl">
+    <FxCompile Include="scripts\shader\test_pos_color_ps.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
+    <FxCompile Include="scripts\shader\test_pos_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_pos_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_uv_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
