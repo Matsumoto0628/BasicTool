@@ -2,6 +2,7 @@
 #include "render_context.h"
 #include "gui.h"
 #include "test_scene.h"
+#include "game_time.h"
 
 Application::Application(HINSTANCE hInstance)
     : m_window(hInstance)
@@ -46,6 +47,8 @@ void Application::Loop()
                 break;
             }
         }
+
+        GameTime::Update();
 
         // ゲームの更新と描画
         {
