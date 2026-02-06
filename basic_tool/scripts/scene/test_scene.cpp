@@ -3,7 +3,8 @@
 #include "camera.h"
 #include <memory>
 #include <vector>
-#include "sphere.h" // 実体を持たないとrenderableに変換できない
+#include "sphere.h"
+#include "square.h"
 
 TestScene::TestScene(RenderContext* pContext, Camera* pCamera)
 	: Scene(pContext, pCamera)
@@ -18,14 +19,10 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	std::unique_ptr<Renderable> pSphereA = std::make_unique<Sphere>(m_pContext, m_pCamera, Vec4{ 1, 0, 0, 1 });
-	pSphereA->Initialize();
+	std::unique_ptr<Renderable> pSquare = std::make_unique<Square>(m_pContext, m_pCamera);
+	pSquare->Initialize();
 
-	std::unique_ptr<Renderable> pSphereB = std::make_unique<Sphere>(m_pContext, m_pCamera, Vec4{ 0, 1, 0, 1 });
-	pSphereB->Initialize();
-
-	m_pRenderables.push_back(std::move(pSphereA));
-	m_pRenderables.push_back(std::move(pSphereB));
+	m_pRenderables.push_back(std::move(pSquare));
 }
 
 void TestScene::Start()
@@ -35,12 +32,8 @@ void TestScene::Start()
 		pRenderable->Start();
 	}
 
-	Transform* pTransformA = &(m_pRenderables[0]->GetTransform());
-	pTransformA->SetPosition({0,0,10});
-	Transform* pTransformB = &(m_pRenderables[1]->GetTransform());
-	pTransformB->SetParent(pTransformA);
-	pTransformB->SetLocalPosition({ 3,0,0 });
-	pTransformA->SetScale({ 0.5f,0.5f,0.5f });
+	Transform* pTransform = &(m_pRenderables[0]->GetTransform());
+	pTransform->SetPosition({0,0,10});
 }
 
 void TestScene::Update()
@@ -52,8 +45,8 @@ void TestScene::Update()
 
 	static float time = 0;
 	time += 0.017f;
-	Transform* pTransformA = &(m_pRenderables[0]->GetTransform());
-	pTransformA->SetRotation(EulerToQuaternion({0, time, 0}));
+	Transform* pTransform = &(m_pRenderables[0]->GetTransform());
+	pTransform->SetRotation(EulerToQuaternion({ 0,time,0 }));
 }
 
 void TestScene::Draw()
