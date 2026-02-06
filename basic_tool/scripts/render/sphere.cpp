@@ -44,6 +44,14 @@ bool Sphere::Initialize()
         }
     }
 
+    {
+        bool result = initRasterizer();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
     // ここでInputLayoutも初期化
     {
         bool result = initVertexShader();
@@ -113,6 +121,7 @@ void Sphere::Draw()
     m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
     m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
     m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);

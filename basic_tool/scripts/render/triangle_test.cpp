@@ -39,6 +39,14 @@ bool TriangleTest::Initialize()
         }
     }
 
+    {
+        bool result = initRasterizer();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
     // ここでInputLayoutも初期化
     {
         bool result = initVertexShader();
@@ -108,6 +116,7 @@ void TriangleTest::Draw()
     m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
     m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
     m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);

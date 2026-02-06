@@ -58,6 +58,23 @@ bool Renderable::initBlend()
     return true;
 }
 
+bool Renderable::initRasterizer()
+{
+    D3D11_RASTERIZER_DESC desc = {};
+    desc.FillMode = D3D11_FILL_SOLID;
+    desc.CullMode = D3D11_CULL_BACK;
+    desc.FrontCounterClockwise = FALSE;
+    desc.DepthClipEnable = TRUE;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateRasterizerState(&desc, &m_pRasterizerState);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
+
 bool Renderable::initVertexShader() 
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
