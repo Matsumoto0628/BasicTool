@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\scene;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\scene;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\scene;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\gui;$(ProjectDir)\scripts\render;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\scene;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -169,6 +169,8 @@
     <ClCompile Include="scripts\render\triangle_test.cpp" />
     <ClCompile Include="scripts\render\renderable.cpp" />
     <ClCompile Include="scripts\render\render_context.cpp" />
+    <ClCompile Include="scripts\scene\scene.cpp" />
+    <ClCompile Include="scripts\scene\test_scene.cpp" />
     <ClCompile Include="scripts\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +190,8 @@
     <ClInclude Include="scripts\render\triangle_test.h" />
     <ClInclude Include="scripts\render\renderable.h" />
     <ClInclude Include="scripts\render\render_context.h" />
+    <ClInclude Include="scripts\scene\scene.h" />
+    <ClInclude Include="scripts\scene\test_scene.h" />
     <ClInclude Include="scripts\window\window.h" />
   </ItemGroup>
   <ItemGroup>

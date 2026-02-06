@@ -28,6 +28,9 @@
     <Filter Include="component">
       <UniqueIdentifier>{ab40463b-283f-4aba-bf78-2d392b8258f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{13398f91-cf9b-48a6-a07a-d63350356001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scripts\main.cpp" />
@@ -92,6 +95,12 @@
     <ClCompile Include="scripts\render\camera.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\scene\scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\scene\test_scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -142,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="scripts\render\camera.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\scene\scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\scene\test_scene.h">
+      <Filter>scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
