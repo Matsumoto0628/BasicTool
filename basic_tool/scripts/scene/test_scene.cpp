@@ -36,7 +36,7 @@ void TestScene::Start()
 	}
 
 	Transform* pTransformA = &(m_pRenderables[0]->GetTransform());
-	pTransformA->SetPosition({1,0,10});
+	pTransformA->SetPosition({0,0,10});
 	Transform* pTransformB = &(m_pRenderables[1]->GetTransform());
 	pTransformB->SetParent(pTransformA);
 	pTransformB->SetLocalPosition({ 3,0,0 });
@@ -54,8 +54,6 @@ void TestScene::Update()
 	time += 0.017f;
 	Transform* pTransformA = &(m_pRenderables[0]->GetTransform());
 	pTransformA->SetRotation(EulerToQuaternion({0, time, 0}));
-	Transform* pTransformB = &(m_pRenderables[1]->GetTransform());
-	//pTransformB->SetLocalRotation(EulerToQuaternion({ 0, time, 0 }));
 }
 
 void TestScene::Draw()
