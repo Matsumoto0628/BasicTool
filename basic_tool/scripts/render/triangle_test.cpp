@@ -94,6 +94,9 @@ void TriangleTest::Update()
 
 void TriangleTest::Draw()
 {
+    float blendFactor[4];
+    BLEND_FACTOR.ToFloat4(blendFactor);
+
     UINT stride = sizeof(Vertex);
     UINT offset = 0;
 
