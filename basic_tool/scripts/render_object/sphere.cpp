@@ -103,29 +103,32 @@ void Sphere::Start()
 
 void Sphere::Update() 
 { 
-    updateConstantBufferA(); 
-}
+    // 更新
+    {
+        updateConstantBufferA();
+    }
 
-void Sphere::Draw()
-{
-    float blendFactor[4];
-    BLEND_FACTOR.ToFloat4(blendFactor);
+    // 描画
+    {
+        float blendFactor[4];
+        BLEND_FACTOR.ToFloat4(blendFactor);
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
+        UINT stride = sizeof(Vertex);
+        UINT offset = 0;
 
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-    m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-    m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+        m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
-    m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
+        m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
+    }
 }
 
 void Sphere::Terminate() 
