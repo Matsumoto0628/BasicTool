@@ -79,16 +79,6 @@ bool TriangleTest::Initialize()
         }
     }
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
-    
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
-
     return true;
 }
 
@@ -103,12 +93,19 @@ void TriangleTest::Update()
 
 void TriangleTest::Draw()
 {
-    float blendFactor[4];
-    BLEND_FACTOR.ToFloat4(blendFactor);
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
 
+    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf()); // 必要ならPSにも渡す
+    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+
     m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
 }
 
