@@ -1,7 +1,6 @@
 #include "application.h"
 #include "render_context.h"
 #include "gui.h"
-#include "camera.h"
 #include "test_scene.h"
 
 Application::Application(HINSTANCE hInstance)
@@ -21,13 +20,7 @@ void Application::Initialize()
     {
         m_pContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
         m_pContext->Initialize();
-        m_pCamera = std::make_unique<Camera>(m_pContext->GetWidth(), m_pContext->GetHeight());
-        m_pCamera->Initialize();
-    }
-
-    // m_pContextが初期化していないとコンストラクタが呼び出せない
-    {
-        m_pScene = std::make_unique<TestScene>(m_pContext.get(), m_pCamera.get());
+        m_pScene = std::make_unique<TestScene>(m_pContext.get());
         m_pScene->Initialize();
         m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pContext.get());
         m_pGui->Initialize();
@@ -82,17 +75,9 @@ void Application::Finalize()
 
 bool Application::gameLoop()
 {
-    {
-        m_pContext->Update();
-        m_pScene->Update();
-        m_pGui->Update();
-    }
-
-    {
-        m_pContext->Draw();
-        m_pScene->Draw();
-        m_pGui->Draw();
-    }
+    m_pContext->Update();
+    m_pScene->Update();
+    m_pGui->Update();
     
     m_pContext->Swap();
 

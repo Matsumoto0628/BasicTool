@@ -1,24 +1,18 @@
 #pragma once
-#include "transform.h"
+#include "component.h"
 
 class RenderContext;
 class Camera;
+class Transform;
 
-class Renderable
+class Renderer : public Component // Componentの仮想関数は派生先で実装
 {
 public:
-	virtual ~Renderable() = default; // virtualにしないと派生のデストラクタが呼び出されない
-	virtual bool Initialize() = 0;
-	virtual void Start() = 0;
-	virtual void Update() = 0;
-	virtual void Draw() = 0; // Draw()かDrawIndexed()を呼び出す
-	virtual void Terminate() = 0;
-	virtual void Finalize() = 0;
-	Transform& GetTransform() { return m_transform; }
+	virtual ~Renderer() = default; // virtualにしないと派生のデストラクタが呼び出されない
 
 protected:
-	Renderable(RenderContext* pContext, Camera* pCamera);
-	Renderable(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
+	Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform); // 派生クラスから呼び出す
+	Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual bool initRasterizer();
@@ -41,8 +35,8 @@ protected:
 
 	RenderContext* m_pContext = nullptr;
 	Camera* m_pCamera = nullptr;
-	Transform m_transform;
+	Transform* m_pTransform = nullptr;
 
 private:
-	Renderable() = delete; // 必ずRenderContextを渡して初期化
+	Renderer() = delete; // 必ずRenderContextを渡して初期化
 };

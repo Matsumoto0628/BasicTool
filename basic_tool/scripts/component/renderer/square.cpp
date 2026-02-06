@@ -5,13 +5,13 @@
 // 定数
 const Vec4 Square::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Square::Square(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera) // protectedのメンバ変数は基底クラスで初期化
+Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+    : Renderer(pContext, pCamera, pTransform) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
-Square::Square(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology)
+Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderer(pContext, pCamera, pTransform, topology)
 {
 }
 
@@ -21,13 +21,13 @@ Square::~Square()
     m_pCamera = nullptr;
 }
 
-bool Square::Initialize()
+void Square::Initialize()
 {
     {
         bool result = initDepthStencil();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -35,7 +35,7 @@ bool Square::Initialize()
         bool result = initBlend();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -43,7 +43,7 @@ bool Square::Initialize()
         bool result = initSampler();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -51,7 +51,7 @@ bool Square::Initialize()
         bool result = initRasterizer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -60,7 +60,7 @@ bool Square::Initialize()
         bool result = initVertexShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -68,7 +68,7 @@ bool Square::Initialize()
         bool result = initTexture();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -76,7 +76,7 @@ bool Square::Initialize()
         bool result = initPixelShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -84,7 +84,7 @@ bool Square::Initialize()
         bool result = initVertexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -92,7 +92,7 @@ bool Square::Initialize()
         bool result = initIndexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -100,11 +100,9 @@ bool Square::Initialize()
         bool result = initConstantBufferA();
         if (!result)
         {
-            return false;
+            return;
         }
     }
-
-    return true;
 }
 
 void Square::Start()
@@ -113,31 +111,34 @@ void Square::Start()
 
 void Square::Update()
 {
-    updateConstantBufferA();
-}
+    // 更新
+    {
+        updateConstantBufferA();
+    }
 
-void Square::Draw()
-{
-    float blendFactor[4];
-    BLEND_FACTOR.ToFloat4(blendFactor);
+    // 描画
+    {
+        float blendFactor[4];
+        BLEND_FACTOR.ToFloat4(blendFactor);
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
+        UINT stride = sizeof(Vertex);
+        UINT offset = 0;
 
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-    m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-    m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
-    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+        m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
+        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+        m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+        m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
+        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
-    m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
+        m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
+    }
 }
 
 void Square::Terminate()
@@ -241,7 +242,7 @@ void Square::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pTransform->GetMatrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
     m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 

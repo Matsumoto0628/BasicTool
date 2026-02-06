@@ -1,18 +1,19 @@
 #pragma once
 #include <vector>
+#include "component.h"
 
 class Transform
 {
 public:
 	Transform();
 	~Transform();
-	const Vec3& Position() const { return m_position; }
-	const Vec4& Rotation() const { return m_rotation; }
-	const Vec3& Scale() const { return m_scale; }
-	const Vec3& LocalPosition() const { return m_localPosition; }
-	const Vec4& LocalRotation() const { return m_localRotation; }
-	const Vec3& LocalScale() const { return m_localScale; }
-	const Mat4x4& Matrix() const { return m_matrix; }
+	const Vec3& GetPosition() const { return m_position; }
+	const Vec4& GetRotation() const { return m_rotation; }
+	const Vec3& GetScale() const { return m_scale; }
+	const Vec3& GetLocalPosition() const { return m_localPosition; }
+	const Vec4& GetLocalRotation() const { return m_localRotation; }
+	const Vec3& GetLocalScale() const { return m_localScale; }
+	const Mat4x4& GetMatrix() const { return m_matrix; }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
 	void SetScale(const Vec3& scale);

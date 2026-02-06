@@ -1,21 +1,21 @@
 #pragma once
-#include "renderable.h"
+#include "renderer.h"
 
 class RenderContext;
 class Camera;
+class Transform;
 
-class Sphere : public Renderable
+class Sphere : public Renderer
 {
 public:
-    Sphere(RenderContext* pContext, Camera* pCamera);
-    Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
-    Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color);
+    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
+    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
+    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color);
     ~Sphere() override;
 
-    bool Initialize() override;
+    void Initialize() override;
     void Start() override;
     void Update() override;
-    void Draw() override;
     void Terminate() override;
     void Finalize() override;
 

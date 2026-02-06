@@ -38,13 +38,13 @@ void Gui::Start()
 
 void Gui::Update()
 {
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-}
+	// フレーム更新
+	{
+		ImGui_ImplDX11_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+	}
 
-void Gui::Draw()
-{
 	// UI作成
 	{
 		ImGui::Begin("Hello!");

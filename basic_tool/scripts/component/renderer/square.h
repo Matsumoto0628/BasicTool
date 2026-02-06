@@ -1,21 +1,20 @@
 #pragma once
-#include "renderable.h"
+#include "renderer.h"
 #include <wincodec.h>
 #include <WICTextureLoader.h>
 
 class RenderContext;
 class Camera;
 
-class Square : public Renderable
+class Square : public Renderer
 {
 public:
-    Square(RenderContext* pContext, Camera* pCamera);
-    Square(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
+    Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
+    Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~Square() override;
-    bool Initialize() override;
+    void Initialize() override;
     void Start() override;
     void Update() override;
-    void Draw() override;
     void Terminate() override;
     void Finalize() override;
 

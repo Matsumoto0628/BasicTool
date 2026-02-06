@@ -13,14 +13,8 @@
     <Filter Include="imgui\backends">
       <UniqueIdentifier>{49fbfc5e-f0d0-4983-95de-dceec14dd1fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="gui">
-      <UniqueIdentifier>{7ae5bf9d-a71b-4d19-b8f9-c77a11c18d29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="math">
       <UniqueIdentifier>{135b9787-d335-4698-a234-db5f2e6dd5e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render">
-      <UniqueIdentifier>{444726d4-5717-44cf-86f2-7aeae9cf000b}</UniqueIdentifier>
     </Filter>
     <Filter Include="shader">
       <UniqueIdentifier>{af14bdcc-995d-40fe-93f7-f5642451b440}</UniqueIdentifier>
@@ -28,8 +22,11 @@
     <Filter Include="component">
       <UniqueIdentifier>{ab40463b-283f-4aba-bf78-2d392b8258f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="scene">
-      <UniqueIdentifier>{13398f91-cf9b-48a6-a07a-d63350356001}</UniqueIdentifier>
+    <Filter Include="component\renderer">
+      <UniqueIdentifier>{8f60842e-f6eb-4063-a048-11654cb12e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\scene">
+      <UniqueIdentifier>{31c3718d-8cb4-476d-9838-7bd830f15963}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +56,6 @@
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp">
       <Filter>imgui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\gui\gui.cpp">
-      <Filter>gui</Filter>
-    </ClCompile>
     <ClCompile Include="scripts\math\mat4x4.cpp">
       <Filter>math</Filter>
     </ClCompile>
@@ -77,32 +71,38 @@
     <ClCompile Include="scripts\math\rotation_converter.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\render\render_context.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="scripts\render\triangle_test.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="scripts\render\renderable.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="scripts\render\sphere.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
     <ClCompile Include="scripts\component\transform.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\render\camera.cpp">
-      <Filter>render</Filter>
+    <ClCompile Include="scripts\component\renderer.cpp">
+      <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\scene\scene.cpp">
-      <Filter>scene</Filter>
+    <ClCompile Include="scripts\component\renderer\sphere.cpp">
+      <Filter>component\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\scene\test_scene.cpp">
-      <Filter>scene</Filter>
+    <ClCompile Include="scripts\component\renderer\square.cpp">
+      <Filter>component\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\render\square.cpp">
-      <Filter>render</Filter>
+    <ClCompile Include="scripts\component\renderer\triangle_test.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\camera.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\game_object.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\gui.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\render_context.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\scene.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\scene\test_scene.cpp">
+      <Filter>application\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +119,6 @@
     <ClInclude Include="imgui\backends\imgui_impl_win32.h">
       <Filter>imgui\backends</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\gui\gui.h">
-      <Filter>gui</Filter>
-    </ClInclude>
     <ClInclude Include="scripts\math\mat4x4.h">
       <Filter>math</Filter>
     </ClInclude>
@@ -137,32 +134,41 @@
     <ClInclude Include="scripts\math\rotation_converter.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\render\render_context.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="scripts\render\renderable.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="scripts\render\triangle_test.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="scripts\render\sphere.h">
-      <Filter>render</Filter>
-    </ClInclude>
     <ClInclude Include="scripts\component\transform.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\render\camera.h">
-      <Filter>render</Filter>
+    <ClInclude Include="scripts\component\component.h">
+      <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\scene\scene.h">
-      <Filter>scene</Filter>
+    <ClInclude Include="scripts\component\renderer.h">
+      <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\scene\test_scene.h">
-      <Filter>scene</Filter>
+    <ClInclude Include="scripts\component\renderer\sphere.h">
+      <Filter>component\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\render\square.h">
-      <Filter>render</Filter>
+    <ClInclude Include="scripts\component\renderer\square.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\triangle_test.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\camera.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\game_object.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\gui.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\render_context.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene\test_scene.h">
+      <Filter>application\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

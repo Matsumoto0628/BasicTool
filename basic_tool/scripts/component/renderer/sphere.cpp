@@ -2,21 +2,22 @@
 #include "render_context.h"
 #include <vector>
 #include "camera.h"
+#include "transform.h"
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera), m_color{1,1,1,1}
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+    : Renderer(pContext, pCamera, pTransform), m_color{1,1,1,1}
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology), m_color{ 1,1,1,1 }
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
+    : Renderer(pContext, pCamera, pTransform, topology), m_color{ 1,1,1,1 }
 {
 }
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color)
-    : Renderable(pContext, pCamera), m_color{ color }
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color)
+    : Renderer(pContext, pCamera, pTransform), m_color{ color }
 {
 }
 
@@ -26,13 +27,13 @@ Sphere::~Sphere()
     m_pCamera = nullptr;
 }
 
-bool Sphere::Initialize()
+void Sphere::Initialize()
 {
     {
         bool result = initDepthStencil();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -40,7 +41,7 @@ bool Sphere::Initialize()
         bool result = initBlend();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -48,7 +49,7 @@ bool Sphere::Initialize()
         bool result = initRasterizer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -57,7 +58,7 @@ bool Sphere::Initialize()
         bool result = initVertexShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -65,7 +66,7 @@ bool Sphere::Initialize()
         bool result = initPixelShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -73,7 +74,7 @@ bool Sphere::Initialize()
         bool result = initVertexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -81,7 +82,7 @@ bool Sphere::Initialize()
         bool result = initIndexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -89,11 +90,9 @@ bool Sphere::Initialize()
         bool result = initConstantBufferA();
         if (!result)
         {
-            return false;
+            return;
         }
     }
-
-    return true;
 }
 
 void Sphere::Start() 
@@ -102,29 +101,32 @@ void Sphere::Start()
 
 void Sphere::Update() 
 { 
-    updateConstantBufferA(); 
-}
+    // 更新
+    {
+        updateConstantBufferA();
+    }
 
-void Sphere::Draw()
-{
-    float blendFactor[4];
-    BLEND_FACTOR.ToFloat4(blendFactor);
+    // 描画
+    {
+        float blendFactor[4];
+        BLEND_FACTOR.ToFloat4(blendFactor);
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
+        UINT stride = sizeof(Vertex);
+        UINT offset = 0;
 
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-    m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-    m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+        m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
-    m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
+        m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
+    }
 }
 
 void Sphere::Terminate() 
@@ -214,7 +216,7 @@ bool Sphere::initConstantBufferA()
 void Sphere::updateConstantBufferA()
 {
     ConstantBufferA cb;
-    m_transform.Matrix().Transpose().ToFloat4x4(cb.world);
+    m_pTransform->GetMatrix().Transpose().ToFloat4x4(cb.world);
     m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
     m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
 
