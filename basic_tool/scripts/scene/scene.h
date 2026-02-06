@@ -4,7 +4,6 @@
 #include "game_object.h"
 
 class RenderContext;
-class Camera;
 
 class Scene
 {
@@ -17,9 +16,8 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	Scene(RenderContext* pContext, Camera* pCamera);
+	Scene(RenderContext* pContext);
 	RenderContext* m_pContext;
-	Camera* m_pCamera;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
 	
 private:

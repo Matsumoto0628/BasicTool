@@ -7,9 +7,8 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: UpdateとDrawを統合する
-// TODO: AddComponentとGetComponentを実装
-// TODO: カメラをコンポーネント化する
+// TODO: applicationフィルターにscene,renderを移動sceneは複数あるので新しくフィルター作る
+
 class Application
 {
 public:
@@ -28,5 +27,4 @@ private:
     std::unique_ptr<RenderContext> m_pContext = nullptr;
     std::unique_ptr<Scene> m_pScene = nullptr;
     std::unique_ptr<Gui> m_pGui = nullptr;
-    std::unique_ptr<Camera> m_pCamera = nullptr;
 };
