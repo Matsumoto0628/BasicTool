@@ -153,7 +153,6 @@ bool Sphere::initVertexBuffer()
 
             int index = i * (LON_DIV + 1) + j;
             vertices[index].pos = Vec3(sinTheta * cosPhi, cosTheta, sinTheta * sinPhi);
-            vertices[index].normal = Vec3(sinTheta * cosPhi, cosTheta, sinTheta * sinPhi);
             vertices[index].color = m_color;
         }
     }
@@ -231,7 +230,7 @@ bool Sphere::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -264,7 +263,7 @@ bool Sphere::initVertexShader()
 
 bool Sphere::initInputLayout(ID3DBlob* vsBlob)
 {
-    D3D11_INPUT_ELEMENT_DESC position = {
+    D3D11_INPUT_ELEMENT_DESC positionDesc = {
         "POSITION",
         0,
         DXGI_FORMAT_R32G32B32_FLOAT,
@@ -274,19 +273,9 @@ bool Sphere::initInputLayout(ID3DBlob* vsBlob)
         0
     };
 
-    D3D11_INPUT_ELEMENT_DESC normal = {
+    D3D11_INPUT_ELEMENT_DESC colorDesc = {
         "TEXCOORD",
         0,
-        DXGI_FORMAT_R32G32B32_FLOAT,
-        0,
-        offsetof(Vertex, normal),
-        D3D11_INPUT_PER_VERTEX_DATA,
-        0
-    };
-
-    D3D11_INPUT_ELEMENT_DESC color = {
-        "TEXCOORD",
-        1,
         DXGI_FORMAT_R32G32B32A32_FLOAT,
         0,
         offsetof(Vertex, color),
@@ -295,9 +284,8 @@ bool Sphere::initInputLayout(ID3DBlob* vsBlob)
     };
 
     D3D11_INPUT_ELEMENT_DESC layout[] = {
-        position,
-        normal,
-        color
+        positionDesc,
+        colorDesc
     };
 
     HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
@@ -311,6 +299,32 @@ bool Sphere::initInputLayout(ID3DBlob* vsBlob)
     {
         return false;
     }
+
+    return true;
+}
+
+bool Sphere::initPixelShader()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
+
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_ps.cso", &psBlob);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    hr = m_pContext->GetDevice()->CreatePixelShader(
+        psBlob->GetBufferPointer(),
+        psBlob->GetBufferSize(),
+        nullptr,
+        &m_pPixelShader
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    psBlob = nullptr;
 
     return true;
 }

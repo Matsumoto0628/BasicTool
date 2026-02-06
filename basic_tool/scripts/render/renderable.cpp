@@ -79,7 +79,7 @@ bool Renderable::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_vs.cso", &vsBlob);
     if (FAILED(hr)) 
     {
         return false;
@@ -112,7 +112,7 @@ bool Renderable::initVertexShader()
 
 bool Renderable::initInputLayout(ID3DBlob* vsBlob)
 {
-    D3D11_INPUT_ELEMENT_DESC position = {
+    D3D11_INPUT_ELEMENT_DESC positionDesc = {
         "POSITION",
         0,
         DXGI_FORMAT_R32G32B32_FLOAT,
@@ -123,7 +123,7 @@ bool Renderable::initInputLayout(ID3DBlob* vsBlob)
     };
 
     D3D11_INPUT_ELEMENT_DESC layout[] = {
-        position
+        positionDesc
     };
 
     HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
@@ -145,7 +145,7 @@ bool Renderable::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;

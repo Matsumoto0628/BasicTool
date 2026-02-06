@@ -24,12 +24,12 @@ protected:
     bool initIndexBuffer() override;
     bool initVertexShader() override;
     bool initInputLayout(ID3DBlob* vsBlob) override;
+    bool initPixelShader() override;
 
 private:
     struct Vertex
     {
         Vec3 pos;
-        Vec3 normal;
         Vec4 color;
     };
 
