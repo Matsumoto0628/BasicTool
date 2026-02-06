@@ -71,9 +71,9 @@ void Mat4x4::ToFloat4x4(float out[4][4]) const
 
 void Mat4x4::ToPosRotScale(Vec3& outPos, Vec4& outRot, Vec3& outScale) const
 {
-    DirectX::XMVECTOR scale = { outScale.X(), outScale.Y(), outScale.Z() };
-    DirectX::XMVECTOR rotation = { outRot.X(), outRot.Y(), outRot.Z() };;
-    DirectX::XMVECTOR translation = { outPos.X(), outPos.Y(), outPos.Z() };;
+    DirectX::XMVECTOR scale;
+    DirectX::XMVECTOR rotation;
+    DirectX::XMVECTOR translation;
 
     DirectX::XMMatrixDecompose(
         &scale,
