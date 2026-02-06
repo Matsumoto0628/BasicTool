@@ -6,12 +6,17 @@
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
 Sphere::Sphere(RenderContext* pContext, Camera* pCamera)
-    : Renderable(pContext, pCamera)
+    : Renderable(pContext, pCamera), m_color{1,1,1,1}
 {
 }
 
 Sphere::Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderable(pContext, pCamera, topology)
+    : Renderable(pContext, pCamera, topology), m_color{ 1,1,1,1 }
+{
+}
+
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color)
+    : Renderable(pContext, pCamera), m_color{ color }
 {
 }
 
@@ -80,23 +85,11 @@ bool Sphere::Initialize()
         }
     }
 
-    UINT stride = sizeof(Vertex);
-    UINT offset = 0;
-
-    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
-
     return true;
 }
 
 void Sphere::Start() 
 {
-    m_transform.SetPosition({ 0,0,1 });
-    m_transform.SetScale({ 0.1f,0.1f,0.1f });
 }
 
 void Sphere::Update() 
@@ -109,9 +102,19 @@ void Sphere::Draw()
     float blendFactor[4];
     BLEND_FACTOR.ToFloat4(blendFactor);
 
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
+
+    m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+    m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+    m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+    m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
     m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
     m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-    m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+    m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+
     m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
 }
 
@@ -142,6 +145,7 @@ bool Sphere::initVertexBuffer()
             int index = i * (LON_DIV + 1) + j;
             vertices[index].pos = Vec3(sinTheta * cosPhi, cosTheta, sinTheta * sinPhi);
             vertices[index].normal = Vec3(sinTheta * cosPhi, cosTheta, sinTheta * sinPhi);
+            vertices[index].color = m_color;
         }
     }
 
@@ -212,4 +216,92 @@ void Sphere::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+bool Sphere::initVertexShader()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
+
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_vs.cso", &vsBlob);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    hr = m_pContext->GetDevice()->CreateVertexShader(
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        nullptr,
+        &m_pVertexShader
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    // vsBlobが必要なのでここでInputLayout初期化
+    {
+        bool result = initInputLayout(vsBlob.Get());
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    vsBlob = nullptr;
+
+    return true;
+}
+
+bool Sphere::initInputLayout(ID3DBlob* vsBlob)
+{
+    D3D11_INPUT_ELEMENT_DESC position = {
+        "POSITION",
+        0,
+        DXGI_FORMAT_R32G32B32_FLOAT,
+        0,
+        offsetof(Vertex, pos), // Vec3は12ではなく16(XMVECTORだから)
+        D3D11_INPUT_PER_VERTEX_DATA,
+        0
+    };
+
+    D3D11_INPUT_ELEMENT_DESC normal = {
+        "TEXCOORD",
+        0,
+        DXGI_FORMAT_R32G32B32_FLOAT,
+        0,
+        offsetof(Vertex, normal),
+        D3D11_INPUT_PER_VERTEX_DATA,
+        0
+    };
+
+    D3D11_INPUT_ELEMENT_DESC color = {
+        "TEXCOORD",
+        1,
+        DXGI_FORMAT_R32G32B32A32_FLOAT,
+        0,
+        offsetof(Vertex, color),
+        D3D11_INPUT_PER_VERTEX_DATA,
+        0
+    };
+
+    D3D11_INPUT_ELEMENT_DESC layout[] = {
+        position,
+        normal,
+        color
+    };
+
+    HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
+        layout,
+        _countof(layout),
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        &m_pInputLayout
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
 }

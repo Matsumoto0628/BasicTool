@@ -9,6 +9,7 @@ class Sphere : public Renderable
 public:
     Sphere(RenderContext* pContext, Camera* pCamera);
     Sphere(RenderContext* pContext, Camera* pCamera, D3D11_PRIMITIVE_TOPOLOGY topology);
+    Sphere(RenderContext* pContext, Camera* pCamera, Vec4 color);
     ~Sphere() override;
 
     bool Initialize() override;
@@ -21,12 +22,15 @@ public:
 protected:
     bool initVertexBuffer() override;
     bool initIndexBuffer() override;
+    bool initVertexShader() override;
+    bool initInputLayout(ID3DBlob* vsBlob) override;
 
 private:
     struct Vertex
     {
         Vec3 pos;
         Vec3 normal;
+        Vec4 color;
     };
 
     bool initConstantBufferA();
@@ -38,6 +42,8 @@ private:
         float view[4][4];
         float proj[4][4];
     };
+
+    Vec4 m_color;
 
     // 定数
     static const int LAT_DIV = 20;
