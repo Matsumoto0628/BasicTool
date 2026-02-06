@@ -7,6 +7,7 @@ class Scene;
 class Gui;
 class Camera;
 
+// TODO: 線の描画
 class Application
 {
 public:
