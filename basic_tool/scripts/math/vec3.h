@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <DirectXMath.h>
 
 // DirectXMathをラップすることで、SIMDを維持して高速に計算
@@ -11,8 +11,13 @@ public:
     Vec3(float x, float y, float z);
     
     Vec3 operator+(const Vec3& rhs) const;
+    Vec3& operator+=(const Vec3& rhs);
     Vec3 operator-(const Vec3& rhs) const;
+    Vec3& operator-=(const Vec3& rhs);
     Vec3 operator*(float s) const;
+    Vec3& operator*=(float s);
+    Vec3 operator/(float s) const;
+    Vec3& operator/=(float s);
     
     float X() const;
     float Y() const;
