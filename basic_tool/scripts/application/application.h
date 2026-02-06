@@ -7,12 +7,10 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: applicationフィルターにscene,renderを移動sceneは複数あるので新しくフィルター作る
-
 class Application
 {
 public:
-    explicit Application(HINSTANCE handleInstance);
+    explicit Application(HINSTANCE handleInstance); // 引数が1つなので暗黙的変換を禁ずる
     ~Application();
     void Initialize(); // 初期化
     void Start(); // 開始
