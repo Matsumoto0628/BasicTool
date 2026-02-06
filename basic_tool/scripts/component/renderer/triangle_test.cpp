@@ -22,13 +22,13 @@ TriangleTest::~TriangleTest()
     m_pCamera = nullptr;
 }
 
-bool TriangleTest::Initialize() 
+void TriangleTest::Initialize() 
 {
     {
         bool result = initDepthStencil();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -36,7 +36,7 @@ bool TriangleTest::Initialize()
         bool result = initBlend();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -44,7 +44,7 @@ bool TriangleTest::Initialize()
         bool result = initRasterizer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -53,7 +53,7 @@ bool TriangleTest::Initialize()
         bool result = initVertexShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -61,7 +61,7 @@ bool TriangleTest::Initialize()
         bool result = initPixelShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -69,7 +69,7 @@ bool TriangleTest::Initialize()
         bool result = initVertexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -77,7 +77,7 @@ bool TriangleTest::Initialize()
         bool result = initIndexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -85,11 +85,9 @@ bool TriangleTest::Initialize()
         bool result = initConstantBufferA();
         if (!result)
         {
-            return false;
+            return;
         }
     }
-
-    return true;
 }
 
 void TriangleTest::Start()

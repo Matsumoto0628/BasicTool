@@ -27,13 +27,13 @@ Sphere::~Sphere()
     m_pCamera = nullptr;
 }
 
-bool Sphere::Initialize()
+void Sphere::Initialize()
 {
     {
         bool result = initDepthStencil();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -41,7 +41,7 @@ bool Sphere::Initialize()
         bool result = initBlend();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -49,7 +49,7 @@ bool Sphere::Initialize()
         bool result = initRasterizer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -58,7 +58,7 @@ bool Sphere::Initialize()
         bool result = initVertexShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -66,7 +66,7 @@ bool Sphere::Initialize()
         bool result = initPixelShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -74,7 +74,7 @@ bool Sphere::Initialize()
         bool result = initVertexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -82,7 +82,7 @@ bool Sphere::Initialize()
         bool result = initIndexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -90,11 +90,9 @@ bool Sphere::Initialize()
         bool result = initConstantBufferA();
         if (!result)
         {
-            return false;
+            return;
         }
     }
-
-    return true;
 }
 
 void Sphere::Start() 

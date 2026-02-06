@@ -21,13 +21,13 @@ Square::~Square()
     m_pCamera = nullptr;
 }
 
-bool Square::Initialize()
+void Square::Initialize()
 {
     {
         bool result = initDepthStencil();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -35,7 +35,7 @@ bool Square::Initialize()
         bool result = initBlend();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -43,7 +43,7 @@ bool Square::Initialize()
         bool result = initSampler();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -51,7 +51,7 @@ bool Square::Initialize()
         bool result = initRasterizer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -60,7 +60,7 @@ bool Square::Initialize()
         bool result = initVertexShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -68,7 +68,7 @@ bool Square::Initialize()
         bool result = initTexture();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -76,7 +76,7 @@ bool Square::Initialize()
         bool result = initPixelShader();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -84,7 +84,7 @@ bool Square::Initialize()
         bool result = initVertexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -92,7 +92,7 @@ bool Square::Initialize()
         bool result = initIndexBuffer();
         if (!result)
         {
-            return false;
+            return;
         }
     }
 
@@ -100,11 +100,9 @@ bool Square::Initialize()
         bool result = initConstantBufferA();
         if (!result)
         {
-            return false;
+            return;
         }
     }
-
-    return true;
 }
 
 void Square::Start()

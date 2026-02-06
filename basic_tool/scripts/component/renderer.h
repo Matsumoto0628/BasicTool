@@ -5,7 +5,7 @@ class RenderContext;
 class Camera;
 class Transform;
 
-class Renderer : public Component
+class Renderer : public Component // Componentの仮想関数は派生先で実装
 {
 public:
 	virtual ~Renderer() = default; // virtualにしないと派生のデストラクタが呼び出されない

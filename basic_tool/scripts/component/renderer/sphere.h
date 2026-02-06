@@ -13,7 +13,7 @@ public:
     Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color);
     ~Sphere() override;
 
-    bool Initialize() override;
+    void Initialize() override;
     void Start() override;
     void Update() override;
     void Terminate() override;

@@ -11,7 +11,7 @@ public:
     TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
     TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~TriangleTest() override;
-    bool Initialize() override;
+    void Initialize() override;
     void Start() override;
     void Update() override;
     void Terminate() override;
