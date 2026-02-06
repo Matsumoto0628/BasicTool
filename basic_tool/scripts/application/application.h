@@ -3,14 +3,12 @@
 #include <memory>
 
 class RenderContext;
-class Renderable;
+class Scene;
 class Gui;
 class Camera;
 
-// TODO: Sceneクラスの実装
-// TODO: GetRenderable()でここで一気に描画
-// TODO: RenderableクラスでGetTransform()して操作する
-// TODO: InputManagerで操作できるようにする
+// TODO: 親子関係の回転を実装する
+// TODO: カメラとSphereの最初の移動を辞める
 class Application
 {
 public:
@@ -26,8 +24,8 @@ private:
     bool gameLoop();
 
     Window m_window;
-    std::unique_ptr<RenderContext> m_pRenderContext = nullptr;
-    std::unique_ptr<Renderable> m_pRenderable = nullptr;
+    std::unique_ptr<RenderContext> m_pContext = nullptr;
+    std::unique_ptr<Scene> m_pScene = nullptr;
     std::unique_ptr<Gui> m_pGui = nullptr;
     std::unique_ptr<Camera> m_pCamera = nullptr;
 };

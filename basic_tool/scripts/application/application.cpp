@@ -1,8 +1,8 @@
 #include "application.h"
 #include "render_context.h"
-#include "sphere.h"
 #include "gui.h"
 #include "camera.h"
+#include "test_scene.h"
 
 Application::Application(HINSTANCE hInstance)
     : m_window(hInstance)
@@ -19,25 +19,25 @@ void Application::Initialize()
 
     // m_windowが初期化してないとコンストラクタが呼び出せない
     {
-        m_pRenderContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
-        m_pRenderContext->Initialize();
-        m_pCamera = std::make_unique<Camera>(m_pRenderContext->GetWidth(), m_pRenderContext->GetHeight());
+        m_pContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
+        m_pContext->Initialize();
+        m_pCamera = std::make_unique<Camera>(m_pContext->GetWidth(), m_pContext->GetHeight());
         m_pCamera->Initialize();
     }
 
-    // m_pRenderContextが初期化していないとコンストラクタが呼び出せない
+    // m_pContextが初期化していないとコンストラクタが呼び出せない
     {
-        m_pRenderable = std::make_unique<Sphere>(m_pRenderContext.get(), m_pCamera.get());
-        m_pRenderable->Initialize();
-        m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pRenderContext.get());
+        m_pScene = std::make_unique<TestScene>(m_pContext.get(), m_pCamera.get());
+        m_pScene->Initialize();
+        m_pGui = std::make_unique<Gui>(m_window.GetWindowHandle(), m_pContext.get());
         m_pGui->Initialize();
     }
 }
 
 void Application::Start()
 {
-    m_pRenderContext->Start();
-    m_pRenderable->Start();
+    m_pContext->Start();
+    m_pScene->Start();
     m_pGui->Start();
 }
 
@@ -67,34 +67,34 @@ void Application::Loop()
 
 void Application::Terminate()
 {
-    m_pRenderContext->Terminate();
-    m_pRenderable->Terminate();
+    m_pContext->Terminate();
+    m_pScene->Terminate();
     m_pGui->Terminate();
 }
 
 void Application::Finalize() 
 {
     m_window.Finalize();
-    m_pRenderContext->Finalize();
-    m_pRenderable->Finalize();
+    m_pContext->Finalize();
+    m_pScene->Finalize();
     m_pGui->Finalize();
 }
 
 bool Application::gameLoop()
 {
     {
-        m_pRenderContext->Update();
-        m_pRenderable->Update();
+        m_pContext->Update();
+        m_pScene->Update();
         m_pGui->Update();
     }
 
     {
-        m_pRenderContext->Draw();
-        m_pRenderable->Draw();
+        m_pContext->Draw();
+        m_pScene->Draw();
         m_pGui->Draw();
     }
     
-    m_pRenderContext->Swap();
+    m_pContext->Swap();
 
     Sleep(10);
     return true;

@@ -94,7 +94,7 @@ void Transform::setWorld()
 
     if (m_pParent) 
     {
-        m_local = m_pParent->m_matrix.Inverse() * m_world;
+        m_local = m_world * m_pParent->m_matrix.Inverse();
         m_local.ToPosRotScale(m_localPosition, m_localRotation, m_localScale);
     }
 }
@@ -107,7 +107,7 @@ void Transform::setLocal()
 
     if (m_pParent)
     {
-        m_world = m_pParent->m_matrix * m_local;
+        m_world = m_local * m_pParent->m_matrix;
         m_world.ToPosRotScale(m_position, m_rotation, m_scale);
     }
 }
@@ -116,7 +116,8 @@ void Transform::setMatrix()
 {
     if (m_pParent)
     {
-        m_matrix = m_pParent->m_matrix * m_local;
+        m_matrix = m_local * m_pParent->m_matrix;
+        m_matrix.ToPosRotScale(m_position, m_rotation, m_scale);
     }
     else 
     {

@@ -14,6 +14,7 @@ public:
 	virtual void Draw() = 0; // Draw()かDrawIndexed()を呼び出す
 	virtual void Terminate() = 0;
 	virtual void Finalize() = 0;
+	Transform& GetTransform() { return m_transform; }
 
 protected:
 	Renderable(RenderContext* pContext, Camera* pCamera);

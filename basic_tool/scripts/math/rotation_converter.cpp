@@ -13,7 +13,7 @@ float RadToDeg(float rad)
     return rad * 180.0f / PI;
 }
 
-const Vec4& EulerToQuaternion(const Vec3& euler)
+Vec4 EulerToQuaternion(const Vec3& euler)
 {
     DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationRollPitchYaw(
         euler.X(),
@@ -29,13 +29,13 @@ const Vec4& EulerToQuaternion(const Vec3& euler)
     );
 }
 
-const Vec4& AxisToQuaternion(const Vec3& axis, float rad)
+Vec4 AxisToQuaternion(const Vec3& axis, float rad)
 {
     DirectX::XMVECTOR axisVec = DirectX::XMVectorSet(
         axis.X(),
         axis.Y(),
-        axis.Y(),
-        0.0f // 0.0fはベクトルを表す(1.0fはポイント)
+        axis.Z(),
+        0.0f
     ); 
 
     DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationAxis(axisVec, rad);
