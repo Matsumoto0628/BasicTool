@@ -1,7 +1,7 @@
 #include "render_context.h"
 
 // 定数
-const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 1.0f, 1.0f };
+const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0.2f, 0.2f, 0.2f, 1.0f };
 
 RenderContext::RenderContext(HWND hWnd)
     : m_hWnd(hWnd)
