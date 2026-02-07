@@ -4,7 +4,9 @@
 #include <memory>
 #include <vector>
 #include "square.h"
+#include "line.h"
 #include "rigidbody.h"
+#include "particle.h"
 
 TestScene::TestScene(RenderContext* pContext)
 	: Scene(pContext)
@@ -24,12 +26,14 @@ void TestScene::Initialize()
 	pCameraGameObject->Initialize();
 	m_pGameObjects.push_back(std::move(pCameraGameObject));
 
-	std::unique_ptr<GameObject> pSphereGameObject = std::make_unique<GameObject>();
-	pSphereGameObject->AddComponent<Square>(m_pContext, &camera, &pSphereGameObject->GetTransform());
-	auto& rb = pSphereGameObject->AddComponent<Rigidbody>(&pSphereGameObject->GetTransform());
+	std::unique_ptr<GameObject> pLineGameObject = std::make_unique<GameObject>();
+	pLineGameObject->AddComponent<Square>(m_pContext, &camera, &pLineGameObject->GetTransform());
+	auto& line = pLineGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{1,0,0,1});
+	auto& rb = pLineGameObject->AddComponent<Rigidbody>(&pLineGameObject->GetTransform());
 	m_pRigidbodies.push_back(&rb);
-	pSphereGameObject->Initialize();
-	m_pGameObjects.push_back(std::move(pSphereGameObject));
+	pLineGameObject->AddComponent<Particle>(&pLineGameObject->GetTransform(), &rb, &line);
+	pLineGameObject->Initialize();
+	m_pGameObjects.push_back(std::move(pLineGameObject));
 }
 
 void TestScene::Start()
