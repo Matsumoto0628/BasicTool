@@ -5,13 +5,8 @@
 // 定数
 const Vec4 Square::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
-    : Renderer(pContext, pCamera, pTransform) // protectedのメンバ変数は基底クラスで初期化
-{
-}
-
-Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderer(pContext, pCamera, pTransform, topology)
+Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+    : Renderer(pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST), m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
@@ -40,14 +35,6 @@ void Square::Initialize()
     }
 
     {
-        bool result = initSampler();
-        if (!result)
-        {
-            return;
-        }
-    }
-
-    {
         bool result = initRasterizer();
         if (!result)
         {
@@ -58,14 +45,6 @@ void Square::Initialize()
     // ここでInputLayoutも初期化
     {
         bool result = initVertexShader();
-        if (!result)
-        {
-            return;
-        }
-    }
-
-    {
-        bool result = initTexture();
         if (!result)
         {
             return;
@@ -126,14 +105,12 @@ void Square::Update()
 
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-        m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
         m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
         m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-        m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
         m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
         m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
@@ -149,29 +126,13 @@ void Square::Finalize()
 {
 }
 
-bool Square::initRasterizer()
-{
-    D3D11_RASTERIZER_DESC desc = {};
-    desc.FillMode = D3D11_FILL_SOLID;
-    desc.CullMode = D3D11_CULL_NONE;   // 両面描画
-    desc.FrontCounterClockwise = FALSE;
-    desc.DepthClipEnable = TRUE;
-
-    HRESULT hr = m_pContext->GetDevice()->CreateRasterizerState(
-        &desc,
-        &m_pRasterizerState
-    );
-
-    return SUCCEEDED(hr);
-}
-
 bool Square::initVertexBuffer()
 {
     Vertex vertices[4] = {
-        { {-1.0f,  1.0f, 0.0f}, {0,0} }, // 左上
-        { {1.0f,  1.0f, 0.0f}, {1,0} }, // 右上
-        { {-1.0f, -1.0f, 0.0f}, {0,1} }, // 左下
-        { {1.0f, -1.0f, 0.0f}, {1,1} }  // 右下
+        { {-1.0f,  1.0f, 0.0f}, m_color }, // 左上
+        { {1.0f,  1.0f, 0.0f}, m_color }, // 右上
+        { {-1.0f, -1.0f, 0.0f}, m_color }, // 左下
+        { {1.0f, -1.0f, 0.0f}, m_color }  // 右下
     };
 
     D3D11_BUFFER_DESC desc = {};
@@ -258,7 +219,7 @@ bool Square::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_uv_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -301,19 +262,19 @@ bool Square::initInputLayout(ID3DBlob* vsBlob)
         0
     };
 
-    D3D11_INPUT_ELEMENT_DESC uvDesc = {
+    D3D11_INPUT_ELEMENT_DESC colorDesc = {
         "TEXCOORD",
         0,
-        DXGI_FORMAT_R32G32_FLOAT,
+        DXGI_FORMAT_R32G32B32A32_FLOAT,
         0,
-        offsetof(Vertex, uv),
+        offsetof(Vertex, color),
         D3D11_INPUT_PER_VERTEX_DATA,
         0
     };
 
     D3D11_INPUT_ELEMENT_DESC layout[] = {
         positionDesc,
-        uvDesc
+        colorDesc
     };
 
     HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
@@ -335,7 +296,7 @@ bool Square::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_uv_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;
@@ -353,39 +314,6 @@ bool Square::initPixelShader()
     }
 
     psBlob = nullptr;
-
-    return true;
-}
-
-bool Square::initTexture() 
-{
-    HRESULT hr = DirectX::CreateWICTextureFromFile(
-        m_pContext->GetDevice(),
-        L"images/star.jpg",
-        nullptr,
-        &m_pTexture
-    );
-    if (FAILED(hr))
-    {
-        return false;
-    }
-
-    return true;
-}
-
-bool Square::initSampler()
-{
-    D3D11_SAMPLER_DESC desc = {};
-    desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-    desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-    desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-    desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-
-    HRESULT hr = m_pContext->GetDevice()->CreateSamplerState(&desc, &m_pSamplerState);
-    if (FAILED(hr))
-    {
-        return false;
-    }
 
     return true;
 }

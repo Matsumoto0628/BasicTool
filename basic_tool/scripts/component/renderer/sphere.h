@@ -8,7 +8,7 @@ class Transform;
 class Sphere : public Renderer
 {
 public:
-    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4& color);
+    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color);
     ~Sphere() override;
 
     void Initialize() override;
