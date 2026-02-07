@@ -7,7 +7,10 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: 線の描画
+// TODO: 複数描画
+// TODO: y=0の平面を格子状に表示(Blenderをイメージ)
+// TODO: InputManager実装
+// TODO: カメラ移動でパーティクルを眺める
 class Application
 {
 public:
