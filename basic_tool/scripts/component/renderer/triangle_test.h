@@ -9,7 +9,6 @@ class TriangleTest : public Renderer
 {
 public:
     TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
-    TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
     ~TriangleTest() override;
     void Initialize() override;
     void Start() override;

@@ -1,14 +1,16 @@
 #pragma once
 #include "renderer.h"
+#include <wincodec.h>
+#include <WICTextureLoader.h>
 
 class RenderContext;
 class Camera;
 
-class Square : public Renderer
+class Sprite : public Renderer
 {
 public:
-    Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color);
-    ~Square() override;
+    Sprite(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color);
+    ~Sprite() override;
     void Initialize() override;
     void Start() override;
     void Update() override;
@@ -16,6 +18,7 @@ public:
     void Finalize() override;
 
 protected:
+    bool initRasterizer() override;
     bool initVertexBuffer() override;
     bool initIndexBuffer() override;
     bool initVertexShader() override;
@@ -27,6 +30,7 @@ private:
     {
         Vec3 pos;
         Vec4 color;
+        Vec2 uv;
     };
     static const int VERTEX_COUNT = 4;
 
@@ -42,6 +46,18 @@ private:
     };
 
     Vec4 m_color;
+
+    bool initSampler();
+    bool initTexture();
+    Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture = nullptr;
+
+    bool initDepthStencilNoMask();
+    bool initBlendNoColor();
+    bool initPixelShaderZOnly();
+    Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilNoMaskState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendNoColorState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderZOnly = nullptr;
 
     // 定数
     static const Vec4 BLEND_FACTOR;

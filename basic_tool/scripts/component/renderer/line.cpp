@@ -5,12 +5,7 @@
 
 const Vec4 Line::BLEND_FACTOR = { 0,0,0,0 };
 
-Line::Line(RenderContext* pContext, Camera* pCamera)
-    : Renderer(pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST), m_color{ 1,1,1,1 }
-{
-}
-
-Line::Line(RenderContext* pContext, Camera* pCamera, Vec4 color)
+Line::Line(RenderContext* pContext, Camera* pCamera, const Vec4& color)
     : Renderer(pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST), m_color{ color }
 {
 }

@@ -8,13 +8,15 @@ cbuffer WVP : register(b0)
 struct Input
 {
     float4 pos : POSITION;
-    float2 uv : TEXCOORD0;
+    float4 color : TEXCOORD0;
+    float2 uv : TEXCOORD1;
 };
 
 struct Output
 {
     float4 pos : SV_POSITION;
-    float2 uv : TEXCOORD0;
+    float4 color : TEXCOORD0;
+    float2 uv : TEXCOORD1;
 };
 
 Output main(Input input)
@@ -23,6 +25,7 @@ Output main(Input input)
     output.pos = mul(input.pos, World);
     output.pos = mul(output.pos, View);
     output.pos = mul(output.pos, Proj);
+    output.color = input.color;
     output.uv = input.uv;
     return output;
 }

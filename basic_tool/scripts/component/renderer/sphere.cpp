@@ -6,18 +6,8 @@
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
-    : Renderer(pContext, pCamera, pTransform), m_color{1,1,1,1}
-{
-}
-
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : Renderer(pContext, pCamera, pTransform, topology), m_color{ 1,1,1,1 }
-{
-}
-
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color)
-    : Renderer(pContext, pCamera, pTransform), m_color{ color }
+Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+    : Renderer(pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST), m_color{ color }
 {
 }
 

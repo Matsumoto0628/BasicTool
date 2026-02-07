@@ -11,6 +11,8 @@ public:
 	static float GetDeltaTime() { return m_deltaTime; }
 
 private:
+	GameTime() = delete;
+	~GameTime() = delete;
 	static TimePoint m_prevTime;
 	static float m_deltaTime;
 };
