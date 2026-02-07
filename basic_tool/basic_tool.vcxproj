@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;$(ProjectDir)\scripts\component\behaviour;$(ProjectDir)\scripts\utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;$(ProjectDir)\scripts\component\behaviour;$(ProjectDir)\scripts\utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -114,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;$(ProjectDir)\scripts\component\behaviour;$(ProjectDir)\scripts\utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -133,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(ProjectDir)\imgui\backends;$(ProjectDir)\scripts\application;$(ProjectDir)\scripts\application\scene;$(ProjectDir)\scripts\window;$(ProjectDir)\scripts\math;$(ProjectDir)\scripts\component;$(ProjectDir)\scripts\component\renderer;$(ProjectDir)\scripts\component\behaviour;$(ProjectDir)\scripts\utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -159,11 +159,14 @@
     <ClCompile Include="scripts\application\render_context.cpp" />
     <ClCompile Include="scripts\application\scene.cpp" />
     <ClCompile Include="scripts\application\scene\test_scene.cpp" />
+    <ClCompile Include="scripts\component\behaviour\particle.cpp" />
     <ClCompile Include="scripts\component\camera.cpp" />
     <ClCompile Include="scripts\component\renderer.cpp" />
+    <ClCompile Include="scripts\component\renderer\line.cpp" />
     <ClCompile Include="scripts\component\renderer\sphere.cpp" />
     <ClCompile Include="scripts\component\renderer\square.cpp" />
     <ClCompile Include="scripts\component\renderer\triangle_test.cpp" />
+    <ClCompile Include="scripts\component\rigidbody.cpp" />
     <ClCompile Include="scripts\component\transform.cpp" />
     <ClCompile Include="scripts\main.cpp" />
     <ClCompile Include="scripts\math\mat4x4.cpp" />
@@ -177,6 +180,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="scripts\utility\game_time.cpp" />
     <ClCompile Include="scripts\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,12 +192,15 @@
     <ClInclude Include="scripts\application\render_context.h" />
     <ClInclude Include="scripts\application\scene.h" />
     <ClInclude Include="scripts\application\scene\test_scene.h" />
+    <ClInclude Include="scripts\component\behaviour\particle.h" />
     <ClInclude Include="scripts\component\camera.h" />
     <ClInclude Include="scripts\component\component.h" />
     <ClInclude Include="scripts\component\renderer.h" />
+    <ClInclude Include="scripts\component\renderer\line.h" />
     <ClInclude Include="scripts\component\renderer\sphere.h" />
     <ClInclude Include="scripts\component\renderer\square.h" />
     <ClInclude Include="scripts\component\renderer\triangle_test.h" />
+    <ClInclude Include="scripts\component\rigidbody.h" />
     <ClInclude Include="scripts\component\transform.h" />
     <ClInclude Include="scripts\math\mat4x4.h" />
     <ClInclude Include="scripts\math\rotation_converter.h" />
@@ -201,6 +208,7 @@
     <ClInclude Include="scripts\math\vec3.h" />
     <ClInclude Include="scripts\math\vec4.h" />
     <ClInclude Include="scripts\pch.h" />
+    <ClInclude Include="scripts\utility\game_time.h" />
     <ClInclude Include="scripts\window\window.h" />
   </ItemGroup>
   <ItemGroup>

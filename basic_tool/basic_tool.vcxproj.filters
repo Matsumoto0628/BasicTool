@@ -28,6 +28,12 @@
     <Filter Include="application\scene">
       <UniqueIdentifier>{31c3718d-8cb4-476d-9838-7bd830f15963}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{7daf72fc-326e-4050-9e55-5a065d32046d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\behaviour">
+      <UniqueIdentifier>{2e78256f-3117-4bad-b90a-86930e0c40a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scripts\main.cpp" />
@@ -104,6 +110,18 @@
     <ClCompile Include="scripts\application\scene\test_scene.cpp">
       <Filter>application\scene</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\component\rigidbody.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_time.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\line.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\particle.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -169,6 +187,18 @@
     </ClInclude>
     <ClInclude Include="scripts\application\scene\test_scene.h">
       <Filter>application\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\rigidbody.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_time.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\line.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\particle.h">
+      <Filter>component\behaviour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
