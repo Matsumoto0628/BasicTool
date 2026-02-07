@@ -27,7 +27,23 @@ void Sprite::Initialize()
     }
 
     {
+        bool result = initDepthStencilNoMask();
+        if (!result)
+        {
+            return;
+        }
+    }
+
+    {
         bool result = initBlend();
+        if (!result)
+        {
+            return;
+        }
+    }
+
+    {
+        bool result = initBlendNoColor();
         if (!result)
         {
             return;
@@ -69,6 +85,14 @@ void Sprite::Initialize()
 
     {
         bool result = initPixelShader();
+        if (!result)
+        {
+            return;
+        }
+    }
+
+    {
+        bool result = initPixelShaderZOnly();
         if (!result)
         {
             return;
@@ -119,20 +143,41 @@ void Sprite::Update()
         UINT stride = sizeof(Vertex);
         UINT offset = 0;
 
-        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-        m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
-        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
-        m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-        m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
-        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        // Zのみ
+        {
+            m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+            m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+            m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
+            m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShaderZOnly.Get(), nullptr, 0); // 色なし
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+            m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+            m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendNoColorState.Get(), blendFactor, 0xffffffff); // 色なし
+            m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+            m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
+            m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+            m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
 
-        m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
+            m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
+        }
+
+        // 通常
+        {
+            m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+            m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+            m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
+            m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+            m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+            m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+            m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilNoMaskState.Get(), 0); // Zなし
+            m_pContext->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
+            m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+            m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+
+            m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
+        }
     }
 }
 
@@ -396,21 +441,62 @@ bool Sprite::initSampler()
     return true;
 }
 
-bool Sprite::initDepthStencil()
+bool Sprite::initDepthStencilNoMask()
 {
     D3D11_DEPTH_STENCIL_DESC desc = {};
     desc.DepthEnable = TRUE;
-    desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // 後ろも描画する
-    desc.DepthFunc = D3D11_COMPARISON_LESS;
+    desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // マスク無し
+    desc.DepthFunc = D3D11_COMPARISON_EQUAL; // 最初に書いたZのみのパスと一致したときだけ描画
     desc.StencilEnable = FALSE;
     desc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
     desc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
 
-    HRESULT hr = m_pContext->GetDevice()->CreateDepthStencilState(&desc, &m_pDepthStencilState);
+    HRESULT hr = m_pContext->GetDevice()->CreateDepthStencilState(&desc, &m_pDepthStencilNoMaskState);
     if (FAILED(hr))
     {
         return false;
     }
+
+    return true;
+}
+
+bool Sprite::initBlendNoColor()
+{
+    D3D11_BLEND_DESC desc = {};
+    desc.RenderTarget[0].BlendEnable = FALSE;
+    desc.RenderTarget[0].RenderTargetWriteMask = 0; // カラーを書かない
+
+    HRESULT hr = m_pContext->GetDevice()->CreateBlendState(&desc, &m_pBlendNoColorState);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool Sprite::initPixelShaderZOnly()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
+
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/z_only_pos_color_uv_ps.cso", &psBlob);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    hr = m_pContext->GetDevice()->CreatePixelShader(
+        psBlob->GetBufferPointer(),
+        psBlob->GetBufferSize(),
+        nullptr,
+        &m_pPixelShaderZOnly
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    psBlob = nullptr;
 
     return true;
 }

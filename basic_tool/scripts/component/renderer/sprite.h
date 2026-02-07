@@ -24,7 +24,6 @@ protected:
     bool initVertexShader() override;
     bool initInputLayout(ID3DBlob* vsBlob) override;
     bool initPixelShader() override;
-    bool initDepthStencil() override;
 
 private:
     struct Vertex // オブジェクトによって差異がなければ、共通で定義するかも
@@ -50,8 +49,15 @@ private:
 
     bool initSampler();
     bool initTexture();
-    Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture;
+    Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture = nullptr;
+
+    bool initDepthStencilNoMask();
+    bool initBlendNoColor();
+    bool initPixelShaderZOnly();
+    Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilNoMaskState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendNoColorState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderZOnly = nullptr;
 
     // 定数
     static const Vec4 BLEND_FACTOR;
