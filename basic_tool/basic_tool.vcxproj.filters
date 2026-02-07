@@ -122,6 +122,18 @@
     <ClCompile Include="scripts\component\behaviour\particle.cpp">
       <Filter>component\behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\component\renderer\sprite.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_random.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_input.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\camera_controller.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -200,6 +212,18 @@
     <ClInclude Include="scripts\component\behaviour\particle.h">
       <Filter>component\behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="scripts\component\renderer\sprite.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_random.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_input.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\camera_controller.h">
+      <Filter>component\behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="scripts\shader\test_pos_color_vs.hlsl">
@@ -214,10 +238,13 @@
     <FxCompile Include="scripts\shader\test_pos_ps.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
-    <FxCompile Include="scripts\shader\texture_pos_uv_ps.hlsl">
+    <FxCompile Include="scripts\shader\texture_pos_color_uv_ps.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
-    <FxCompile Include="scripts\shader\texture_pos_uv_vs.hlsl">
+    <FxCompile Include="scripts\shader\texture_pos_color_uv_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\z_only_pos_color_uv_ps.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
   </ItemGroup>

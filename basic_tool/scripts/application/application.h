@@ -7,10 +7,11 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: 複数描画
-// TODO: y=0の平面を格子状に表示(Blenderをイメージ)
-// TODO: InputManager実装
+// TODO: Input実装
 // TODO: カメラ移動でパーティクルを眺める
+// TODO: Particleのビルボード
+// TODO: HDR&発光
+// TODO: imguiで操作を保存する
 class Application
 {
 public:
