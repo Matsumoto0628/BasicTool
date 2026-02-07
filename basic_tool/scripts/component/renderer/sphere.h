@@ -8,9 +8,7 @@ class Transform;
 class Sphere : public Renderer
 {
 public:
-    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
-    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
-    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4 color);
+    Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, Vec4& color);
     ~Sphere() override;
 
     void Initialize() override;

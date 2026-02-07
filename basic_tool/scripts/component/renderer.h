@@ -11,8 +11,7 @@ public:
 	virtual ~Renderer() = default; // virtualにしないと派生のデストラクタが呼び出されない
 
 protected:
-	Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform); // 派生クラスから呼び出す
-	Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);
+	Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology);// 派生クラスから呼び出す
 	virtual bool initDepthStencil();
 	virtual bool initBlend();
 	virtual bool initRasterizer();
