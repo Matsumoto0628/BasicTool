@@ -24,6 +24,7 @@ protected:
     bool initVertexShader() override;
     bool initInputLayout(ID3DBlob* vsBlob) override;
     bool initPixelShader() override;
+    bool initDepthStencil() override;
 
 private:
     struct Vertex // オブジェクトによって差異がなければ、共通で定義するかも

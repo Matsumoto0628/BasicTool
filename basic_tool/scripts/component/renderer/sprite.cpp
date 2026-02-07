@@ -395,3 +395,22 @@ bool Sprite::initSampler()
 
     return true;
 }
+
+bool Sprite::initDepthStencil()
+{
+    D3D11_DEPTH_STENCIL_DESC desc = {};
+    desc.DepthEnable = TRUE;
+    desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // 後ろも描画する
+    desc.DepthFunc = D3D11_COMPARISON_LESS;
+    desc.StencilEnable = FALSE;
+    desc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
+    desc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
+
+    HRESULT hr = m_pContext->GetDevice()->CreateDepthStencilState(&desc, &m_pDepthStencilState);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
