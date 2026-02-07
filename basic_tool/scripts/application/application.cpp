@@ -3,6 +3,7 @@
 #include "gui.h"
 #include "test_scene.h"
 #include "game_time.h"
+#include "game_input.h"
 
 Application::Application(HINSTANCE hInstance)
     : m_window(hInstance)
@@ -48,8 +49,6 @@ void Application::Loop()
             }
         }
 
-        GameTime::Update();
-
         // ゲームの更新と描画
         {
             bool result = gameLoop();
@@ -78,6 +77,8 @@ void Application::Finalize()
 
 bool Application::gameLoop()
 {
+    GameTime::Update();
+    GameInput::Update();
     m_pContext->Update();
     m_pScene->Update();
     m_pGui->Update();
