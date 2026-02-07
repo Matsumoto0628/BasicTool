@@ -8,6 +8,7 @@
 #include "rigidbody.h"
 #include "particle.h"
 #include "game_random.h"
+#include "camera_controller.h"
 
 TestScene::TestScene(RenderContext* pContext)
 	: Scene(pContext)
@@ -23,6 +24,7 @@ void TestScene::Initialize()
 {
 	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>();
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
+	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	m_pGameObjects.push_back(std::move(pCameraGameObject));
