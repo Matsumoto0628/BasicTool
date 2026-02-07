@@ -3,10 +3,11 @@
 #include "camera.h"
 #include <memory>
 #include <vector>
-#include "square.h"
+#include "sprite.h"
 #include "line.h"
 #include "rigidbody.h"
 #include "particle.h"
+#include "game_random.h"
 
 TestScene::TestScene(RenderContext* pContext)
 	: Scene(pContext)
@@ -25,15 +26,24 @@ void TestScene::Initialize()
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	m_pGameObjects.push_back(std::move(pCameraGameObject));
-
-	std::unique_ptr<GameObject> pLineGameObject = std::make_unique<GameObject>();
-	pLineGameObject->AddComponent<Square>(m_pContext, &camera, &pLineGameObject->GetTransform());
-	auto& line = pLineGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{1,0,0,1});
-	auto& rb = pLineGameObject->AddComponent<Rigidbody>(&pLineGameObject->GetTransform());
-	m_pRigidbodies.push_back(&rb);
-	pLineGameObject->AddComponent<Particle>(&pLineGameObject->GetTransform(), &rb, &line);
-	pLineGameObject->Initialize();
-	m_pGameObjects.push_back(std::move(pLineGameObject));
+	
+	for (int i = 0; i < 100; i++)
+	{
+		std::unique_ptr<GameObject> pSpriteGameObject = std::make_unique<GameObject>();
+		pSpriteGameObject->GetTransform().SetScale({ 0.1f,0.1f,0.1f });
+		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1,1,1,1});
+		auto& line = pSpriteGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{ 1,0,0,1 });
+		auto& rb = pSpriteGameObject->AddComponent<Rigidbody>(&pSpriteGameObject->GetTransform());
+		rb.AddForce({ 
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f)
+		});
+		m_pRigidbodies.push_back(&rb);
+		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line);
+		pSpriteGameObject->Initialize();
+		m_pGameObjects.push_back(std::move(pSpriteGameObject));
+	}
 }
 
 void TestScene::Start()
@@ -53,7 +63,7 @@ void TestScene::Update()
 
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
-		pRigidbody->AddForce({0,-9.8f,0});
+		//pRigidbody->AddForce({0,-9.8f,0});
 	}
 }
 
