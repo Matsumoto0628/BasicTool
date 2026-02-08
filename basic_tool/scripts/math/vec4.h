@@ -20,6 +20,7 @@ public:
     float Length() const;
     Vec4 Normalize() const;
     Vec4 MultiplyQuaternion(const Vec4& rhs) const;
+    Vec3 RotateVec3(const Vec3& rhs) const;
     void ToFloat4(float out[4]) const;
 
 private:

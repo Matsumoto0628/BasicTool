@@ -70,6 +70,17 @@ Vec4 Vec4::MultiplyQuaternion(const Vec4& rhs) const
     return Vec4(DirectX::XMQuaternionMultiply(vec, rhs.vec));
 }
 
+Vec3 Vec4::RotateVec3(const Vec3& rhs) const
+{
+    DirectX::XMVECTOR target = DirectX::XMVectorSet(rhs.X(), rhs.Y(), rhs.Z(), 0.f);
+    DirectX::XMVECTOR rotated = DirectX::XMVector3Rotate(target, vec);
+    return Vec3(
+        DirectX::XMVectorGetX(rotated),
+        DirectX::XMVectorGetY(rotated),
+        DirectX::XMVectorGetZ(rotated)
+    );
+}
+
 void Vec4::ToFloat4(float out[4]) const
 {
     DirectX::XMStoreFloat4(reinterpret_cast<DirectX::XMFLOAT4*>(out), vec);
