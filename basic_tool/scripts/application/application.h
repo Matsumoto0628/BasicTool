@@ -7,11 +7,9 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: Input実装
-// TODO: カメラ移動でパーティクルを眺める
 // TODO: Particleのビルボード
 // TODO: HDR&発光
-// TODO: imguiで操作を保存する
+// TODO: imguiで操作を反映する
 class Application
 {
 public:

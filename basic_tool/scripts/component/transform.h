@@ -14,6 +14,9 @@ public:
 	const Vec4& GetLocalRotation() const { return m_localRotation; }
 	const Vec3& GetLocalScale() const { return m_localScale; }
 	const Mat4x4& GetMatrix() const { return m_matrix; }
+	const Vec3& GetForward() const { return m_rotation.RotateVec3({ 0,0,1 }); }
+	const Vec3& GetUp() const { return m_rotation.RotateVec3({ 0,1,0 }); }
+	const Vec3& GetRight() const { return m_rotation.RotateVec3({ 1,0,0 }); }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
 	void SetScale(const Vec3& scale);

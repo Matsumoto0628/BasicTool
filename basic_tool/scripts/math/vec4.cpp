@@ -1,3 +1,4 @@
+#include "vec4.h"
 Vec4::Vec4()
     : vec(DirectX::XMVectorZero())
 {
@@ -60,6 +61,24 @@ float Vec4::Length() const
 Vec4 Vec4::Normalize() const 
 {
     return Vec4(DirectX::XMVector4Normalize(vec));
+}
+
+// クォータニオン用の関数
+// Quaternion専用のクラスを作るべきかも
+Vec4 Vec4::MultiplyQuaternion(const Vec4& rhs) const
+{
+    return Vec4(DirectX::XMQuaternionMultiply(vec, rhs.vec));
+}
+
+Vec3 Vec4::RotateVec3(const Vec3& rhs) const
+{
+    DirectX::XMVECTOR target = DirectX::XMVectorSet(rhs.X(), rhs.Y(), rhs.Z(), 0.f);
+    DirectX::XMVECTOR rotated = DirectX::XMVector3Rotate(target, vec);
+    return Vec3(
+        DirectX::XMVectorGetX(rotated),
+        DirectX::XMVectorGetY(rotated),
+        DirectX::XMVectorGetZ(rotated)
+    );
 }
 
 void Vec4::ToFloat4(float out[4]) const
