@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <DirectXMath.h>
 
 // 4成分ベクトル
@@ -19,6 +19,7 @@ public:
     float W() const;
     float Length() const;
     Vec4 Normalize() const;
+    Vec4 MultiplyQuaternion(const Vec4& rhs) const;
     void ToFloat4(float out[4]) const;
 
 private:
