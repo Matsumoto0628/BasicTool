@@ -17,7 +17,11 @@ public:
 private:
 	CameraController() = delete;
 	Transform* m_pTransform;
+	POINT m_anchorPos;
+	float m_rotX;
+	float m_rotY;
 
 	// 定数
 	const static float m_speed;
+	const static float m_sensitivity;
 };
