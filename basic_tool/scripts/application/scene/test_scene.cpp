@@ -27,7 +27,6 @@ void TestScene::Initialize()
 	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
-	m_pGameObjects.push_back(std::move(pCameraGameObject));
 	
 	for (int i = 0; i < 100; i++)
 	{
@@ -42,10 +41,12 @@ void TestScene::Initialize()
 			GameRandom::GetRange(-1.0f, 1.0f)
 		});
 		m_pRigidbodies.push_back(&rb);
-		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line);
+		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line, &pCameraGameObject->GetTransform());
 		pSpriteGameObject->Initialize();
 		m_pGameObjects.push_back(std::move(pSpriteGameObject));
 	}
+
+	m_pGameObjects.push_back(std::move(pCameraGameObject));
 }
 
 void TestScene::Start()
