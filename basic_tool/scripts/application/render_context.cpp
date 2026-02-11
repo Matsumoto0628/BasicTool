@@ -48,6 +48,54 @@ bool RenderContext::Initialize()
             return false;
         }
     }
+
+    {
+        bool result = initHDR();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initBloom();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initConstantBufferBlur();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initVertexShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initPixelShader();
+        if (!result)
+        {
+            return false;
+        }
+    }
+
+    {
+        bool result = initSampler();
+        if (!result)
+        {
+            return false;
+        }
+    }
     
     initViewPort();
 
@@ -60,19 +108,6 @@ void RenderContext::Start()
 
 void RenderContext::Update() 
 {
-    if (!m_pDeviceContext || !m_pRenderTargetView || !m_pDepthStencilView)
-    {
-        return;
-    }
-
-    float color[4];
-    BACK_BUFFER_COLOR.ToFloat4(color);
-
-    // 全てのオブジェクト共通で行う処理
-    m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetView.GetAddressOf(), m_pDepthStencilView.Get());
-    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView.Get(), color);
-    m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-    m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
 }
 
 void RenderContext::Terminate()
@@ -90,6 +125,86 @@ void RenderContext::Finalize()
     if (m_pSwapChain)
     {
         m_pSwapChain->SetFullscreenState(FALSE, nullptr);
+    }
+}
+
+void RenderContext::ClearRTV()
+{
+    float color[4];
+    BACK_BUFFER_COLOR.ToFloat4(color);
+
+    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView.Get(), color);
+    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewHDR.Get(), color);
+    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewBloomA.Get(), color);
+    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewBloomB.Get(), color);
+    m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+}
+
+void RenderContext::SetRTV()
+{
+    m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewHDR.GetAddressOf(), m_pDepthStencilView.Get());
+}
+
+void RenderContext::PostEffect()
+{
+    m_pDeviceContext->PSSetSamplers(0, 1, m_pSamplerLinear.GetAddressOf());
+
+    ID3D11RenderTargetView* nullRTV[1] = { nullptr };
+    ID3D11ShaderResourceView* nullSRV[2] = { nullptr, nullptr };
+    m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+    m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
+
+    // 明るさ抽出
+    {
+        m_pDeviceContext->RSSetViewports(1, &m_viewPortBloom[0]);
+        m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewBloomA.GetAddressOf(), nullptr); // ping-pongするのでAだけ
+        m_pDeviceContext->PSSetShader(m_pPixelShaderExtract.Get(), nullptr, 0);
+        m_pDeviceContext->PSSetShaderResources(0, 1, m_pShaderResourceViewHDR.GetAddressOf());
+        drawFullscreen();
+
+        m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+        m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
+    }
+
+    // ブラーA
+    {
+        m_pDeviceContext->RSSetViewports(1, &m_viewPortBloom[0]);
+        m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewBloomB.GetAddressOf(), nullptr);
+        m_pDeviceContext->PSSetShader(m_pPixelShaderBlur.Get(), nullptr, 0);
+        m_pDeviceContext->PSSetShaderResources(0, 1, m_pShaderResourceViewBloomA.GetAddressOf());
+        updateConstantBufferBlur({ 1.0f, 0 });
+        m_pDeviceContext->PSSetConstantBuffers(0, 1, m_pConstantBufferBlur.GetAddressOf());
+        drawFullscreen();
+
+        m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+        m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
+    }
+
+    // ブラーB
+    {
+        m_pDeviceContext->RSSetViewports(1, &m_viewPortBloom[0]);
+        m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewBloomA.GetAddressOf(), nullptr);
+        m_pDeviceContext->PSSetShader(m_pPixelShaderBlur.Get(), nullptr, 0);
+        m_pDeviceContext->PSSetShaderResources(0, 1, m_pShaderResourceViewBloomB.GetAddressOf());
+        updateConstantBufferBlur({ 0, 1.0f });
+        m_pDeviceContext->PSSetConstantBuffers(0, 1, m_pConstantBufferBlur.GetAddressOf());
+        drawFullscreen();
+
+        m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+        m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
+    }
+
+    // 合成
+    {
+        m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
+        m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetView.GetAddressOf(), nullptr);
+        m_pDeviceContext->PSSetShader(m_pPixelShaderComposite.Get(), nullptr, 0);
+        ID3D11ShaderResourceView* srvs[2] = { m_pShaderResourceViewHDR.Get(), m_pShaderResourceViewBloomA.Get()};
+        m_pDeviceContext->PSSetShaderResources(0, 2, srvs);
+        drawFullscreen();
+
+        m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+        m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
     }
 }
 
@@ -243,10 +358,301 @@ bool RenderContext::initDepthStencilView()
 
 void RenderContext::initViewPort() 
 {
-    m_viewPort[0].TopLeftX = 0.0f;
-    m_viewPort[0].TopLeftY = 0.0f;
-    m_viewPort[0].Width = static_cast<float>(m_screenWidth);
-    m_viewPort[0].Height = static_cast<float>(m_screenHeight);
-    m_viewPort[0].MinDepth = 0.0f;
-    m_viewPort[0].MaxDepth = 1.0f;
+    {
+        m_viewPort[0].TopLeftX = 0.0f;
+        m_viewPort[0].TopLeftY = 0.0f;
+        m_viewPort[0].Width = static_cast<float>(m_screenWidth);
+        m_viewPort[0].Height = static_cast<float>(m_screenHeight);
+        m_viewPort[0].MinDepth = 0.0f;
+        m_viewPort[0].MaxDepth = 1.0f;
+    }
+
+    {
+        m_viewPortBloom[0].TopLeftX = 0.0f;
+        m_viewPortBloom[0].TopLeftY = 0.0f;
+        m_viewPortBloom[0].Width = m_screenWidth * 0.5f;
+        m_viewPortBloom[0].Height = m_screenHeight * 0.5f;
+        m_viewPortBloom[0].MinDepth = 0.0f;
+        m_viewPortBloom[0].MaxDepth = 1.0f;
+    }
+}
+
+bool RenderContext::initHDR()
+{
+    D3D11_TEXTURE2D_DESC desc = {};
+    desc.Width = m_screenWidth;
+    desc.Height = m_screenHeight;
+    desc.MipLevels = 1;
+    desc.ArraySize = 1;
+    desc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT; // HDR用のフォーマット
+    desc.SampleDesc.Count = 1;
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> hdrTexture = nullptr;
+
+    // テクスチャを作成して
+    {
+        HRESULT hr = m_pDevice->CreateTexture2D(&desc, nullptr, &hdrTexture);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // RTVを作成
+    {
+        HRESULT hr = m_pDevice->CreateRenderTargetView(
+            hdrTexture.Get(),
+            nullptr,
+            &m_pRenderTargetViewHDR
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // SRVを作成
+    {
+        HRESULT hr = m_pDevice->CreateShaderResourceView(
+            hdrTexture.Get(),
+            nullptr,
+            &m_pShaderResourceViewHDR
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    hdrTexture = nullptr;
+    
+    return true;
+}
+
+bool RenderContext::initBloom()
+{
+    D3D11_TEXTURE2D_DESC desc = {};
+    desc.Width = m_screenWidth / 2;
+    desc.Height = m_screenHeight / 2;
+    desc.MipLevels = 1;
+    desc.ArraySize = 1;
+    desc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT; // HDR用のフォーマット
+    desc.SampleDesc.Count = 1;
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> bloomTextureA = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> bloomTextureB = nullptr;
+
+    // テクスチャを作成して
+    {
+        HRESULT hr = m_pDevice->CreateTexture2D(&desc, nullptr, &bloomTextureA);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreateTexture2D(&desc, nullptr, &bloomTextureB);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // RTVを作成
+    {
+        HRESULT hr = m_pDevice->CreateRenderTargetView(
+            bloomTextureA.Get(),
+            nullptr,
+            &m_pRenderTargetViewBloomA
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreateRenderTargetView(
+            bloomTextureB.Get(),
+            nullptr,
+            &m_pRenderTargetViewBloomB
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // SRVを作成
+    {
+        HRESULT hr = m_pDevice->CreateShaderResourceView(
+            bloomTextureA.Get(),
+            nullptr,
+            &m_pShaderResourceViewBloomA
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreateShaderResourceView(
+            bloomTextureB.Get(),
+            nullptr,
+            &m_pShaderResourceViewBloomB
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    bloomTextureA = nullptr;
+    bloomTextureB = nullptr;
+
+    return true;
+}
+
+bool RenderContext::initConstantBufferBlur()
+{
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(ConstantBufferBlur);
+    desc.Usage = D3D11_USAGE_DYNAMIC;
+    desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+    return SUCCEEDED(m_pDevice->CreateBuffer(&desc, nullptr, &m_pConstantBufferBlur));
+}
+
+bool RenderContext::initVertexShader()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
+
+    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/fullscreen_vs.cso", &vsBlob);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    hr = m_pDevice->CreateVertexShader(
+        vsBlob->GetBufferPointer(),
+        vsBlob->GetBufferSize(),
+        nullptr,
+        &m_pVertexShaderFullscreen
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    vsBlob = nullptr;
+
+    return true;
+}
+
+bool RenderContext::initPixelShader()
+{
+    Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
+
+    // extract
+    {
+        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/extract_pos_uv_ps.cso", &psBlob);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreatePixelShader(
+            psBlob->GetBufferPointer(),
+            psBlob->GetBufferSize(),
+            nullptr,
+            &m_pPixelShaderExtract
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // blur
+    {
+        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/blur_pos_uv_ps.cso", &psBlob);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreatePixelShader(
+            psBlob->GetBufferPointer(),
+            psBlob->GetBufferSize(),
+            nullptr,
+            &m_pPixelShaderBlur
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // composite
+    {
+        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/composite_pos_uv_ps.cso", &psBlob);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+
+        hr = m_pDevice->CreatePixelShader(
+            psBlob->GetBufferPointer(),
+            psBlob->GetBufferSize(),
+            nullptr,
+            &m_pPixelShaderComposite
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    psBlob = nullptr;
+
+    return true;
+}
+
+bool RenderContext::initSampler()
+{
+    D3D11_SAMPLER_DESC desc = {};
+    desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+    desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+    desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+    desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+    desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+    desc.MinLOD = 0;
+    desc.MaxLOD = D3D11_FLOAT32_MAX;
+
+    return SUCCEEDED(m_pDevice->CreateSamplerState(&desc, &m_pSamplerLinear));
+}
+
+void RenderContext::updateConstantBufferBlur(const Vec2& dir)
+{
+    ConstantBufferBlur cb;
+    Vec2 vTexelSize = { 1.0f / (m_screenWidth * 0.5f), 1.0f / (m_screenHeight * 0.5f) };
+    vTexelSize.ToFloat2(cb.texelSize);
+    dir.ToFloat2(cb.dir);
+
+    D3D11_MAPPED_SUBRESOURCE mapped = {};
+    if (SUCCEEDED(m_pDeviceContext->Map(m_pConstantBufferBlur.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
+    {
+        memcpy(mapped.pData, &cb, sizeof(ConstantBufferBlur));
+        m_pDeviceContext->Unmap(m_pConstantBufferBlur.Get(), 0);
+    }
+}
+
+void RenderContext::drawFullscreen()
+{
+    m_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    m_pDeviceContext->IASetInputLayout(nullptr);
+    m_pDeviceContext->VSSetShader(m_pVertexShaderFullscreen.Get(), nullptr, 0);
+
+    m_pDeviceContext->Draw(3, 0);
 }

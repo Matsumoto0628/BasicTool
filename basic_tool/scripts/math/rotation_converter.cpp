@@ -47,3 +47,25 @@ Vec4 AxisToQuaternion(const Vec3& axis, float rad)
         DirectX::XMVectorGetW(quat)
     );
 }
+
+Vec4 LookRotation(const Vec3& forward, const Vec3& up)
+{
+    DirectX::XMVECTOR f = DirectX::XMVectorSet(forward.X(), forward.Y(), forward.Z(), 0);
+    DirectX::XMVECTOR u = DirectX::XMVectorSet(up.X(), up.Y(), up.Z(), 0);
+    
+    DirectX::XMMATRIX view = DirectX::XMMatrixLookToLH(
+        DirectX::XMVectorZero(), // eye
+        f,                       // forward
+        u                        // up
+    );
+    
+    DirectX::XMMATRIX rot = DirectX::XMMatrixInverse(nullptr, view);
+    DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationMatrix(rot);
+
+    return Vec4(
+        DirectX::XMVectorGetX(quat),
+        DirectX::XMVectorGetY(quat),
+        DirectX::XMVectorGetZ(quat),
+        DirectX::XMVectorGetW(quat)
+    );
+}

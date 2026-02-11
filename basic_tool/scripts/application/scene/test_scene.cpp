@@ -27,13 +27,12 @@ void TestScene::Initialize()
 	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
-	m_pGameObjects.push_back(std::move(pCameraGameObject));
 	
 	for (int i = 0; i < 100; i++)
 	{
 		std::unique_ptr<GameObject> pSpriteGameObject = std::make_unique<GameObject>();
 		pSpriteGameObject->GetTransform().SetScale({ 0.1f,0.1f,0.1f });
-		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1,1,1,1});
+		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1.5,1.5,1.5,1});
 		auto& line = pSpriteGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{ 1,0,0,1 });
 		auto& rb = pSpriteGameObject->AddComponent<Rigidbody>(&pSpriteGameObject->GetTransform());
 		rb.AddForce({ 
@@ -42,10 +41,12 @@ void TestScene::Initialize()
 			GameRandom::GetRange(-1.0f, 1.0f)
 		});
 		m_pRigidbodies.push_back(&rb);
-		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line);
+		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line, &pCameraGameObject->GetTransform());
 		pSpriteGameObject->Initialize();
 		m_pGameObjects.push_back(std::move(pSpriteGameObject));
 	}
+
+	m_pGameObjects.push_back(std::move(pCameraGameObject));
 }
 
 void TestScene::Start()

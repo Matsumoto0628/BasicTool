@@ -8,7 +8,7 @@ class Line;
 class Particle : public Component
 {
 public:
-	Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine);
+	Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform);
 	~Particle();
 	void Initialize() override;
 	void Start() override;
@@ -21,4 +21,5 @@ private:
 	Transform* m_pTransform;
 	Rigidbody* m_pRb;
 	Line* m_pLine;
+	Transform* m_pCameraTransform;
 };
