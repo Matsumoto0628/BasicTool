@@ -247,6 +247,18 @@
     <FxCompile Include="scripts\shader\z_only_pos_color_uv_ps.hlsl">
       <Filter>shader</Filter>
     </FxCompile>
+    <FxCompile Include="scripts\shader\fullscreen_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\extract_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\blur_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\composite_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

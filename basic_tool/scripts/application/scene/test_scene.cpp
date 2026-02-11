@@ -32,7 +32,7 @@ void TestScene::Initialize()
 	{
 		std::unique_ptr<GameObject> pSpriteGameObject = std::make_unique<GameObject>();
 		pSpriteGameObject->GetTransform().SetScale({ 0.1f,0.1f,0.1f });
-		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1,1,1,1});
+		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1.5,1.5,1.5,1});
 		auto& line = pSpriteGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{ 1,0,0,1 });
 		auto& rb = pSpriteGameObject->AddComponent<Rigidbody>(&pSpriteGameObject->GetTransform());
 		rb.AddForce({ 
