@@ -79,10 +79,15 @@ bool Application::gameLoop()
 {
     GameTime::Update();
     GameInput::Update();
+
+    m_pContext->ClearRTV();
+    m_pContext->SetRTV();
+
     m_pContext->Update();
     m_pScene->Update();
     m_pGui->Update();
-    
+
+    m_pContext->PostEffect();
     m_pContext->Swap();
 
     Sleep(10);

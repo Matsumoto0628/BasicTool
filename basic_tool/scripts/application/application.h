@@ -7,7 +7,6 @@ class Scene;
 class Gui;
 class Camera;
 
-// TODO: Particleのビルボード
 // TODO: HDR&発光
 // TODO: imguiで操作を反映する
 class Application
