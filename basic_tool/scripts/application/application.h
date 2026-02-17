@@ -4,11 +4,12 @@
 
 class RenderContext;
 class Scene;
-class Gui;
-class Camera;
 
-// TODO: HDR&発光
-// TODO: imguiで操作を反映する
+// TODO: シーンごとにGUIをもたせる
+// TODO: Componentクラスに純粋仮想関数を宣言して、Params表示関数、Params読み込み関数を定義させる
+// TODO: Paramsをバイナリで保存する
+// TODO: ループ再生を実装
+// TODO: Bloomのブラーをカメラからの距離によって変更する
 class Application
 {
 public:
@@ -26,5 +27,4 @@ private:
     Window m_window;
     std::unique_ptr<RenderContext> m_pContext = nullptr;
     std::unique_ptr<Scene> m_pScene = nullptr;
-    std::unique_ptr<Gui> m_pGui = nullptr;
 };
