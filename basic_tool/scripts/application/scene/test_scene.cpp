@@ -9,22 +9,27 @@
 #include "particle.h"
 #include "game_random.h"
 #include "camera_controller.h"
+#include "gui.h"
 
-TestScene::TestScene(RenderContext* pContext)
-	: Scene(pContext)
+TestScene::TestScene(HWND hWnd, RenderContext* pContext)
+	: Scene{ hWnd, pContext }
 {
 }
 
 TestScene::~TestScene() 
 {
+	m_hWnd = nullptr;
 	m_pContext = nullptr;
 }
 
 void TestScene::Initialize()
 {
+	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext);
+	m_pGui->Initialize();
+
 	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>();
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
-	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
+	//pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	
@@ -51,6 +56,7 @@ void TestScene::Initialize()
 
 void TestScene::Start()
 {
+	m_pGui->Start();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Start();
@@ -59,6 +65,8 @@ void TestScene::Start()
 
 void TestScene::Update()
 {
+	m_pGui->Update();
+
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Update();
@@ -72,6 +80,7 @@ void TestScene::Update()
 
 void TestScene::Terminate()
 {
+	m_pGui->Terminate();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Terminate();
@@ -80,6 +89,7 @@ void TestScene::Terminate()
 
 void TestScene::Finalize()
 {
+	m_pGui->Finalize();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Finalize();

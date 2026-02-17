@@ -2,12 +2,12 @@
 #include "scene.h"
 
 class RenderContext;
-class Camera;
+class Gui;
 
 class TestScene : public Scene 
 {
 public:
-	TestScene(RenderContext* pContext);
+	TestScene(HWND hWnd, RenderContext* pContext);
 	~TestScene();
 	void Initialize() override;
 	void Start() override;
@@ -17,4 +17,5 @@ public:
 
 private:
 	TestScene() = delete;
+	std::unique_ptr<Gui> m_pGui = nullptr;
 };

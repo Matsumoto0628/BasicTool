@@ -2,7 +2,7 @@
 #include "render_context.h"
 #include "camera.h"
 
-Scene::Scene(RenderContext* pContext)
-	: m_pContext(pContext)
+Scene::Scene(HWND hWnd, RenderContext* pContext)
+	: m_hWnd{ hWnd }, m_pContext{ pContext }
 {
 }

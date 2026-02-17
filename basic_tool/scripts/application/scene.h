@@ -17,7 +17,8 @@ public:
 	virtual void Finalize() = 0;
 
 protected:
-	Scene(RenderContext* pContext);
+	Scene(HWND hWnd, RenderContext* pContext);
+	HWND m_hWnd = nullptr;
 	RenderContext* m_pContext;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
 	std::vector<Rigidbody*> m_pRigidbodies;
