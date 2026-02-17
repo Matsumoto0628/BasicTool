@@ -29,7 +29,7 @@ void TestScene::Initialize()
 
 	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>();
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
-	//pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
+	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	
@@ -65,8 +65,6 @@ void TestScene::Start()
 
 void TestScene::Update()
 {
-	m_pGui->Update();
-
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Update();
@@ -76,6 +74,8 @@ void TestScene::Update()
 	{
 		//pRigidbody->AddForce({0,-9.8f,0});
 	}
+
+	m_pGui->Update();
 }
 
 void TestScene::Terminate()

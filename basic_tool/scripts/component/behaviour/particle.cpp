@@ -4,10 +4,10 @@
 #include "line.h"
 
 Particle::Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform)
-	: m_pTransform(pTransform),
-	m_pRb(pRb),
-	m_pLine(pLine),
-	m_pCameraTransform(pCameraTransform)
+	: m_pTransform{ pTransform },
+	m_pRb{pRb},
+	m_pLine{pLine},
+	m_pCameraTransform{ pCameraTransform }
 {
 }
 

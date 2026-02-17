@@ -1,5 +1,5 @@
 Mat4x4::Mat4x4() 
-    : mat(DirectX::XMMatrixIdentity())
+    : mat{ DirectX::XMMatrixIdentity() }
 {
 }
 

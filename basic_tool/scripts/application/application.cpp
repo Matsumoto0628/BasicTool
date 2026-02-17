@@ -5,7 +5,7 @@
 #include "game_input.h"
 
 Application::Application(HINSTANCE hInstance)
-    : m_window(hInstance)
+    : m_window{ hInstance }
 {
 }
 

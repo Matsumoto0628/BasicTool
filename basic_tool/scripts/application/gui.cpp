@@ -34,8 +34,8 @@ void Gui::Initialize()
 void Gui::Start()
 {
 	ImGui::StyleColorsDark();
-	SceneObject a("a");
-	SceneObject b("b");
+	SceneObject a{ "a" };
+	SceneObject b{"b"};
 	a.children.push_back(b);
 	m_sceneObjects.push_back(a);
 }
@@ -112,8 +112,8 @@ void Gui::drawHierarchy()
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;
 
-	ImGui::SetNextWindowSize(ImVec2(250, 540), ImGuiCond_Always);
-	ImGui::SetNextWindowPos(ImVec2(0, 20), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2{ 250, 540 }, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2{ 0, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Hierarchy", nullptr, fixedFlags);
 
 	{
@@ -137,11 +137,11 @@ void Gui::drawInspector()
 		ImGuiWindowFlags_NoCollapse;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.05f, 0.05f, 0.05f, 1.0f);
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.02f, 0.02f, 0.02f, 1.0f);
-	ImGui::SetNextWindowSize(ImVec2(250, 540), ImGuiCond_Always);
-	ImGui::SetNextWindowPos(ImVec2(710, 20), ImGuiCond_Always);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4{ 0.05f, 0.05f, 0.05f, 1.0f };
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.0f, 0.0f, 0.0f, 1.0f };
+	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4{0.02f, 0.02f, 0.02f, 1.0f};
+	ImGui::SetNextWindowSize(ImVec2{ 250, 540 }, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2{ 710, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Inspector", nullptr, fixedFlags);
 
 	// ここにコンポーネントのパラメータを表示する

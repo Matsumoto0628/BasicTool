@@ -1,15 +1,15 @@
 #include "transform.h"
 
 Transform::Transform()
-    : m_position(0, 0, 0),
-    m_rotation(0, 0, 0, 0),
-    m_scale(1, 1, 1),
-    m_localPosition(0, 0, 0),
-    m_localRotation(0, 0, 0, 0),
-    m_localScale(1, 1, 1),
-    m_matrix(Mat4x4::Identity()),
-    m_world(Mat4x4::Identity()),
-    m_local(Mat4x4::Identity())
+    : m_position{ 0, 0, 0 },
+    m_rotation{0, 0, 0, 0},
+    m_scale{1, 1, 1},
+    m_localPosition{ 0, 0, 0 },
+    m_localRotation{0, 0, 0, 0},
+    m_localScale{1, 1, 1},
+    m_matrix{Mat4x4::Identity()},
+    m_world{Mat4x4::Identity()},
+    m_local{Mat4x4::Identity()}
 {
     setWorld();
     setMatrix();

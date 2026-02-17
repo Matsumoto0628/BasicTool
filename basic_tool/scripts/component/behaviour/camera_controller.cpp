@@ -9,7 +9,7 @@ const float CameraController::m_speed = 5.0f;
 const float CameraController::m_sensitivity = 0.001f;
 
 CameraController::CameraController(Transform* pTransform)
-	: m_pTransform(pTransform)
+	: m_pTransform{ pTransform }
 {
 }
 

@@ -2,11 +2,11 @@
 #include "render_context.h"
 
 Camera::Camera(Transform* pTransform, unsigned int width, unsigned int height)
-	: m_pTransform(pTransform),
-	m_aspect((float)width / (float)height),
-	m_nearZ(0.1f),
-	m_farZ(1000.0f),
-	m_fov(DegToRad(30.0f))
+	: m_pTransform{ pTransform },
+	m_aspect{ (float)width / (float)height },
+	m_nearZ{0.1f},
+	m_farZ{1000.0f},
+	m_fov{DegToRad(30.0f)}
 {
 }
 

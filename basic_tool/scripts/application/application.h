@@ -5,8 +5,9 @@
 class RenderContext;
 class Scene;
 
-// TODO: シーンごとにGUIをもたせる
-// TODO: Componentクラスに純粋仮想関数を宣言して、Params表示関数、Params読み込み関数を定義させる
+// TODO: コンストラクタを{}にする
+// TODO: Componentクラスに純粋仮想関数を宣言して、Params表示関数を定義させる
+// TODO: シーンでGuiにgameObjectsを渡して、Guiではcomponentsを参照する
 // TODO: Paramsをバイナリで保存する
 // TODO: ループ再生を実装
 // TODO: Bloomのブラーをカメラからの距離によって変更する
