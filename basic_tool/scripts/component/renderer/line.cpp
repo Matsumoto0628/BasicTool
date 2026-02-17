@@ -120,6 +120,10 @@ void Line::Finalize()
 {
 }
 
+void Line::Show()
+{
+}
+
 bool Line::initVertexBuffer()
 {
     Vertex vertices[VERTEX_COUNT] = {

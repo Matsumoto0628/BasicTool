@@ -11,6 +11,8 @@ public:
 	virtual void Update() = 0;
 	virtual void Terminate() = 0;
 	virtual void Finalize() = 0;
+	virtual void Show() = 0;
+
 protected:
 	Component() = default;
 };

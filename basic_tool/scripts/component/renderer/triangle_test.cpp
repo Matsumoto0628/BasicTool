@@ -127,6 +127,10 @@ void TriangleTest::Finalize()
 {
 }
 
+void TriangleTest::Show()
+{
+}
+
 bool TriangleTest::initVertexBuffer() 
 {
     Vertex vertices[VERTEX_COUNT] = {

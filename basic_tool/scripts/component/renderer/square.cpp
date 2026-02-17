@@ -126,6 +126,10 @@ void Square::Finalize()
 {
 }
 
+void Square::Show()
+{
+}
+
 bool Square::initVertexBuffer()
 {
     Vertex vertices[4] = {

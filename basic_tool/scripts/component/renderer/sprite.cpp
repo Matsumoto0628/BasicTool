@@ -189,6 +189,10 @@ void Sprite::Finalize()
 {
 }
 
+void Sprite::Show()
+{
+}
+
 bool Sprite::initRasterizer()
 {
     D3D11_RASTERIZER_DESC desc = {};

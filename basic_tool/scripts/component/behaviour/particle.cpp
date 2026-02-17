@@ -45,3 +45,7 @@ void Particle::Terminate()
 void Particle::Finalize()
 {
 }
+
+void Particle::Show()
+{
+}

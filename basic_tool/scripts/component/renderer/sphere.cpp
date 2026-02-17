@@ -127,6 +127,10 @@ void Sphere::Finalize()
 {
 }
 
+void Sphere::Show()
+{
+}
+
 bool Sphere::initVertexBuffer()
 {
     std::vector<Vertex> vertices((LAT_DIV + 1) * (LON_DIV + 1));

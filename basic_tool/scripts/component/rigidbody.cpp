@@ -49,6 +49,10 @@ void Rigidbody::Finalize()
 {
 }
 
+void Rigidbody::Show()
+{
+}
+
 void Rigidbody::AddForce(const Vec3& force)
 {
     m_force += force;

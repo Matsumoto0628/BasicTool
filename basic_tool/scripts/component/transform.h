@@ -24,6 +24,7 @@ public:
 	void SetLocalRotation(const Vec4& rotation);
 	void SetLocalScale(const Vec3& scale);
 	void SetParent(Transform* pParent);
+	void Show();
 
 private:
 	void setWorld();

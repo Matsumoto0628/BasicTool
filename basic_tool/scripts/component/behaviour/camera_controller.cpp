@@ -82,3 +82,7 @@ void CameraController::Terminate()
 void CameraController::Finalize()
 {
 }
+
+void CameraController::Show()
+{
+}

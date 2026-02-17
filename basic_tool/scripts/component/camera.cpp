@@ -34,3 +34,7 @@ void Camera::Terminate()
 void Camera::Finalize() 
 {
 }
+
+void Camera::Show()
+{
+}

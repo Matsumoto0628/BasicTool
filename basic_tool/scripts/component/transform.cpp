@@ -86,6 +86,10 @@ void Transform::SetParent(Transform* pParent)
     setMatrix();
 }
 
+void Transform::Show()
+{
+}
+
 void Transform::setWorld() 
 {
     m_world = Mat4x4::Scale(m_scale.X(), m_scale.Y(), m_scale.Z())
