@@ -14,6 +14,7 @@ public:
     void Update() override;
     void Terminate() override;
     void Finalize() override;
+    void Show() override;
 
 protected:
     bool initVertexBuffer() override;

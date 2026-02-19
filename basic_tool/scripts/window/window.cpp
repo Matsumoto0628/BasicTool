@@ -1,11 +1,15 @@
-﻿#include "window.h"
+#include "window.h"
 #include <tchar.h>
+#include "imgui_impl_win32.h"
 
 // 定数定義
 const wchar_t* Window::NAME_WINDOW = L"ParticleTool";
 
+// ヘッダ汚染を防ぐため自分で前方宣言が必要
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 Window::Window(HINSTANCE hInstance) 
-    : m_sizeWindow(), m_hInstance(hInstance)
+    : m_sizeWindow{}, m_hInstance{ hInstance }
 {
 	m_sizeWindow.cx = WIDTH;
 	m_sizeWindow.cy = HEIGHT;
@@ -105,6 +109,12 @@ bool Window::MessageLoop()
 
 LRESULT CALLBACK Window::MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    // GUIの操作
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam)) 
+    {
+        return true;
+    }
+
     switch (msg) 
     {
     case WM_DESTROY:

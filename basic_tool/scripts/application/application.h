@@ -4,11 +4,14 @@
 
 class RenderContext;
 class Scene;
-class Gui;
-class Camera;
 
-// TODO: HDR&発光
-// TODO: imguiで操作を反映する
+// TODO: 指す先が変わらないならconstポインタを利用する(const int*これはintが変わらないint* constこれはポインタが変わらない)
+// TODO: Sceneから生成、削除できる関数をpublicで公開する
+// TODO: ParticleControllerクラスを作成し、開始時にパーティクルを生成させて子オブジェクトにする
+// TODO: Paramsをバイナリで保存する
+// TODO: Paramsをバイナリで読み込む
+// TODO: ループ再生を実装
+// TODO: Bloomのブラーをカメラからの距離によって変更する
 class Application
 {
 public:
@@ -26,5 +29,4 @@ private:
     Window m_window;
     std::unique_ptr<RenderContext> m_pContext = nullptr;
     std::unique_ptr<Scene> m_pScene = nullptr;
-    std::unique_ptr<Gui> m_pGui = nullptr;
 };

@@ -1,5 +1,5 @@
 Vec2::Vec2()
-    : vec(DirectX::XMVectorZero())
+    : vec{ DirectX::XMVectorZero() }
 {
 }
 

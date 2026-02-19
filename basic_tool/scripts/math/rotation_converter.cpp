@@ -48,6 +48,23 @@ Vec4 AxisToQuaternion(const Vec3& axis, float rad)
     );
 }
 
+Vec3 QuaternionToEuler(const Vec4& q)
+{
+    DirectX::XMVECTOR quat = DirectX::XMVectorSet(q.X(), q.Y(), q.Z(), q.W());
+
+    // 回転行列に変換
+    DirectX::XMMATRIX m = DirectX::XMMatrixRotationQuaternion(quat);
+
+    float pitch, yaw, roll;
+
+    // LH座標系用の抽出
+    pitch = asinf(-DirectX::XMVectorGetZ(m.r[1]));               // X回転
+    yaw = atan2f(DirectX::XMVectorGetZ(m.r[0]), DirectX::XMVectorGetZ(m.r[2])); // Y回転
+    roll = atan2f(DirectX::XMVectorGetX(m.r[1]), DirectX::XMVectorGetY(m.r[1])); // Z回転
+
+    return Vec3(pitch, yaw, roll);
+}
+
 Vec4 LookRotation(const Vec3& forward, const Vec3& up)
 {
     DirectX::XMVECTOR f = DirectX::XMVectorSet(forward.X(), forward.Y(), forward.Z(), 0);

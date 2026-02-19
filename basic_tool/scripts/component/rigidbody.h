@@ -14,6 +14,7 @@ public:
     void Update() override;
     void Terminate() override;
     void Finalize() override;
+    void Show() override;
     void AddForce(const Vec3& force);
     void SetVelocity(const Vec3& vel);
     const Vec3& GetVelocity() const { return m_velocity; }

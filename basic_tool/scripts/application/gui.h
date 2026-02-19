@@ -1,11 +1,15 @@
 #pragma once
+#include <string>
+#include <vector>
+#include <memory>
 
 class RenderContext;
+class GameObject;
 
 class Gui 
 {
 public:
-	Gui(HWND hWnd, RenderContext* pContext);
+	Gui(HWND hWnd, RenderContext* pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects);
 	~Gui();
 	void Initialize();
 	void Start();
@@ -15,8 +19,13 @@ public:
 
 private:
 	Gui() = delete;
-	// HWNDを参照として持つのは危険かもしれない
-	// HWNDをnullptrにするだけで破棄は任せる
+	void drawMainMenu();
+	void drawHierarchy();
+	void drawInspector();
+	void drawHierarchyNode(GameObject* pGameObject);
+
 	HWND m_hWnd = nullptr; 
 	RenderContext* m_pContext = nullptr;
+	std::vector<std::unique_ptr<GameObject>>* m_ppGameObjects = nullptr;
+	GameObject* m_pSelectGameObject = nullptr;
 };

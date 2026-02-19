@@ -2,10 +2,12 @@
 #include <vector>
 #include "component.h"
 
+class GameObject;
+
 class Transform
 {
 public:
-	Transform();
+	Transform(GameObject* pGameObject);
 	~Transform();
 	const Vec3& GetPosition() const { return m_position; }
 	const Vec4& GetRotation() const { return m_rotation; }
@@ -17,6 +19,8 @@ public:
 	const Vec3& GetForward() const { return m_rotation.RotateVec3({ 0,0,1 }); }
 	const Vec3& GetUp() const { return m_rotation.RotateVec3({ 0,1,0 }); }
 	const Vec3& GetRight() const { return m_rotation.RotateVec3({ 1,0,0 }); }
+	const std::vector<Transform*>& GetChildren() const { return m_pChildren; }
+	GameObject& GetGameObject() const { return *m_pGameObject; }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
 	void SetScale(const Vec3& scale);
@@ -24,11 +28,14 @@ public:
 	void SetLocalRotation(const Vec4& rotation);
 	void SetLocalScale(const Vec3& scale);
 	void SetParent(Transform* pParent);
+	void Show();
 
 private:
-	void setWorld();
-	void setLocal();
-	void setMatrix();
+	Transform() = delete;
+	void applyWorld();
+	void applyLocal();
+	void applyMatrix();
+	void applyEulerAngles(const Vec3& eulerDeg);
 	Vec3 m_position;
 	Vec4 m_rotation;
 	Vec3 m_scale;
@@ -38,7 +45,10 @@ private:
 	Mat4x4 m_matrix;
 	Mat4x4 m_world;
 	Mat4x4 m_local;
+	Vec3 m_eulerAngles;
 
 	std::vector<Transform*> m_pChildren;
 	Transform* m_pParent;
+
+	GameObject* m_pGameObject;
 };

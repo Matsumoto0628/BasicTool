@@ -1,18 +1,21 @@
 #include "transform.h"
+#include "imgui.h"
+#include "rotation_converter.h"
 
-Transform::Transform()
-    : m_position(0, 0, 0),
-    m_rotation(0, 0, 0, 0),
-    m_scale(1, 1, 1),
-    m_localPosition(0, 0, 0),
-    m_localRotation(0, 0, 0, 0),
-    m_localScale(1, 1, 1),
-    m_matrix(Mat4x4::Identity()),
-    m_world(Mat4x4::Identity()),
-    m_local(Mat4x4::Identity())
+Transform::Transform(GameObject* pGameObject)
+    : m_position{ 0, 0, 0 },
+    m_rotation{ 0, 0, 0, 0 },
+    m_scale{ 1, 1, 1 },
+    m_localPosition{ 0, 0, 0 },
+    m_localRotation{ 0, 0, 0, 0 },
+    m_localScale{ 1, 1, 1 },
+    m_matrix{ Mat4x4::Identity() },
+    m_world{ Mat4x4::Identity() },
+    m_local{ Mat4x4::Identity() },
+    m_pGameObject{ pGameObject }
 {
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 Transform::~Transform()
@@ -22,43 +25,47 @@ Transform::~Transform()
 void Transform::SetPosition(const Vec3& position)
 {
     m_position = position;
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetRotation(const Vec4& rotation)
 {
     m_rotation = rotation;
-    setWorld();
-    setMatrix();
+    Vec3 eulerRad = QuaternionToEuler(rotation);
+    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetScale(const Vec3& scale)
 {
     m_scale = scale;
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetLocalPosition(const Vec3& position)
 {
     m_localPosition = position;
-    setLocal();
-    setMatrix();
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    setLocal();
-    setMatrix();
+    Vec3 eulerRad = QuaternionToEuler(rotation);
+    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetLocalScale(const Vec3& scale)
 {
     m_localScale = scale;
-    setLocal();
-    setMatrix();
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetParent(Transform* pParent)
@@ -82,11 +89,84 @@ void Transform::SetParent(Transform* pParent)
         m_pParent->m_pChildren.push_back(this);
     }
 
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
-void Transform::setWorld() 
+void Transform::Show()
+{
+    float posX = m_position.X();
+    float posY = m_position.Y();
+    float posZ = m_position.Z();
+    float rotX = m_eulerAngles.X();
+    float rotY = m_eulerAngles.Y();
+    float rotZ = m_eulerAngles.Z();
+    float scaX = m_scale.X();
+    float scaY = m_scale.Y();
+    float scaZ = m_scale.Z();
+
+    ImGui::PushID(this);
+    if (ImGui::CollapsingHeader("Transform"))
+    {
+        ImGui::PushID("Position");
+        {
+            ImGui::Text("Position");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &posX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &posY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &posZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+
+        ImGui::PushID("Rotation");
+        {
+            ImGui::Text("Rotation");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &rotX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &rotY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &rotZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+
+        ImGui::PushID("Scale");
+        {
+            ImGui::Text("Scale");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &scaX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &scaY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &scaZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+    }
+    ImGui::PopID();
+
+    if (posX != m_position.X() || posY != m_position.Y() || posZ != m_position.Z())
+    {
+        SetPosition({ posX, posY, posZ });
+    }
+    if (rotX != m_eulerAngles.X() || rotY != m_eulerAngles.Y() || rotZ != m_eulerAngles.Z())
+    {
+        applyEulerAngles({ rotX, rotY, rotZ });
+    }
+    if (scaX != m_scale.X() || scaY != m_scale.Y() || scaZ != m_scale.Z())
+    {
+        SetScale({ scaX, scaY, scaZ });
+    }
+}
+
+void Transform::applyWorld() 
 {
     m_world = Mat4x4::Scale(m_scale.X(), m_scale.Y(), m_scale.Z())
         * Mat4x4::Rotation(m_rotation.X(), m_rotation.Y(), m_rotation.Z(), m_rotation.W())
@@ -99,7 +179,7 @@ void Transform::setWorld()
     }
 }
 
-void Transform::setLocal() 
+void Transform::applyLocal() 
 {
     m_local = Mat4x4::Scale(m_localScale.X(), m_localScale.Y(), m_localScale.Z())
         * Mat4x4::Rotation(m_localRotation.X(), m_localRotation.Y(), m_localRotation.Z(), m_localRotation.W())
@@ -112,7 +192,7 @@ void Transform::setLocal()
     }
 }
 
-void Transform::setMatrix()
+void Transform::applyMatrix()
 {
     if (m_pParent)
     {
@@ -128,7 +208,15 @@ void Transform::setMatrix()
     {
         if (child) 
         {
-            child->setMatrix();
+            child->applyMatrix();
         }
     }
+}
+
+void Transform::applyEulerAngles(const Vec3& eulerDeg)
+{
+    m_rotation = EulerToQuaternion({ DegToRad(eulerDeg.X()), DegToRad(eulerDeg.Y()), DegToRad(eulerDeg.Z()) });
+    m_eulerAngles = eulerDeg;
+    applyWorld();
+    applyMatrix();
 }

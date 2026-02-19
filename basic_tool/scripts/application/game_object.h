@@ -3,11 +3,12 @@
 #include "component.h"
 #include <vector>
 #include <memory>
+#include <string>
 
 class GameObject 
 {
 public:
-	GameObject();
+	GameObject(std::string name);
 	~GameObject();
 	void Initialize();
 	void Start();
@@ -15,6 +16,9 @@ public:
 	void Terminate();
 	void Finalize();
 	Transform& GetTransform() { return m_transform; }
+	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
+	const uint64_t GetID() const { return m_id; }
+	const std::string GetName() const { return m_name; }
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
@@ -30,6 +34,9 @@ public:
 	}
 
 private:
+	GameObject() = delete;
 	Transform m_transform;
 	std::vector<std::unique_ptr<Component>> m_pComponents;
+	uint64_t m_id = -1;
+	std::string m_name = "NONE";
 };

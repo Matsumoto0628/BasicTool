@@ -14,6 +14,7 @@ public:
 	void Update() override;
 	void Terminate() override;
 	void Finalize() override;
+	void Show() override;
 	const Mat4x4& GetView() const { return m_pTransform->GetMatrix().Inverse(); };
 	const Mat4x4& GetProj() const { return m_proj; };
 

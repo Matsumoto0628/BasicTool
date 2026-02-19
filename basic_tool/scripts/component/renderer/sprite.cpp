@@ -1,12 +1,13 @@
 #include "sprite.h"
 #include "render_context.h"
 #include "camera.h"
+#include "imgui.h"
 
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
 
 Sprite::Sprite(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
-    : Renderer(pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST), m_color(color) // protectedのメンバ変数は基底クラスで初期化
+    : Renderer{ pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
@@ -187,6 +188,15 @@ void Sprite::Terminate()
 
 void Sprite::Finalize()
 {
+}
+
+void Sprite::Show()
+{
+    ImGui::PushID(this);
+    if (ImGui::CollapsingHeader("Sprite Renderer"))
+    {
+    }
+    ImGui::PopID();
 }
 
 bool Sprite::initRasterizer()

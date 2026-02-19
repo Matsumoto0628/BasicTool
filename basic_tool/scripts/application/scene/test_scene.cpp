@@ -9,28 +9,33 @@
 #include "particle.h"
 #include "game_random.h"
 #include "camera_controller.h"
+#include "gui.h"
 
-TestScene::TestScene(RenderContext* pContext)
-	: Scene(pContext)
+TestScene::TestScene(HWND hWnd, RenderContext* pContext)
+	: Scene{ hWnd, pContext }
 {
 }
 
 TestScene::~TestScene() 
 {
+	m_hWnd = nullptr;
 	m_pContext = nullptr;
 }
 
 void TestScene::Initialize()
 {
-	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>();
+	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
+	m_pGui->Initialize();
+
+	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>("Camera");
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
-	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
+	//pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	
 	for (int i = 0; i < 100; i++)
 	{
-		std::unique_ptr<GameObject> pSpriteGameObject = std::make_unique<GameObject>();
+		std::unique_ptr<GameObject> pSpriteGameObject = std::make_unique<GameObject>("Particle");
 		pSpriteGameObject->GetTransform().SetScale({ 0.1f,0.1f,0.1f });
 		pSpriteGameObject->AddComponent<Sprite>(m_pContext, &camera, &pSpriteGameObject->GetTransform(), Vec4{1.5,1.5,1.5,1});
 		auto& line = pSpriteGameObject->AddComponent<Line>(m_pContext, &camera, Vec4{ 1,0,0,1 });
@@ -51,6 +56,7 @@ void TestScene::Initialize()
 
 void TestScene::Start()
 {
+	m_pGui->Start();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Start();
@@ -68,10 +74,13 @@ void TestScene::Update()
 	{
 		//pRigidbody->AddForce({0,-9.8f,0});
 	}
+
+	m_pGui->Update();
 }
 
 void TestScene::Terminate()
 {
+	m_pGui->Terminate();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Terminate();
@@ -80,6 +89,7 @@ void TestScene::Terminate()
 
 void TestScene::Finalize()
 {
+	m_pGui->Finalize();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Finalize();

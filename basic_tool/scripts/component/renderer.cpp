@@ -4,10 +4,10 @@
 #include "transform.h"
 
 Renderer::Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
-    : m_pContext(pContext),
-    m_pCamera(pCamera),
-    m_pTransform(pTransform),
-    m_topology(topology)
+    : m_pContext{ pContext },
+    m_pCamera{pCamera},
+    m_pTransform{ pTransform },
+    m_topology{topology}
 {
 }
 

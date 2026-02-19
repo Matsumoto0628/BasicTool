@@ -16,6 +16,7 @@ public:
     void Terminate() override;
     void Finalize() override;
     void SetLine(const Vec3& start, const Vec3& end);
+    void Show() override;
 
 protected:
     bool initVertexBuffer() override;
