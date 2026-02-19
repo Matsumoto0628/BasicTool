@@ -24,12 +24,12 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext);
+	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
 	m_pGui->Initialize();
 
 	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>();
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
-	pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
+	//pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
 	
