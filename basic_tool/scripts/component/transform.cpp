@@ -1,15 +1,18 @@
 #include "transform.h"
+#include "imgui.h"
+#include "rotation_converter.h"
 
-Transform::Transform()
+Transform::Transform(GameObject* pGameObject)
     : m_position{ 0, 0, 0 },
-    m_rotation{0, 0, 0, 0},
-    m_scale{1, 1, 1},
+    m_rotation{ 0, 0, 0, 0 },
+    m_scale{ 1, 1, 1 },
     m_localPosition{ 0, 0, 0 },
-    m_localRotation{0, 0, 0, 0},
-    m_localScale{1, 1, 1},
-    m_matrix{Mat4x4::Identity()},
-    m_world{Mat4x4::Identity()},
-    m_local{Mat4x4::Identity()}
+    m_localRotation{ 0, 0, 0, 0 },
+    m_localScale{ 1, 1, 1 },
+    m_matrix{ Mat4x4::Identity() },
+    m_world{ Mat4x4::Identity() },
+    m_local{ Mat4x4::Identity() },
+    m_pGameObject{ pGameObject }
 {
     setWorld();
     setMatrix();
@@ -88,6 +91,76 @@ void Transform::SetParent(Transform* pParent)
 
 void Transform::Show()
 {
+    float posX = m_position.X();
+    float posY = m_position.Y();
+    float posZ = m_position.Z();
+    float rotX = m_eulerAngles.X();
+    float rotY = m_eulerAngles.Y();
+    float rotZ = m_eulerAngles.Z();
+    float scaX = m_scale.X();
+    float scaY = m_scale.Y();
+    float scaZ = m_scale.Z();
+
+    ImGui::PushID(this);
+    if (ImGui::CollapsingHeader("Transform"))
+    {
+        ImGui::PushID("Position");
+        {
+            ImGui::Text("Position");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &posX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &posY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &posZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+
+        ImGui::PushID("Rotation");
+        {
+            ImGui::Text("Rotation");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &rotX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &rotY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &rotZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+
+        ImGui::PushID("Scale");
+        {
+            ImGui::Text("Scale");
+            ImGui::SameLine();
+            ImGui::PushItemWidth(60);
+            ImGui::DragFloat("##x", &scaX);
+            ImGui::SameLine();
+            ImGui::DragFloat("##y", &scaY);
+            ImGui::SameLine();
+            ImGui::DragFloat("##z", &scaZ);
+            ImGui::PopItemWidth();
+        }
+        ImGui::PopID();
+    }
+    ImGui::PopID();
+
+    if (posX != m_position.X() || posY != m_position.Y() || posZ != m_position.Z())
+    {
+        SetPosition({ posX, posY, posZ });
+    }
+    if (rotX != m_eulerAngles.X() || rotY != m_eulerAngles.Y() || rotZ != m_eulerAngles.Z())
+    {
+        SetRotation(EulerToQuaternion({ DegToRad(rotX), DegToRad(rotY), DegToRad(rotZ) }));
+        m_eulerAngles = { rotX, rotY, rotZ };
+    }
+    if (scaX != m_scale.X() || scaY != m_scale.Y() || scaZ != m_scale.Z())
+    {
+        SetScale({ scaX, scaY, scaZ });
+    }
 }
 
 void Transform::setWorld() 
