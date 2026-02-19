@@ -14,8 +14,8 @@ Transform::Transform(GameObject* pGameObject)
     m_local{ Mat4x4::Identity() },
     m_pGameObject{ pGameObject }
 {
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 Transform::~Transform()
@@ -25,43 +25,47 @@ Transform::~Transform()
 void Transform::SetPosition(const Vec3& position)
 {
     m_position = position;
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetRotation(const Vec4& rotation)
 {
     m_rotation = rotation;
-    setWorld();
-    setMatrix();
+    Vec3 eulerRad = QuaternionToEuler(rotation);
+    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetScale(const Vec3& scale)
 {
     m_scale = scale;
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::SetLocalPosition(const Vec3& position)
 {
     m_localPosition = position;
-    setLocal();
-    setMatrix();
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    setLocal();
-    setMatrix();
+    Vec3 eulerRad = QuaternionToEuler(rotation);
+    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetLocalScale(const Vec3& scale)
 {
     m_localScale = scale;
-    setLocal();
-    setMatrix();
+    applyLocal();
+    applyMatrix();
 }
 
 void Transform::SetParent(Transform* pParent)
@@ -85,8 +89,8 @@ void Transform::SetParent(Transform* pParent)
         m_pParent->m_pChildren.push_back(this);
     }
 
-    setWorld();
-    setMatrix();
+    applyWorld();
+    applyMatrix();
 }
 
 void Transform::Show()
@@ -154,8 +158,7 @@ void Transform::Show()
     }
     if (rotX != m_eulerAngles.X() || rotY != m_eulerAngles.Y() || rotZ != m_eulerAngles.Z())
     {
-        SetRotation(EulerToQuaternion({ DegToRad(rotX), DegToRad(rotY), DegToRad(rotZ) }));
-        m_eulerAngles = { rotX, rotY, rotZ };
+        applyEulerAngles({ rotX, rotY, rotZ });
     }
     if (scaX != m_scale.X() || scaY != m_scale.Y() || scaZ != m_scale.Z())
     {
@@ -163,7 +166,7 @@ void Transform::Show()
     }
 }
 
-void Transform::setWorld() 
+void Transform::applyWorld() 
 {
     m_world = Mat4x4::Scale(m_scale.X(), m_scale.Y(), m_scale.Z())
         * Mat4x4::Rotation(m_rotation.X(), m_rotation.Y(), m_rotation.Z(), m_rotation.W())
@@ -176,7 +179,7 @@ void Transform::setWorld()
     }
 }
 
-void Transform::setLocal() 
+void Transform::applyLocal() 
 {
     m_local = Mat4x4::Scale(m_localScale.X(), m_localScale.Y(), m_localScale.Z())
         * Mat4x4::Rotation(m_localRotation.X(), m_localRotation.Y(), m_localRotation.Z(), m_localRotation.W())
@@ -189,7 +192,7 @@ void Transform::setLocal()
     }
 }
 
-void Transform::setMatrix()
+void Transform::applyMatrix()
 {
     if (m_pParent)
     {
@@ -205,7 +208,15 @@ void Transform::setMatrix()
     {
         if (child) 
         {
-            child->setMatrix();
+            child->applyMatrix();
         }
     }
+}
+
+void Transform::applyEulerAngles(const Vec3& eulerDeg)
+{
+    m_rotation = EulerToQuaternion({ DegToRad(eulerDeg.X()), DegToRad(eulerDeg.Y()), DegToRad(eulerDeg.Z()) });
+    m_eulerAngles = eulerDeg;
+    applyWorld();
+    applyMatrix();
 }

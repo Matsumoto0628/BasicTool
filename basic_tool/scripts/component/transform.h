@@ -32,9 +32,10 @@ public:
 
 private:
 	Transform() = delete;
-	void setWorld();
-	void setLocal();
-	void setMatrix();
+	void applyWorld();
+	void applyLocal();
+	void applyMatrix();
+	void applyEulerAngles(const Vec3& eulerDeg);
 	Vec3 m_position;
 	Vec4 m_rotation;
 	Vec3 m_scale;
