@@ -170,7 +170,7 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 	}
 
 	ImGui::PushID(pGameObject);
-	bool nodeOpen = ImGui::TreeNodeEx("a", flags);
+	bool nodeOpen = ImGui::TreeNodeEx(pGameObject->GetName().c_str(), flags);
 	ImGui::PopID();
 
 	if (ImGui::IsItemClicked()) // TreeNodeEx()を先にしないとクリックできなくなる
