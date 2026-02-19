@@ -1,6 +1,7 @@
 #include "sprite.h"
 #include "render_context.h"
 #include "camera.h"
+#include "imgui.h"
 
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
@@ -191,6 +192,11 @@ void Sprite::Finalize()
 
 void Sprite::Show()
 {
+    ImGui::PushID(this);
+    if (ImGui::CollapsingHeader("Sprite Renderer"))
+    {
+    }
+    ImGui::PopID();
 }
 
 bool Sprite::initRasterizer()
