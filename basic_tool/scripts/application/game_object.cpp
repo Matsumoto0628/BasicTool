@@ -1,6 +1,7 @@
 #include "game_object.h"
 
-GameObject::GameObject() 
+GameObject::GameObject()
+	: m_transform{ this }
 {
 }
 

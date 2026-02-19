@@ -15,6 +15,7 @@ public:
 	void Terminate();
 	void Finalize();
 	Transform& GetTransform() { return m_transform; }
+	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
