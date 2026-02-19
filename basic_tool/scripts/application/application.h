@@ -5,10 +5,11 @@
 class RenderContext;
 class Scene;
 
-// TODO: コンストラクタを{}にする
-// TODO: Componentクラスに純粋仮想関数を宣言して、Params表示関数を定義させる
-// TODO: シーンでGuiにgameObjectsを渡して、Guiではcomponentsを参照する
+// TODO: 指す先が変わらないならconstポインタを利用する(const int*これはintが変わらないint* constこれはポインタが変わらない)
+// TODO: Sceneから生成、削除できる関数をpublicで公開する
+// TODO: ParticleControllerクラスを作成し、開始時にパーティクルを生成させて子オブジェクトにする
 // TODO: Paramsをバイナリで保存する
+// TODO: Paramsをバイナリで読み込む
 // TODO: ループ再生を実装
 // TODO: Bloomのブラーをカメラからの距離によって変更する
 class Application
