@@ -1,13 +1,15 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 
 class RenderContext;
+class GameObject;
 
 class Gui 
 {
 public:
-	Gui(HWND hWnd, RenderContext* pContext);
+	Gui(HWND hWnd, RenderContext* pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects);
 	~Gui();
 	void Initialize();
 	void Start();
@@ -20,24 +22,10 @@ private:
 	void drawMainMenu();
 	void drawHierarchy();
 	void drawInspector();
+	void drawHierarchyNode(GameObject* pGameObject);
 
 	HWND m_hWnd = nullptr; 
 	RenderContext* m_pContext = nullptr;
-
-	struct Params 
-	{
-		float intensity = 1.0f;
-		float radius = 0.5f;
-		bool enableGlow = true;
-	};
-	Params m_params;
-
-	struct SceneObject {
-		std::string name;
-		std::vector<SceneObject> children;
-		SceneObject(std::string name) { SceneObject::name = name; }
-	};
-	void drawHierarchyNode(SceneObject& obj, int& selectedIndex, int& index);
-	std::vector<SceneObject> m_sceneObjects;
-	int m_selectedIndex;
+	std::vector<std::unique_ptr<GameObject>>* m_ppGameObjects = nullptr;
+	GameObject* m_pSelectGameObject = nullptr;
 };

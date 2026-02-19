@@ -3,9 +3,10 @@
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
 #include "render_context.h"
+#include "game_object.h"
 
-Gui::Gui(HWND hWnd, RenderContext* pContext)
-	: m_hWnd{ hWnd }, m_pContext{ pContext }
+Gui::Gui(HWND hWnd, RenderContext* pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
+	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
 {
 }
 
@@ -34,10 +35,6 @@ void Gui::Initialize()
 void Gui::Start()
 {
 	ImGui::StyleColorsDark();
-	SceneObject a{ "a" };
-	SceneObject b{"b"};
-	a.children.push_back(b);
-	m_sceneObjects.push_back(a);
 }
 
 void Gui::Update()
@@ -112,18 +109,15 @@ void Gui::drawHierarchy()
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;
 
-	ImGui::SetNextWindowSize(ImVec2{ 250, 540 }, ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2{ 250, 520 }, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2{ 0, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Hierarchy", nullptr, fixedFlags);
 
 	{
-		int selected = m_selectedIndex;
-		int index = 0;
-		for (auto& obj : m_sceneObjects)
+		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			drawHierarchyNode(obj, selected, index);
+			drawHierarchyNode(pGameObject.get()); 
 		}
-		m_selectedIndex = selected;
 	}
 
 	ImGui::End();
@@ -140,45 +134,55 @@ void Gui::drawInspector()
 	style.Colors[ImGuiCol_TitleBg] = ImVec4{ 0.05f, 0.05f, 0.05f, 1.0f };
 	style.Colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.0f, 0.0f, 0.0f, 1.0f };
 	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4{0.02f, 0.02f, 0.02f, 1.0f};
-	ImGui::SetNextWindowSize(ImVec2{ 250, 540 }, ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2{ 250, 520 }, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2{ 710, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Inspector", nullptr, fixedFlags);
 
 	// ここにコンポーネントのパラメータを表示する
+	for (auto& pGameObject : *m_ppGameObjects)
 	{
-		ImGui::SliderFloat("Intensity", &m_params.intensity, 0.0f, 5.0f);
-		ImGui::SliderFloat("Radius", &m_params.radius, 0.0f, 1.0f);
-		ImGui::Checkbox("Glow", &m_params.enableGlow);
+		if (pGameObject.get() == m_pSelectGameObject) // ->でアクセスはできるが、関数に渡すときは.get()が必要
+		{
+			pGameObject->GetTransform().Show();
+			for (auto& pComponent : *pGameObject->GetComponents()) 
+			{
+				pComponent->Show();
+			}
+		}
 	}
 
 	ImGui::End();
 }
 
-void Gui::drawHierarchyNode(SceneObject& obj, int& selectedIndex, int& index)
+void Gui::drawHierarchyNode(GameObject* pGameObject)
 {
-	int currentIndex = index++;
+	ImGuiTreeNodeFlags flags =
+		ImGuiTreeNodeFlags_OpenOnArrow |
+		ImGuiTreeNodeFlags_SpanAvailWidth;
 
-	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;
-	if (selectedIndex == currentIndex)
+	if (pGameObject == m_pSelectGameObject)
 	{
-		flags |= ImGuiTreeNodeFlags_Selected;
+		flags |= ImGuiTreeNodeFlags_Selected; // フラグを追加する
 	}
-	else if (obj.children.empty())
+	if (pGameObject->GetTransform().GetChildren().empty())
 	{
 		flags |= ImGuiTreeNodeFlags_Leaf;
 	}
 
-	if (ImGui::IsItemClicked())
-	{
-		selectedIndex = currentIndex;
-	}
+	ImGui::PushID(pGameObject);
+	bool nodeOpen = ImGui::TreeNodeEx("a", flags);
+	ImGui::PopID();
 
-	bool nodeOpen = ImGui::TreeNodeEx(obj.name.c_str(), flags);
+	if (ImGui::IsItemClicked()) // TreeNodeEx()を先にしないとクリックできなくなる
+	{
+		m_pSelectGameObject = pGameObject;
+	}
+	
 	if (nodeOpen)
 	{
-		for (auto& child : obj.children)
+		for (auto& child : pGameObject->GetTransform().GetChildren())
 		{
-			drawHierarchyNode(child, selectedIndex, index);
+			drawHierarchyNode(&child->GetGameObject());
 		}
 		ImGui::TreePop();
 	}
