@@ -7,7 +7,7 @@ class Camera;
 class Square : public Renderer
 {
 public:
-    Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color);
+    Square(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     ~Square() override;
     void Initialize() override;
     void Start() override;

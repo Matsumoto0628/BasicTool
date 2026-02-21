@@ -7,7 +7,7 @@ class GameObject;
 class Transform
 {
 public:
-	Transform(GameObject* pGameObject);
+	Transform(GameObject* const pGameObject);
 	~Transform();
 	const Vec3& GetPosition() const { return m_position; }
 	const Vec4& GetRotation() const { return m_rotation; }
@@ -48,7 +48,7 @@ private:
 	Vec3 m_eulerAngles;
 
 	std::vector<Transform*> m_pChildren;
-	Transform* m_pParent;
+	Transform* m_pParent = nullptr;
 
-	GameObject* m_pGameObject;
+	GameObject* const m_pGameObject = nullptr;
 };

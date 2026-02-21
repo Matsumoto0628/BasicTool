@@ -7,7 +7,7 @@ class Camera;
 class Line : public Renderer
 {
 public:
-    Line(RenderContext* pContext, Camera* pCamera, const Vec4& color);
+    Line(const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color);
     ~Line() override;
 
     void Initialize() override;

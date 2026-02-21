@@ -7,7 +7,7 @@ class Gui;
 class TestScene : public Scene 
 {
 public:
-	TestScene(HWND hWnd, RenderContext* pContext);
+	TestScene(HWND hWnd, const RenderContext* const pContext);
 	~TestScene();
 	void Initialize() override;
 	void Start() override;

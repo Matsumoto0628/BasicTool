@@ -3,7 +3,12 @@
 #include "camera.h"
 #include "transform.h"
 
-Renderer::Renderer(RenderContext* pContext, Camera* pCamera, Transform* pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)
+Renderer::Renderer(
+    const RenderContext* const pContext,
+    const Camera* const pCamera,
+    const Transform* const pTransform,
+    D3D11_PRIMITIVE_TOPOLOGY topology
+)
     : m_pContext{ pContext },
     m_pCamera{pCamera},
     m_pTransform{ pTransform },

@@ -6,15 +6,18 @@
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Sprite::Sprite(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+Sprite::Sprite(
+    const RenderContext* const pContext,
+    const Camera* const pCamera,
+    const Transform* const pTransform,
+    const Vec4& color
+)
     : Renderer{ pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
 Sprite::~Sprite()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void Sprite::Initialize()

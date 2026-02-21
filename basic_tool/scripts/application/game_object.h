@@ -37,6 +37,6 @@ private:
 	GameObject() = delete;
 	Transform m_transform;
 	std::vector<std::unique_ptr<Component>> m_pComponents;
-	uint64_t m_id = -1;
+	const uint64_t m_id = -1;
 	std::string m_name = "NONE";
 };

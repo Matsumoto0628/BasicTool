@@ -7,7 +7,7 @@ class RenderContext;
 class Camera : public Component
 {
 public:
-	Camera(Transform* pTransform, unsigned int width, unsigned int height);
+	Camera(const Transform* const pTransform, unsigned int width, unsigned int height);
 	~Camera();
 	void Initialize() override;
 	void Start() override;
@@ -26,5 +26,5 @@ private:
 	float m_nearZ = 0.0f;
 	float m_farZ = 0.0f;
 	float m_fov = 0.0f;
-	Transform* m_pTransform = nullptr;
+	const Transform* const m_pTransform = nullptr;
 };

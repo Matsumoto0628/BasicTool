@@ -6,15 +6,13 @@
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+TriangleTest::TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform)
     : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST } // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
 TriangleTest::~TriangleTest()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void TriangleTest::Initialize() 

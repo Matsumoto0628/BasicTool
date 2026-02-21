@@ -2,7 +2,7 @@
 #include "transform.h"
 #include "game_time.h"
 
-Rigidbody::Rigidbody(Transform* pTransform) 
+Rigidbody::Rigidbody(Transform* const pTransform) 
     : m_pTransform{ pTransform },
     m_velocity{0, 0, 0},
     m_acceleration{0, 0, 0},

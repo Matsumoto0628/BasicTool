@@ -11,15 +11,13 @@
 #include "camera_controller.h"
 #include "gui.h"
 
-TestScene::TestScene(HWND hWnd, RenderContext* pContext)
+TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
 {
 }
 
 TestScene::~TestScene() 
 {
-	m_hWnd = nullptr;
-	m_pContext = nullptr;
 }
 
 void TestScene::Initialize()

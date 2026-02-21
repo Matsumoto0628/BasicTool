@@ -2,7 +2,7 @@
 #include "imgui.h"
 #include "rotation_converter.h"
 
-Transform::Transform(GameObject* pGameObject)
+Transform::Transform(GameObject* const pGameObject)
     : m_position{ 0, 0, 0 },
     m_rotation{ 0, 0, 0, 0 },
     m_scale{ 1, 1, 1 },

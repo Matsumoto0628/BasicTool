@@ -5,7 +5,7 @@
 #include "render_context.h"
 #include "game_object.h"
 
-Gui::Gui(HWND hWnd, RenderContext* pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
+Gui::Gui(HWND hWnd, const RenderContext* const pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
 {
 }

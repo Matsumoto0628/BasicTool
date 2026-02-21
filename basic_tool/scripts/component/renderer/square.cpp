@@ -5,15 +5,18 @@
 // 定数
 const Vec4 Square::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Square::Square(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+Square::Square(
+    const RenderContext* const pContext,
+    const Camera* const pCamera,
+    const Transform* const pTransform,
+    const Vec4& color
+)
     : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
 Square::~Square()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void Square::Initialize()

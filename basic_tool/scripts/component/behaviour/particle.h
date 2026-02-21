@@ -19,8 +19,8 @@ public:
 
 private:
 	Particle() = delete;
-	Transform* m_pTransform;
-	Rigidbody* m_pRb;
-	Line* m_pLine;
-	Transform* m_pCameraTransform;
+	Transform* const m_pTransform = nullptr;
+	Rigidbody* const m_pRb = nullptr;
+	Line* const m_pLine = nullptr;
+	const Transform* const m_pCameraTransform = nullptr;
 };

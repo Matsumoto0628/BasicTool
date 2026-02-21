@@ -7,7 +7,7 @@ class Transform;
 class Rigidbody : public Component
 {
 public:
-    Rigidbody(Transform* pTransform);
+    Rigidbody(Transform* const pTransform);
     ~Rigidbody();
     void Initialize() override;
     void Start() override;
@@ -26,5 +26,5 @@ private:
     Vec3 m_acceleration;
     float m_mass;
     Vec3 m_force;
-    Transform* m_pTransform;
+    Transform* const m_pTransform = nullptr;
 };

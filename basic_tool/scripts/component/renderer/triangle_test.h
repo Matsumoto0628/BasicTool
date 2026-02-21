@@ -8,7 +8,7 @@ class Transform;
 class TriangleTest : public Renderer
 {
 public:
-    TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
+    TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform);
     ~TriangleTest() override;
     void Initialize() override;
     void Start() override;
