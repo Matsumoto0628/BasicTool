@@ -17,8 +17,10 @@ public:
 	void Finalize();
 	Transform& GetTransform() { return m_transform; }
 	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
-	const uint64_t GetID() const { return m_id; }
+	uint64_t GetID() const { return m_id; }
 	const std::string GetName() const { return m_name; }
+	bool GetIsDestroy() const { return m_isDestroy; }
+	void Destroy() { m_isDestroy = true; }
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
@@ -39,4 +41,5 @@ private:
 	std::vector<std::unique_ptr<Component>> m_pComponents;
 	const uint64_t m_id = -1;
 	std::string m_name = "NONE";
+	bool m_isDestroy = false;
 };
