@@ -109,7 +109,10 @@ void Gui::drawHierarchy()
 	{
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			drawHierarchyNode(pGameObject.get()); 
+			if (!pGameObject->GetTransform().GetParent()) 
+			{
+				drawHierarchyNode(pGameObject.get());
+			}
 		}
 	}
 

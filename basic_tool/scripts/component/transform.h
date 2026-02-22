@@ -20,6 +20,7 @@ public:
 	const Vec3& GetUp() const { return m_rotation.RotateVec3({ 0,1,0 }); }
 	const Vec3& GetRight() const { return m_rotation.RotateVec3({ 1,0,0 }); }
 	const std::vector<Transform*>& GetChildren() const { return m_pChildren; }
+	Transform* GetParent() const { return m_pParent; }
 	GameObject& GetGameObject() const { return *m_pGameObject; }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
