@@ -6,6 +6,7 @@
 #include "particle.h"
 #include "transform.h"
 #include "rigidbody.h"
+#include "game_input.h"
 
 ParticleController::ParticleController(
 	Transform* const pTransform,
@@ -41,6 +42,7 @@ void ParticleController::Initialize()
 		m_pRigidbodies.push_back(&rb);
 		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform);
 		gameObject.GetTransform().SetParent(m_pTransform);
+		m_pParticles.push_back(&gameObject);
 	}
 }
 
@@ -49,6 +51,23 @@ void ParticleController::Update()
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
 		//pRigidbody->AddForce({0,-9.8f,0});
+	}
+
+	if (GameInput::GetKeyDown('R'))
+	{
+		for (auto& pParticle : m_pParticles)
+		{
+			pParticle->GetTransform().SetPosition({ 0,0,0 });
+		}
+
+		for (auto& pRigidbody : m_pRigidbodies)
+		{
+			pRigidbody->AddForce({
+				GameRandom::GetRange(-1.0f, 1.0f),
+				GameRandom::GetRange(-1.0f, 1.0f),
+				GameRandom::GetRange(-1.0f, 1.0f)
+			});
+		}
 	}
 }
 
