@@ -22,19 +22,18 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
-	m_pGui->Initialize();
-	m_pGui->Start();
 }
 
 void TestScene::Start()
 {
+	m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
+	m_pGui->Initialize();
+
 	std::unique_ptr<GameObject> pCameraGameObject = std::make_unique<GameObject>("Camera");
 	auto& camera = pCameraGameObject->AddComponent<Camera>(&pCameraGameObject->GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
 	//pCameraGameObject->AddComponent<CameraController>(&pCameraGameObject->GetTransform());
 	pCameraGameObject->GetTransform().SetPosition({ 0,0,-10 });
 	pCameraGameObject->Initialize();
-	pCameraGameObject->Start();
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -51,7 +50,6 @@ void TestScene::Start()
 		m_pRigidbodies.push_back(&rb);
 		pSpriteGameObject->AddComponent<Particle>(&pSpriteGameObject->GetTransform(), &rb, &line, &pCameraGameObject->GetTransform());
 		pSpriteGameObject->Initialize();
-		pSpriteGameObject->Start();
 		m_pGameObjects.push_back(std::move(pSpriteGameObject));
 	}
 
@@ -77,18 +75,13 @@ void TestScene::Update()
 
 void TestScene::Terminate()
 {
-	m_pGui->Terminate();
-	for (auto& pGameObject : m_pGameObjects)
-	{
-		pGameObject->Terminate();
-	}
-}
-
-void TestScene::Finalize()
-{
 	m_pGui->Finalize();
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Finalize();
 	}
+}
+
+void TestScene::Finalize()
+{
 }

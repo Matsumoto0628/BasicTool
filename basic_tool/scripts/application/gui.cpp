@@ -30,10 +30,7 @@ void Gui::Initialize()
 		ImGui_ImplWin32_Init(m_hWnd);
 		ImGui_ImplDX11_Init(m_pContext->GetDevice(), m_pContext->GetDeviceContext());
 	}
-}
 
-void Gui::Start()
-{
 	ImGui::StyleColorsDark();
 }
 
@@ -58,10 +55,6 @@ void Gui::Update()
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	}
-}
-
-void Gui::Terminate()
-{
 }
 
 void Gui::Finalize()

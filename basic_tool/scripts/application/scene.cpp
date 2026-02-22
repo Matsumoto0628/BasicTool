@@ -11,7 +11,6 @@ GameObject& Scene::Instantiate(std::string name)
 {
 	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>(name);
 	pGameObject->Initialize();
-	pGameObject->Start();
 	GameObject& ref = *pGameObject;
 	m_pGameObjects.push_back(std::move(pGameObject));
 	return ref;
@@ -21,7 +20,6 @@ void Scene::destroy()
 {
 	for (auto& pGameObject : m_pGameObjects) 
 	{
-		pGameObject->Terminate();
 		pGameObject->Finalize();
 	}
 

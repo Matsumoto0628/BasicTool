@@ -10,9 +10,7 @@ public:
 	Camera(const Transform* const pTransform, unsigned int width, unsigned int height);
 	~Camera();
 	void Initialize() override;
-	void Start() override;
 	void Update() override;
-	void Terminate() override;
 	void Finalize() override;
 	void Show() override;
 	const Mat4x4& GetView() const { return m_pTransform->GetMatrix().Inverse(); };

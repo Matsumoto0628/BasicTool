@@ -24,11 +24,6 @@ void Application::Initialize()
     m_pSceneManager->Initialize();
 }
 
-void Application::Start()
-{
-    m_pContext->Start();
-}
-
 void Application::Loop()
 {
     while (true) 
@@ -51,11 +46,6 @@ void Application::Loop()
             }
         }
     }
-}
-
-void Application::Terminate()
-{
-    m_pContext->Terminate();
 }
 
 void Application::Finalize() 

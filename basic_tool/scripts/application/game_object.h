@@ -11,9 +11,7 @@ public:
 	GameObject(std::string name);
 	~GameObject();
 	void Initialize();
-	void Start();
 	void Update();
-	void Terminate();
 	void Finalize();
 	Transform& GetTransform() { return m_transform; }
 	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }

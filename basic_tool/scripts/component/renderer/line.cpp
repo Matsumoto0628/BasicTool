@@ -76,10 +76,6 @@ void Line::Initialize()
     }
 }
 
-void Line::Start()
-{
-}
-
 void Line::Update()
 {
     // 更新
@@ -108,10 +104,6 @@ void Line::Update()
 
         m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
-}
-
-void Line::Terminate()
-{
 }
 
 void Line::Finalize()

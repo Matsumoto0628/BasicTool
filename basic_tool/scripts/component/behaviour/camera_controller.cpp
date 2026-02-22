@@ -21,10 +21,6 @@ void CameraController::Initialize()
 {
 }
 
-void CameraController::Start()
-{
-}
-
 void CameraController::Update()
 {
 	if (GameInput::GetKey('W'))
@@ -73,10 +69,6 @@ void CameraController::Update()
 	{
 		while (ShowCursor(TRUE) < 0) {}
 	}
-}
-
-void CameraController::Terminate()
-{
 }
 
 void CameraController::Finalize()

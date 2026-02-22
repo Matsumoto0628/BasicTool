@@ -12,9 +12,7 @@ public:
 	Gui(HWND hWnd, const RenderContext* const pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects);
 	~Gui();
 	void Initialize();
-	void Start();
 	void Update();
-	void Terminate();
 	void Finalize();
 
 private:

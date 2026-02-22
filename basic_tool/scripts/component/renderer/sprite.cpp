@@ -128,10 +128,6 @@ void Sprite::Initialize()
     }
 }
 
-void Sprite::Start()
-{
-}
-
 void Sprite::Update()
 {
     // 更新
@@ -183,10 +179,6 @@ void Sprite::Update()
             m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
         }
     }
-}
-
-void Sprite::Terminate()
-{
 }
 
 void Sprite::Finalize()

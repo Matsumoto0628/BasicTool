@@ -83,10 +83,6 @@ void TriangleTest::Initialize()
     }
 }
 
-void TriangleTest::Start()
-{
-}
-
 void TriangleTest::Update()
 {
     // 更新
@@ -115,10 +111,6 @@ void TriangleTest::Update()
 
         m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
-}
-
-void TriangleTest::Terminate()
-{
 }
 
 void TriangleTest::Finalize()

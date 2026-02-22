@@ -19,10 +19,6 @@ void Particle::Initialize()
 {
 }
 
-void Particle::Start()
-{
-}
-
 void Particle::Update()
 {
 	// デバッグ表示
@@ -36,10 +32,6 @@ void Particle::Update()
 		Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
 		m_pTransform->SetRotation(LookRotation(dir, {0,1,0}));
 	}
-}
-
-void Particle::Terminate()
-{
 }
 
 void Particle::Finalize()

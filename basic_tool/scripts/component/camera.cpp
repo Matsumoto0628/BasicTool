@@ -19,15 +19,7 @@ void Camera::Initialize()
 	m_proj = Mat4x4::PerspectiveFovLH(m_fov, m_aspect, m_nearZ, m_farZ);
 }
 
-void Camera::Start() 
-{
-}
-
 void Camera::Update() 
-{
-}
-
-void Camera::Terminate() 
 {
 }
 

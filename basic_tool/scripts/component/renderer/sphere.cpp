@@ -83,10 +83,6 @@ void Sphere::Initialize()
     }
 }
 
-void Sphere::Start() 
-{
-}
-
 void Sphere::Update() 
 { 
     // 更新
@@ -115,10 +111,6 @@ void Sphere::Update()
 
         m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
     }
-}
-
-void Sphere::Terminate() 
-{
 }
 
 void Sphere::Finalize() 

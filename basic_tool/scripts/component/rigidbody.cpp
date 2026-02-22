@@ -20,10 +20,6 @@ void Rigidbody::Initialize()
 {
 }
 
-void Rigidbody::Start()
-{
-}
-
 void Rigidbody::Update()
 {
     if (m_mass > 0)
@@ -39,10 +35,6 @@ void Rigidbody::Update()
     m_pTransform->SetPosition(m_pTransform->GetPosition() + m_velocity * GameTime::GetDeltaTime());
 
     m_force = { 0, 0, 0 };
-}
-
-void Rigidbody::Terminate()
-{
 }
 
 void Rigidbody::Finalize()

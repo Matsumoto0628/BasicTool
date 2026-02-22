@@ -87,10 +87,6 @@ void Square::Initialize()
     }
 }
 
-void Square::Start()
-{
-}
-
 void Square::Update()
 {
     // 更新
@@ -119,10 +115,6 @@ void Square::Update()
 
         m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
     }
-}
-
-void Square::Terminate()
-{
 }
 
 void Square::Finalize()

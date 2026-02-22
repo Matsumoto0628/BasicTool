@@ -102,15 +102,7 @@ bool RenderContext::Initialize()
     return true;
 }
 
-void RenderContext::Start() 
-{
-}
-
 void RenderContext::Update() 
-{
-}
-
-void RenderContext::Terminate()
 {
 }
 

@@ -11,9 +11,7 @@ public:
     ~Line() override;
 
     void Initialize() override;
-    void Start() override;
     void Update() override;
-    void Terminate() override;
     void Finalize() override;
     void SetLine(const Vec3& start, const Vec3& end);
     void Show() override;
