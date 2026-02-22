@@ -162,6 +162,7 @@
     <ClCompile Include="scripts\application\scene_manager.cpp" />
     <ClCompile Include="scripts\component\behaviour\camera_controller.cpp" />
     <ClCompile Include="scripts\component\behaviour\particle.cpp" />
+    <ClCompile Include="scripts\component\behaviour\particle_controller.cpp" />
     <ClCompile Include="scripts\component\camera.cpp" />
     <ClCompile Include="scripts\component\renderer.cpp" />
     <ClCompile Include="scripts\component\renderer\line.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="scripts\application\scene_manager.h" />
     <ClInclude Include="scripts\component\behaviour\camera_controller.h" />
     <ClInclude Include="scripts\component\behaviour\particle.h" />
+    <ClInclude Include="scripts\component\behaviour\particle_controller.h" />
     <ClInclude Include="scripts\component\camera.h" />
     <ClInclude Include="scripts\component\component.h" />
     <ClInclude Include="scripts\component\renderer.h" />

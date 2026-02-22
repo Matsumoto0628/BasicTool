@@ -24,7 +24,6 @@ protected:
 	HWND m_hWnd = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
-	std::vector<Rigidbody*> m_pRigidbodies;
 	
 private:
 	Scene() = delete;
