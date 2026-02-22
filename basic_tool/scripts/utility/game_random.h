@@ -11,6 +11,6 @@ public:
 private:
 	GameRandom() = delete;
 	~GameRandom() = delete;
-	static std::mt19937 m_rng; // 乱数エンジン(メルセンヌ・ツイスタ)
-	static std::mt19937_64 m_rngUUID;
+	static std::mt19937 s_rng; // 乱数エンジン(メルセンヌ・ツイスタ)
+	static std::mt19937_64 s_rngUUID;
 };

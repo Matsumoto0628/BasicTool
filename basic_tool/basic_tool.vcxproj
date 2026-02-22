@@ -159,6 +159,7 @@
     <ClCompile Include="scripts\application\render_context.cpp" />
     <ClCompile Include="scripts\application\scene.cpp" />
     <ClCompile Include="scripts\application\scene\test_scene.cpp" />
+    <ClCompile Include="scripts\application\scene_manager.cpp" />
     <ClCompile Include="scripts\component\behaviour\camera_controller.cpp" />
     <ClCompile Include="scripts\component\behaviour\particle.cpp" />
     <ClCompile Include="scripts\component\camera.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="scripts\application\render_context.h" />
     <ClInclude Include="scripts\application\scene.h" />
     <ClInclude Include="scripts\application\scene\test_scene.h" />
+    <ClInclude Include="scripts\application\scene_manager.h" />
     <ClInclude Include="scripts\component\behaviour\camera_controller.h" />
     <ClInclude Include="scripts\component\behaviour\particle.h" />
     <ClInclude Include="scripts\component\camera.h" />

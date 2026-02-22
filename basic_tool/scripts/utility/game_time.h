@@ -8,11 +8,11 @@ class GameTime
 
 public:
 	static void Update();
-	static float GetDeltaTime() { return m_deltaTime; }
+	static float GetDeltaTime() { return s_deltaTime; }
 
 private:
 	GameTime() = delete;
 	~GameTime() = delete;
-	static TimePoint m_prevTime;
-	static float m_deltaTime;
+	static TimePoint s_prevTime;
+	static float s_deltaTime;
 };
