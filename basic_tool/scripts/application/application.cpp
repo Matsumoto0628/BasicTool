@@ -1,6 +1,6 @@
 #include "application.h"
 #include "render_context.h"
-#include "test_scene.h"
+#include "scene_manager.h"
 #include "game_time.h"
 #include "game_input.h"
 
@@ -20,14 +20,13 @@ void Application::Initialize()
     // m_windowが初期化してないとコンストラクタが呼び出せない
     m_pContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
     m_pContext->Initialize();
-    m_pScene = std::make_unique<TestScene>(m_window.GetWindowHandle(), m_pContext.get());
-    m_pScene->Initialize();
+    m_pSceneManager = std::make_unique<SceneManager>(m_window.GetWindowHandle(), m_pContext.get());
+    m_pSceneManager->Initialize();
 }
 
 void Application::Start()
 {
     m_pContext->Start();
-    m_pScene->Start();
 }
 
 void Application::Loop()
@@ -57,14 +56,13 @@ void Application::Loop()
 void Application::Terminate()
 {
     m_pContext->Terminate();
-    m_pScene->Terminate();
 }
 
 void Application::Finalize() 
 {
     m_window.Finalize();
     m_pContext->Finalize();
-    m_pScene->Finalize();
+    m_pSceneManager->Finalize();
 }
 
 bool Application::gameLoop()
@@ -76,7 +74,7 @@ bool Application::gameLoop()
     m_pContext->SetRTV();
 
     m_pContext->Update();
-    m_pScene->Update();
+    m_pSceneManager->Update();
 
     m_pContext->PostEffect();
     m_pContext->Swap();
