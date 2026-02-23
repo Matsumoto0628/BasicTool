@@ -10,7 +10,10 @@ public:
 	virtual void Update() = 0;
 	virtual void Finalize() = 0;
 	virtual void Show() = 0;
+	void SetEnabled(bool flag) { enabled = flag; }
+	bool GetEnabled() { return enabled; }
 
 protected:
 	Component() = default;
+	bool enabled = true;
 };

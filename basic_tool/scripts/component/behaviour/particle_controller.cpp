@@ -70,6 +70,14 @@ void ParticleController::Update()
 			});
 		}
 	}
+
+	if (GameInput::GetKeyDown(VK_SPACE))
+	{
+		for (auto& pRigidbody : m_pRigidbodies)
+		{
+			pRigidbody->SetEnabled(!pRigidbody->GetEnabled());
+		}
+	}
 }
 
 void ParticleController::Finalize()

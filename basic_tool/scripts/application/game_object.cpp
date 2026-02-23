@@ -24,7 +24,10 @@ void GameObject::Update()
 {
 	for (auto& pComponent : m_pComponents)
 	{
-		pComponent->Update();
+		if (pComponent->GetEnabled()) 
+		{
+			pComponent->Update();
+		}
 	}
 }
 
