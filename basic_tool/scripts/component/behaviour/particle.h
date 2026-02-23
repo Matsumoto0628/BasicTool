@@ -11,16 +11,14 @@ public:
 	Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform);
 	~Particle();
 	void Initialize() override;
-	void Start() override;
 	void Update() override;
-	void Terminate() override;
 	void Finalize() override;
 	void Show() override;
 
 private:
 	Particle() = delete;
-	Transform* m_pTransform;
-	Rigidbody* m_pRb;
-	Line* m_pLine;
-	Transform* m_pCameraTransform;
+	Transform* const m_pTransform = nullptr;
+	Rigidbody* const m_pRb = nullptr;
+	Line* const m_pLine = nullptr;
+	const Transform* const m_pCameraTransform = nullptr;
 };

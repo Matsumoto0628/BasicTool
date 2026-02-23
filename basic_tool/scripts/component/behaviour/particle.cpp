@@ -19,27 +19,31 @@ void Particle::Initialize()
 {
 }
 
-void Particle::Start()
-{
-}
-
 void Particle::Update()
 {
 	// デバッグ表示
 	{
-		Vec3 start = m_pTransform->GetPosition();
-		m_pLine->SetLine(start, start + m_pRb->GetVelocity().Normalize());
+		const Vec3 worldVel = m_pRb->GetVelocity();
+		Vec3 localVel = worldVel;
+		const auto* const parent = m_pTransform->GetParent();
+
+		if (parent)
+		{
+			if (parent->GetRotation().Length() != 0) // 回転0のときはワールドの速度ベクトルを表示
+			{
+				localVel = parent->GetRotation().RotateVec3(worldVel);
+			}
+		}
+
+		const Vec3 start = m_pTransform->GetPosition();
+		m_pLine->SetLine(start, start + localVel.Normalize());
 	}
 
 	// ビルボード
 	{
-		Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
+		const Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
 		m_pTransform->SetRotation(LookRotation(dir, {0,1,0}));
 	}
-}
-
-void Particle::Terminate()
-{
 }
 
 void Particle::Finalize()

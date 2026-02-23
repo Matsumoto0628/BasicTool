@@ -5,15 +5,13 @@
 
 const Vec4 Line::BLEND_FACTOR = { 0,0,0,0 };
 
-Line::Line(RenderContext* pContext, Camera* pCamera, const Vec4& color)
+Line::Line(const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color)
     : Renderer{ pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST }, m_color{ color }
 {
 }
 
 Line::~Line()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void Line::Initialize()
@@ -78,10 +76,6 @@ void Line::Initialize()
     }
 }
 
-void Line::Start()
-{
-}
-
 void Line::Update()
 {
     // 更新
@@ -94,13 +88,10 @@ void Line::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset); 
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET); 
         // SetIndexBufferはいらない
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
@@ -110,10 +101,6 @@ void Line::Update()
 
         m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
-}
-
-void Line::Terminate()
-{
 }
 
 void Line::Finalize()

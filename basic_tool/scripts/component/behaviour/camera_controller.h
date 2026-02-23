@@ -9,15 +9,13 @@ public:
 	CameraController(Transform* pTransform);
 	~CameraController();
 	void Initialize() override;
-	void Start() override;
 	void Update() override;
-	void Terminate() override;
 	void Finalize() override;
 	void Show() override;
 
 private:
 	CameraController() = delete;
-	Transform* m_pTransform;
+	Transform* const m_pTransform = nullptr;
 	POINT m_anchorPos;
 	float m_rotX;
 	float m_rotY;

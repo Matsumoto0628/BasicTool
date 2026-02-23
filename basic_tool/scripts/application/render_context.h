@@ -6,9 +6,7 @@ public:
     explicit RenderContext(HWND hWnd);
     ~RenderContext();
     bool Initialize();
-    void Start();
     void Update();
-    void Terminate();
     void Finalize();
     void ClearRTV();
     void SetRTV();

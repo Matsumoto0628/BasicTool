@@ -8,12 +8,10 @@ class Transform;
 class TriangleTest : public Renderer
 {
 public:
-    TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform);
+    TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform);
     ~TriangleTest() override;
     void Initialize() override;
-    void Start() override;
     void Update() override;
-    void Terminate() override;
     void Finalize() override;
     void Show() override;
 
@@ -22,23 +20,23 @@ protected:
     bool initIndexBuffer() override;
 
 private:
-    struct Vertex // オブジェクトによって差異がなければ、共通で定義するかも
+    struct Vertex
     {
         Vec3 pos;
     };
-    static const int VERTEX_COUNT = 3;
-    
-    // シェーダーに必要な分だけ増やす
-    bool initConstantBufferA();
-    void updateConstantBufferA(); 
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
     struct ConstantBufferA
     {
         float world[4][4];
         float view[4][4];
         float proj[4][4];
     };
+    bool initConstantBufferA();
+    void updateConstantBufferA(); 
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
 
     // 定数
+    static const int VERTEX_COUNT = 3;
+    static const UINT STRIDE = sizeof(Vertex);
+    static const UINT OFFSET = 0;
     static const Vec4 BLEND_FACTOR;
 };

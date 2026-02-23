@@ -6,15 +6,13 @@
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-TriangleTest::TriangleTest(RenderContext* pContext, Camera* pCamera, Transform* pTransform)
+TriangleTest::TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform)
     : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST } // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
 TriangleTest::~TriangleTest()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void TriangleTest::Initialize() 
@@ -85,10 +83,6 @@ void TriangleTest::Initialize()
     }
 }
 
-void TriangleTest::Start()
-{
-}
-
 void TriangleTest::Update()
 {
     // 更新
@@ -101,13 +95,10 @@ void TriangleTest::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
         m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
@@ -117,10 +108,6 @@ void TriangleTest::Update()
 
         m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
-}
-
-void TriangleTest::Terminate()
-{
 }
 
 void TriangleTest::Finalize()

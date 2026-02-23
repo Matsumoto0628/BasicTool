@@ -5,7 +5,7 @@
 #include "render_context.h"
 #include "game_object.h"
 
-Gui::Gui(HWND hWnd, RenderContext* pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
+Gui::Gui(HWND hWnd, const RenderContext* const pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
 {
 }
@@ -30,10 +30,7 @@ void Gui::Initialize()
 		ImGui_ImplWin32_Init(m_hWnd);
 		ImGui_ImplDX11_Init(m_pContext->GetDevice(), m_pContext->GetDeviceContext());
 	}
-}
 
-void Gui::Start()
-{
 	ImGui::StyleColorsDark();
 }
 
@@ -58,10 +55,6 @@ void Gui::Update()
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	}
-}
-
-void Gui::Terminate()
-{
 }
 
 void Gui::Finalize()
@@ -104,7 +97,7 @@ void Gui::drawMainMenu()
 
 void Gui::drawHierarchy()
 {
-	ImGuiWindowFlags fixedFlags =
+	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;
@@ -116,7 +109,10 @@ void Gui::drawHierarchy()
 	{
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			drawHierarchyNode(pGameObject.get()); 
+			if (!pGameObject->GetTransform().GetParent()) 
+			{
+				drawHierarchyNode(pGameObject.get());
+			}
 		}
 	}
 
@@ -125,7 +121,7 @@ void Gui::drawHierarchy()
 
 void Gui::drawInspector()
 {
-	ImGuiWindowFlags fixedFlags =
+	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;

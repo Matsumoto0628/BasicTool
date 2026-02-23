@@ -2,7 +2,7 @@
 #include "transform.h"
 #include "game_time.h"
 
-Rigidbody::Rigidbody(Transform* pTransform) 
+Rigidbody::Rigidbody(Transform* const pTransform) 
     : m_pTransform{ pTransform },
     m_velocity{0, 0, 0},
     m_acceleration{0, 0, 0},
@@ -20,10 +20,6 @@ void Rigidbody::Initialize()
 {
 }
 
-void Rigidbody::Start()
-{
-}
-
 void Rigidbody::Update()
 {
     if (m_mass > 0)
@@ -36,13 +32,16 @@ void Rigidbody::Update()
     }
 
     m_velocity += m_acceleration * GameTime::GetDeltaTime();
-    m_pTransform->SetPosition(m_pTransform->GetPosition() + m_velocity * GameTime::GetDeltaTime());
+    if (m_pTransform->GetParent())
+    {
+        m_pTransform->SetLocalPosition(m_pTransform->GetLocalPosition() + m_velocity * GameTime::GetDeltaTime());
+    }
+    else 
+    {
+        m_pTransform->SetPosition(m_pTransform->GetPosition() + m_velocity * GameTime::GetDeltaTime());
+    }
 
     m_force = { 0, 0, 0 };
-}
-
-void Rigidbody::Terminate()
-{
 }
 
 void Rigidbody::Finalize()

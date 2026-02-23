@@ -134,6 +134,12 @@
     <ClCompile Include="scripts\component\behaviour\camera_controller.cpp">
       <Filter>component\behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\application\scene_manager.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\particle_controller.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -222,6 +228,12 @@
       <Filter>utility</Filter>
     </ClInclude>
     <ClInclude Include="scripts\component\behaviour\camera_controller.h">
+      <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene_manager.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\particle_controller.h">
       <Filter>component\behaviour</Filter>
     </ClInclude>
   </ItemGroup>

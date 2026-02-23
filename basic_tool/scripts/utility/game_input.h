@@ -12,6 +12,6 @@ private:
 	GameInput() = delete;
 	~GameInput() = delete;
 	const static int KEY_COUNT = 256;
-	static bool m_prevKeys[KEY_COUNT];
-	static bool m_currentKeys[KEY_COUNT];
+	static bool s_prevKeys[KEY_COUNT];
+	static bool s_currentKeys[KEY_COUNT];
 };

@@ -7,7 +7,7 @@ class GameObject;
 class Transform
 {
 public:
-	Transform(GameObject* pGameObject);
+	Transform(GameObject* const pGameObject);
 	~Transform();
 	const Vec3& GetPosition() const { return m_position; }
 	const Vec4& GetRotation() const { return m_rotation; }
@@ -20,6 +20,7 @@ public:
 	const Vec3& GetUp() const { return m_rotation.RotateVec3({ 0,1,0 }); }
 	const Vec3& GetRight() const { return m_rotation.RotateVec3({ 1,0,0 }); }
 	const std::vector<Transform*>& GetChildren() const { return m_pChildren; }
+	const Transform* GetParent() const { return m_pParent; }
 	GameObject& GetGameObject() const { return *m_pGameObject; }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
@@ -48,7 +49,7 @@ private:
 	Vec3 m_eulerAngles;
 
 	std::vector<Transform*> m_pChildren;
-	Transform* m_pParent;
+	Transform* m_pParent = nullptr;
 
-	GameObject* m_pGameObject;
+	GameObject* const m_pGameObject = nullptr;
 };

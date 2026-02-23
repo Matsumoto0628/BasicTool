@@ -6,15 +6,13 @@
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
-Sphere::Sphere(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+Sphere::Sphere(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color)
     : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color{ color }
 {
 }
 
 Sphere::~Sphere()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void Sphere::Initialize()
@@ -85,10 +83,6 @@ void Sphere::Initialize()
     }
 }
 
-void Sphere::Start() 
-{
-}
-
 void Sphere::Update() 
 { 
     // 更新
@@ -101,13 +95,10 @@ void Sphere::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
         m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
@@ -117,10 +108,6 @@ void Sphere::Update()
 
         m_pContext->GetDeviceContext()->DrawIndexed(LAT_DIV * LON_DIV * 6, 0, 0);
     }
-}
-
-void Sphere::Terminate() 
-{
 }
 
 void Sphere::Finalize() 

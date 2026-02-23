@@ -14,13 +14,9 @@ GameObject::~GameObject()
 
 void GameObject::Initialize() 
 {
-}
-
-void GameObject::Start()
-{
 	for (auto& pComponent : m_pComponents)
 	{
-		pComponent->Start();
+		pComponent->Initialize();
 	}
 }
 
@@ -28,15 +24,10 @@ void GameObject::Update()
 {
 	for (auto& pComponent : m_pComponents)
 	{
-		pComponent->Update();
-	}
-}
-
-void GameObject::Terminate()
-{
-	for (auto& pComponent : m_pComponents)
-	{
-		pComponent->Terminate();
+		if (pComponent->GetEnabled()) 
+		{
+			pComponent->Update();
+		}
 	}
 }
 

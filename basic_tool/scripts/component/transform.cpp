@@ -2,7 +2,7 @@
 #include "imgui.h"
 #include "rotation_converter.h"
 
-Transform::Transform(GameObject* pGameObject)
+Transform::Transform(GameObject* const pGameObject)
     : m_position{ 0, 0, 0 },
     m_rotation{ 0, 0, 0, 0 },
     m_scale{ 1, 1, 1 },
@@ -32,7 +32,7 @@ void Transform::SetPosition(const Vec3& position)
 void Transform::SetRotation(const Vec4& rotation)
 {
     m_rotation = rotation;
-    Vec3 eulerRad = QuaternionToEuler(rotation);
+    const Vec3 eulerRad = QuaternionToEuler(rotation);
     m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyWorld();
     applyMatrix();
@@ -55,7 +55,7 @@ void Transform::SetLocalPosition(const Vec3& position)
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    Vec3 eulerRad = QuaternionToEuler(rotation);
+    const Vec3 eulerRad = QuaternionToEuler(rotation);
     m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyLocal();
     applyMatrix();
@@ -75,7 +75,7 @@ void Transform::SetParent(Transform* pParent)
         auto& siblings = m_pParent->m_pChildren; // siblingsは兄弟
         siblings.erase(
             std::remove_if(siblings.begin(), siblings.end(),
-                [this](const Transform* p) { // ラムダ式
+                [this](const Transform* p) {
                     return p == this;
                 }),
             siblings.end()

@@ -6,15 +6,18 @@
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
 
-Sprite::Sprite(RenderContext* pContext, Camera* pCamera, Transform* pTransform, const Vec4& color)
+Sprite::Sprite(
+    const RenderContext* const pContext,
+    const Camera* const pCamera,
+    const Transform* const pTransform,
+    const Vec4& color
+)
     : Renderer{ pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
 Sprite::~Sprite()
 {
-    m_pContext = nullptr;
-    m_pCamera = nullptr;
 }
 
 void Sprite::Initialize()
@@ -125,10 +128,6 @@ void Sprite::Initialize()
     }
 }
 
-void Sprite::Start()
-{
-}
-
 void Sprite::Update()
 {
     // 更新
@@ -141,16 +140,13 @@ void Sprite::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         // Zのみ
         {
             m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
             m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
             m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
             m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShaderZOnly.Get(), nullptr, 0); // 色なし
-            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
             m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
             m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
             m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendNoColorState.Get(), blendFactor, 0xffffffff); // 色なし
@@ -168,7 +164,7 @@ void Sprite::Update()
             m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
             m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
             m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
             m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
             m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
             m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
@@ -180,10 +176,6 @@ void Sprite::Update()
             m_pContext->GetDeviceContext()->DrawIndexed(6, 0, 0);
         }
     }
-}
-
-void Sprite::Terminate()
-{
 }
 
 void Sprite::Finalize()

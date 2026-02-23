@@ -7,7 +7,7 @@ public:
     Mat4x4();
     ~Mat4x4();
 
-    Mat4x4 operator*(const Mat4x4& rhs) const;
+    const Mat4x4 operator*(const Mat4x4& rhs) const;
 
     Mat4x4 Transpose() const;
     Mat4x4 Inverse() const;
