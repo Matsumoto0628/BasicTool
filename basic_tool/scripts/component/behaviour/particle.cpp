@@ -23,8 +23,20 @@ void Particle::Update()
 {
 	// デバッグ表示
 	{
+		Vec3 worldVel = m_pRb->GetVelocity();
+		Vec3 localVel = worldVel;
+		auto* parent = m_pTransform->GetParent();
+
+		if (parent)
+		{
+			if (parent->GetRotation().Length() != 0) // 回転0のときはワールドの速度ベクトルを表示
+			{
+				localVel = parent->GetRotation().RotateVec3(worldVel);
+			}
+		}
+
 		Vec3 start = m_pTransform->GetPosition();
-		m_pLine->SetLine(start, start + m_pRb->GetVelocity().Normalize());
+		m_pLine->SetLine(start, start + localVel.Normalize());
 	}
 
 	// ビルボード

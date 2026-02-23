@@ -32,7 +32,14 @@ void Rigidbody::Update()
     }
 
     m_velocity += m_acceleration * GameTime::GetDeltaTime();
-    m_pTransform->SetPosition(m_pTransform->GetPosition() + m_velocity * GameTime::GetDeltaTime());
+    if (m_pTransform->GetParent())
+    {
+        m_pTransform->SetLocalPosition(m_pTransform->GetLocalPosition() + m_velocity * GameTime::GetDeltaTime());
+    }
+    else 
+    {
+        m_pTransform->SetPosition(m_pTransform->GetPosition() + m_velocity * GameTime::GetDeltaTime());
+    }
 
     m_force = { 0, 0, 0 };
 }

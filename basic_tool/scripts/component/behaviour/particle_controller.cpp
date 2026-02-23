@@ -58,6 +58,7 @@ void ParticleController::Update()
 		for (auto& pParticle : m_pParticles)
 		{
 			pParticle->GetTransform().SetPosition({ 0,0,0 });
+			pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
 		}
 
 		for (auto& pRigidbody : m_pRigidbodies)

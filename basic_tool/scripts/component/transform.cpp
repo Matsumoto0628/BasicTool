@@ -75,7 +75,7 @@ void Transform::SetParent(Transform* pParent)
         auto& siblings = m_pParent->m_pChildren; // siblingsは兄弟
         siblings.erase(
             std::remove_if(siblings.begin(), siblings.end(),
-                [this](const Transform* p) { // ラムダ式
+                [this](const Transform* p) {
                     return p == this;
                 }),
             siblings.end()
