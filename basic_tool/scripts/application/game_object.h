@@ -13,12 +13,12 @@ public:
 	void Initialize();
 	void Update();
 	void Finalize();
+	void Destroy();
 	Transform& GetTransform() { return m_transform; }
 	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
 	uint64_t GetID() const { return m_id; }
 	const std::string GetName() const { return m_name; }
 	bool GetIsDestroy() const { return m_isDestroy; }
-	void Destroy() { m_isDestroy = true; }
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る

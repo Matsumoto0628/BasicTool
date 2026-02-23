@@ -38,3 +38,13 @@ void GameObject::Finalize()
 		pComponent->Finalize();
 	}
 }
+
+void GameObject::Destroy()
+{
+	m_isDestroy = true;
+
+	for (auto& pChild : m_transform.GetChildren()) 
+	{
+		pChild->GetGameObject().Destroy();
+	}
+}
