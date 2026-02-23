@@ -54,12 +54,12 @@ void CameraController::Update()
 		POINT cursorPos;
 		GetCursorPos(&cursorPos);
 
-		float dx = cursorPos.x - m_anchorPos.x;
-		float dy = cursorPos.y - m_anchorPos.y;
+		const float dx = cursorPos.x - m_anchorPos.x;
+		const float dy = cursorPos.y - m_anchorPos.y;
 		m_rotX += dy * m_sensitivity;
 		m_rotY += dx * m_sensitivity;
 		
-		Vec4 rot = EulerToQuaternion({ m_rotX, m_rotY, 0 });
+		const Vec4 rot = EulerToQuaternion({ m_rotX, m_rotY, 0 });
 		m_pTransform->SetRotation(rot);
 
 		SetCursorPos(m_anchorPos.x, m_anchorPos.y);

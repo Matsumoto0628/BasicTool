@@ -17,17 +17,17 @@ Vec2::Vec2(const DirectX::XMVECTOR& v)
 {
 }
 
-Vec2 Vec2::operator+(const Vec2& rhs) const 
+const Vec2 Vec2::operator+(const Vec2& rhs) const 
 {
     return Vec2(DirectX::XMVectorAdd(vec, rhs.vec));
 }
 
-Vec2 Vec2::operator-(const Vec2& rhs) const 
+const Vec2 Vec2::operator-(const Vec2& rhs) const 
 {
     return Vec2(DirectX::XMVectorSubtract(vec, rhs.vec));
 }
 
-Vec2 Vec2::operator*(float s) const 
+const Vec2 Vec2::operator*(float s) const 
 {
     return Vec2(DirectX::XMVectorScale(vec, s));
 }

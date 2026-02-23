@@ -23,9 +23,9 @@ void Particle::Update()
 {
 	// デバッグ表示
 	{
-		Vec3 worldVel = m_pRb->GetVelocity();
+		const Vec3 worldVel = m_pRb->GetVelocity();
 		Vec3 localVel = worldVel;
-		auto* parent = m_pTransform->GetParent();
+		const auto* const parent = m_pTransform->GetParent();
 
 		if (parent)
 		{
@@ -35,13 +35,13 @@ void Particle::Update()
 			}
 		}
 
-		Vec3 start = m_pTransform->GetPosition();
+		const Vec3 start = m_pTransform->GetPosition();
 		m_pLine->SetLine(start, start + localVel.Normalize());
 	}
 
 	// ビルボード
 	{
-		Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
+		const Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
 		m_pTransform->SetRotation(LookRotation(dir, {0,1,0}));
 	}
 }

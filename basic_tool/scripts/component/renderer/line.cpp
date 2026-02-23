@@ -88,13 +88,10 @@ void Line::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset); 
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET); 
         // SetIndexBufferはいらない
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);

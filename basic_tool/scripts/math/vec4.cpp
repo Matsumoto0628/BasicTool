@@ -18,17 +18,17 @@ Vec4::Vec4(const DirectX::XMVECTOR& v)
 {
 }
 
-Vec4 Vec4::operator+(const Vec4& rhs) const 
+const Vec4 Vec4::operator+(const Vec4& rhs) const 
 {
     return Vec4(DirectX::XMVectorAdd(vec, rhs.vec));
 }
 
-Vec4 Vec4::operator-(const Vec4& rhs) const 
+const Vec4 Vec4::operator-(const Vec4& rhs) const 
 {
     return Vec4(DirectX::XMVectorSubtract(vec, rhs.vec));
 }
 
-Vec4 Vec4::operator*(float s) const 
+const Vec4 Vec4::operator*(float s) const 
 {
     return Vec4(DirectX::XMVectorScale(vec, s));
 }

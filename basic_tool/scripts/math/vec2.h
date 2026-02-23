@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <DirectXMath.h>
 
 // 2成分ベクトル
@@ -9,9 +9,9 @@ public:
     ~Vec2();
     Vec2(float x, float y);
 
-    Vec2 operator+(const Vec2& rhs) const;
-    Vec2 operator-(const Vec2& rhs) const;
-    Vec2 operator*(float s) const;
+    const Vec2 operator+(const Vec2& rhs) const;
+    const Vec2 operator-(const Vec2& rhs) const;
+    const Vec2 operator*(float s) const;
 
     float X() const;
     float Y() const;

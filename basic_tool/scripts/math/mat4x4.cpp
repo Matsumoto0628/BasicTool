@@ -12,7 +12,7 @@ Mat4x4::Mat4x4(const DirectX::XMMATRIX& m)
 {
 }
 
-Mat4x4 Mat4x4::operator*(const Mat4x4& rhs) const
+const Mat4x4 Mat4x4::operator*(const Mat4x4& rhs) const
 {
     return Mat4x4(DirectX::XMMatrixMultiply(mat, rhs.mat));
 }

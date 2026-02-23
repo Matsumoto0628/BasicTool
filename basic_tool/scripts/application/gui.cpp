@@ -97,7 +97,7 @@ void Gui::drawMainMenu()
 
 void Gui::drawHierarchy()
 {
-	ImGuiWindowFlags fixedFlags =
+	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;
@@ -121,7 +121,7 @@ void Gui::drawHierarchy()
 
 void Gui::drawInspector()
 {
-	ImGuiWindowFlags fixedFlags =
+	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse;

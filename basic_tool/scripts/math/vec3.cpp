@@ -17,45 +17,45 @@ Vec3::Vec3(const DirectX::XMVECTOR& v)
 {
 }
 
-Vec3 Vec3::operator+(const Vec3& rhs) const 
+const Vec3 Vec3::operator+(const Vec3& rhs) const 
 {
 	return Vec3(DirectX::XMVectorAdd(vec, rhs.vec));
 }
 
-Vec3& Vec3::operator+=(const Vec3& rhs)
+const Vec3& Vec3::operator+=(const Vec3& rhs)
 {
 	vec = DirectX::XMVectorAdd(vec, rhs.vec);
 	return *this;
 }
 
-Vec3 Vec3::operator-(const Vec3& rhs) const
+const Vec3 Vec3::operator-(const Vec3& rhs) const
 {
 	return Vec3(DirectX::XMVectorSubtract(vec, rhs.vec));
 }
 
-Vec3& Vec3::operator-=(const Vec3& rhs)
+const Vec3& Vec3::operator-=(const Vec3& rhs)
 {
 	vec = DirectX::XMVectorSubtract(vec, rhs.vec);
 	return *this;
 }
 
-Vec3 Vec3::operator*(float s) const
+const Vec3 Vec3::operator*(float s) const
 {
 	return Vec3(DirectX::XMVectorScale(vec, s));
 }
 
-Vec3& Vec3::operator*=(float s)
+const Vec3& Vec3::operator*=(float s)
 {
 	vec = DirectX::XMVectorScale(vec, s);
 	return *this;
 }
 
-Vec3 Vec3::operator/(float s) const
+const Vec3 Vec3::operator/(float s) const
 {
 	return Vec3(DirectX::XMVectorScale(vec, 1.0f / s));
 }
 
-Vec3& Vec3::operator/=(float s)
+const Vec3& Vec3::operator/=(float s)
 {
 	vec = DirectX::XMVectorScale(vec, 1.0f / s);
 	return *this;

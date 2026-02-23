@@ -32,7 +32,7 @@ void Transform::SetPosition(const Vec3& position)
 void Transform::SetRotation(const Vec4& rotation)
 {
     m_rotation = rotation;
-    Vec3 eulerRad = QuaternionToEuler(rotation);
+    const Vec3 eulerRad = QuaternionToEuler(rotation);
     m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyWorld();
     applyMatrix();
@@ -55,7 +55,7 @@ void Transform::SetLocalPosition(const Vec3& position)
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    Vec3 eulerRad = QuaternionToEuler(rotation);
+    const Vec3 eulerRad = QuaternionToEuler(rotation);
     m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyLocal();
     applyMatrix();

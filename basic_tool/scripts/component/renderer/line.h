@@ -30,20 +30,20 @@ private:
         Vec3 pos;
         Vec4 color;
     };
-    static const int VERTEX_COUNT = 2;
-
-    bool initConstantBufferA();
-    void updateConstantBufferA();
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
     struct ConstantBufferA
     {
         float world[4][4];
         float view[4][4];
         float proj[4][4];
     };
-
+    bool initConstantBufferA();
+    void updateConstantBufferA();
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
     Vec4 m_color;
 
     // 定数
+    static const int VERTEX_COUNT = 2;
+    static const UINT STRIDE = sizeof(Vertex);
+    static const UINT OFFSET = 0;
     static const Vec4 BLEND_FACTOR;
 };

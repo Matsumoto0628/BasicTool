@@ -140,16 +140,13 @@ void Sprite::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        UINT stride = sizeof(Vertex);
-        UINT offset = 0;
-
         // Zのみ
         {
             m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
             m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
             m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
             m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShaderZOnly.Get(), nullptr, 0); // 色なし
-            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
             m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
             m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
             m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendNoColorState.Get(), blendFactor, 0xffffffff); // 色なし
@@ -167,7 +164,7 @@ void Sprite::Update()
             m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
             m_pContext->GetDeviceContext()->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf()); // テクスチャ用
             m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+            m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
             m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
             m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
             m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
