@@ -3,24 +3,19 @@
 #include <memory>
 
 class RenderContext;
-class Scene;
+class SceneManager;
 
-// TODO: 指す先が変わらないならconstポインタを利用する(const int*これはintが変わらないint* constこれはポインタが変わらない)
-// TODO: Sceneから生成、削除できる関数をpublicで公開する
-// TODO: ParticleControllerクラスを作成し、開始時にパーティクルを生成させて子オブジェクトにする
-// TODO: Paramsをバイナリで保存する
-// TODO: Paramsをバイナリで読み込む
-// TODO: ループ再生を実装
+// TODO: Sceneをバイナリで保存する
+// TODO: Sceneをバイナリで読み込む
+// TODO: プリプロセッサ命令でunique_ptrでのメモリ確保を自作アロケータに変更できるようにする(game_objectとcomponent)
 // TODO: Bloomのブラーをカメラからの距離によって変更する
 class Application
 {
 public:
-    explicit Application(HINSTANCE handleInstance); // 引数が1つなので暗黙的変換を禁ずる
+    explicit Application(HINSTANCE handleInstance); // 引数が1つなので暗黙変換を禁ずる
     ~Application();
     void Initialize(); // 初期化
-    void Start(); // 開始
     void Loop(); // 更新、描画
-    void Terminate(); // 終了
     void Finalize(); // 破棄
 
 private:
@@ -28,5 +23,5 @@ private:
 
     Window m_window;
     std::unique_ptr<RenderContext> m_pContext = nullptr;
-    std::unique_ptr<Scene> m_pScene = nullptr;
+    std::unique_ptr<SceneManager> m_pSceneManager = nullptr;
 };
