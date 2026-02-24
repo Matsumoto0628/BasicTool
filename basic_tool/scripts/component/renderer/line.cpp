@@ -6,7 +6,7 @@
 const Vec4 Line::BLEND_FACTOR = { 0,0,0,0 };
 
 Line::Line(const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color)
-    : Renderer{ pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST }, m_color{ color }
+    : Renderer{ Type::Line, pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST}, m_color{color}
 {
 }
 
@@ -163,6 +163,17 @@ void Line::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json Line::Serialize() const
+{
+    return {
+		{ "color", m_color }
+    };
+}
+
+void Line::Deserialize(const Json& j)
+{
 }
 
 bool Line::initVertexShader()

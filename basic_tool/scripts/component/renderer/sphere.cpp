@@ -7,7 +7,7 @@
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
 Sphere::Sphere(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color)
-    : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color{ color }
+    : Renderer{ Type::Sphere, pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST}, m_color{color}
 {
 }
 
@@ -211,6 +211,17 @@ void Sphere::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json Sphere::Serialize() const
+{
+    return {
+        {"color", m_color}
+    };
+}
+
+void Sphere::Deserialize(const Json& j)
+{
 }
 
 bool Sphere::initVertexShader()

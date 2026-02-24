@@ -14,6 +14,8 @@ public:
 	void Update() override;
 	void Finalize() override;
 	void Show() override;
+	Json Serialize() const override;
+	void Deserialize(const Json& j) override;
 	const Mat4x4& GetView() const { return m_pTransform->GetMatrix().Inverse(); };
 	const Mat4x4& GetProj() const { return m_proj; };
 

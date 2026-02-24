@@ -7,7 +7,7 @@
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
 TriangleTest::TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform)
-    : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST } // protectedのメンバ変数は基底クラスで初期化
+    : Renderer{ Type::Triangle, pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST} // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
@@ -220,4 +220,14 @@ void TriangleTest::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json TriangleTest::Serialize() const
+{
+    return {
+    };
+}
+
+void TriangleTest::Deserialize(const Json& j)
+{
 }

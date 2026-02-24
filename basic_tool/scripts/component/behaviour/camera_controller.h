@@ -13,6 +13,8 @@ public:
 	void Update() override;
 	void Finalize() override;
 	void Show() override;
+	Json Serialize() const override;
+	void Deserialize(const Json& j) override;
 
 private:
 	CameraController() = delete;

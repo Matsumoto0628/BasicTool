@@ -4,7 +4,8 @@
 #include "line.h"
 
 Particle::Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform)
-	: m_pTransform{ pTransform },
+	: Component{ Type::Particle },
+	m_pTransform{ pTransform },
 	m_pRb{pRb},
 	m_pLine{pLine},
 	m_pCameraTransform{ pCameraTransform }
@@ -55,5 +56,15 @@ void Particle::Finalize()
 }
 
 void Particle::Show()
+{
+}
+
+Json Particle::Serialize() const
+{
+	return {
+	};
+}
+
+void Particle::Deserialize(const Json& j)
 {
 }

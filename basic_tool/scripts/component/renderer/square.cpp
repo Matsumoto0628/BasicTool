@@ -11,7 +11,7 @@ Square::Square(
     const Transform* const pTransform,
     const Vec4& color
 )
-    : Renderer{ pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
+    : Renderer{ Type::Square, pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST}, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
@@ -213,6 +213,17 @@ void Square::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json Square::Serialize() const
+{
+    return {
+        {"color", m_color}
+    };
+}
+
+void Square::Deserialize(const Json& j)
+{
 }
 
 bool Square::initVertexShader()

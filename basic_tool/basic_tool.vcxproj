@@ -164,6 +164,7 @@
     <ClCompile Include="scripts\component\behaviour\particle.cpp" />
     <ClCompile Include="scripts\component\behaviour\particle_controller.cpp" />
     <ClCompile Include="scripts\component\camera.cpp" />
+    <ClCompile Include="scripts\component\component.cpp" />
     <ClCompile Include="scripts\component\renderer.cpp" />
     <ClCompile Include="scripts\component\renderer\line.cpp" />
     <ClCompile Include="scripts\component\renderer\sphere.cpp" />

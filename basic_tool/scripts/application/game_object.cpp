@@ -73,6 +73,11 @@ Json GameObject::Serialize() const
 	j["id"] = m_id;
 	j["name"] = m_name;
 	j["transform"] = m_transform.Serialize();
+	j["components"] = Json::array();
+	for (const auto& pComponent : m_pComponents)
+	{
+		j["components"].push_back(pComponent->Serialize());
+	}
 	j["children"] = Json::array();
 	for (const auto& child : m_transform.GetChildren()) 
 	{

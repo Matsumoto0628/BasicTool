@@ -12,7 +12,7 @@ Sprite::Sprite(
     const Transform* const pTransform,
     const Vec4& color
 )
-    : Renderer{ pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
+    : Renderer{ Type::Sprite, pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST}, m_color(color) // protectedのメンバ変数は基底クラスで初期化
 {
 }
 
@@ -298,6 +298,15 @@ void Sprite::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json Sprite::Serialize() const
+{
+    return Json();
+}
+
+void Sprite::Deserialize(const Json& j)
+{
 }
 
 bool Sprite::initVertexShader()

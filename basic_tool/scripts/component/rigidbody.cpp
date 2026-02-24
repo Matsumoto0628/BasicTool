@@ -3,7 +3,8 @@
 #include "game_time.h"
 
 Rigidbody::Rigidbody(Transform* const pTransform) 
-    : m_pTransform{ pTransform },
+	: Component{ Type::Rigidbody },
+    m_pTransform{ pTransform },
     m_velocity{0, 0, 0},
     m_acceleration{0, 0, 0},
     m_mass{1.0f},
@@ -64,4 +65,15 @@ void Rigidbody::AddForce(const Vec3& force)
 void Rigidbody::SetVelocity(const Vec3& vel)
 {
     m_velocity = vel;
+}
+
+Json Rigidbody::Serialize() const
+{
+    return {
+        {"mass", m_mass}
+    };
+}
+
+void Rigidbody::Deserialize(const Json& j)
+{
 }

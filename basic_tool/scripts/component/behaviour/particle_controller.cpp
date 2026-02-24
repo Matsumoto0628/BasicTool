@@ -14,7 +14,8 @@ ParticleController::ParticleController(
 	const Camera* const pCamera, 
 	Transform* const pCameraTransform
 )
-	: m_pTransform{ pTransform },
+	: Component{Type::ParticleController},
+	m_pTransform{ pTransform },
 	m_pContext{ pContext },
 	m_pCamera{ pCamera },
 	m_pCameraTransform{ pCameraTransform }
@@ -89,5 +90,16 @@ void ParticleController::Finalize()
 }
 
 void ParticleController::Show()
+{
+}
+
+Json ParticleController::Serialize() const
+{
+	return {
+		{"type", m_type}
+	};
+}
+
+void ParticleController::Deserialize(const Json& j)
 {
 }

@@ -4,12 +4,14 @@
 #include "transform.h"
 
 Renderer::Renderer(
+    const Type type,
     const RenderContext* const pContext,
     const Camera* const pCamera,
     const Transform* const pTransform,
     D3D11_PRIMITIVE_TOPOLOGY topology
 )
-    : m_pContext{ pContext },
+	: Component{type},
+    m_pContext{ pContext },
     m_pCamera{pCamera},
     m_pTransform{ pTransform },
     m_topology{topology}

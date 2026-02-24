@@ -137,6 +137,9 @@
     <ClCompile Include="scripts\component\behaviour\particle_controller.cpp">
       <Filter>component\behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\component\component.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
