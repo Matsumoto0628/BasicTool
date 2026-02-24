@@ -151,6 +151,10 @@ void Transform::Show()
     }
     ImGui::PopID();
 
+    rotX = static_cast<int>(rotX) % 360;
+    rotY = static_cast<int>(rotY) % 360;
+    rotZ = static_cast<int>(rotZ) % 360;
+
     if (posX != m_position.X() || posY != m_position.Y() || posZ != m_position.Z())
     {
         SetPosition({ posX, posY, posZ });
