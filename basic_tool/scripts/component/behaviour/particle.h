@@ -8,12 +8,16 @@ class Line;
 class Particle : public Component
 {
 public:
+	Particle(uint64_t id, Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform);
 	Particle(Transform* pTransform, Rigidbody* pRb, Line* pLine, Transform* pCameraTransform);
 	~Particle();
 	void Initialize() override;
+	void Start() override;
 	void Update() override;
 	void Finalize() override;
 	void Show() override;
+	Json Serialize() const override;
+	static std::unique_ptr<Particle> Deserialize(const Json& j, Transform* pTransform);
 
 private:
 	Particle() = delete;

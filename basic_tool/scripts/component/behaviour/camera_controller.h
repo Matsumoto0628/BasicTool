@@ -6,12 +6,16 @@ class Transform;
 class CameraController : public Component
 {
 public:
+	CameraController(uint64_t id, Transform* pTransform);
 	CameraController(Transform* pTransform);
 	~CameraController();
 	void Initialize() override;
+	void Start() override;
 	void Update() override;
 	void Finalize() override;
 	void Show() override;
+	Json Serialize() const override;
+	static std::unique_ptr<CameraController> Deserialize(const Json& j, Transform* pTransform);
 
 private:
 	CameraController() = delete;

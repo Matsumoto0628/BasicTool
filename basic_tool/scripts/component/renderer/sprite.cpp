@@ -2,9 +2,21 @@
 #include "render_context.h"
 #include "camera.h"
 #include "imgui.h"
+#include "game_random.h"
+#include "scene_manager.h"
 
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
+
+Sprite::Sprite(
+    uint64_t id, const RenderContext* const pContext,
+    const Camera* const pCamera,
+    const Transform* const pTransform,
+    const Vec4& color
+)
+    : Renderer{ id, Type::Sprite, pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color)
+{
+}
 
 Sprite::Sprite(
     const RenderContext* const pContext,
@@ -12,7 +24,7 @@ Sprite::Sprite(
     const Transform* const pTransform,
     const Vec4& color
 )
-    : Renderer{ pContext, pCamera, pTransform, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST }, m_color(color) // protectedのメンバ変数は基底クラスで初期化
+	: Sprite{ GameRandom::GetUUID(), pContext, pCamera, pTransform, color }
 {
 }
 
@@ -126,6 +138,10 @@ void Sprite::Initialize()
             return;
         }
     }
+}
+
+void Sprite::Start()
+{
 }
 
 void Sprite::Update()
@@ -294,6 +310,28 @@ void Sprite::updateConstantBufferA()
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
+}
+
+Json Sprite::Serialize() const
+{
+    return{
+        { "id", m_id },
+        { "type", m_type },
+        { "color", m_color },
+        { "camera", m_pCamera->GetID() }
+    };
+}
+
+std::unique_ptr<Sprite> Sprite::Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform)
+{
+    auto pComponent = std::make_unique<Sprite>(
+        j.at("id").get<uint64_t>(),
+        pContext,
+        static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+        pTransform,
+        j.at("color").get<Vec4>()
+    );
+    return pComponent;
 }
 
 bool Sprite::initVertexShader()

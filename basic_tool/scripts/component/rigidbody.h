@@ -7,12 +7,16 @@ class Transform;
 class Rigidbody : public Component
 {
 public:
+    Rigidbody(uint64_t id, Transform* const pTransform);
     Rigidbody(Transform* const pTransform);
     ~Rigidbody();
     void Initialize() override;
+    void Start() override;
     void Update() override;
     void Finalize() override;
     void Show() override;
+    Json Serialize() const override;
+    static std::unique_ptr<Rigidbody> Deserialize(const Json& j, Transform* const pTransform);
     void AddForce(const Vec3& force);
     void SetVelocity(const Vec3& vel);
     const Vec3& GetVelocity() const { return m_velocity; }

@@ -17,6 +17,10 @@ public:
 	virtual void Terminate() = 0;
 	virtual void Finalize() = 0;
 	GameObject& Instantiate(std::string name);
+	GameObject& Instantiate(uint64_t id, std::string name);
+	GameObject* const FindGameObject(uint64_t id) const;
+	Component* const FindComponent(uint64_t id) const;
+	const RenderContext* const GetContext() const { return m_pContext; }
 
 protected:
 	Scene(HWND hWnd, const RenderContext* const pContext);
@@ -24,6 +28,7 @@ protected:
 	HWND m_hWnd = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
+	static bool s_isRuntime; // クラスで共通で持つ
 	
 private:
 	Scene() = delete;

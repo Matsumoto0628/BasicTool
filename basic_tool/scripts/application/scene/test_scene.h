@@ -17,5 +17,7 @@ public:
 
 private:
 	TestScene() = delete;
+	void serialize();
+	void deserialize();
 	std::unique_ptr<Gui> m_pGui = nullptr;
 };

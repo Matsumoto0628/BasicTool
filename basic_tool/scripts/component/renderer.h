@@ -12,6 +12,8 @@ public:
 
 protected:
 	Renderer(
+		uint64_t id,
+		const Type type,
 		const RenderContext* const pContext,
 		const Camera* const pCamera,
 		const Transform* const pTransform,

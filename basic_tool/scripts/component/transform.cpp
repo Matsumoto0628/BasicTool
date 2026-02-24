@@ -1,6 +1,5 @@
 #include "transform.h"
 #include "imgui.h"
-#include "rotation_converter.h"
 
 Transform::Transform(GameObject* const pGameObject)
     : m_position{ 0, 0, 0 },
@@ -55,8 +54,6 @@ void Transform::SetLocalPosition(const Vec3& position)
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    const Vec3 eulerRad = QuaternionToEuler(rotation);
-    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyLocal();
     applyMatrix();
 }
@@ -152,6 +149,10 @@ void Transform::Show()
     }
     ImGui::PopID();
 
+    rotX = static_cast<int>(rotX) % 360;
+    rotY = static_cast<int>(rotY) % 360;
+    rotZ = static_cast<int>(rotZ) % 360;
+
     if (posX != m_position.X() || posY != m_position.Y() || posZ != m_position.Z())
     {
         SetPosition({ posX, posY, posZ });
@@ -164,6 +165,30 @@ void Transform::Show()
     {
         SetScale({ scaX, scaY, scaZ });
     }
+}
+
+Json Transform::Serialize() const
+{
+    return {
+        {"position", m_position},
+        {"rotation", m_rotation},
+		{"scale", m_scale},
+        {"local_position", m_localPosition },
+        {"local_rotation", m_localRotation},
+        {"local_scale", m_localScale},
+        {"euler_angles", m_eulerAngles}
+    };
+}
+
+void Transform::Deserialize(const Json& j)
+{
+    SetPosition(j.at("position").get<Vec3>());
+    SetRotation(j.at("rotation").get<Vec4>());
+    SetScale(j.at("scale").get<Vec3>());
+    SetLocalPosition(j.at("local_position").get<Vec3>());
+    SetLocalRotation(j.at("local_rotation").get<Vec4>());
+    SetLocalScale(j.at("local_scale").get<Vec3>());
+	m_eulerAngles = j.at("euler_angles").get<Vec3>();
 }
 
 void Transform::applyWorld() 

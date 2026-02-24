@@ -6,6 +6,8 @@
 #include "camera_controller.h"
 #include "particle_controller.h"
 #include "gui.h"
+#include "game_input.h"
+#include <fstream>
 
 TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
@@ -36,6 +38,13 @@ void TestScene::Start()
 		auto& particleControllerGameObject = Instantiate("ParticleController");
 		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), m_pContext, &camera, &cameraGameObject.GetTransform());
 	}
+
+	s_isRuntime = true;
+
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		pGameObject->Start();
+	}
 }
 
 void TestScene::Update()
@@ -43,6 +52,16 @@ void TestScene::Update()
 	for (auto& pGameObject : m_pGameObjects)
 	{
 		pGameObject->Update();
+	}
+
+	if (GameInput::GetKeyDown('S') && GameInput::GetKey(VK_CONTROL)) 
+	{
+		serialize();
+	}
+
+	if (GameInput::GetKeyDown('D') && GameInput::GetKey(VK_CONTROL))
+	{
+		deserialize();
 	}
 
 	m_pGui->Update();
@@ -57,8 +76,55 @@ void TestScene::Terminate()
 	{
 		pGameObject->Finalize();
 	}
+
+	m_pGui.reset();
+	m_pGameObjects.clear();
+
+	s_isRuntime = false;
 }
 
 void TestScene::Finalize()
 {
+}
+
+void TestScene::serialize()
+{
+	Json j;
+	j["test_scene"] = Json::array();
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize())
+		{
+			j["test_scene"].push_back(pGameObject->Serialize());
+		}
+	}
+
+	std::ofstream file{ "test_scene.json" };
+	file << j.dump(4);
+}
+
+void TestScene::deserialize()
+{
+	Terminate();
+
+	{
+		m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
+		m_pGui->Initialize();
+	}
+
+	std::ifstream file{ "test_scene.json" };
+	Json j;
+	file >> j;
+	for (const auto& gameObjectJson : j["test_scene"])
+	{
+		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
+		gameObject.Deserialize(gameObjectJson);
+	}
+
+	s_isRuntime = true;
+
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		pGameObject->Start();
+	}
 }

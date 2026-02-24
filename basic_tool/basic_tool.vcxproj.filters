@@ -74,9 +74,6 @@
     <ClCompile Include="scripts\math\vec4.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\math\rotation_converter.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
     <ClCompile Include="scripts\component\transform.cpp">
       <Filter>component</Filter>
     </ClCompile>
@@ -139,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="scripts\component\behaviour\particle_controller.cpp">
       <Filter>component\behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\component.cpp">
+      <Filter>component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="scripts\component\behaviour\particle_controller.h">
       <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\json_converter.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

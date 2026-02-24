@@ -4,21 +4,28 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <nlohmann/json.hpp>
+using Json = nlohmann::ordered_json;
 
 class GameObject 
 {
 public:
-	GameObject(std::string name);
+	GameObject(std::string name, bool isSerialize);
+	GameObject(uint64_t id, std::string name, bool isSerialize);
 	~GameObject();
 	void Initialize();
+	void Start();
 	void Update();
 	void Finalize();
 	void Destroy();
+	Json Serialize() const;
+	void Deserialize(const Json& j);
 	Transform& GetTransform() { return m_transform; }
-	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
+	const std::vector<std::unique_ptr<Component>>* const GetComponents() const { return &m_pComponents; }
 	uint64_t GetID() const { return m_id; }
 	const std::string GetName() const { return m_name; }
 	bool GetIsDestroy() const { return m_isDestroy; }
+	bool GetIsSerialize() const { return m_isSerialize; }
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
@@ -35,9 +42,11 @@ public:
 
 private:
 	GameObject() = delete;
+	void deserializeComponent(const Json& j);
 	Transform m_transform;
 	std::vector<std::unique_ptr<Component>> m_pComponents;
 	const uint64_t m_id = -1;
 	std::string m_name = "NONE";
 	bool m_isDestroy = false;
+	bool m_isSerialize = true;
 };

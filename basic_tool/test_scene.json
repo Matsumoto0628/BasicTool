@@ -1,0 +1,110 @@
+{
+    "test_scene": [
+        {
+            "id": 8011037786175025965,
+            "name": "Camera",
+            "transform": {
+                "position": [
+                    0.0,
+                    0.0,
+                    -10.0
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "local_position": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "local_rotation": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "local_scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "euler_angles": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            "components": [
+                {
+                    "id": 8621588787350349428,
+                    "type": "Camera",
+                    "aspect": 1.7777777910232544,
+                    "near_z": 0.10000000149011612,
+                    "far_z": 1000.0,
+                    "fov": 0.5235987901687622
+                }
+            ],
+            "children": []
+        },
+        {
+            "id": 9121521831502793734,
+            "name": "ParticleController",
+            "transform": {
+                "position": [
+                    -2.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.477158784866333,
+                    0.0,
+                    0.878817081451416
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "local_position": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "local_rotation": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "local_scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "euler_angles": [
+                    0.0,
+                    -57.0,
+                    0.0
+                ]
+            },
+            "components": [
+                {
+                    "id": 6770037099776262874,
+                    "type": "ParticleController",
+                    "camera": 8621588787350349428,
+                    "camera_game_object": 8011037786175025965
+                }
+            ],
+            "children": []
+        }
+    ]
+}
