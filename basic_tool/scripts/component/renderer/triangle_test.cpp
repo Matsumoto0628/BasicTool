@@ -2,12 +2,19 @@
 #include "render_context.h"
 #include "camera.h"
 #include "transform.h"
+#include "game_random.h"
+#include "scene_manager.h"
 
 // 定数
 const Vec4 TriangleTest::BLEND_FACTOR = { 0, 0, 0, 0 };
 
+TriangleTest::TriangleTest(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform)
+    : Renderer{ id, Type::Triangle, pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST }
+{
+}
+
 TriangleTest::TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform)
-    : Renderer{ Type::Triangle, pContext, pCamera, pTransform, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST} // protectedのメンバ変数は基底クラスで初期化
+	: TriangleTest{ GameRandom::GetUUID(), pContext, pCamera, pTransform }
 {
 }
 
@@ -225,5 +232,19 @@ void TriangleTest::updateConstantBufferA()
 Json TriangleTest::Serialize() const
 {
     return {
+        { "id", m_id },
+        { "type", m_type },
+        { "camera", m_pCamera->GetID() }
     };
+}
+
+std::unique_ptr<TriangleTest> TriangleTest::Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform)
+{
+    auto pComponent = std::make_unique<TriangleTest>(
+        j.at("id").get<uint64_t>(),
+        pContext,
+        static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+        pTransform
+    );
+    return pComponent;
 }

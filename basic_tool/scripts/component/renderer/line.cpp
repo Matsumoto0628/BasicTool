@@ -2,11 +2,18 @@
 #include "render_context.h"
 #include <vector>
 #include "camera.h"
+#include "game_random.h"
+#include "scene_manager.h"
 
 const Vec4 Line::BLEND_FACTOR = { 0,0,0,0 };
 
+Line::Line(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color)
+    : Renderer{ id, Type::Line, pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST }, m_color{ color }
+{
+}
+
 Line::Line(const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color)
-    : Renderer{ Type::Line, pContext, pCamera, nullptr, D3D_PRIMITIVE_TOPOLOGY_LINELIST}, m_color{color}
+    : Line{ GameRandom::GetUUID(), pContext, pCamera, color }
 {
 }
 
@@ -168,8 +175,22 @@ void Line::updateConstantBufferA()
 Json Line::Serialize() const
 {
     return {
-		{ "color", m_color }
+		{"id", m_id},
+		{"type", m_type},
+		{ "color", m_color },
+        {"camera", m_pCamera->GetID() }
     };
+}
+
+std::unique_ptr<Line> Line::Deserialize(const Json& j, const RenderContext* const pContext)
+{
+	auto pComponent = std::make_unique<Line>(
+		j.at("id").get<uint64_t>(),
+		pContext,
+		static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+		j.at("color").get<Vec4>()
+	);
+    return pComponent;
 }
 
 bool Line::initVertexShader()

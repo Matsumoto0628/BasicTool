@@ -3,14 +3,20 @@
 #include "game_input.h"
 #include "game_time.h"
 #include <Windows.h>
+#include "game_random.h"
 
 // 定数
 const float CameraController::m_speed = 5.0f;
 const float CameraController::m_sensitivity = 0.001f;
 
-CameraController::CameraController(Transform* pTransform)
-	: Component{ Type::CameraController },
+CameraController::CameraController(uint64_t id, Transform* pTransform)
+: Component{ id, Type::CameraController },
 	m_pTransform{ pTransform }
+{
+}
+
+CameraController::CameraController(Transform* pTransform)
+	: CameraController{ GameRandom::GetUUID(), pTransform }
 {
 }
 
@@ -86,5 +92,14 @@ void CameraController::Show()
 
 Json CameraController::Serialize() const
 {
-	return Json();
+	return {
+		{"id", m_id},
+		{"type", m_type}
+	};
+}
+
+std::unique_ptr<CameraController> CameraController::Deserialize(const Json& j, Transform* pTransform)
+{
+	auto pComponent = std::make_unique<CameraController>(j.at("id").get<uint64_t>(), pTransform);
+	return pComponent;
 }

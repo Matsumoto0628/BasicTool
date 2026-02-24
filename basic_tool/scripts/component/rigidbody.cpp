@@ -3,14 +3,20 @@
 #include "game_time.h"
 #include "game_object.h"
 #include "scene_manager.h"
+#include "game_random.h"
 
-Rigidbody::Rigidbody(Transform* const pTransform) 
-	: Component{ Type::Rigidbody },
+Rigidbody::Rigidbody(uint64_t id, Transform* const pTransform)
+    : Component{ id, Type::Rigidbody },
     m_pTransform{ pTransform },
-    m_velocity{0, 0, 0},
-    m_acceleration{0, 0, 0},
-    m_mass{1.0f},
-    m_force{0, 0, 0}
+    m_velocity{ 0, 0, 0 },
+    m_acceleration{ 0, 0, 0 },
+    m_mass{ 1.0f },
+    m_force{ 0, 0, 0 }
+{
+}
+
+Rigidbody::Rigidbody(Transform* const pTransform)
+	: Rigidbody{ GameRandom::GetUUID(), pTransform }
 {
 
 }
@@ -72,6 +78,7 @@ void Rigidbody::SetVelocity(const Vec3& vel)
 Json Rigidbody::Serialize() const
 {
 	return {
+        {"id", m_id},
 		{"type", m_type},
         {"mass", m_mass}
     };
@@ -79,7 +86,7 @@ Json Rigidbody::Serialize() const
 
 std::unique_ptr<Rigidbody> Rigidbody::Deserialize(const Json& j, Transform* const pTransform)
 {
-	auto pComponent = std::make_unique<Rigidbody>(pTransform);
+	auto pComponent = std::make_unique<Rigidbody>(j.at("id").get<uint64_t>(), pTransform);
 	pComponent->m_mass = j.at("mass").get<float>();
 	return pComponent;
 }

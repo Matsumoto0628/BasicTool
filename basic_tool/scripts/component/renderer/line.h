@@ -7,6 +7,7 @@ class Camera;
 class Line : public Renderer
 {
 public:
+    Line(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color);
     Line(const RenderContext* const pContext, const Camera* const pCamera, const Vec4& color);
     ~Line() override;
 
@@ -17,6 +18,7 @@ public:
     void SetLine(const Vec3& start, const Vec3& end);
     void Show() override;
     Json Serialize() const override;
+	static std::unique_ptr<Line> Deserialize(const Json& j, const RenderContext* const pContext);
 
 protected:
     bool initVertexBuffer() override;

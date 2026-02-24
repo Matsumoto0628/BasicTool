@@ -1,5 +1,6 @@
 #pragma once
 #include "renderer.h"
+#include <memory>
 
 class RenderContext;
 class Camera;
@@ -8,6 +9,7 @@ class Transform;
 class TriangleTest : public Renderer
 {
 public:
+    TriangleTest(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform);
     TriangleTest(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform);
     ~TriangleTest() override;
     void Initialize() override;
@@ -16,6 +18,7 @@ public:
     void Finalize() override;
     void Show() override;
     Json Serialize() const override;
+    static std::unique_ptr<TriangleTest> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
 
 protected:
     bool initVertexBuffer() override;

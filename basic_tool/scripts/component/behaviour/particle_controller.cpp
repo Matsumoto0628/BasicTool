@@ -10,16 +10,27 @@
 #include "camera.h"
 
 ParticleController::ParticleController(
+	uint64_t id, 
+	Transform* const pTransform, 
+	const RenderContext* const pContext, 
+	const Camera* const pCamera, 
+	Transform* const pCameraTransform
+)
+	: Component{ id, Type::ParticleController },
+	m_pTransform{ pTransform },
+	m_pContext{ pContext },
+	m_pCamera{ pCamera },
+	m_pCameraTransform{ pCameraTransform }
+{
+}
+
+ParticleController::ParticleController(
 	Transform* const pTransform,
 	const RenderContext* const pContext,
 	const Camera* const pCamera, 
 	Transform* const pCameraTransform
 )
-	: Component{Type::ParticleController},
-	m_pTransform{ pTransform },
-	m_pContext{ pContext },
-	m_pCamera{ pCamera },
-	m_pCameraTransform{ pCameraTransform }
+	: ParticleController{ GameRandom::GetUUID(), pTransform, pContext, pCamera, pCameraTransform }
 {
 }
 
@@ -98,6 +109,7 @@ void ParticleController::Show()
 Json ParticleController::Serialize() const
 {
 	return {
+		{"id", m_id},
 		{"type", m_type},
 		{"camera", m_pCamera->GetID()},
 		{"camera_game_object", m_pCameraTransform->GetGameObject().GetID()}
@@ -107,9 +119,10 @@ Json ParticleController::Serialize() const
 std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& j, Transform* const pTransform, const RenderContext* const pContext)
 {
 	auto pComponent = std::make_unique<ParticleController>(
+		j.at("id").get<uint64_t>(),
 		pTransform,
 		pContext,
-		reinterpret_cast<Camera*>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+		static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
 		&SceneManager::GetCurrentScene()->FindGameObject(j.at("camera_game_object").get<uint64_t>())->GetTransform()
 	);
 	return pComponent;

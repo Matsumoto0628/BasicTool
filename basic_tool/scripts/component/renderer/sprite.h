@@ -9,6 +9,7 @@ class Camera;
 class Sprite : public Renderer
 {
 public:
+    Sprite(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     Sprite(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     ~Sprite() override;
     void Initialize() override;
@@ -17,6 +18,7 @@ public:
     void Finalize() override;
     void Show() override;
     Json Serialize() const override;
+	static std::unique_ptr<Sprite> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
 
 protected:
     bool initRasterizer() override;

@@ -7,6 +7,7 @@ class Camera;
 class Square : public Renderer
 {
 public:
+    Square(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     Square(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     ~Square() override;
     void Initialize() override;
@@ -15,6 +16,7 @@ public:
     void Finalize() override;
     void Show() override;
     Json Serialize() const override;
+	static std::unique_ptr<Square> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
 
 protected:
     bool initVertexBuffer() override;

@@ -12,6 +12,13 @@ class ParticleController : public Component
 {
 public:
 	ParticleController(
+		uint64_t id,
+		Transform* const pTransform,
+		const RenderContext* const pContext,
+		const Camera* const pCamera,
+		Transform* const pCameraTransform
+	);
+	ParticleController(
 		Transform* const pTransform, 
 		const RenderContext* const pContext,
 		const Camera* const pCamera,

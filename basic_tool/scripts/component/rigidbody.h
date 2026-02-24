@@ -7,6 +7,7 @@ class Transform;
 class Rigidbody : public Component
 {
 public:
+    Rigidbody(uint64_t id, Transform* const pTransform);
     Rigidbody(Transform* const pTransform);
     ~Rigidbody();
     void Initialize() override;

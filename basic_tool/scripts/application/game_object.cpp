@@ -3,6 +3,14 @@
 #include "scene_manager.h"
 #include "camera.h"
 #include "particle_controller.h"
+#include "particle.h"
+#include "camera_controller.h"
+#include "rigidbody.h"
+#include "line.h"
+#include "sphere.h"
+#include "sprite.h"
+#include "square.h"
+#include "triangle_test.h"
 
 GameObject::GameObject(std::string name, bool isSerialize)
 	: m_transform{ this },
@@ -124,17 +132,47 @@ void GameObject::deserializeComponent(const Json& j)
 		break;
 	}
 	case Component::Type::Rigidbody:
+	{
+		auto component = Rigidbody::Deserialize(j, &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::Triangle:
+	{
+		auto component = TriangleTest::Deserialize(j, SceneManager::GetCurrentScene()->GetContext(), &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::Square:
+	{
+		auto component = Square::Deserialize(j, SceneManager::GetCurrentScene()->GetContext(), &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::Line:
+	{
+		auto component = Line::Deserialize(j, SceneManager::GetCurrentScene()->GetContext());
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::Sphere:
+	{
+		auto component = Sphere::Deserialize(j, SceneManager::GetCurrentScene()->GetContext(), &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::CameraController:
+	{
+		auto component = CameraController::Deserialize(j, &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::ParticleController:
 	{
 		auto component = ParticleController::Deserialize(j, &m_transform, SceneManager::GetCurrentScene()->GetContext());
@@ -143,9 +181,19 @@ void GameObject::deserializeComponent(const Json& j)
 		break;
 	}
 	case Component::Type::Particle:
+	{
+		auto component = Particle::Deserialize(j, &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	case Component::Type::Sprite:
+	{
+		auto component = Sprite::Deserialize(j, SceneManager::GetCurrentScene()->GetContext(), &m_transform);
+		component->Initialize();
+		m_pComponents.push_back(std::move(component));
 		break;
+	}
 	default:
 		break;
 	}
