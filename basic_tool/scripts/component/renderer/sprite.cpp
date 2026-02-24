@@ -305,10 +305,6 @@ Json Sprite::Serialize() const
     return Json();
 }
 
-void Sprite::Deserialize(const Json& j)
-{
-}
-
 bool Sprite::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;

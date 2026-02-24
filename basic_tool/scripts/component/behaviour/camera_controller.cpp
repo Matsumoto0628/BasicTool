@@ -88,7 +88,3 @@ Json CameraController::Serialize() const
 {
 	return Json();
 }
-
-void CameraController::Deserialize(const Json& j)
-{
-}

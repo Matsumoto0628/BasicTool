@@ -21,7 +21,7 @@ public:
 	Json Serialize() const;
 	void Deserialize(const Json& j);
 	Transform& GetTransform() { return m_transform; }
-	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
+	const std::vector<std::unique_ptr<Component>>* const GetComponents() const { return &m_pComponents; }
 	uint64_t GetID() const { return m_id; }
 	const std::string GetName() const { return m_name; }
 	bool GetIsDestroy() const { return m_isDestroy; }
@@ -42,6 +42,7 @@ public:
 
 private:
 	GameObject() = delete;
+	void deserializeComponent(const Json& j);
 	Transform m_transform;
 	std::vector<std::unique_ptr<Component>> m_pComponents;
 	const uint64_t m_id = -1;

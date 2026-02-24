@@ -227,7 +227,3 @@ Json TriangleTest::Serialize() const
     return {
     };
 }
-
-void TriangleTest::Deserialize(const Json& j)
-{
-}

@@ -7,6 +7,7 @@
 #include "transform.h"
 #include "rigidbody.h"
 #include "game_input.h"
+#include "camera.h"
 
 ParticleController::ParticleController(
 	Transform* const pTransform,
@@ -35,7 +36,9 @@ void ParticleController::Start()
 	for (int i = 0; i < PARTICLE_COUNT; i++)
 	{
 		auto& gameObject = SceneManager::GetCurrentScene()->Instantiate("Particle");
-		gameObject.GetTransform().SetScale({ 0.1f,0.1f,0.1f });
+		gameObject.GetTransform().SetParent(m_pTransform);
+		gameObject.GetTransform().SetLocalScale({ 0.1f,0.1f,0.1f });
+		gameObject.GetTransform().SetLocalPosition({ 0,0,0 });
 		gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 1.5,1.5,1.5,1 });
 		auto& line = gameObject.AddComponent<Line>(m_pContext, m_pCamera, Vec4{ 1,0,0,1 });
 		auto& rb = gameObject.AddComponent<Rigidbody>(&gameObject.GetTransform());
@@ -46,7 +49,6 @@ void ParticleController::Start()
 			});
 		m_pRigidbodies.push_back(&rb);
 		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform);
-		gameObject.GetTransform().SetParent(m_pTransform);
 		m_pParticles.push_back(&gameObject);
 	}
 }
@@ -96,10 +98,19 @@ void ParticleController::Show()
 Json ParticleController::Serialize() const
 {
 	return {
-		{"type", m_type}
+		{"type", m_type},
+		{"camera", m_pCamera->GetID()},
+		{"camera_game_object", m_pCameraTransform->GetGameObject().GetID()}
 	};
 }
 
-void ParticleController::Deserialize(const Json& j)
+std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& j, Transform* const pTransform, const RenderContext* const pContext)
 {
+	auto pComponent = std::make_unique<ParticleController>(
+		pTransform,
+		pContext,
+		reinterpret_cast<Camera*>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+		&SceneManager::GetCurrentScene()->FindGameObject(j.at("camera_game_object").get<uint64_t>())->GetTransform()
+	);
+	return pComponent;
 }

@@ -1,7 +1,6 @@
 #include "scene.h"
 #include "render_context.h"
 #include "camera.h"
-#include <fstream>
 #include <nlohmann/json.hpp>
 
 using Json = nlohmann::ordered_json;
@@ -11,34 +10,6 @@ bool Scene::s_isRuntime = false;
 Scene::Scene(HWND hWnd, const RenderContext* const pContext)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }
 {
-}
-
-void Scene::serialize()
-{
-	Json j;
-	j["test_scene"] = Json::array();
-	for (auto& pGameObject : m_pGameObjects)
-	{
-		if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize())
-		{
-			j["test_scene"].push_back(pGameObject->Serialize());
-		}
-	}
-
-	std::ofstream file{ "test_scene.json" };
-	file << j.dump(4);
-}
-
-void Scene::deserialize()
-{
-	std::ifstream file{ "test_scene.json" };
-	Json j;
-	file >> j;
-	for (const auto& gameObjectJson : j["test_scene"])
-	{
-		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
-		gameObject.Deserialize(gameObjectJson);
-	}
 }
 
 GameObject& Scene::Instantiate(std::string name)
@@ -61,16 +32,46 @@ GameObject& Scene::Instantiate(uint64_t id, std::string name)
 	return ref;
 }
 
+GameObject* const Scene::FindGameObject(uint64_t id) const
+{
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		if (pGameObject->GetID() == id)
+		{
+			return pGameObject.get();
+		}
+	}
+	return nullptr;
+}
+
+Component* const Scene::FindComponent(uint64_t id) const
+{
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		for (auto& pComponent : *pGameObject->GetComponents())
+		{
+			if (pComponent->GetID() == id)
+			{
+				return pComponent.get();
+			}
+		}
+	}
+	return nullptr;
+}
+
 void Scene::destroy()
 {
-	for (auto& pGameObject : m_pGameObjects) 
+	for (auto& pGameObject : m_pGameObjects)
 	{
-		pGameObject->Finalize();
+		if (!pGameObject->GetIsDestroy())
+		{
+			pGameObject->Finalize();
+		}
 	}
 
 	auto predicate = [](const auto& pGameObject) {
 		return pGameObject->GetIsDestroy();
-	};
+		};
 
 	std::erase_if(m_pGameObjects, predicate);
 }

@@ -1,6 +1,8 @@
 #include "rigidbody.h"
 #include "transform.h"
 #include "game_time.h"
+#include "game_object.h"
+#include "scene_manager.h"
 
 Rigidbody::Rigidbody(Transform* const pTransform) 
 	: Component{ Type::Rigidbody },
@@ -69,11 +71,15 @@ void Rigidbody::SetVelocity(const Vec3& vel)
 
 Json Rigidbody::Serialize() const
 {
-    return {
+	return {
+		{"type", m_type},
         {"mass", m_mass}
     };
 }
 
-void Rigidbody::Deserialize(const Json& j)
+std::unique_ptr<Rigidbody> Rigidbody::Deserialize(const Json& j, Transform* const pTransform)
 {
+	auto pComponent = std::make_unique<Rigidbody>(pTransform);
+	pComponent->m_mass = j.at("mass").get<float>();
+	return pComponent;
 }

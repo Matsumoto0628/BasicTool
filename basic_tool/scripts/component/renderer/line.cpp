@@ -172,10 +172,6 @@ Json Line::Serialize() const
     };
 }
 
-void Line::Deserialize(const Json& j)
-{
-}
-
 bool Line::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;

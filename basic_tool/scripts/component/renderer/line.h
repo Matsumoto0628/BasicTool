@@ -17,7 +17,6 @@ public:
     void SetLine(const Vec3& start, const Vec3& end);
     void Show() override;
     Json Serialize() const override;
-    void Deserialize(const Json& j) override;
 
 protected:
     bool initVertexBuffer() override;

@@ -222,10 +222,6 @@ Json Square::Serialize() const
     };
 }
 
-void Square::Deserialize(const Json& j)
-{
-}
-
 bool Square::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;

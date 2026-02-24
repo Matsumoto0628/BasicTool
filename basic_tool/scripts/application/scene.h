@@ -16,10 +16,11 @@ public:
 	virtual void Update() = 0;
 	virtual void Terminate() = 0;
 	virtual void Finalize() = 0;
-	void serialize();
-	void deserialize();
 	GameObject& Instantiate(std::string name);
 	GameObject& Instantiate(uint64_t id, std::string name);
+	GameObject* const FindGameObject(uint64_t id) const;
+	Component* const FindComponent(uint64_t id) const;
+	const RenderContext* const GetContext() const { return m_pContext; }
 
 protected:
 	Scene(HWND hWnd, const RenderContext* const pContext);

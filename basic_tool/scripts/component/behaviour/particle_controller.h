@@ -24,7 +24,7 @@ public:
 	void Finalize() override;
 	void Show() override;
 	Json Serialize() const override;
-	void Deserialize(const Json& j) override;
+	static std::unique_ptr<ParticleController> Deserialize(const Json& j, Transform* const pTransform, const RenderContext* const pContext);
 private:
 	Transform* const m_pTransform = nullptr;
 	const RenderContext* const m_pContext = nullptr;

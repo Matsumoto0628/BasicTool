@@ -220,10 +220,6 @@ Json Sphere::Serialize() const
     };
 }
 
-void Sphere::Deserialize(const Json& j)
-{
-}
-
 bool Sphere::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;

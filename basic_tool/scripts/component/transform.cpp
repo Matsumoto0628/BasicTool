@@ -54,8 +54,6 @@ void Transform::SetLocalPosition(const Vec3& position)
 void Transform::SetLocalRotation(const Vec4& rotation)
 {
     m_localRotation = rotation;
-    const Vec3 eulerRad = QuaternionToEuler(rotation);
-    m_eulerAngles = { RadToDeg(eulerRad.X()), RadToDeg(eulerRad.Y()), RadToDeg(eulerRad.Z()) };
     applyLocal();
     applyMatrix();
 }
@@ -175,9 +173,10 @@ Json Transform::Serialize() const
         {"position", m_position},
         {"rotation", m_rotation},
 		{"scale", m_scale},
-        { "local_position", m_localPosition },
+        {"local_position", m_localPosition },
         {"local_rotation", m_localRotation},
-        {"local_scale", m_localScale}
+        {"local_scale", m_localScale},
+        {"euler_angles", m_eulerAngles}
     };
 }
 
@@ -185,10 +184,11 @@ void Transform::Deserialize(const Json& j)
 {
     SetPosition(j.at("position").get<Vec3>());
     SetRotation(j.at("rotation").get<Vec4>());
-    SetScale(m_localScale = j.at("scale").get<Vec3>());
+    SetScale(j.at("scale").get<Vec3>());
     SetLocalPosition(j.at("local_position").get<Vec3>());
     SetLocalRotation(j.at("local_rotation").get<Vec4>());
-    SetLocalScale(m_localScale = j.at("local_scale").get<Vec3>());
+    SetLocalScale(j.at("local_scale").get<Vec3>());
+	m_eulerAngles = j.at("euler_angles").get<Vec3>();
 }
 
 void Transform::applyWorld() 

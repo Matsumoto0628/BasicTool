@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <nlohmann/json.hpp>
 using Json = nlohmann::ordered_json;
 
@@ -14,9 +15,9 @@ public:
 	virtual void Finalize() = 0;
 	virtual void Show() = 0;
 	virtual Json Serialize() const = 0;
-	virtual void Deserialize(const Json& j) = 0;
 	void SetEnabled(bool flag) { enabled = flag; }
-	bool GetEnabled() { return enabled; }
+	bool GetEnabled() const { return enabled; }
+	uint64_t GetID() const { return m_id; }
 	enum class Type
 	{
 		None,
@@ -31,6 +32,7 @@ public:
 		Particle,
 		Sprite
 	};
+	Type GetType() { return m_type; }
 
 protected:
 	Component(Type type);

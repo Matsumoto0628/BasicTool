@@ -64,7 +64,3 @@ Json Particle::Serialize() const
 	return {
 	};
 }
-
-void Particle::Deserialize(const Json& j)
-{
-}
