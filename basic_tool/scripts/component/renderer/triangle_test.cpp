@@ -83,6 +83,10 @@ void TriangleTest::Initialize()
     }
 }
 
+void TriangleTest::Start()
+{
+}
+
 void TriangleTest::Update()
 {
     // 更新

@@ -128,6 +128,10 @@ void Sprite::Initialize()
     }
 }
 
+void Sprite::Start()
+{
+}
+
 void Sprite::Update()
 {
     // 更新

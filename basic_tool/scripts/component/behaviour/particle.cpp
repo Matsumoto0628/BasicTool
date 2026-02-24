@@ -19,6 +19,10 @@ void Particle::Initialize()
 {
 }
 
+void Particle::Start()
+{
+}
+
 void Particle::Update()
 {
 	// デバッグ表示

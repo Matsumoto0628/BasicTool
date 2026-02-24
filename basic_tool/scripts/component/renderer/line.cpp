@@ -76,6 +76,10 @@ void Line::Initialize()
     }
 }
 
+void Line::Start()
+{
+}
+
 void Line::Update()
 {
     // 更新

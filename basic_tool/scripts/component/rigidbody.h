@@ -10,6 +10,7 @@ public:
     Rigidbody(Transform* const pTransform);
     ~Rigidbody();
     void Initialize() override;
+    void Start() override;
     void Update() override;
     void Finalize() override;
     void Show() override;

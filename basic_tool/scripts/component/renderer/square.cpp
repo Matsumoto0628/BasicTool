@@ -87,6 +87,10 @@ void Square::Initialize()
     }
 }
 
+void Square::Start()
+{
+}
+
 void Square::Update()
 {
     // 更新

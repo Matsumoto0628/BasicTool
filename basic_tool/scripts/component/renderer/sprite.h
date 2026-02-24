@@ -12,6 +12,7 @@ public:
     Sprite(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
     ~Sprite() override;
     void Initialize() override;
+    void Start() override;
     void Update() override;
     void Finalize() override;
     void Show() override;

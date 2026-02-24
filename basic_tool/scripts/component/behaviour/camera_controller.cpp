@@ -21,6 +21,10 @@ void CameraController::Initialize()
 {
 }
 
+void CameraController::Start()
+{
+}
+
 void CameraController::Update()
 {
 	if (GameInput::GetKey('W'))

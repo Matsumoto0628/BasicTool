@@ -83,6 +83,10 @@ void Sphere::Initialize()
     }
 }
 
+void Sphere::Start()
+{
+}
+
 void Sphere::Update() 
 { 
     // 更新

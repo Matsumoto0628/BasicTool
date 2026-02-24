@@ -27,6 +27,10 @@ ParticleController::~ParticleController()
 
 void ParticleController::Initialize()
 {
+}
+
+void ParticleController::Start()
+{
 	for (int i = 0; i < PARTICLE_COUNT; i++)
 	{
 		auto& gameObject = SceneManager::GetCurrentScene()->Instantiate("Particle");
@@ -38,7 +42,7 @@ void ParticleController::Initialize()
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f)
-		});
+			});
 		m_pRigidbodies.push_back(&rb);
 		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform);
 		gameObject.GetTransform().SetParent(m_pTransform);

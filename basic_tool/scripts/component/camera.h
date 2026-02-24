@@ -10,6 +10,7 @@ public:
 	Camera(const Transform* const pTransform, unsigned int width, unsigned int height);
 	~Camera();
 	void Initialize() override;
+	void Start() override;
 	void Update() override;
 	void Finalize() override;
 	void Show() override;

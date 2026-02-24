@@ -20,6 +20,10 @@ void Rigidbody::Initialize()
 {
 }
 
+void Rigidbody::Start()
+{
+}
+
 void Rigidbody::Update()
 {
     if (m_mass > 0)
