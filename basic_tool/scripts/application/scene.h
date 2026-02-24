@@ -24,6 +24,7 @@ protected:
 	HWND m_hWnd = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
+	static bool s_isRuntime; // クラスで共通で持つ
 	
 private:
 	Scene() = delete;

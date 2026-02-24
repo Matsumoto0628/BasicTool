@@ -169,6 +169,18 @@ void Transform::Show()
     }
 }
 
+Json Transform::Serialize() const
+{
+    return {
+        {"position", m_position},
+        {"rotation", m_rotation},
+		{"scale", m_scale},
+        { "local_position", m_localPosition },
+        {"local_rotation", m_localRotation},
+        {"local_scale", m_localScale}
+    };
+}
+
 void Transform::applyWorld() 
 {
     m_world = Mat4x4::Scale(m_scale.X(), m_scale.Y(), m_scale.Z())

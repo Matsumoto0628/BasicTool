@@ -174,7 +174,6 @@
     <ClCompile Include="scripts\component\transform.cpp" />
     <ClCompile Include="scripts\main.cpp" />
     <ClCompile Include="scripts\math\mat4x4.cpp" />
-    <ClCompile Include="scripts\math\rotation_converter.cpp" />
     <ClCompile Include="scripts\math\vec2.cpp" />
     <ClCompile Include="scripts\math\vec3.cpp" />
     <ClCompile Include="scripts\math\vec4.cpp" />
@@ -221,6 +220,7 @@
     <ClInclude Include="scripts\utility\game_input.h" />
     <ClInclude Include="scripts\utility\game_time.h" />
     <ClInclude Include="scripts\utility\game_random.h" />
+    <ClInclude Include="scripts\utility\json_converter.h" />
     <ClInclude Include="scripts\window\window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -301,11 +301,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" />
+    <Import Project="..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets'))" />
   </Target>
 </Project>

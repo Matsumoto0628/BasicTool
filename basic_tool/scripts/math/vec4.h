@@ -1,5 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
+#include <nlohmann/json.hpp>
+using Json = nlohmann::ordered_json;
 
 // 4成分ベクトル
 class Vec4 
@@ -27,3 +29,18 @@ private:
     Vec4(const DirectX::XMVECTOR& v);
     DirectX::XMVECTOR vec;
 };
+
+inline void to_json(Json& j, const Vec4& v)
+{
+    j = { v.X(), v.Y(), v.Z(), v.W()};
+}
+
+inline void from_json(const Json& j, Vec4& v)
+{
+    float x = j.at(0).get<float>();
+    float y = j.at(1).get<float>();
+    float z = j.at(2).get<float>();
+    float w = j.at(3).get<float>();
+
+    v = Vec4(x, y, z, w);
+}

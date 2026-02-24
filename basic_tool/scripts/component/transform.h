@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "component.h"
+#include <nlohmann/json.hpp>
+using Json = nlohmann::ordered_json;
 
 class GameObject;
 
@@ -20,7 +22,7 @@ public:
 	const Vec3& GetUp() const { return m_rotation.RotateVec3({ 0,1,0 }); }
 	const Vec3& GetRight() const { return m_rotation.RotateVec3({ 1,0,0 }); }
 	const std::vector<Transform*>& GetChildren() const { return m_pChildren; }
-	const Transform* GetParent() const { return m_pParent; }
+	const Transform* const GetParent() const { return m_pParent; }
 	GameObject& GetGameObject() const { return *m_pGameObject; }
 	void SetPosition(const Vec3& position);
 	void SetRotation(const Vec4& rotation);
@@ -30,6 +32,7 @@ public:
 	void SetLocalScale(const Vec3& scale);
 	void SetParent(Transform* pParent);
 	void Show();
+	Json Serialize() const;
 
 private:
 	Transform() = delete;
