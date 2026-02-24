@@ -1,10 +1,19 @@
 #include "game_object.h"
 #include "game_random.h"
+#include "scene_manager.h"
 
 GameObject::GameObject(std::string name, bool isSerialize)
 	: m_transform{ this },
 	m_isSerialize{ isSerialize },
 	m_id{ GameRandom::GetUUID() },
+	m_name{ name }
+{
+}
+
+GameObject::GameObject(uint64_t id, std::string name, bool isSerialize)
+	: m_transform{ this },
+	m_isSerialize{ isSerialize },
+	m_id{ id },
 	m_name{ name }
 {
 }
@@ -74,4 +83,16 @@ Json GameObject::Serialize() const
 	}
 
 	return j;
+}
+
+void GameObject::Deserialize(const Json& j)
+{
+	m_transform.Deserialize(j.at("transform"));
+
+	for (const auto& childJson : j["children"])
+	{
+		auto& child = SceneManager::GetCurrentScene()->Instantiate(childJson.at("id").get<uint64_t>(), childJson.at("name").get<std::string>());
+		child.Deserialize(childJson);
+		child.GetTransform().SetParent(&m_transform);
+	}
 }

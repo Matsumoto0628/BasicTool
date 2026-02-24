@@ -7,9 +7,6 @@
 #include "particle_controller.h"
 #include "gui.h"
 #include "game_input.h"
-#include <fstream>
-#include <nlohmann/json.hpp>
-using Json = nlohmann::ordered_json;
 
 TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
@@ -58,18 +55,12 @@ void TestScene::Update()
 
 	if (GameInput::GetKeyDown('S') && GameInput::GetKey(VK_CONTROL)) 
 	{
-		Json j;
-		j["test_scene"] = Json::array();
-		for (auto& pGameObject : m_pGameObjects) 
-		{
-			if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize()) 
-			{
-				j["test_scene"].push_back(pGameObject->Serialize());
-			}
-		}
+		serialize();
+	}
 
-		std::ofstream file("test_scene.json");
-		file << j.dump(4);
+	if (GameInput::GetKeyDown('D') && GameInput::GetKey(VK_CONTROL))
+	{
+		deserialize();
 	}
 
 	m_pGui->Update();

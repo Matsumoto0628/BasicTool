@@ -33,6 +33,7 @@ public:
 	void SetParent(Transform* pParent);
 	void Show();
 	Json Serialize() const;
+	void Deserialize(const Json& j);
 
 private:
 	Transform() = delete;

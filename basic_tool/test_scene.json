@@ -1,7 +1,7 @@
 {
     "test_scene": [
         {
-            "id": 5261711958772158879,
+            "id": 9256754443323141381,
             "name": "Camera",
             "transform": {
                 "position": [
@@ -40,13 +40,13 @@
             "children": []
         },
         {
-            "id": 5930230305679937167,
+            "id": 16429385669454256045,
             "name": "ParticleController",
             "transform": {
                 "position": [
+                    4.0,
                     0.0,
-                    0.0,
-                    0.0
+                    23.0
                 ],
                 "rotation": [
                     0.0,

@@ -11,6 +11,7 @@ class GameObject
 {
 public:
 	GameObject(std::string name, bool isSerialize);
+	GameObject(uint64_t id, std::string name, bool isSerialize);
 	~GameObject();
 	void Initialize();
 	void Start();
@@ -18,6 +19,7 @@ public:
 	void Finalize();
 	void Destroy();
 	Json Serialize() const;
+	void Deserialize(const Json& j);
 	Transform& GetTransform() { return m_transform; }
 	const std::vector<std::unique_ptr<Component>>* GetComponents() const { return &m_pComponents; }
 	uint64_t GetID() const { return m_id; }

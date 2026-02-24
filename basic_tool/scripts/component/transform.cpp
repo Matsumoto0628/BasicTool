@@ -181,6 +181,16 @@ Json Transform::Serialize() const
     };
 }
 
+void Transform::Deserialize(const Json& j)
+{
+    SetPosition(j.at("position").get<Vec3>());
+    SetRotation(j.at("rotation").get<Vec4>());
+    SetScale(m_localScale = j.at("scale").get<Vec3>());
+    SetLocalPosition(j.at("local_position").get<Vec3>());
+    SetLocalRotation(j.at("local_rotation").get<Vec4>());
+    SetLocalScale(m_localScale = j.at("local_scale").get<Vec3>());
+}
+
 void Transform::applyWorld() 
 {
     m_world = Mat4x4::Scale(m_scale.X(), m_scale.Y(), m_scale.Z())
