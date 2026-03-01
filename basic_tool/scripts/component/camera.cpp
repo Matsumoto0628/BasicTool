@@ -34,6 +34,10 @@ void Camera::Update()
 {
 }
 
+void Camera::Draw()
+{
+}
+
 void Camera::Finalize() 
 {
 }

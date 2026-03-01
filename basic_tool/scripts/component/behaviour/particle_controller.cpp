@@ -98,6 +98,10 @@ void ParticleController::Update()
 	}
 }
 
+void ParticleController::Draw()
+{
+}
+
 void ParticleController::Finalize()
 {
 }

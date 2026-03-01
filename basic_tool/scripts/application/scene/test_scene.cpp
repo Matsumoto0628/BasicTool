@@ -54,6 +54,8 @@ void TestScene::Update()
 		pGameObject->Update();
 	}
 
+	m_pGui->Update();
+
 	if (GameInput::GetKeyDown('S') && GameInput::GetKey(VK_CONTROL)) 
 	{
 		serialize();
@@ -64,9 +66,15 @@ void TestScene::Update()
 		deserialize();
 	}
 
-	m_pGui->Update();
-
 	destroy();
+}
+
+void TestScene::Draw()
+{
+	for (auto& pGameObject : m_pGameObjects)
+	{
+		pGameObject->Draw();
+	}
 }
 
 void TestScene::Terminate()

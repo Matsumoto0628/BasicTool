@@ -105,6 +105,10 @@ void Square::Start()
 
 void Square::Update()
 {
+}
+
+void Square::Draw()
+{
     // 更新
     {
         updateConstantBufferA();

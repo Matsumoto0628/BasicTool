@@ -96,6 +96,10 @@ void TriangleTest::Start()
 
 void TriangleTest::Update()
 {
+}
+
+void TriangleTest::Draw()
+{
     // 更新
     {
         updateConstantBufferA();

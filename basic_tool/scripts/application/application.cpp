@@ -60,13 +60,16 @@ bool Application::gameLoop()
     GameTime::Update();
     GameInput::Update();
 
-    m_pContext->ClearRTV();
-    m_pContext->SetRTV();
+    m_pContext->ClearRtv();
 
+    m_pContext->SetRtvHDR();
     m_pContext->Update();
-    m_pSceneManager->Update();
-
+    m_pSceneManager->Draw();
     m_pContext->PostEffect();
+    
+    m_pContext->SetRtv();
+    m_pSceneManager->Update();
+	m_pContext->CheckSave();
     m_pContext->Swap();
 
     Sleep(10);

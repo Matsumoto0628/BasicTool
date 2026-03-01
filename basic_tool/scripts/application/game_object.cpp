@@ -59,6 +59,17 @@ void GameObject::Update()
 	}
 }
 
+void GameObject::Draw()
+{
+	for (auto& pComponent : m_pComponents)
+	{
+		if (pComponent->GetEnabled())
+		{
+			pComponent->Draw();
+		}
+	}
+}
+
 void GameObject::Finalize()
 {
 	for (auto& pComponent : m_pComponents)

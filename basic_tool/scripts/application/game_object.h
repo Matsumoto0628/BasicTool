@@ -16,6 +16,7 @@ public:
 	void Initialize();
 	void Start();
 	void Update();
+	void Draw();
 	void Finalize();
 	void Destroy();
 	Json Serialize() const;

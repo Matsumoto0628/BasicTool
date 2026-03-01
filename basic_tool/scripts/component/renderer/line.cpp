@@ -89,6 +89,10 @@ void Line::Start()
 
 void Line::Update()
 {
+}
+
+void Line::Draw()
+{
     // 更新
     {
         updateConstantBufferA();
@@ -102,7 +106,7 @@ void Line::Update()
         m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
         m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
         m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET); 
+        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
         // SetIndexBufferはいらない
         m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
         m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);

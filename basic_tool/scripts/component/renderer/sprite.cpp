@@ -146,6 +146,10 @@ void Sprite::Start()
 
 void Sprite::Update()
 {
+}
+
+void Sprite::Draw()
+{
     // 更新
     {
         updateConstantBufferA();

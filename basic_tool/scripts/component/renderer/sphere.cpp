@@ -96,6 +96,10 @@ void Sphere::Start()
 
 void Sphere::Update() 
 { 
+}
+
+void Sphere::Draw()
+{
     // 更新
     {
         updateConstantBufferA();

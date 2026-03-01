@@ -12,6 +12,7 @@ public:
 	~SceneManager();
 	void Initialize();
 	void Update();
+	void Draw();
 	void Finalize();
 
 	enum class SceneType

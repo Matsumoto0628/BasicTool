@@ -82,6 +82,10 @@ void CameraController::Update()
 	}
 }
 
+void CameraController::Draw()
+{
+}
+
 void CameraController::Finalize()
 {
 }

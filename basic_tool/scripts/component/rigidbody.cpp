@@ -57,6 +57,10 @@ void Rigidbody::Update()
     m_force = { 0, 0, 0 };
 }
 
+void Rigidbody::Draw()
+{
+}
+
 void Rigidbody::Finalize()
 {
 }

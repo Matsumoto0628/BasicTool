@@ -59,6 +59,10 @@ void Particle::Update()
 	}
 }
 
+void Particle::Draw()
+{
+}
+
 void Particle::Finalize()
 {
 }
