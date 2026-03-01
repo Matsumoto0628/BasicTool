@@ -236,9 +236,6 @@
     <ClInclude Include="scripts\component\behaviour\particle_controller.h">
       <Filter>component\behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\utility\json_converter.h">
-      <Filter>utility</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="scripts\shader\test_pos_color_vs.hlsl">

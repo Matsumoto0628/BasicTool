@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class RenderContext
 {
@@ -8,10 +9,12 @@ public:
     bool Initialize();
     void Update();
     void Finalize();
-    void ClearRTV();
-    void SetRTV();
+    void ClearRtv();
+    void SetRtvHDR();
+    void SetRtv();
     void PostEffect();
     void Swap();
+    void CheckSave();
     ID3D11Device* GetDevice() const { return m_pDevice.Get(); }
     ID3D11DeviceContext* GetDeviceContext() const { return m_pDeviceContext.Get(); }
     unsigned int GetWidth() const { return m_screenWidth; }
@@ -30,6 +33,19 @@ private:
     bool initSampler();
     void updateConstantBufferBlur(const Vec2& dir);
     void drawFullscreen();
+    bool saveBackBuffer(const std::wstring& fileName);
+    bool initExport();
+
+    struct ConstantBufferBlur // Vecは使えない
+    {
+        float texelSize[2];
+        float dir[2];
+    };
+
+    // 定数
+    static const UINT BACK_BUFFER_NUM = 3;
+    static const UINT FEATURE_LEVELS_NUM = 2;
+    static const Vec4 BACK_BUFFER_COLOR;
 
     Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice = nullptr;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pDeviceContext = nullptr;
@@ -47,26 +63,14 @@ private:
     Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderBlur = nullptr;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderComposite = nullptr;
     Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerLinear = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferBlur = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_pRenderTargetViewExport = nullptr;
     D3D11_VIEWPORT m_viewPort[1];
     D3D11_VIEWPORT m_viewPortBloom[1];
-
-    static const UINT FEATURE_LEVELS_NUM = 2;
     D3D_FEATURE_LEVEL m_pFeatureLevels[FEATURE_LEVELS_NUM] = {};
     D3D_FEATURE_LEVEL m_featureLevelsSupported;
-
-    static const UINT BACK_BUFFER_NUM = 3;
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
-
     HWND m_hWnd = nullptr;
-
-    struct ConstantBufferBlur // Vecは使えない
-    {
-        float texelSize[2];
-        float dir[2];
-    };
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferBlur = nullptr;
-    
-    // 定数
-    static const Vec4 BACK_BUFFER_COLOR;
+    bool m_isExport = false;
 };

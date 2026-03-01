@@ -20,5 +20,5 @@ float4 main(Input input) : SV_Target
     result += srv.Sample(samLinear, input.uv).rgb * 0.5;
     result += srv.Sample(samLinear, input.uv + offset).rgb * 0.25;
     result += srv.Sample(samLinear, input.uv - offset).rgb * 0.25;
-    return float4(result, 1.0);
+    return float4(result, srv.Sample(samLinear, input.uv).a);
 }
