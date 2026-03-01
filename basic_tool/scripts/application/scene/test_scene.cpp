@@ -8,6 +8,8 @@
 #include "gui.h"
 #include "game_input.h"
 #include <fstream>
+#include <nlohmann/json.hpp>
+using Json = nlohmann::ordered_json;
 
 TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
