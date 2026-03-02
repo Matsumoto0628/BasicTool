@@ -27,6 +27,7 @@ public:
 	const std::string GetName() const { return m_name; }
 	bool GetIsDestroy() const { return m_isDestroy; }
 	bool GetIsSerialize() const { return m_isSerialize; }
+	Component* const FindComponent(Component::Type type) const;
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
@@ -35,6 +36,7 @@ public:
 	{
 		auto pComponent = std::make_unique<T>(std::forward<Args>(args)...); // forwardで左辺値と右辺値を判別する
 		pComponent->Initialize();
+		if (m_isStart) pComponent->Start();
 
 		T& ref = *pComponent; // moveする前に参照を保存
 		m_pComponents.push_back(std::move(pComponent));
@@ -50,4 +52,5 @@ private:
 	std::string m_name = "NONE";
 	bool m_isDestroy = false;
 	const bool m_isSerialize = true;
+	bool m_isStart = false;
 };
