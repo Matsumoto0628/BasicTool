@@ -12,9 +12,10 @@ Scene::Scene(HWND hWnd, const RenderContext* const pContext)
 {
 }
 
-GameObject& Scene::Instantiate(std::string name)
+GameObject& Scene::Instantiate(std::string name, bool isSerialize)
 {
-	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>(name, !s_isRuntime);
+	const bool serializable = (!s_isRuntime || isSerialize); // 非実行中　または 明示的にtrueなら
+	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>(name, serializable);
 	pGameObject->Initialize();
 	if (s_isRuntime) pGameObject->Start();
 	GameObject& ref = *pGameObject;
@@ -22,9 +23,10 @@ GameObject& Scene::Instantiate(std::string name)
 	return ref;
 }
 
-GameObject& Scene::Instantiate(uint64_t id, std::string name)
+GameObject& Scene::Instantiate(uint64_t id, std::string name, bool isSerialize)
 {
-	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>(id, name, !s_isRuntime);
+	const bool serializable = (!s_isRuntime || isSerialize); // 非実行中　または 明示的にtrueなら
+	std::unique_ptr<GameObject> pGameObject = std::make_unique<GameObject>(id, name, serializable);
 	pGameObject->Initialize();
 	if (s_isRuntime) pGameObject->Start();
 	GameObject& ref = *pGameObject;
