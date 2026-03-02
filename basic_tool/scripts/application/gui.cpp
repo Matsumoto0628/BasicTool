@@ -4,6 +4,9 @@
 #include "imgui_impl_dx11.h"
 #include "render_context.h"
 #include "game_object.h"
+#include "scene_manager.h"
+#include "particle_controller.h"
+#include "camera.h"
 
 Gui::Gui(HWND hWnd, const RenderContext* const pContext, const std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
@@ -66,6 +69,7 @@ void Gui::Finalize()
 
 void Gui::drawMainMenu()
 {
+	ImGui::PushStyleColor(ImGuiCol_MenuBarBg, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
@@ -80,8 +84,18 @@ void Gui::drawMainMenu()
 
 		if (ImGui::BeginMenu("Edit"))
 		{
-			if (ImGui::MenuItem("Undo")) {}
-			if (ImGui::MenuItem("Redo")) {}
+			if (ImGui::MenuItem("Create Controller")) 
+			{
+				auto pCameraGameObject = SceneManager::GetCurrentScene()->FindGameObject("Camera");
+				auto pCamera = pCameraGameObject->FindComponent(Component::Type::Camera);
+				auto& particleControllerGameObject = SceneManager::GetCurrentScene()->Instantiate("ParticleController", true);
+				particleControllerGameObject.AddComponent<ParticleController>(
+					&particleControllerGameObject.GetTransform(), 
+					m_pContext, 
+					static_cast<Camera*>(pCamera), 
+					&pCameraGameObject->GetTransform()
+				);
+			}
 			ImGui::EndMenu();
 		}
 
@@ -93,6 +107,7 @@ void Gui::drawMainMenu()
 
 		ImGui::EndMainMenuBar();
 	}
+	ImGui::PopStyleColor();
 }
 
 void Gui::drawHierarchy()
@@ -100,8 +115,12 @@ void Gui::drawHierarchy()
 	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoCollapse;
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoBringToFrontOnFocus;
 
+	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
+	ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
+	ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
 	ImGui::SetNextWindowSize(ImVec2{ 250, 520 }, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2{ 0, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Hierarchy", nullptr, fixedFlags);
@@ -117,6 +136,7 @@ void Gui::drawHierarchy()
 	}
 
 	ImGui::End();
+	ImGui::PopStyleColor(3);
 }
 
 void Gui::drawInspector()
@@ -124,12 +144,12 @@ void Gui::drawInspector()
 	const ImGuiWindowFlags fixedFlags =
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoCollapse;
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoBringToFrontOnFocus;
 
-	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBg] = ImVec4{ 0.05f, 0.05f, 0.05f, 1.0f };
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.0f, 0.0f, 0.0f, 1.0f };
-	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4{0.02f, 0.02f, 0.02f, 1.0f};
+	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
+	ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
+	ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4{ 0.01f, 0.01f, 0.01f, 1.0f });
 	ImGui::SetNextWindowSize(ImVec2{ 250, 520 }, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2{ 710, 20 }, ImGuiCond_Always);
 	ImGui::Begin("Inspector", nullptr, fixedFlags);
@@ -148,6 +168,7 @@ void Gui::drawInspector()
 	}
 
 	ImGui::End();
+	ImGui::PopStyleColor(3);
 }
 
 void Gui::drawHierarchyNode(GameObject* pGameObject)
@@ -167,11 +188,30 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 
 	ImGui::PushID(pGameObject);
 	bool nodeOpen = ImGui::TreeNodeEx(pGameObject->GetName().c_str(), flags);
-	ImGui::PopID();
 
 	if (ImGui::IsItemClicked()) // TreeNodeEx()を先にしないとクリックできなくなる
 	{
 		m_pSelectGameObject = pGameObject;
+	}
+
+	if (ImGui::BeginPopupContextItem())
+	{
+		m_pSelectGameObject = pGameObject; // 右クリック時も選択状態にする
+
+		if (ImGui::MenuItem("Duplicate"))
+		{
+			// 複製処理
+		}
+
+		if (ImGui::MenuItem("Delete"))
+		{
+			if (pGameObject->GetName() != "Camera")
+			{
+				pGameObject->Destroy();
+			}
+		}
+
+		ImGui::EndPopup();
 	}
 	
 	if (nodeOpen)
@@ -182,4 +222,5 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 		}
 		ImGui::TreePop();
 	}
+	ImGui::PopID();
 }
