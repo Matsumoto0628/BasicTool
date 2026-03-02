@@ -49,5 +49,5 @@ private:
 	const uint64_t m_id = -1;
 	std::string m_name = "NONE";
 	bool m_isDestroy = false;
-	bool m_isSerialize = true;
+	const bool m_isSerialize = true;
 };
