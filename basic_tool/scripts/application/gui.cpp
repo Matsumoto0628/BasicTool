@@ -5,8 +5,8 @@
 #include "render_context.h"
 #include "game_object.h"
 
-Gui::Gui(HWND hWnd, const RenderContext* const pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
-	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
+Gui::Gui(HWND hWnd, const RenderContext* const pContext, const std::vector<std::unique_ptr<GameObject>>& pGameObjects)
+	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_pGameObjects{ pGameObjects }
 {
 }
 
@@ -107,7 +107,7 @@ void Gui::drawHierarchy()
 	ImGui::Begin("Hierarchy", nullptr, fixedFlags);
 
 	{
-		for (auto& pGameObject : *m_ppGameObjects)
+		for (auto& pGameObject : m_pGameObjects)
 		{
 			if (!pGameObject->GetTransform().GetParent()) 
 			{
@@ -135,7 +135,7 @@ void Gui::drawInspector()
 	ImGui::Begin("Inspector", nullptr, fixedFlags);
 
 	// ここにコンポーネントのパラメータを表示する
-	for (auto& pGameObject : *m_ppGameObjects)
+	for (auto& pGameObject : m_pGameObjects)
 	{
 		if (pGameObject.get() == m_pSelectGameObject) // ->でアクセスはできるが、関数に渡すときは.get()が必要
 		{

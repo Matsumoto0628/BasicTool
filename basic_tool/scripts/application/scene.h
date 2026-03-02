@@ -26,11 +26,17 @@ public:
 protected:
 	Scene(HWND hWnd, const RenderContext* const pContext);
 	void destroy();
+	const HWND& getWnd() const { return m_hWnd; }
+	const RenderContext* const getContext() const { return m_pContext; }
+	const std::vector<std::unique_ptr<GameObject>>& getGameObjects() const { return m_pGameObjects; }
+	void clearGameObjects() { m_pGameObjects.clear(); }
+	bool getIsRuntime() const { return s_isRuntime; }
+	void setIsRuntime(bool which) { s_isRuntime = which; }
+	
+private:
+	Scene() = delete;
 	HWND m_hWnd = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
 	static bool s_isRuntime; // クラスで共通で持つ
-	
-private:
-	Scene() = delete;
 };

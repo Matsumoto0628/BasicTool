@@ -27,23 +27,23 @@ void TestScene::Initialize()
 void TestScene::Start()
 {
 	{
-		m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
+		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), getGameObjects());
 		m_pGui->Initialize();
 	}
 
 	{
 		auto& cameraGameObject = Instantiate("Camera");
-		auto& camera = cameraGameObject.AddComponent<Camera>(&cameraGameObject.GetTransform(), m_pContext->GetWidth(), m_pContext->GetHeight());
+		auto& camera = cameraGameObject.AddComponent<Camera>(&cameraGameObject.GetTransform(), getContext()->GetWidth(), getContext()->GetHeight());
 		//cameraGameObject.AddComponent<CameraController>(&cameraGameObject.GetTransform());
 		cameraGameObject.GetTransform().SetPosition({ 0,0,-10 });
 
 		auto& particleControllerGameObject = Instantiate("ParticleController");
-		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), m_pContext, &camera, &cameraGameObject.GetTransform());
+		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), getContext(), &camera, &cameraGameObject.GetTransform());
 	}
 
-	s_isRuntime = true;
+	setIsRuntime(true);
 
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		pGameObject->Start();
 	}
@@ -51,7 +51,7 @@ void TestScene::Start()
 
 void TestScene::Update()
 {
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		pGameObject->Update();
 	}
@@ -73,7 +73,7 @@ void TestScene::Update()
 
 void TestScene::Draw()
 {
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		pGameObject->Draw();
 	}
@@ -82,15 +82,15 @@ void TestScene::Draw()
 void TestScene::Terminate()
 {
 	m_pGui->Finalize();
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		pGameObject->Finalize();
 	}
 
 	m_pGui.reset();
-	m_pGameObjects.clear();
+	clearGameObjects();
 
-	s_isRuntime = false;
+	setIsRuntime(false);
 }
 
 void TestScene::Finalize()
@@ -101,7 +101,7 @@ void TestScene::serialize()
 {
 	Json j;
 	j["test_scene"] = Json::array();
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize())
 		{
@@ -118,7 +118,7 @@ void TestScene::deserialize()
 	Terminate();
 
 	{
-		m_pGui = std::make_unique<Gui>(m_hWnd, m_pContext, &m_pGameObjects);
+		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), getGameObjects());
 		m_pGui->Initialize();
 	}
 
@@ -131,9 +131,9 @@ void TestScene::deserialize()
 		gameObject.Deserialize(gameObjectJson);
 	}
 
-	s_isRuntime = true;
+	setIsRuntime(true);
 
-	for (auto& pGameObject : m_pGameObjects)
+	for (auto& pGameObject : getGameObjects())
 	{
 		pGameObject->Start();
 	}
