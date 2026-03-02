@@ -20,6 +20,7 @@ public:
 	GameObject& Instantiate(std::string name, bool isSerialize = false);
 	GameObject& Instantiate(uint64_t id, std::string name, bool isSerialize = false);
 	GameObject* const FindGameObject(uint64_t id) const;
+	GameObject* const FindGameObject(std::string name) const;
 	Component* const FindComponent(uint64_t id) const;
 	const RenderContext* const GetContext() const { return m_pContext; }
 
