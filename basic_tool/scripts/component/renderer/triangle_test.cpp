@@ -110,18 +110,18 @@ void TriangleTest::Draw()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
-        m_pContext->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        getContext()->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+        getContext()->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+        getContext()->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+        getContext()->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
+        getContext()->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+        getContext()->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+        getContext()->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+        getContext()->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+        getContext()->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+        getContext()->GetDeviceContext()->IASetPrimitiveTopology(getTopology());
 
-        m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
+        getContext()->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
 }
 
@@ -150,7 +150,7 @@ bool TriangleTest::initVertexBuffer()
     D3D11_SUBRESOURCE_DATA initData = {};
     initData.pSysMem = vertices;
 
-    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+    HRESULT hr = getContext()->GetDevice()->CreateBuffer(
         &desc,
         &initData,
         &m_pVertexBuffer
@@ -175,7 +175,7 @@ bool TriangleTest::initIndexBuffer()
     D3D11_SUBRESOURCE_DATA initData = {};
     initData.pSysMem = indices;
 
-    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+    HRESULT hr = getContext()->GetDevice()->CreateBuffer(
         &desc,
         &initData,
         &m_pIndexBuffer
@@ -196,7 +196,7 @@ bool TriangleTest::initConstantBufferA()
     desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-    HRESULT hr = m_pContext->GetDevice()->CreateBuffer(
+    HRESULT hr = getContext()->GetDevice()->CreateBuffer(
         &desc,
         nullptr,
         &m_pConstantBufferA
@@ -213,13 +213,13 @@ void TriangleTest::updateConstantBufferA()
 {
     // 渡すもの
     ConstantBufferA cb;
-    m_pTransform->GetMatrix().Transpose().ToFloat4x4(cb.world);
-    m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
-    m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
+    getTransform()->GetMatrix().Transpose().ToFloat4x4(cb.world);
+    getCamera()->GetView().Transpose().ToFloat4x4(cb.view);
+    getCamera()->GetProj().Transpose().ToFloat4x4(cb.proj);
 
     D3D11_MAPPED_SUBRESOURCE mapped = {};
 
-    HRESULT hr = m_pContext->GetDeviceContext()->Map(
+    HRESULT hr = getContext()->GetDeviceContext()->Map(
         m_pConstantBufferA.Get(),
         0,
         D3D11_MAP_WRITE_DISCARD,
@@ -229,7 +229,7 @@ void TriangleTest::updateConstantBufferA()
     if (SUCCEEDED(hr))
     {
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
-        m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
+        getContext()->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
 }
 
@@ -238,7 +238,7 @@ Json TriangleTest::Serialize() const
     return {
         { "id", m_id },
         { "type", m_type },
-        { "camera", m_pCamera->GetID() }
+        { "camera", getCamera()->GetID() }
     };
 }
 

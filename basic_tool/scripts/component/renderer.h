@@ -27,7 +27,12 @@ protected:
 	virtual bool initPixelShader();
 	virtual bool initVertexBuffer() = 0;
 	virtual bool initIndexBuffer() = 0;
+	D3D11_PRIMITIVE_TOPOLOGY getTopology() const { return m_topology; }
+	const RenderContext* const getContext() const { return m_pContext; }
+	const Camera* const getCamera() const { return m_pCamera; }
+	const Transform* const getTransform() const { return m_pTransform; }
 
+	// 本来はprivateにすべきだが、このクラスは共通処理をまとめているのでリソースは共有する
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_pVertexShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout = nullptr;
@@ -37,12 +42,10 @@ protected:
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState = nullptr;
 
+private:
+	Renderer() = delete; // 必ずRenderContextを渡して初期化
 	D3D11_PRIMITIVE_TOPOLOGY m_topology;
-
 	const RenderContext* const m_pContext = nullptr;
 	const Camera* const m_pCamera = nullptr;
 	const Transform* const m_pTransform = nullptr;
-
-private:
-	Renderer() = delete; // 必ずRenderContextを渡して初期化
 };
