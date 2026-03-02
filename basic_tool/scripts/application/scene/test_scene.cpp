@@ -27,7 +27,7 @@ void TestScene::Initialize()
 void TestScene::Start()
 {
 	{
-		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), getGameObjects());
+		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
 		m_pGui->Initialize();
 	}
 
@@ -118,7 +118,7 @@ void TestScene::deserialize()
 	Terminate();
 
 	{
-		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), getGameObjects());
+		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
 		m_pGui->Initialize();
 	}
 

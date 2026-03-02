@@ -6,7 +6,6 @@ class RenderContext;
 class RenderExporter;
 class SceneManager;
 
-// TODO: nullの値に意味のない参照はポインタから&の参照に変える
 // TODO: オブジェクト生成、削除、シーン読み込み、シーン保存、画像出力をGUI上で実装
 // TODO: パーティクルの画像変更、動き、寿命を変更できるようにする
 // TODO: プリプロセッサ命令でunique_ptrでのメモリ確保を自作アロケータに変更できるようにする(game_objectとcomponent)
