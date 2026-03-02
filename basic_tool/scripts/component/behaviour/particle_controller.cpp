@@ -126,7 +126,7 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 		j.at("id").get<uint64_t>(),
 		pTransform,
 		pContext,
-		static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+		SceneManager::GetCurrentScene()->FindComponent<Camera>(j.at("camera").get<uint64_t>()),
 		&SceneManager::GetCurrentScene()->FindGameObject(j.at("camera_game_object").get<uint64_t>())->GetTransform()
 	);
 	return pComponent;

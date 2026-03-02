@@ -27,7 +27,6 @@ public:
 	const std::string GetName() const { return m_name; }
 	bool GetIsDestroy() const { return m_isDestroy; }
 	bool GetIsSerialize() const { return m_isSerialize; }
-	Component* const FindComponent(Component::Type type) const;
 
 	// 生成したコンポーネントを返すことでGetComponentを削減
 	template<typename T, typename... Args> // ...で複数の引数を受け取る
@@ -41,6 +40,20 @@ public:
 		T& ref = *pComponent; // moveする前に参照を保存
 		m_pComponents.push_back(std::move(pComponent));
 		return ref;
+	}
+
+	template<typename T>
+		requires std::derived_from<T, Component>
+	T* const FindComponent(Component::Type type) const
+	{
+		for (auto& pComponent : m_pComponents)
+		{
+			if (pComponent->GetType() == type)
+			{
+				return static_cast<T*>(pComponent.get());
+			}
+		}
+		return nullptr;
 	}
 
 private:

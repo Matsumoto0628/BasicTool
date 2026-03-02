@@ -239,7 +239,7 @@ std::unique_ptr<Sphere> Sphere::Deserialize(const Json& j, const RenderContext* 
     auto pComponent = std::make_unique<Sphere>(
         j.at("id").get<uint64_t>(),
         pContext,
-        static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+        SceneManager::GetCurrentScene()->FindComponent<Camera>(j.at("camera").get<uint64_t>()),
 		pTransform,
         j.at("color").get<Vec4>()
     );

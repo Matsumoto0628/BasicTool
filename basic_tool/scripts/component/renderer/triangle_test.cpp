@@ -247,7 +247,7 @@ std::unique_ptr<TriangleTest> TriangleTest::Deserialize(const Json& j, const Ren
     auto pComponent = std::make_unique<TriangleTest>(
         j.at("id").get<uint64_t>(),
         pContext,
-        static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+        SceneManager::GetCurrentScene()->FindComponent<Camera>(j.at("camera").get<uint64_t>()),
         pTransform
     );
     return pComponent;

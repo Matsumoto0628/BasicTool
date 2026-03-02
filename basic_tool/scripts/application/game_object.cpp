@@ -129,18 +129,6 @@ void GameObject::Deserialize(const Json& j)
 	}
 }
 
-Component* const GameObject::FindComponent(Component::Type type) const
-{
-	for (auto& pComponent : m_pComponents) 
-	{
-		if (pComponent->GetType() == type) 
-		{
-			return pComponent.get();
-		}
-	}
-	return nullptr;
-}
-
 void GameObject::deserializeComponent(const Json& j)
 {
 	Component::Type type = j.at("type").get<Component::Type>();

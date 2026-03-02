@@ -21,8 +21,24 @@ public:
 	GameObject& Instantiate(uint64_t id, std::string name, bool isSerialize = false);
 	GameObject* const FindGameObject(uint64_t id) const;
 	GameObject* const FindGameObject(std::string name) const;
-	Component* const FindComponent(uint64_t id) const;
 	const RenderContext* const GetContext() const { return m_pContext; }
+
+	template<typename T>
+		requires std::derived_from<T, Component>
+	T* const FindComponent(uint64_t id) const
+	{
+		for (auto& pGameObject : m_pGameObjects)
+		{
+			for (auto& pComponent : *pGameObject->GetComponents())
+			{
+				if (pComponent->GetID() == id)
+				{
+					return static_cast<T*>(pComponent.get());
+				}
+			}
+		}
+		return nullptr;
+	}
 
 protected:
 	Scene(HWND hWnd, const RenderContext* const pContext);

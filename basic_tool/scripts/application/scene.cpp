@@ -58,21 +58,6 @@ GameObject* const Scene::FindGameObject(std::string name) const
 	return nullptr;
 }
 
-Component* const Scene::FindComponent(uint64_t id) const
-{
-	for (auto& pGameObject : m_pGameObjects)
-	{
-		for (auto& pComponent : *pGameObject->GetComponents())
-		{
-			if (pComponent->GetID() == id)
-			{
-				return pComponent.get();
-			}
-		}
-	}
-	return nullptr;
-}
-
 void Scene::destroy()
 {
 	for (auto& pGameObject : m_pGameObjects)

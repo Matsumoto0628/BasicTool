@@ -87,12 +87,12 @@ void Gui::drawMainMenu()
 			if (ImGui::MenuItem("Create Controller")) 
 			{
 				auto pCameraGameObject = SceneManager::GetCurrentScene()->FindGameObject("Camera");
-				auto pCamera = pCameraGameObject->FindComponent(Component::Type::Camera);
+				auto pCamera = pCameraGameObject->FindComponent<Camera>(Component::Type::Camera);
 				auto& particleControllerGameObject = SceneManager::GetCurrentScene()->Instantiate("ParticleController", true);
 				particleControllerGameObject.AddComponent<ParticleController>(
 					&particleControllerGameObject.GetTransform(), 
 					m_pContext, 
-					static_cast<Camera*>(pCamera), 
+					pCamera, 
 					&pCameraGameObject->GetTransform()
 				);
 			}

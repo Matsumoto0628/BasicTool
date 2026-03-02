@@ -87,8 +87,8 @@ std::unique_ptr<Particle> Particle::Deserialize(const Json& j, Transform* pTrans
 	auto pComponent = std::make_unique<Particle>(
 		j.at("id").get<uint64_t>(),
 		pTransform,
-		static_cast<Rigidbody*>(SceneManager::GetCurrentScene()->FindComponent(j.at("rigidbody").get<uint64_t>())),
-		static_cast<Line*>(SceneManager::GetCurrentScene()->FindComponent(j.at("line").get<uint64_t>())),
+		SceneManager::GetCurrentScene()->FindComponent<Rigidbody>(j.at("rigidbody").get<uint64_t>()),
+		SceneManager::GetCurrentScene()->FindComponent<Line>(j.at("line").get<uint64_t>()),
 		&SceneManager::GetCurrentScene()->FindGameObject(j.at("camera_game_object").get<uint64_t>())->GetTransform()
 	);
 	return pComponent;
