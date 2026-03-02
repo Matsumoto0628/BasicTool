@@ -50,7 +50,7 @@ void ParticleController::Start()
 		gameObject.GetTransform().SetParent(m_pTransform);
 		gameObject.GetTransform().SetLocalScale({ 0.1f,0.1f,0.1f });
 		gameObject.GetTransform().SetLocalPosition({ 0,0,0 });
-		gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 1.5,1.5,1.5,1 });
+		gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 30,30,30,1 });
 		auto& line = gameObject.AddComponent<Line>(m_pContext, m_pCamera, Vec4{ 1,0,0,1 });
 		auto& rb = gameObject.AddComponent<Rigidbody>(&gameObject.GetTransform());
 		rb.AddForce({
@@ -98,6 +98,10 @@ void ParticleController::Update()
 	}
 }
 
+void ParticleController::Draw()
+{
+}
+
 void ParticleController::Finalize()
 {
 }
@@ -109,8 +113,8 @@ void ParticleController::Show()
 Json ParticleController::Serialize() const
 {
 	return {
-		{"id", m_id},
-		{"type", m_type},
+		{"id", GetID()},
+		{"type", GetType()},
 		{"camera", m_pCamera->GetID()},
 		{"camera_game_object", m_pCameraTransform->GetGameObject().GetID()}
 	};

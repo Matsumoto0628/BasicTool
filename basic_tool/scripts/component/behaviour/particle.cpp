@@ -59,6 +59,10 @@ void Particle::Update()
 	}
 }
 
+void Particle::Draw()
+{
+}
+
 void Particle::Finalize()
 {
 }
@@ -70,8 +74,8 @@ void Particle::Show()
 Json Particle::Serialize() const
 {
 	return {
-		{"id", m_id},
-		{"type", m_type},
+		{"id", GetID()},
+		{"type", GetType()},
 		{"rigidbody", m_pRb->GetID()},
 		{"line", m_pLine->GetID()},
 		{"camera_game_object", m_pCameraTransform->GetGameObject().GetID()}

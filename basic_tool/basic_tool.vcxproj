@@ -157,6 +157,7 @@
     <ClCompile Include="scripts\application\game_object.cpp" />
     <ClCompile Include="scripts\application\gui.cpp" />
     <ClCompile Include="scripts\application\render_context.cpp" />
+    <ClCompile Include="scripts\application\render_exporter.cpp" />
     <ClCompile Include="scripts\application\scene.cpp" />
     <ClCompile Include="scripts\application\scene\test_scene.cpp" />
     <ClCompile Include="scripts\application\scene_manager.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="scripts\application\game_object.h" />
     <ClInclude Include="scripts\application\gui.h" />
     <ClInclude Include="scripts\application\render_context.h" />
+    <ClInclude Include="scripts\application\render_exporter.h" />
     <ClInclude Include="scripts\application\scene.h" />
     <ClInclude Include="scripts\application\scene\test_scene.h" />
     <ClInclude Include="scripts\application\scene_manager.h" />
@@ -221,7 +223,6 @@
     <ClInclude Include="scripts\utility\game_input.h" />
     <ClInclude Include="scripts\utility\game_time.h" />
     <ClInclude Include="scripts\utility\game_random.h" />
-    <ClInclude Include="scripts\utility\json_converter.h" />
     <ClInclude Include="scripts\window\window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +304,7 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" />
     <Import Project="..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets')" />
+    <Import Project="..\packages\directxtex_uwp.2025.10.28.1\build\native\directxtex_uwp.targets" Condition="Exists('..\packages\directxtex_uwp.2025.10.28.1\build\native\directxtex_uwp.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -310,5 +312,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets'))" />
     <Error Condition="!Exists('..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.12.0\build\native\nlohmann.json.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtex_uwp.2025.10.28.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_uwp.2025.10.28.1\build\native\directxtex_uwp.targets'))" />
   </Target>
 </Project>

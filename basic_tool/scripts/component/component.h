@@ -12,6 +12,7 @@ public:
 	virtual void Initialize() = 0;
 	virtual void Start() = 0;
 	virtual void Update() = 0;
+	virtual void Draw() = 0;
 	virtual void Finalize() = 0;
 	virtual void Show() = 0;
 	virtual Json Serialize() const = 0;
@@ -32,11 +33,13 @@ public:
 		Particle,
 		Sprite
 	};
-	Type GetType() { return m_type; }
+	Type GetType() const { return m_type; }
 
 protected:
 	Component(Type type);
 	Component(uint64_t id, Type type);
+
+private: 
 	bool enabled = true;
 	const uint64_t m_id = -1;
 	const Type m_type = Type::None;

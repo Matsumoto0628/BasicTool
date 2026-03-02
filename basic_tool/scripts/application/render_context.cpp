@@ -1,7 +1,7 @@
 #include "render_context.h"
 
 // 定数
-const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0.2f, 0.2f, 0.2f, 1.0f };
+const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 0, 0 };
 
 RenderContext::RenderContext(HWND hWnd)
     : m_hWnd{ hWnd }
@@ -96,6 +96,14 @@ bool RenderContext::Initialize()
             return false;
         }
     }
+
+    {
+        bool result = initExport();
+        if (!result)
+        {
+            return false;
+        }
+    }
     
     initViewPort();
 
@@ -120,7 +128,7 @@ void RenderContext::Finalize()
     }
 }
 
-void RenderContext::ClearRTV()
+void RenderContext::ClearRtv()
 {
     float color[4];
     BACK_BUFFER_COLOR.ToFloat4(color);
@@ -129,17 +137,25 @@ void RenderContext::ClearRTV()
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewHDR.Get(), color);
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewBloomA.Get(), color);
     m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewBloomB.Get(), color);
+    m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetViewExport.Get(), color);
     m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
-void RenderContext::SetRTV()
+void RenderContext::SetRtvHDR()
 {
+    m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
     m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewHDR.GetAddressOf(), m_pDepthStencilView.Get());
+}
+
+void RenderContext::SetRtv()
+{
+    m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetView.GetAddressOf(), m_pDepthStencilView.Get());
 }
 
 void RenderContext::PostEffect()
 {
     m_pDeviceContext->PSSetSamplers(0, 1, m_pSamplerLinear.GetAddressOf());
+    m_pDeviceContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
 
     ID3D11RenderTargetView* nullRTV[1] = { nullptr };
     ID3D11ShaderResourceView* nullSRV[2] = { nullptr, nullptr };
@@ -198,6 +214,19 @@ void RenderContext::PostEffect()
         m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
         m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
     }
+
+    // 出力画像用
+    {
+        m_pDeviceContext->RSSetViewports(1, &m_viewPort[0]);
+        m_pDeviceContext->OMSetRenderTargets(1, m_pRenderTargetViewExport.GetAddressOf(), nullptr);
+        m_pDeviceContext->PSSetShader(m_pPixelShaderComposite.Get(), nullptr, 0);
+        ID3D11ShaderResourceView* srvs[2] = { m_pShaderResourceViewHDR.Get(), m_pShaderResourceViewBloomA.Get() };
+        m_pDeviceContext->PSSetShaderResources(0, 2, srvs);
+        drawFullscreen();
+
+        m_pDeviceContext->OMSetRenderTargets(1, nullRTV, nullptr);
+        m_pDeviceContext->PSSetShaderResources(0, 1, nullSRV);
+    }
 }
 
 void RenderContext::Swap()
@@ -248,7 +277,7 @@ bool RenderContext::initDeviceAndSwapChain()
     sd.BufferCount = BACK_BUFFER_NUM;
     sd.BufferDesc.Width = m_screenWidth;
     sd.BufferDesc.Height = m_screenHeight;
-    sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+    sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
     sd.BufferDesc.RefreshRate.Numerator = 60;    // リフレッシュレート（分母）
     sd.BufferDesc.RefreshRate.Denominator = 1;    // リフレッシュレート（分子）
     sd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_PROGRESSIVE;
@@ -647,4 +676,41 @@ void RenderContext::drawFullscreen()
     m_pDeviceContext->VSSetShader(m_pVertexShaderFullscreen.Get(), nullptr, 0);
 
     m_pDeviceContext->Draw(3, 0);
+}
+
+bool RenderContext::initExport()
+{
+    D3D11_TEXTURE2D_DESC desc = {};
+    desc.Width = m_screenWidth;
+    desc.Height = m_screenHeight;
+    desc.MipLevels = 1;
+    desc.ArraySize = 1;
+    desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    desc.SampleDesc.Count = 1;
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+
+    // テクスチャを作成して
+    {
+        HRESULT hr = m_pDevice->CreateTexture2D(&desc, nullptr, &m_pExportTexture);
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    // RTVを作成
+    {
+        HRESULT hr = m_pDevice->CreateRenderTargetView(
+            m_pExportTexture.Get(),
+            nullptr,
+            &m_pRenderTargetViewExport
+        );
+        if (FAILED(hr))
+        {
+            return false;
+        }
+    }
+
+    return true;
 }

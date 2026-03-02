@@ -31,6 +31,14 @@ void SceneManager::Update()
 	}
 }
 
+void SceneManager::Draw()
+{
+	if (s_pCurrentScene)
+	{
+		s_pCurrentScene->Draw();
+	}
+}
+
 void SceneManager::Finalize()
 {
 	for (auto& [key, value] : s_pScenes)

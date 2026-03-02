@@ -14,10 +14,10 @@ struct Input
 
 float4 main(Input input) : SV_Target
 {
-    float3 result = srv.Sample(samLinear, input.uv).rgb;
-    float lmc = luminance(result);
+    float4 color = srv.Sample(samLinear, input.uv);
+    float lmc = luminance(color.rgb);
     float threshold = 1.0;
     
-    float3 bloom = (lmc > threshold) ? result : float3(0, 0, 0);
-    return float4(bloom, 1.0);
+    float4 result = (lmc > threshold) ? color : float4(0, 0, 0, 0);
+    return result;
 }

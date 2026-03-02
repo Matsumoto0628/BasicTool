@@ -9,7 +9,7 @@ class GameObject;
 class Gui 
 {
 public:
-	Gui(HWND hWnd, const RenderContext* const pContext, std::vector<std::unique_ptr<GameObject>>* ppGameObjects);
+	Gui(HWND hWnd, const RenderContext* const pContext, const std::vector<std::unique_ptr<GameObject>>* ppGameObjects);
 	~Gui();
 	void Initialize();
 	void Update();
@@ -24,6 +24,6 @@ private:
 
 	HWND m_hWnd = nullptr; 
 	const RenderContext* const m_pContext = nullptr;
-	std::vector<std::unique_ptr<GameObject>>* m_ppGameObjects = nullptr;
+	const std::vector<std::unique_ptr<GameObject>>* m_ppGameObjects;
 	const GameObject* m_pSelectGameObject = nullptr;
 };

@@ -99,19 +99,23 @@ void Line::Update()
         float blendFactor[4];
         BLEND_FACTOR.ToFloat4(blendFactor);
 
-        m_pContext->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
-        m_pContext->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-        m_pContext->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET); 
+        getContext()->GetDeviceContext()->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+        getContext()->GetDeviceContext()->IASetInputLayout(m_pInputLayout.Get());
+        getContext()->GetDeviceContext()->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+        getContext()->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
         // SetIndexBufferはいらない
-        m_pContext->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
-        m_pContext->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
-        m_pContext->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
-        m_pContext->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
-        m_pContext->GetDeviceContext()->IASetPrimitiveTopology(m_topology);
+        getContext()->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+        getContext()->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
+        getContext()->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilState.Get(), 0);
+        getContext()->GetDeviceContext()->RSSetState(m_pRasterizerState.Get());
+        getContext()->GetDeviceContext()->IASetPrimitiveTopology(getTopology());
 
-        m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
+        getContext()->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
+}
+
+void Line::Draw()
+{
 }
 
 void Line::Finalize()
@@ -138,7 +142,7 @@ bool Line::initVertexBuffer()
     D3D11_SUBRESOURCE_DATA initData = {};
     initData.pSysMem = vertices;
 
-    return SUCCEEDED(m_pContext->GetDevice()->CreateBuffer(&desc, &initData, &m_pVertexBuffer));
+    return SUCCEEDED(getContext()->GetDevice()->CreateBuffer(&desc, &initData, &m_pVertexBuffer));
 }
 
 bool Line::initIndexBuffer()
@@ -154,31 +158,31 @@ bool Line::initConstantBufferA()
     desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-    return SUCCEEDED(m_pContext->GetDevice()->CreateBuffer(&desc, nullptr, &m_pConstantBufferA));
+    return SUCCEEDED(getContext()->GetDevice()->CreateBuffer(&desc, nullptr, &m_pConstantBufferA));
 }
 
 void Line::updateConstantBufferA()
 {
     ConstantBufferA cb;
     Mat4x4::Identity().ToFloat4x4(cb.world);
-    m_pCamera->GetView().Transpose().ToFloat4x4(cb.view);
-    m_pCamera->GetProj().Transpose().ToFloat4x4(cb.proj);
+    getCamera()->GetView().Transpose().ToFloat4x4(cb.view);
+    getCamera()->GetProj().Transpose().ToFloat4x4(cb.proj);
 
     D3D11_MAPPED_SUBRESOURCE mapped = {};
-    if (SUCCEEDED(m_pContext->GetDeviceContext()->Map(m_pConstantBufferA.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
+    if (SUCCEEDED(getContext()->GetDeviceContext()->Map(m_pConstantBufferA.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
     {
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
-        m_pContext->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
+        getContext()->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
     }
 }
 
 Json Line::Serialize() const
 {
     return {
-		{"id", m_id},
-		{"type", m_type},
+		{"id", GetID()},
+		{"type", GetType()},
 		{ "color", m_color },
-        {"camera", m_pCamera->GetID() }
+        {"camera", getCamera()->GetID() }
     };
 }
 
@@ -203,7 +207,7 @@ bool Line::initVertexShader()
         return false;
     }
 
-    hr = m_pContext->GetDevice()->CreateVertexShader(
+    hr = getContext()->GetDevice()->CreateVertexShader(
         vsBlob->GetBufferPointer(),
         vsBlob->GetBufferSize(),
         nullptr,
@@ -255,7 +259,7 @@ bool Line::initInputLayout(ID3DBlob* vsBlob)
         colorDesc
     };
 
-    HRESULT hr = m_pContext->GetDevice()->CreateInputLayout(
+    HRESULT hr = getContext()->GetDevice()->CreateInputLayout(
         layout,
         _countof(layout),
         vsBlob->GetBufferPointer(),
@@ -280,7 +284,7 @@ bool Line::initPixelShader()
         return false;
     }
 
-    hr = m_pContext->GetDevice()->CreatePixelShader(
+    hr = getContext()->GetDevice()->CreatePixelShader(
         psBlob->GetBufferPointer(),
         psBlob->GetBufferSize(),
         nullptr,
@@ -306,7 +310,7 @@ bool Line::initDepthStencil()
     desc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
     desc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
 
-    HRESULT hr = m_pContext->GetDevice()->CreateDepthStencilState(&desc, &m_pDepthStencilState);
+    HRESULT hr = getContext()->GetDevice()->CreateDepthStencilState(&desc, &m_pDepthStencilState);
     if (FAILED(hr))
     {
         return false;
@@ -322,7 +326,7 @@ void Line::SetLine(const Vec3& start, const Vec3& end)
     vertices[1] = { end,   m_color };
 
     D3D11_MAPPED_SUBRESOURCE mapped{};
-    m_pContext->GetDeviceContext()->Map(
+    getContext()->GetDeviceContext()->Map(
         m_pVertexBuffer.Get(),
         0,
         D3D11_MAP_WRITE_DISCARD,
@@ -332,5 +336,5 @@ void Line::SetLine(const Vec3& start, const Vec3& end)
 
     memcpy(mapped.pData, vertices, sizeof(vertices));
 
-    m_pContext->GetDeviceContext()->Unmap(m_pVertexBuffer.Get(), 0);
+    getContext()->GetDeviceContext()->Unmap(m_pVertexBuffer.Get(), 0);
 }

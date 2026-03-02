@@ -13,6 +13,7 @@ public:
     void Initialize() override;
     void Start() override;
     void Update() override;
+    void Draw() override;
     void Finalize() override;
     void Show() override;
     Json Serialize() const override;
