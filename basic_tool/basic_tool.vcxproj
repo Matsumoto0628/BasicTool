@@ -157,6 +157,7 @@
     <ClCompile Include="scripts\application\game_object.cpp" />
     <ClCompile Include="scripts\application\gui.cpp" />
     <ClCompile Include="scripts\application\render_context.cpp" />
+    <ClCompile Include="scripts\application\render_exporter.cpp" />
     <ClCompile Include="scripts\application\scene.cpp" />
     <ClCompile Include="scripts\application\scene\test_scene.cpp" />
     <ClCompile Include="scripts\application\scene_manager.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="scripts\application\game_object.h" />
     <ClInclude Include="scripts\application\gui.h" />
     <ClInclude Include="scripts\application\render_context.h" />
+    <ClInclude Include="scripts\application\render_exporter.h" />
     <ClInclude Include="scripts\application\scene.h" />
     <ClInclude Include="scripts\application\scene\test_scene.h" />
     <ClInclude Include="scripts\application\scene_manager.h" />

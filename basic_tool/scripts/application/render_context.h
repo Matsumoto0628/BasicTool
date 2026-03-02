@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 class RenderContext
 {
@@ -14,11 +13,11 @@ public:
     void SetRtv();
     void PostEffect();
     void Swap();
-    void CheckSave();
     ID3D11Device* GetDevice() const { return m_pDevice.Get(); }
     ID3D11DeviceContext* GetDeviceContext() const { return m_pDeviceContext.Get(); }
     unsigned int GetWidth() const { return m_screenWidth; }
     unsigned int GetHeight() const { return m_screenHeight; }
+    ID3D11Texture2D* GetExportTexture() const { return m_pExportTexture.Get(); }
 
 private:
     bool initDeviceAndSwapChain();
@@ -33,7 +32,6 @@ private:
     bool initSampler();
     void updateConstantBufferBlur(const Vec2& dir);
     void drawFullscreen();
-    bool saveBackBuffer(const std::wstring& fileName);
     bool initExport();
 
     struct ConstantBufferBlur // Vecは使えない
@@ -65,6 +63,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerLinear = nullptr;
     Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferBlur = nullptr;
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_pRenderTargetViewExport = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pExportTexture = nullptr;
     D3D11_VIEWPORT m_viewPort[1];
     D3D11_VIEWPORT m_viewPortBloom[1];
     D3D_FEATURE_LEVEL m_pFeatureLevels[FEATURE_LEVELS_NUM] = {};
@@ -72,5 +71,4 @@ private:
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
     HWND m_hWnd = nullptr;
-    bool m_isExport = false;
 };

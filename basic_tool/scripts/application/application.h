@@ -3,13 +3,13 @@
 #include <memory>
 
 class RenderContext;
+class RenderExporter;
 class SceneManager;
 
-// TODO: 画像をスプライトシートで出力
-// TODO: オブジェクト生成、削除をGUI上で実装
+// TODO: protectedでもgetter,setterを作る
+// TODO: オブジェクト生成、削除、シーン読み込み、シーン保存、画像出力をGUI上で実装
 // TODO: パーティクルの画像変更、動き、寿命を変更できるようにする
 // TODO: プリプロセッサ命令でunique_ptrでのメモリ確保を自作アロケータに変更できるようにする(game_objectとcomponent)
-// TODO: Bloomのブラーをカメラからの距離(大きさ)によって変更する
 class Application
 {
 public:
@@ -24,5 +24,6 @@ private:
 
     Window m_window;
     std::unique_ptr<RenderContext> m_pContext = nullptr;
+    std::unique_ptr<RenderExporter> m_pExporter = nullptr;
     std::unique_ptr<SceneManager> m_pSceneManager = nullptr;
 };

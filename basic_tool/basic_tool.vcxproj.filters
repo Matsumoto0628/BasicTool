@@ -140,6 +140,9 @@
     <ClCompile Include="scripts\component\component.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="scripts\application\render_exporter.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scripts\pch.h" />
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="scripts\component\behaviour\particle_controller.h">
       <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\render_exporter.h">
+      <Filter>application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
