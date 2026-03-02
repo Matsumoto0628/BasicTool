@@ -113,8 +113,8 @@ void ParticleController::Show()
 Json ParticleController::Serialize() const
 {
 	return {
-		{"id", m_id},
-		{"type", m_type},
+		{"id", GetID()},
+		{"type", GetType()},
 		{"camera", m_pCamera->GetID()},
 		{"camera_game_object", m_pCameraTransform->GetGameObject().GetID()}
 	};
