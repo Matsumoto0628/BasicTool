@@ -89,10 +89,6 @@ void Line::Start()
 
 void Line::Update()
 {
-}
-
-void Line::Draw()
-{
     // 更新
     {
         updateConstantBufferA();
@@ -116,6 +112,10 @@ void Line::Draw()
 
         m_pContext->GetDeviceContext()->Draw(VERTEX_COUNT, 0);
     }
+}
+
+void Line::Draw()
+{
 }
 
 void Line::Finalize()
