@@ -227,8 +227,8 @@ void Sphere::updateConstantBufferA()
 Json Sphere::Serialize() const
 {
     return {
-        {"id", m_id},
-        {"type", m_type},
+        {"id", GetID()},
+        {"type", GetType()},
         { "color", m_color },
         {"camera", getCamera()->GetID() }
     };

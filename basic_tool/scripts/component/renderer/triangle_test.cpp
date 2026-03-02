@@ -236,8 +236,8 @@ void TriangleTest::updateConstantBufferA()
 Json TriangleTest::Serialize() const
 {
     return {
-        { "id", m_id },
-        { "type", m_type },
+        { "id", GetID()},
+        { "type", GetType()},
         { "camera", getCamera()->GetID() }
     };
 }

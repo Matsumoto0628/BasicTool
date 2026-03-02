@@ -49,8 +49,8 @@ void Camera::Show()
 Json Camera::Serialize() const
 {
 	return {
-		{"id", m_id},
-		{"type", m_type},
+		{"id", GetID()},
+		{"type", GetType()},
 		{"aspect", m_aspect},
 		{"near_z", m_nearZ},
 		{"far_z", m_farZ},

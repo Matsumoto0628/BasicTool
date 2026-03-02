@@ -82,8 +82,8 @@ void Rigidbody::SetVelocity(const Vec3& vel)
 Json Rigidbody::Serialize() const
 {
 	return {
-        {"id", m_id},
-		{"type", m_type},
+        {"id", GetID()},
+		{"type", GetType()},
         {"mass", m_mass}
     };
 }

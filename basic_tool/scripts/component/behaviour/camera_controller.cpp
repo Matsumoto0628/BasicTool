@@ -97,8 +97,8 @@ void CameraController::Show()
 Json CameraController::Serialize() const
 {
 	return {
-		{"id", m_id},
-		{"type", m_type}
+		{"id", GetID()},
+		{"type", GetType()}
 	};
 }
 
