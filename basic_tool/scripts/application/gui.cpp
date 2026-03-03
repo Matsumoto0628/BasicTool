@@ -339,8 +339,7 @@ void Gui::drawExportPopup()
 
 		ImGui::InputInt("Horizontal Count", &m_exportNumW);
 		ImGui::InputInt("Vertical Count", &m_exportNumH);
-
-		// 最低値保証
+		
 		if (m_exportNumW < 1) m_exportNumW = 1;
 		if (m_exportNumH < 1) m_exportNumH = 1;
 
@@ -348,14 +347,21 @@ void Gui::drawExportPopup()
 
 		if (ImGui::Button("Export", ImVec2(120, 0)))
 		{
-			std::wstring wFileName =
-				std::filesystem::path(m_exportFileName).wstring();
+			// 再生してからExportを呼び出す
+			for (auto& pGameObject : *m_ppGameObjects)
+			{
+				for (auto& pComponent : *pGameObject->GetComponents())
+				{
+					if (pComponent->GetType() == Component::Type::ParticleController)
+					{
+						auto controller = static_cast<ParticleController*>(pComponent.get());
+						controller->Play();
+					}
+				}
+			}
 
-			SceneManager::GetCurrentScene()
-				->GetContext()
-				->Export(wFileName,
-					static_cast<UINT>(m_exportNumW),
-					static_cast<UINT>(m_exportNumH));
+			std::wstring sheetName = std::filesystem::path(m_exportFileName).wstring();
+			SceneManager::GetCurrentScene()->GetContext()->Export(sheetName, static_cast<UINT>(m_exportNumW), static_cast<UINT>(m_exportNumH));
 
 			ImGui::CloseCurrentPopup();
 		}
