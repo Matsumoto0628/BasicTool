@@ -54,18 +54,20 @@ void Gui::Update()
 		drawMainMenu();
 		drawHierarchy();
 		drawInspector();
+		drawPlaybackControl();
+
 		if (m_openPopupRequestd)
 		{
 			m_openPopupRequestd = false;
 			ImGui::OpenPopup("Save");
 		}
 		drawSerializePopup();
+
 		if (m_openExportRequested)
 		{
 			m_openExportRequested = false;
 			ImGui::OpenPopup("Export");
 		}
-
 		drawExportPopup();
 	}
 
@@ -367,4 +369,52 @@ void Gui::drawExportPopup()
 
 		ImGui::EndPopup();
 	}
+}
+
+void Gui::drawPlaybackControl()
+{
+	ImGui::SetNextWindowPos(ImVec2(428, 450), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(104, 40), ImGuiCond_Always);
+
+	const ImGuiWindowFlags flags =
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoScrollbar;
+
+	ImGui::Begin("PlaybackControl", nullptr, flags);
+
+	if (ImGui::Button("Play"))
+	{
+		for (auto& pGameObject : *m_ppGameObjects)
+		{
+			for (auto& pComponent : *pGameObject->GetComponents())
+			{
+				if (pComponent->GetType() == Component::Type::ParticleController) 
+				{
+					auto controller = static_cast<ParticleController*>(pComponent.get());
+					controller->Play();
+				}
+			}
+		}
+	}
+
+	ImGui::SameLine();
+
+	if (ImGui::Button("Pause"))
+	{
+		for (auto& pGameObject : *m_ppGameObjects)
+		{
+			for (auto& pComponent : *pGameObject->GetComponents())
+			{
+				if (pComponent->GetType() == Component::Type::ParticleController)
+				{
+					auto controller = static_cast<ParticleController*>(pComponent.get());
+					controller->Pause();
+				}
+			}
+		}
+	}
+
+	ImGui::End();
 }

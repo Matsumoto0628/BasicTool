@@ -70,32 +70,6 @@ void ParticleController::Update()
 	{
 		//pRigidbody->AddForce({0,-9.8f,0});
 	}
-
-	if (GameInput::GetKeyDown('R'))
-	{
-		for (auto& pParticle : m_pParticles)
-		{
-			pParticle->GetTransform().SetPosition({ 0,0,0 });
-			pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
-		}
-
-		for (auto& pRigidbody : m_pRigidbodies)
-		{
-			pRigidbody->AddForce({
-				GameRandom::GetRange(-1.0f, 1.0f),
-				GameRandom::GetRange(-1.0f, 1.0f),
-				GameRandom::GetRange(-1.0f, 1.0f)
-			});
-		}
-	}
-
-	if (GameInput::GetKeyDown(VK_SPACE))
-	{
-		for (auto& pRigidbody : m_pRigidbodies)
-		{
-			pRigidbody->SetEnabled(!pRigidbody->GetEnabled());
-		}
-	}
 }
 
 void ParticleController::Draw()
@@ -130,4 +104,32 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 		&SceneManager::GetCurrentScene()->FindGameObject(j.at("camera_game_object").get<uint64_t>())->GetTransform()
 	);
 	return pComponent;
+}
+
+void ParticleController::Play()
+{
+	for (auto& pParticle : m_pParticles)
+	{
+		pParticle->GetTransform().SetPosition({ 0,0,0 });
+		pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
+	}
+
+	for (auto& pRigidbody : m_pRigidbodies)
+	{
+		pRigidbody->SetEnabled(true);
+
+		pRigidbody->AddForce({
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f)
+			});
+	}
+}
+
+void ParticleController::Pause()
+{
+	for (auto& pRigidbody : m_pRigidbodies)
+	{
+		pRigidbody->SetEnabled(!pRigidbody->GetEnabled());
+	}
 }

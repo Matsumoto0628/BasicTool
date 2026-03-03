@@ -26,6 +26,7 @@ private:
 	void checkOpenFile();
 	void checkExit();
 	void drawExportPopup();
+	void drawPlaybackControl();
 
 	HWND m_hWnd = nullptr; 
 	const RenderContext* const m_pContext = nullptr;
