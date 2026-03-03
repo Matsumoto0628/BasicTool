@@ -1,8 +1,8 @@
 #include "scene.h"
 #include "render_context.h"
 #include "camera.h"
+#include <fstream>
 #include <nlohmann/json.hpp>
-
 using Json = nlohmann::ordered_json;
 
 bool Scene::s_isRuntime = false;
@@ -58,6 +58,32 @@ GameObject* const Scene::FindGameObject(std::string name) const
 	return nullptr;
 }
 
+void Scene::Serialize(std::string sceneName)
+{
+	Json j;
+	j[sceneName] = Json::array();
+	for (auto& pGameObject : getGameObjects())
+	{
+		if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize())
+		{
+			j[sceneName].push_back(pGameObject->Serialize());
+		}
+	}
+
+	std::ofstream file{ sceneName + ".json"};
+	file << j.dump(4);
+}
+
+void Scene::Deserialize(std::string sceneName)
+{
+	Terminate();
+	Initialize();
+
+	deserialize(sceneName);
+
+	Start();
+}
+
 void Scene::destroy()
 {
 	for (auto& pGameObject : m_pGameObjects)
@@ -73,4 +99,16 @@ void Scene::destroy()
 		};
 
 	std::erase_if(m_pGameObjects, predicate);
+}
+
+void Scene::deserialize(std::string sceneName)
+{
+	std::ifstream file{ sceneName + ".json" };
+	Json j;
+	file >> j;
+	for (const auto& gameObjectJson : j[sceneName])
+	{
+		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
+		gameObject.Deserialize(gameObjectJson);
+	}
 }

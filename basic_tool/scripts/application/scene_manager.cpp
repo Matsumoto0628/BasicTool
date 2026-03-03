@@ -54,6 +54,7 @@ void SceneManager::Transit(SceneType sceneType)
 		s_pCurrentScene->Terminate();
 	}
 	s_pCurrentScene = s_pScenes[sceneType].get();
+	s_pCurrentScene->Setup();
 	s_pCurrentScene->Start();
 }
 

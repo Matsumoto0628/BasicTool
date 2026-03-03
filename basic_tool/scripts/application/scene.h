@@ -12,6 +12,7 @@ class Scene
 public:
 	virtual ~Scene() = default;
 	virtual void Initialize() = 0;
+	virtual void Setup() = 0;
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
@@ -22,6 +23,8 @@ public:
 	GameObject* const FindGameObject(uint64_t id) const;
 	GameObject* const FindGameObject(std::string name) const;
 	const RenderContext* const GetContext() const { return m_pContext; }
+	void Serialize(std::string sceneName);
+	void Deserialize(std::string sceneName);
 
 	template<typename T>
 		requires std::derived_from<T, Component>
@@ -52,6 +55,7 @@ protected:
 	
 private:
 	Scene() = delete;
+	void deserialize(std::string sceneName);
 	HWND m_hWnd = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;

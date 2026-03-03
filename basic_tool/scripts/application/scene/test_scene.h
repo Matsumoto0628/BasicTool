@@ -10,6 +10,7 @@ public:
 	TestScene(HWND hWnd, const RenderContext* const pContext);
 	~TestScene();
 	void Initialize() override;
+	void Setup() override;
 	void Start() override;
 	void Update() override;
 	void Draw() override;
@@ -18,7 +19,5 @@ public:
 
 private:
 	TestScene() = delete;
-	void serialize();
-	void deserialize();
 	std::unique_ptr<Gui> m_pGui = nullptr;
 };

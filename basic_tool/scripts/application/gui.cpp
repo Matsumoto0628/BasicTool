@@ -7,6 +7,9 @@
 #include "scene_manager.h"
 #include "particle_controller.h"
 #include "camera.h"
+#include <windows.h>
+#include <commdlg.h>
+#include <filesystem>
 
 Gui::Gui(HWND hWnd, const RenderContext* const pContext, const std::vector<std::unique_ptr<GameObject>>* ppGameObjects)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }, m_ppGameObjects{ ppGameObjects }
@@ -51,12 +54,31 @@ void Gui::Update()
 		drawMainMenu();
 		drawHierarchy();
 		drawInspector();
+
+		if (m_isSerializePopupOpen)
+		{
+			ImGui::OpenPopup("Save Scene");
+			m_isSerializePopupOpen = false;
+		}
+		drawSerializePopup();
 	}
 
 	// 描画
 	{
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	}
+
+	if (m_openFileRequested) 
+	{
+		m_openFileRequested = false;
+		std::string fullPath = openFileDialog();
+		if (!fullPath.empty())
+		{
+			std::filesystem::path path(fullPath);
+			std::string sceneName = path.stem().string();
+			SceneManager::GetCurrentScene()->Deserialize(sceneName);
+		}
 	}
 }
 
@@ -74,9 +96,14 @@ void Gui::drawMainMenu()
 	{
 		if (ImGui::BeginMenu("File"))
 		{
-			if (ImGui::MenuItem("New")) { /* 新規処理 */ }
-			if (ImGui::MenuItem("Open")) { /* 開く処理 */ }
-			if (ImGui::MenuItem("Save")) { /* 保存処理 */ }
+			if (ImGui::MenuItem("Open")) 
+			{ 
+				m_openFileRequested = true;
+			}
+			if (ImGui::MenuItem("Save")) 
+			{ 
+				m_isSerializePopupOpen = true;
+			}
 			ImGui::Separator();
 			if (ImGui::MenuItem("Exit")) { /* 終了処理 */ }
 			ImGui::EndMenu();
@@ -196,12 +223,7 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 
 	if (ImGui::BeginPopupContextItem())
 	{
-		m_pSelectGameObject = pGameObject; // 右クリック時も選択状態にする
-
-		if (ImGui::MenuItem("Duplicate"))
-		{
-			// 複製処理
-		}
+		m_pSelectGameObject = pGameObject;
 
 		if (ImGui::MenuItem("Delete"))
 		{
@@ -223,4 +245,55 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 		ImGui::TreePop();
 	}
 	ImGui::PopID();
+}
+
+void Gui::drawSerializePopup()
+{
+	if (ImGui::BeginPopupModal("Save Scene", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		ImGui::Text("Enter file name:");
+		ImGui::InputText("##SaveFileName", m_serializeFileName, sizeof(m_serializeFileName));
+
+		ImGui::Separator();
+
+		if (ImGui::Button("Save", ImVec2(120, 0)))
+		{
+			// 保存処理
+			SceneManager::GetCurrentScene()->Serialize(m_serializeFileName);
+
+			m_isSerializePopupOpen = false;
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("Cancel", ImVec2(120, 0)))
+		{
+			m_isSerializePopupOpen = false;
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
+	}
+}
+
+std::string Gui::openFileDialog()
+{
+	char fileName[MAX_PATH] = "";
+
+	OPENFILENAMEA ofn{};
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = m_hWnd;
+	ofn.lpstrFilter = "JSON Files (*.json)\0*.json\0All Files (*.*)\0*.*\0";
+	ofn.lpstrFile = fileName;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+	ofn.lpstrDefExt = "json";
+
+	if (GetOpenFileNameA(&ofn))
+	{
+		return std::string(fileName);
+	}
+
+	return "";
 }
