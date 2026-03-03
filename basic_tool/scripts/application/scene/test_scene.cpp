@@ -8,7 +8,7 @@
 #include "gui.h"
 #include "game_input.h"
 
-TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
+TestScene::TestScene(HWND hWnd, RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
 {
 }
@@ -53,16 +53,6 @@ void TestScene::Update()
 	}
 
 	m_pGui->Update();
-
-	if (GameInput::GetKeyDown('S') && GameInput::GetKey(VK_CONTROL)) 
-	{
-		Serialize("test_scene");
-	}
-
-	if (GameInput::GetKeyDown('D') && GameInput::GetKey(VK_CONTROL))
-	{
-		Deserialize("test_scene");
-	}
 
 	destroy();
 }

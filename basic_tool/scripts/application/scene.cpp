@@ -7,7 +7,7 @@ using Json = nlohmann::ordered_json;
 
 bool Scene::s_isRuntime = false;
 
-Scene::Scene(HWND hWnd, const RenderContext* const pContext)
+Scene::Scene(HWND hWnd, RenderContext* const pContext)
 	: m_hWnd{ hWnd }, m_pContext{ pContext }
 {
 }

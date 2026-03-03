@@ -4,7 +4,7 @@
 Scene* SceneManager::s_pCurrentScene = nullptr;
 std::map<SceneManager::SceneType, std::unique_ptr<Scene>> SceneManager::s_pScenes;
 
-SceneManager::SceneManager(HWND hWnd, RenderContext* pContext)
+SceneManager::SceneManager(HWND hWnd, RenderContext* const pContext)
 {
 	s_pScenes.emplace(SceneType::Test, std::make_unique<TestScene>(hWnd, pContext));
 }

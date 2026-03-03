@@ -22,7 +22,7 @@ public:
 	GameObject& Instantiate(uint64_t id, std::string name, bool isSerialize = false);
 	GameObject* const FindGameObject(uint64_t id) const;
 	GameObject* const FindGameObject(std::string name) const;
-	const RenderContext* const GetContext() const { return m_pContext; }
+	RenderContext* const GetContext() const { return m_pContext; }
 	void Serialize(std::string sceneName);
 	void Deserialize(std::string sceneName);
 
@@ -44,7 +44,7 @@ public:
 	}
 
 protected:
-	Scene(HWND hWnd, const RenderContext* const pContext);
+	Scene(HWND hWnd, RenderContext* const pContext);
 	void destroy();
 	const HWND& getWnd() const { return m_hWnd; }
 	const RenderContext* const getContext() const { return m_pContext; }
@@ -57,7 +57,7 @@ private:
 	Scene() = delete;
 	void deserialize(std::string sceneName);
 	HWND m_hWnd = nullptr;
-	const RenderContext* const m_pContext = nullptr;
+	RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;
 	static bool s_isRuntime; // クラスで共通で持つ
 };
