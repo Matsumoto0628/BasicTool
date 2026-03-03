@@ -103,7 +103,7 @@ void Transform::Show()
     float scaZ = m_scale.Z();
 
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader("Transform"))
+    if (ImGui::CollapsingHeader("Transform"), ImGuiTreeNodeFlags_DefaultOpen)
     {
         ImGui::PushID("Position");
         {

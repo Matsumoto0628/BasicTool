@@ -7,11 +7,8 @@
 #include "particle_controller.h"
 #include "gui.h"
 #include "game_input.h"
-#include <fstream>
-#include <nlohmann/json.hpp>
-using Json = nlohmann::ordered_json;
 
-TestScene::TestScene(HWND hWnd, const RenderContext* const pContext)
+TestScene::TestScene(HWND hWnd, RenderContext* const pContext)
 	: Scene{ hWnd, pContext }
 {
 }
@@ -22,25 +19,24 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
+	m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
+	m_pGui->Initialize();
 }
 
-void TestScene::Start()
+void TestScene::Setup()
 {
-	{
-		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
-		m_pGui->Initialize();
-	}
-
 	{
 		auto& cameraGameObject = Instantiate("Camera");
 		auto& camera = cameraGameObject.AddComponent<Camera>(&cameraGameObject.GetTransform(), getContext()->GetWidth(), getContext()->GetHeight());
-		//cameraGameObject.AddComponent<CameraController>(&cameraGameObject.GetTransform());
 		cameraGameObject.GetTransform().SetPosition({ 0,0,-10 });
 
 		auto& particleControllerGameObject = Instantiate("ParticleController");
 		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), getContext(), &camera, &cameraGameObject.GetTransform());
 	}
+}
 
+void TestScene::Start()
+{
 	setIsRuntime(true);
 
 	for (auto& pGameObject : getGameObjects())
@@ -57,16 +53,6 @@ void TestScene::Update()
 	}
 
 	m_pGui->Update();
-
-	if (GameInput::GetKeyDown('S') && GameInput::GetKey(VK_CONTROL)) 
-	{
-		serialize();
-	}
-
-	if (GameInput::GetKeyDown('D') && GameInput::GetKey(VK_CONTROL))
-	{
-		deserialize();
-	}
 
 	destroy();
 }
@@ -95,46 +81,4 @@ void TestScene::Terminate()
 
 void TestScene::Finalize()
 {
-}
-
-void TestScene::serialize()
-{
-	Json j;
-	j["test_scene"] = Json::array();
-	for (auto& pGameObject : getGameObjects())
-	{
-		if (!pGameObject->GetTransform().GetParent() && pGameObject->GetIsSerialize())
-		{
-			j["test_scene"].push_back(pGameObject->Serialize());
-		}
-	}
-
-	std::ofstream file{ "test_scene.json" };
-	file << j.dump(4);
-}
-
-void TestScene::deserialize()
-{
-	Terminate();
-
-	{
-		m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
-		m_pGui->Initialize();
-	}
-
-	std::ifstream file{ "test_scene.json" };
-	Json j;
-	file >> j;
-	for (const auto& gameObjectJson : j["test_scene"])
-	{
-		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
-		gameObject.Deserialize(gameObjectJson);
-	}
-
-	setIsRuntime(true);
-
-	for (auto& pGameObject : getGameObjects())
-	{
-		pGameObject->Start();
-	}
 }

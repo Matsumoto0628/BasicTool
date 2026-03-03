@@ -191,7 +191,7 @@ std::unique_ptr<Line> Line::Deserialize(const Json& j, const RenderContext* cons
 	auto pComponent = std::make_unique<Line>(
 		j.at("id").get<uint64_t>(),
 		pContext,
-		static_cast<const Camera* const>(SceneManager::GetCurrentScene()->FindComponent(j.at("camera").get<uint64_t>())),
+		SceneManager::GetCurrentScene()->FindComponent<Camera>(j.at("camera").get<uint64_t>()),
 		j.at("color").get<Vec4>()
 	);
     return pComponent;

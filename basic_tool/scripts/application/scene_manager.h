@@ -8,7 +8,7 @@ class RenderContext;
 class SceneManager 
 {
 public:
-	SceneManager(HWND hWnd, RenderContext* pContext);
+	SceneManager(HWND hWnd, RenderContext* const pContext);
 	~SceneManager();
 	void Initialize();
 	void Update();

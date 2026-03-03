@@ -46,6 +46,7 @@ void GameObject::Start()
 	{
 		pComponent->Start();
 	}
+	m_isStart = true;
 }
 
 void GameObject::Update() 

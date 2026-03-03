@@ -35,10 +35,25 @@ public:
 	{
 		auto pComponent = std::make_unique<T>(std::forward<Args>(args)...); // forwardで左辺値と右辺値を判別する
 		pComponent->Initialize();
+		if (m_isStart) pComponent->Start();
 
 		T& ref = *pComponent; // moveする前に参照を保存
 		m_pComponents.push_back(std::move(pComponent));
 		return ref;
+	}
+
+	template<typename T>
+		requires std::derived_from<T, Component>
+	T* const FindComponent(Component::Type type) const
+	{
+		for (auto& pComponent : m_pComponents)
+		{
+			if (pComponent->GetType() == type)
+			{
+				return static_cast<T*>(pComponent.get());
+			}
+		}
+		return nullptr;
 	}
 
 private:
@@ -49,5 +64,6 @@ private:
 	const uint64_t m_id = -1;
 	std::string m_name = "NONE";
 	bool m_isDestroy = false;
-	bool m_isSerialize = true;
+	const bool m_isSerialize = true;
+	bool m_isStart = false;
 };
