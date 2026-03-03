@@ -35,6 +35,7 @@ public:
 	static std::unique_ptr<ParticleController> Deserialize(const Json& j, Transform* const pTransform, const RenderContext* const pContext);
 	void Play();
 	void Pause();
+	void Resume();
 private:
 	Transform* const m_pTransform = nullptr;
 	const RenderContext* const m_pContext = nullptr;

@@ -39,5 +39,6 @@ private:
 	bool m_openPopupRequestd = false;
 	bool m_openFileRequested = false;
 	bool m_exitRequested = false;
-	bool  m_openExportRequested = false;
+	bool m_openExportRequested = false;
+	bool m_isPause = false;
 };

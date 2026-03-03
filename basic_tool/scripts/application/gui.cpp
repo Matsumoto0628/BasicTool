@@ -117,17 +117,26 @@ void Gui::drawMainMenu()
 
 		if (ImGui::BeginMenu("Edit"))
 		{
-			if (ImGui::MenuItem("Create Controller")) 
+			if (ImGui::MenuItem("Create")) 
 			{
 				auto pCameraGameObject = SceneManager::GetCurrentScene()->FindGameObject("Camera");
 				auto pCamera = pCameraGameObject->FindComponent<Camera>(Component::Type::Camera);
 				auto& particleControllerGameObject = SceneManager::GetCurrentScene()->Instantiate("ParticleController", true);
-				particleControllerGameObject.AddComponent<ParticleController>(
+				auto& controller = particleControllerGameObject.AddComponent<ParticleController>(
 					&particleControllerGameObject.GetTransform(), 
 					m_pContext, 
 					pCamera, 
 					&pCameraGameObject->GetTransform()
 				);
+
+				if (m_isPause)
+				{
+					controller.Pause();
+				}
+				else
+				{
+					controller.Resume();
+				}
 			}
 			ImGui::EndMenu();
 		}
@@ -398,6 +407,7 @@ void Gui::drawPlaybackControl()
 			{
 				if (pComponent->GetType() == Component::Type::ParticleController) 
 				{
+					m_isPause = false;
 					auto controller = static_cast<ParticleController*>(pComponent.get());
 					controller->Play();
 				}
@@ -409,6 +419,7 @@ void Gui::drawPlaybackControl()
 
 	if (ImGui::Button("Pause"))
 	{
+		const bool isPause = m_isPause;
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
 			for (auto& pComponent : *pGameObject->GetComponents())
@@ -416,7 +427,16 @@ void Gui::drawPlaybackControl()
 				if (pComponent->GetType() == Component::Type::ParticleController)
 				{
 					auto controller = static_cast<ParticleController*>(pComponent.get());
-					controller->Pause();
+					if (isPause) 
+					{
+						m_isPause = false;
+						controller->Resume();
+					}
+					else 
+					{
+						m_isPause = true;
+						controller->Pause();
+					}
 				}
 			}
 		}

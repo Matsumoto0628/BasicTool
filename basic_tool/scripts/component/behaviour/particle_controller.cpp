@@ -57,7 +57,7 @@ void ParticleController::Start()
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f)
-			});
+		});
 		m_pRigidbodies.push_back(&rb);
 		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform);
 		m_pParticles.push_back(&gameObject);
@@ -118,11 +118,12 @@ void ParticleController::Play()
 	{
 		pRigidbody->SetEnabled(true);
 
+		pRigidbody->SetVelocity({ 0,0,0 });
 		pRigidbody->AddForce({
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f)
-			});
+			GameRandom::GetRange(-5.0f, 5.0f),
+			GameRandom::GetRange(-5.0f, 5.0f),
+			GameRandom::GetRange(-5.0f, 5.0f)
+		});
 	}
 }
 
@@ -130,6 +131,14 @@ void ParticleController::Pause()
 {
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
-		pRigidbody->SetEnabled(!pRigidbody->GetEnabled());
+		pRigidbody->SetEnabled(false);
+	}
+}
+
+void ParticleController::Resume()
+{
+	for (auto& pRigidbody : m_pRigidbodies)
+	{
+		pRigidbody->SetEnabled(true);
 	}
 }
