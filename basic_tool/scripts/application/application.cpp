@@ -21,8 +21,6 @@ void Application::Initialize()
     // m_windowが初期化してないとコンストラクタが呼び出せない
     m_pContext = std::make_unique<RenderContext>(m_window.GetWindowHandle());
     m_pContext->Initialize();
-    m_pExporter = std::make_unique<RenderExporter>(m_pContext.get());
-    m_pExporter->Initialize();
     m_pSceneManager = std::make_unique<SceneManager>(m_window.GetWindowHandle(), m_pContext.get());
     m_pSceneManager->Initialize();
 }
@@ -55,7 +53,6 @@ void Application::Finalize()
 {
     m_window.Finalize();
     m_pContext->Finalize();
-    m_pExporter->Finalize();
     m_pSceneManager->Finalize();
 }
 
@@ -72,7 +69,6 @@ bool Application::gameLoop()
     
     m_pContext->SetRtv();
     m_pContext->Update();
-    m_pExporter->Update();
     m_pSceneManager->Update();
     m_pContext->Swap();
 

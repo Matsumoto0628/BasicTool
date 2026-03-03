@@ -1,10 +1,12 @@
 #include "render_context.h"
+#include "render_exporter.h"
 
 // 定数
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 0, 0 };
 
 RenderContext::RenderContext(HWND hWnd)
-    : m_hWnd{ hWnd }
+    : m_hWnd{ hWnd },
+    m_exporter{ this }
 {
     m_pFeatureLevels[0] = D3D_FEATURE_LEVEL_11_1;
     m_pFeatureLevels[1] = D3D_FEATURE_LEVEL_11_0;
@@ -107,11 +109,14 @@ bool RenderContext::Initialize()
     
     initViewPort();
 
+    m_exporter.Initialize();
+
     return true;
 }
 
 void RenderContext::Update() 
 {
+    m_exporter.Update();
 }
 
 void RenderContext::Finalize() 
@@ -126,6 +131,8 @@ void RenderContext::Finalize()
     {
         m_pSwapChain->SetFullscreenState(FALSE, nullptr);
     }
+
+    m_exporter.Finalize();
 }
 
 void RenderContext::ClearRtv()

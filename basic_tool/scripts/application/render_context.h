@@ -1,4 +1,5 @@
 #pragma once
+#include "render_exporter.h"
 
 class RenderContext
 {
@@ -18,6 +19,7 @@ public:
     unsigned int GetWidth() const { return m_screenWidth; }
     unsigned int GetHeight() const { return m_screenHeight; }
     ID3D11Texture2D* GetExportTexture() const { return m_pExportTexture.Get(); }
+    void Export(std::wstring fileName, UINT numW, UINT numH) { m_exporter.Export(fileName, numW, numH); }
 
 private:
     bool initDeviceAndSwapChain();
@@ -71,4 +73,5 @@ private:
     UINT m_screenWidth = 0;
     UINT m_screenHeight = 0;
     HWND m_hWnd = nullptr;
+    RenderExporter m_exporter;
 };
