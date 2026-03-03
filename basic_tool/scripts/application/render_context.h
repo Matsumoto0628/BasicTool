@@ -19,7 +19,7 @@ public:
     unsigned int GetWidth() const { return m_screenWidth; }
     unsigned int GetHeight() const { return m_screenHeight; }
     ID3D11Texture2D* GetExportTexture() const { return m_pExportTexture.Get(); }
-    void Export(std::wstring fileName, UINT numW, UINT numH) { m_exporter.Export(fileName, numW, numH); }
+    void Export(std::wstring sheetName, UINT numW, UINT numH) { m_exporter.Export(sheetName, numW, numH); }
 
 private:
     bool initDeviceAndSwapChain();

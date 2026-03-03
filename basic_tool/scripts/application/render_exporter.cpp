@@ -33,11 +33,6 @@ bool RenderExporter::Initialize()
 
 void RenderExporter::Update()
 {
-    if (GameInput::GetKeyDown('B')) 
-    {
-        Export(1,1);
-    }
-
     if (m_isExport) 
     {
         m_sheetTimer += GameTime::GetDeltaTime();
@@ -53,13 +48,14 @@ void RenderExporter::Finalize()
 {
 }
 
-void RenderExporter::Export(UINT numW, UINT numH)
+void RenderExporter::Export(std::wstring sheetName, UINT numW, UINT numH)
 {
     if (!m_isExport)
     {
         m_isExport = true;
         m_sheetNumW = max(numW, 1);
         m_sheetNumH = max(numH, 1);
+        m_sheetName = sheetName;
         initSheet();
     }
 }
@@ -120,7 +116,7 @@ void RenderExporter::updateSheet()
         m_sheetIndex = 0;
         m_isExport = false;
         m_pContext->GetDeviceContext()->Flush();
-        save(m_pSheetTexture.Get(), L"sheet.png");
+        save(m_pSheetTexture.Get(), m_sheetName + L".png");
     }
 }
 

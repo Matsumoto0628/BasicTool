@@ -54,13 +54,19 @@ void Gui::Update()
 		drawMainMenu();
 		drawHierarchy();
 		drawInspector();
-
-		if (m_isSerializePopupOpen)
+		if (m_openPopupRequestd)
 		{
-			ImGui::OpenPopup("Save Scene");
-			m_isSerializePopupOpen = false;
+			m_openPopupRequestd = false;
+			ImGui::OpenPopup("Save");
 		}
 		drawSerializePopup();
+		if (m_openExportRequested)
+		{
+			m_openExportRequested = false;
+			ImGui::OpenPopup("Export");
+		}
+
+		drawExportPopup();
 	}
 
 	// 描画
@@ -69,17 +75,8 @@ void Gui::Update()
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	}
 
-	if (m_openFileRequested) 
-	{
-		m_openFileRequested = false;
-		std::string fullPath = openFileDialog();
-		if (!fullPath.empty())
-		{
-			std::filesystem::path path(fullPath);
-			std::string sceneName = path.stem().string();
-			SceneManager::GetCurrentScene()->Deserialize(sceneName);
-		}
-	}
+	checkOpenFile();
+	checkExit();
 }
 
 void Gui::Finalize()
@@ -102,10 +99,17 @@ void Gui::drawMainMenu()
 			}
 			if (ImGui::MenuItem("Save")) 
 			{ 
-				m_isSerializePopupOpen = true;
+				m_openPopupRequestd = true;
+			}
+			if (ImGui::MenuItem("Export"))
+			{
+				m_openExportRequested = true;
 			}
 			ImGui::Separator();
-			if (ImGui::MenuItem("Exit")) { /* 終了処理 */ }
+			if (ImGui::MenuItem("Exit")) 
+			{ 
+				m_exitRequested = true;
+			}
 			ImGui::EndMenu();
 		}
 
@@ -249,7 +253,7 @@ void Gui::drawHierarchyNode(GameObject* pGameObject)
 
 void Gui::drawSerializePopup()
 {
-	if (ImGui::BeginPopupModal("Save Scene", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	if (ImGui::BeginPopupModal("Save", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 	{
 		ImGui::Text("Enter file name:");
 		ImGui::InputText("##SaveFileName", m_serializeFileName, sizeof(m_serializeFileName));
@@ -261,7 +265,7 @@ void Gui::drawSerializePopup()
 			// 保存処理
 			SceneManager::GetCurrentScene()->Serialize(m_serializeFileName);
 
-			m_isSerializePopupOpen = false;
+			m_openPopupRequestd = false;
 			ImGui::CloseCurrentPopup();
 		}
 
@@ -269,7 +273,7 @@ void Gui::drawSerializePopup()
 
 		if (ImGui::Button("Cancel", ImVec2(120, 0)))
 		{
-			m_isSerializePopupOpen = false;
+			m_openPopupRequestd = false;
 			ImGui::CloseCurrentPopup();
 		}
 
@@ -296,4 +300,71 @@ std::string Gui::openFileDialog()
 	}
 
 	return "";
+}
+
+void Gui::checkOpenFile()
+{
+	if (m_openFileRequested)
+	{
+		m_openFileRequested = false;
+		std::string fullPath = openFileDialog();
+		if (!fullPath.empty())
+		{
+			std::filesystem::path path(fullPath);
+			std::string sceneName = path.stem().string();
+			SceneManager::GetCurrentScene()->Deserialize(sceneName);
+		}
+	}
+}
+
+void Gui::checkExit()
+{
+	if (m_exitRequested)
+	{
+		m_exitRequested = false;
+		PostMessage(m_hWnd, WM_CLOSE, 0, 0);
+	}
+}
+
+void Gui::drawExportPopup()
+{
+	if (ImGui::BeginPopupModal("Export", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		ImGui::Text("File name:");
+		ImGui::InputText("##ExportFileName", m_exportFileName, sizeof(m_exportFileName));
+
+		ImGui::Separator();
+
+		ImGui::InputInt("Horizontal Count", &m_exportNumW);
+		ImGui::InputInt("Vertical Count", &m_exportNumH);
+
+		// 最低値保証
+		if (m_exportNumW < 1) m_exportNumW = 1;
+		if (m_exportNumH < 1) m_exportNumH = 1;
+
+		ImGui::Separator();
+
+		if (ImGui::Button("Export", ImVec2(120, 0)))
+		{
+			std::wstring wFileName =
+				std::filesystem::path(m_exportFileName).wstring();
+
+			SceneManager::GetCurrentScene()
+				->GetContext()
+				->Export(wFileName,
+					static_cast<UINT>(m_exportNumW),
+					static_cast<UINT>(m_exportNumH));
+
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("Cancel", ImVec2(120, 0)))
+		{
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
+	}
 }

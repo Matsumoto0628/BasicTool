@@ -10,14 +10,14 @@ public:
 	bool Initialize();
 	void Update();
 	void Finalize();
-	void Export(UINT numW, UINT numH);
+	void Export(std::wstring fileName, UINT numW, UINT numH);
 
 private:
 	RenderExporter() = delete;
 	bool initSheet();
 	void initBox();
 	void updateSheet();
-	bool save(ID3D11Texture2D* const texture, const std::wstring& fileName);
+	bool save(ID3D11Texture2D* const texture, const std::wstring& sheetName);
 	const RenderContext* const m_pContext = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pSheetTexture = nullptr;
 	bool m_isExport = false;
@@ -26,6 +26,7 @@ private:
 	UINT m_sheetNumW = 1;
 	UINT m_sheetNumH = 1;
 	D3D11_BOX m_box;
+	std::wstring m_sheetName = L"sheet";
 
 	// 定数
 	static const UINT WIDTH = 500;
