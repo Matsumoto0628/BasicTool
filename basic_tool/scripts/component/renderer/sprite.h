@@ -23,6 +23,7 @@ public:
 	static std::unique_ptr<Sprite> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
     bool SetTexture(const std::wstring& path);
     void SetColor(const Vec4& color) { m_color = color; }
+    const Vec4& GetColor() const { return m_color; }
 
 protected:
     bool initRasterizer() override;
