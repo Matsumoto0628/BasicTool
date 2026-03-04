@@ -138,6 +138,14 @@ void Sprite::Initialize()
             return;
         }
     }
+
+    {
+        bool result = initConstantBufferB();
+        if (!result)
+        {
+            return;
+        }
+    }
 }
 
 void Sprite::Start()
@@ -153,6 +161,7 @@ void Sprite::Draw()
     // 更新
     {
         updateConstantBufferA();
+        updateConstantBufferB();
     }
 
     // 描画
@@ -187,6 +196,7 @@ void Sprite::Draw()
             getContext()->GetDeviceContext()->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
             getContext()->GetDeviceContext()->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
             getContext()->GetDeviceContext()->VSSetConstantBuffers(0, 1, m_pConstantBufferA.GetAddressOf());
+            getContext()->GetDeviceContext()->PSSetConstantBuffers(1, 1, m_pConstantBufferB.GetAddressOf());
             getContext()->GetDeviceContext()->OMSetBlendState(m_pBlendState.Get(), blendFactor, 0xffffffff);
             getContext()->GetDeviceContext()->OMSetDepthStencilState(m_pDepthStencilNoMaskState.Get(), 0); // Zなし
             getContext()->GetDeviceContext()->PSSetSamplers(0, 1, m_pSamplerState.GetAddressOf()); // テクスチャ用
@@ -230,10 +240,10 @@ bool Sprite::initRasterizer()
 bool Sprite::initVertexBuffer()
 {
     Vertex vertices[4] = {
-        { {-1.0f,  1.0f, 0.0f}, m_color, {0,0} }, // 左上
-        { {1.0f,  1.0f, 0.0f}, m_color, {1,0} }, // 右上
-        { {-1.0f, -1.0f, 0.0f}, m_color, {0,1} }, // 左下
-        { {1.0f, -1.0f, 0.0f}, m_color, {1,1} }  // 右下
+        { {-1.0f,  1.0f, 0.0f}, {0,0} }, // 左上
+        { {1.0f,  1.0f, 0.0f}, {1,0} }, // 右上
+        { {-1.0f, -1.0f, 0.0f}, {0,1} }, // 左下
+        { {1.0f, -1.0f, 0.0f}, {1,1} }  // 右下
     };
 
     D3D11_BUFFER_DESC desc = {};
@@ -300,6 +310,27 @@ bool Sprite::initConstantBufferA()
     return true;
 }
 
+bool Sprite::initConstantBufferB()
+{
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(ConstantBufferB);
+    desc.Usage = D3D11_USAGE_DYNAMIC; // Map/Unmapで書き換える
+    desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+    HRESULT hr = getContext()->GetDevice()->CreateBuffer(
+        &desc,
+        nullptr,
+        &m_pConstantBufferB
+    );
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    return true;
+}
+
 void Sprite::updateConstantBufferA()
 {
     // 渡すもの
@@ -313,6 +344,19 @@ void Sprite::updateConstantBufferA()
     {
         memcpy(mapped.pData, &cb, sizeof(ConstantBufferA));
         getContext()->GetDeviceContext()->Unmap(m_pConstantBufferA.Get(), 0);
+    }
+}
+
+void Sprite::updateConstantBufferB()
+{
+    ConstantBufferB cb;
+    m_color.ToFloat4(cb.color);
+
+    D3D11_MAPPED_SUBRESOURCE mapped = {};
+    if (SUCCEEDED(getContext()->GetDeviceContext()->Map(m_pConstantBufferB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
+    {
+        memcpy(mapped.pData, &cb, sizeof(ConstantBufferB));
+        getContext()->GetDeviceContext()->Unmap(m_pConstantBufferB.Get(), 0);
     }
 }
 
@@ -342,7 +386,7 @@ bool Sprite::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_color_uv_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_uv_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -385,19 +429,9 @@ bool Sprite::initInputLayout(ID3DBlob* vsBlob)
         0
     };
 
-    D3D11_INPUT_ELEMENT_DESC colorDesc = {
-        "TEXCOORD",
-        0,
-        DXGI_FORMAT_R32G32B32A32_FLOAT,
-        0,
-        offsetof(Vertex, color),
-        D3D11_INPUT_PER_VERTEX_DATA,
-        0
-    };
-
     D3D11_INPUT_ELEMENT_DESC uvDesc = {
         "TEXCOORD",
-        1,
+        0,
         DXGI_FORMAT_R32G32_FLOAT,
         0,
         offsetof(Vertex, uv),
@@ -407,7 +441,6 @@ bool Sprite::initInputLayout(ID3DBlob* vsBlob)
 
     D3D11_INPUT_ELEMENT_DESC layout[] = {
         positionDesc,
-        colorDesc,
         uvDesc
     };
 
@@ -430,7 +463,7 @@ bool Sprite::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_color_uv_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_uv_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;
@@ -523,7 +556,7 @@ bool Sprite::initPixelShaderZOnly()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/z_only_pos_color_uv_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/z_only_pos_uv_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;

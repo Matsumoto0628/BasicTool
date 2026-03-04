@@ -22,6 +22,7 @@ public:
     Json Serialize() const override;
 	static std::unique_ptr<Sprite> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
     bool SetTexture(const std::wstring& path);
+    void SetColor(const Vec4& color) { m_color = color; }
 
 protected:
     bool initRasterizer() override;
@@ -35,7 +36,6 @@ private:
     struct Vertex
     {
         Vec3 pos;
-        Vec4 color;
         Vec2 uv;
     };
     struct ConstantBufferA
@@ -44,19 +44,26 @@ private:
         float view[4][4];
         float proj[4][4];
     };
+    struct ConstantBufferB 
+    {
+        float color[4];
+    };
     bool initSampler();
     bool initTexture();
     bool initDepthStencilNoMask();
     bool initBlendNoColor();
     bool initPixelShaderZOnly();
     bool initConstantBufferA();
+    bool initConstantBufferB();
     void updateConstantBufferA();
+    void updateConstantBufferB();
     Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState = nullptr;
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture = nullptr;
     Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilNoMaskState = nullptr;
     Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendNoColorState = nullptr;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderZOnly = nullptr;
     Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferB = nullptr;
     Vec4 m_color;
 
     // 定数
