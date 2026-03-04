@@ -544,3 +544,23 @@ bool Sprite::initPixelShaderZOnly()
 
     return true;
 }
+
+bool Sprite::SetTexture(const std::wstring& path)
+{
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture;
+
+    HRESULT hr = DirectX::CreateWICTextureFromFile(
+        getContext()->GetDevice(),
+        path.c_str(),
+        nullptr,
+        &texture
+    );
+
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    m_pTexture = texture;
+    return true;
+}

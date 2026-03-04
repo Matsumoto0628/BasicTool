@@ -2,6 +2,7 @@
 #include "renderer.h"
 #include <wincodec.h>
 #include <WICTextureLoader.h>
+#include <string>
 
 class RenderContext;
 class Camera;
@@ -20,6 +21,7 @@ public:
     void Show() override;
     Json Serialize() const override;
 	static std::unique_ptr<Sprite> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
+    bool SetTexture(const std::wstring& path);
 
 protected:
     bool initRasterizer() override;
