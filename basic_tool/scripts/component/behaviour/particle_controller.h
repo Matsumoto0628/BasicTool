@@ -1,6 +1,7 @@
 #pragma once
 #include "component.h"
 #include <vector>
+#include <string>
 
 class Camera;
 class Transform;
@@ -37,6 +38,7 @@ public:
 	void Pause();
 	void Resume();
 private:
+	std::wstring openTextureDialog();
 	Transform* const m_pTransform = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	const Camera* const m_pCamera = nullptr;

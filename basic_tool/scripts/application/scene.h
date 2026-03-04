@@ -23,6 +23,7 @@ public:
 	GameObject* const FindGameObject(uint64_t id) const;
 	GameObject* const FindGameObject(std::string name) const;
 	RenderContext* const GetContext() const { return m_pContext; }
+	const HWND& GetWnd() const { return m_hWnd; }
 	void Serialize(std::string sceneName);
 	void Deserialize(std::string path, std::string sceneName);
 
@@ -46,7 +47,6 @@ public:
 protected:
 	Scene(HWND hWnd, RenderContext* const pContext);
 	void destroy();
-	const HWND& getWnd() const { return m_hWnd; }
 	const RenderContext* const getContext() const { return m_pContext; }
 	const std::vector<std::unique_ptr<GameObject>>& getGameObjects() const { return m_pGameObjects; }
 	void clearGameObjects() { m_pGameObjects.clear(); }

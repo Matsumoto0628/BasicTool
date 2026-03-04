@@ -8,6 +8,9 @@
 #include "rigidbody.h"
 #include "game_input.h"
 #include "camera.h"
+#include "imgui.h"
+#include <windows.h>
+#include <commdlg.h>
 
 ParticleController::ParticleController(
 	uint64_t id, 
@@ -82,6 +85,26 @@ void ParticleController::Finalize()
 
 void ParticleController::Show()
 {
+	ImGui::PushID(this);
+
+	if (ImGui::CollapsingHeader("Particle", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		if (ImGui::Button("Change Texture"))
+		{
+			std::wstring path = openTextureDialog();
+
+			if (!path.empty())
+			{
+				for (auto& pParticle : m_pParticles)
+				{
+					auto sprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
+					sprite->SetTexture(path);
+				}
+			}
+		}
+	}
+
+	ImGui::PopID();
 }
 
 Json ParticleController::Serialize() const
@@ -140,4 +163,25 @@ void ParticleController::Resume()
 	{
 		pRigidbody->SetEnabled(true);
 	}
+}
+
+std::wstring ParticleController::openTextureDialog()
+{
+	wchar_t fileName[MAX_PATH] = L"";
+
+	OPENFILENAMEW ofn{};
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = SceneManager::GetCurrentScene()->GetWnd();
+	ofn.lpstrFilter = L"PNG Files (*.png)\0*.png\0";
+	ofn.lpstrFile = fileName;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+	ofn.lpstrDefExt = L"png";
+
+	if (GetOpenFileNameW(&ofn))
+	{
+		return std::wstring(fileName);
+	}
+
+	return L"";
 }

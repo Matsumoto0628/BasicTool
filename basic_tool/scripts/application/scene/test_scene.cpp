@@ -19,7 +19,7 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
+	m_pGui = std::make_unique<Gui>(GetWnd(), getContext(), &getGameObjects());
 	m_pGui->Initialize();
 }
 
