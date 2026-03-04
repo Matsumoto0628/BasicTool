@@ -342,7 +342,7 @@ bool Sprite::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_color_uv_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_color_uv_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -430,7 +430,7 @@ bool Sprite::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/texture_pos_color_uv_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/texture_pos_color_uv_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;
@@ -456,7 +456,7 @@ bool Sprite::initTexture()
 {
     HRESULT hr = DirectX::CreateWICTextureFromFile(
         getContext()->GetDevice(),
-        L"images/SlimeBall.png",
+        L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/images/SlimeBall.png",
         nullptr,
         &m_pTexture
     );
@@ -523,7 +523,7 @@ bool Sprite::initPixelShaderZOnly()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/z_only_pos_color_uv_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/z_only_pos_color_uv_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;

@@ -556,7 +556,7 @@ bool RenderContext::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/fullscreen_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/fullscreen_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -584,7 +584,7 @@ bool RenderContext::initPixelShader()
 
     // extract
     {
-        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/extract_pos_uv_ps.cso", &psBlob);
+        HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/extract_pos_uv_ps.cso", &psBlob);
         if (FAILED(hr))
         {
             return false;
@@ -604,7 +604,7 @@ bool RenderContext::initPixelShader()
 
     // blur
     {
-        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/blur_pos_uv_ps.cso", &psBlob);
+        HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/blur_pos_uv_ps.cso", &psBlob);
         if (FAILED(hr))
         {
             return false;
@@ -624,7 +624,7 @@ bool RenderContext::initPixelShader()
 
     // composite
     {
-        HRESULT hr = D3DReadFileToBlob(L"scripts/shader/composite_pos_uv_ps.cso", &psBlob);
+        HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/composite_pos_uv_ps.cso", &psBlob);
         if (FAILED(hr))
         {
             return false;
