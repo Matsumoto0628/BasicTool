@@ -19,6 +19,7 @@ public:
     Json Serialize() const override;
     static std::unique_ptr<Rigidbody> Deserialize(const Json& j, Transform* const pTransform);
     void AddForce(const Vec3& force);
+    void AddImpulse(const Vec3& force);
     void SetVelocity(const Vec3& vel);
     const Vec3& GetVelocity() const { return m_velocity; }
     float GetMass() const { return m_mass; }
