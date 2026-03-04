@@ -98,7 +98,7 @@ void RenderExporter::updateSheet()
     }
 
     int x = m_sheetIndex % m_sheetNumW;
-    int y = m_sheetIndex / m_sheetNumH;
+    int y = m_sheetIndex / m_sheetNumW;
     m_pContext->GetDeviceContext()->CopySubresourceRegion(
         m_pSheetTexture.Get(),
         0,
