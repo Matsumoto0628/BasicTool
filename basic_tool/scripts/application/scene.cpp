@@ -88,7 +88,7 @@ void Scene::destroy()
 {
 	for (auto& pGameObject : m_pGameObjects)
 	{
-		if (!pGameObject->GetIsDestroy())
+		if (pGameObject->GetIsDestroy())
 		{
 			pGameObject->Finalize();
 		}
@@ -96,7 +96,7 @@ void Scene::destroy()
 
 	auto predicate = [](const auto& pGameObject) {
 		return pGameObject->GetIsDestroy();
-		};
+	};
 
 	std::erase_if(m_pGameObjects, predicate);
 }
