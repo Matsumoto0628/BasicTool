@@ -24,7 +24,7 @@ public:
 	GameObject* const FindGameObject(std::string name) const;
 	RenderContext* const GetContext() const { return m_pContext; }
 	void Serialize(std::string sceneName);
-	void Deserialize(std::string sceneName);
+	void Deserialize(std::string path, std::string sceneName);
 
 	template<typename T>
 		requires std::derived_from<T, Component>
@@ -55,7 +55,7 @@ protected:
 	
 private:
 	Scene() = delete;
-	void deserialize(std::string sceneName);
+	void deserialize(std::string path, std::string sceneName);
 	HWND m_hWnd = nullptr;
 	RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;

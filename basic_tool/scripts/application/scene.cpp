@@ -74,12 +74,12 @@ void Scene::Serialize(std::string sceneName)
 	file << j.dump(4);
 }
 
-void Scene::Deserialize(std::string sceneName)
+void Scene::Deserialize(std::string path, std::string sceneName)
 {
 	Terminate();
 	Initialize();
 
-	deserialize(sceneName);
+	deserialize(path, sceneName);
 
 	Start();
 }
@@ -101,9 +101,9 @@ void Scene::destroy()
 	std::erase_if(m_pGameObjects, predicate);
 }
 
-void Scene::deserialize(std::string sceneName)
+void Scene::deserialize(std::string path, std::string sceneName)
 {
-	std::ifstream file{ sceneName + ".json" };
+	std::ifstream file{ path };
 	Json j;
 	file >> j;
 	for (const auto& gameObjectJson : j[sceneName])

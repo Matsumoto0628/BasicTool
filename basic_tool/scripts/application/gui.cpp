@@ -323,7 +323,7 @@ void Gui::checkOpenFile()
 		{
 			std::filesystem::path path(fullPath);
 			std::string sceneName = path.stem().string();
-			SceneManager::GetCurrentScene()->Deserialize(sceneName);
+			SceneManager::GetCurrentScene()->Deserialize(fullPath, sceneName);
 		}
 	}
 }
