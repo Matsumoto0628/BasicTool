@@ -53,7 +53,7 @@ void ParticleController::Start()
 		gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 30,30,30,1 });
 		auto& line = gameObject.AddComponent<Line>(m_pContext, m_pCamera, Vec4{ 1,0,0,1 });
 		auto& rb = gameObject.AddComponent<Rigidbody>(&gameObject.GetTransform());
-		rb.AddForce({
+		rb.SetVelocity({
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f)
@@ -118,11 +118,10 @@ void ParticleController::Play()
 	{
 		pRigidbody->SetEnabled(true);
 
-		pRigidbody->SetVelocity({ 0,0,0 });
-		pRigidbody->AddForce({
-			GameRandom::GetRange(-5.0f, 5.0f),
-			GameRandom::GetRange(-5.0f, 5.0f),
-			GameRandom::GetRange(-5.0f, 5.0f)
+		pRigidbody->SetVelocity({
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f)
 		});
 	}
 }
