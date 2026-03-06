@@ -42,6 +42,7 @@ public:
 		return ref;
 	}
 
+	// nullptrを返したいのでポインタを返す
 	template<typename T>
 		requires std::derived_from<T, Component>
 	T* const FindComponent(Component::Type type) const

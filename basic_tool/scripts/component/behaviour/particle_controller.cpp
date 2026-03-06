@@ -78,16 +78,16 @@ void ParticleController::Update()
 		}
 
 		// 非ポーズのときだけ寿命を更新する
-		for (auto& pParticle : m_pParticles)
+		for (auto& pParticleGameObject : m_pParticles)
 		{
-			auto particle = pParticle->FindComponent<Particle>(Component::Type::Particle);
-			if (particle)
+			auto pParticle = pParticleGameObject->FindComponent<Particle>(Component::Type::Particle);
+			if (pParticle)
 			{
-				particle->UpdateLife();
+				pParticle->UpdateLife();
 			}
 
-			auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
-			if (rb)
+			auto pRb = pParticleGameObject->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+			if (pRb)
 			{
 				//rb->AddForce({ 0,-9.8f,0 });
 			}
@@ -145,26 +145,26 @@ void ParticleController::Play()
 	m_timer = 0;
 	m_isPause = false;
 	
-	for (auto& pParticle : m_pParticles)
+	for (auto& pParticleGameObject : m_pParticles)
 	{
 		// Transformをリセット
-		pParticle->GetTransform().SetPosition({ 0,0,0 });
-		pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
+		pParticleGameObject->GetTransform().SetPosition({ 0,0,0 });
+		pParticleGameObject->GetTransform().SetLocalPosition({ 0,0,0 });
 
 		// Particleの寿命をリセット
-		auto particle = pParticle->FindComponent<Particle>(Component::Type::Particle);
-		if (particle)
+		auto pParticle = pParticleGameObject->FindComponent<Particle>(Component::Type::Particle);
+		if (pParticle)
 		{
-			particle->Restart();
+			pParticle->Restart();
 		}
 
 		// 物理演算をリセット
-		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
-		if (rb)
+		auto pRb = pParticleGameObject->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (pRb)
 		{
-			rb->SetEnabled(true);
+			pRb->SetEnabled(true);
 
-			rb->SetVelocity({
+			pRb->SetVelocity({
 				GameRandom::GetRange(-1.0f, 1.0f),
 				GameRandom::GetRange(-1.0f, 1.0f),
 				GameRandom::GetRange(-1.0f, 1.0f)
@@ -178,10 +178,10 @@ void ParticleController::Pause()
 	m_isPause = true;
 	for (auto& pParticle : m_pParticles)
 	{
-		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
-		if (rb)
+		auto pRb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (pRb)
 		{
-			rb->SetEnabled(false);
+			pRb->SetEnabled(false);
 		}
 	}
 }
@@ -191,10 +191,10 @@ void ParticleController::Resume()
 	m_isPause = false;
 	for (auto& pParticle : m_pParticles)
 	{
-		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
-		if (rb)
+		auto pRb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (pRb)
 		{
-			rb->SetEnabled(true);
+			pRb->SetEnabled(true);
 		}
 	}
 }
@@ -228,10 +228,10 @@ void ParticleController::changeTexture()
 	{
 		for (auto& pParticle : m_pParticles)
 		{
-			auto sprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
-			if (sprite)
+			auto pSprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
+			if (pSprite)
 			{
-				sprite->SetTexture(path);
+				pSprite->SetTexture(path);
 			}
 		}
 	}

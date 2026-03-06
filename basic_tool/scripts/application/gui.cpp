@@ -403,14 +403,14 @@ void Gui::drawPlaybackControl()
 	{
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			auto controller = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
-			if (!controller)
+			auto pController = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
+			if (!pController)
 			{
 				continue;
 			}
 
 			m_isPause = false;
-			controller->Play();
+			pController->Play();
 		}
 	}
 
@@ -421,8 +421,8 @@ void Gui::drawPlaybackControl()
 		const bool isPause = m_isPause;
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			auto controller = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
-			if (!controller) 
+			auto pController = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
+			if (!pController) 
 			{
 				continue;
 			}
@@ -430,12 +430,12 @@ void Gui::drawPlaybackControl()
 			if (isPause)
 			{
 				m_isPause = false;
-				controller->Resume();
+				pController->Resume();
 			}
 			else
 			{
 				m_isPause = true;
-				controller->Pause();
+				pController->Pause();
 			}
 		}
 	}
