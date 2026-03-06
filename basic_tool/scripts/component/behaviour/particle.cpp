@@ -47,14 +47,6 @@ void Particle::Update()
 		const Vec3 dir = (m_pCameraTransform->GetPosition() - m_pTransform->GetPosition()).Normalize();
 		m_pTransform->SetRotation(LookRotation(dir, {0,1,0}));
 	}
-
-	m_timer += GameTime::GetDeltaTime();
-	if (m_timer >= m_lifeTime)
-	{
-		m_pSprite->SetEnabled(false);
-	}
-	const Vec4 color = { m_color.X(), m_color.Y(), m_color.Z(), m_color.W() * (1 - (m_timer / m_lifeTime)) };
-	m_pSprite->SetColor(color);
 }
 
 void Particle::Draw()
@@ -100,6 +92,17 @@ void Particle::Restart()
 	m_timer = 0;
 	m_pSprite->SetEnabled(true);
 	m_pSprite->SetColor(m_color);
+}
+
+void Particle::UpdateLife() 
+{
+	m_timer += GameTime::GetDeltaTime();
+	if (m_timer >= m_lifeTime)
+	{
+		m_pSprite->SetEnabled(false);
+	}
+	const Vec4 color = { m_color.X(), m_color.Y(), m_color.Z(), m_color.W() * (1 - (m_timer / m_lifeTime)) };
+	m_pSprite->SetColor(color);
 }
 
 void Particle::drawLine()

@@ -23,6 +23,7 @@ public:
 	void SetIsLine(bool which) { m_isLine = which; }
 	bool GetIsLine() { return m_isLine; }
 	void Restart();
+	void UpdateLife();
 
 private:
 	Particle() = delete;

@@ -73,9 +73,19 @@ void ParticleController::Update()
 	if (!m_isPause)
 	{
 		m_timer += GameTime::GetDeltaTime();
-		if (m_timer >= m_duration) 
+		if (m_timer >= m_duration) // 時間を経過で再生し直す
 		{
 			Play();
+		}
+
+		// 非ポーズのときだけ寿命を更新する
+		for (auto& pParticle : m_pParticles)
+		{
+			auto particle = pParticle->FindComponent<Particle>(Component::Type::Particle);
+			if (particle)
+			{
+				particle->UpdateLife();
+			}
 		}
 	}
 
