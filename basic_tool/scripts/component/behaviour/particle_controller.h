@@ -39,12 +39,12 @@ public:
 	void Resume();
 private:
 	std::wstring openTextureDialog();
+	void changeTexture();
 	Transform* const m_pTransform = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	const Camera* const m_pCamera = nullptr;
 	Transform* const m_pCameraTransform = nullptr;
 	std::vector<GameObject*> m_pParticles;
-	std::vector<Rigidbody*> m_pRigidbodies;
 	float m_duration = 3;
 	float m_timer = 0;
 	float m_isPause = false;

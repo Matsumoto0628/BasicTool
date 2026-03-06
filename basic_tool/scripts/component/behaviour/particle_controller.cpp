@@ -62,7 +62,6 @@ void ParticleController::Start()
 			GameRandom::GetRange(-1.0f, 1.0f),
 			GameRandom::GetRange(-1.0f, 1.0f)
 		});
-		m_pRigidbodies.push_back(&rb);
 		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform, &sprite, 2.0f);
 		m_pParticles.push_back(&gameObject);
 	}
@@ -86,12 +85,13 @@ void ParticleController::Update()
 			{
 				particle->UpdateLife();
 			}
-		}
-	}
 
-	for (auto& pRigidbody : m_pRigidbodies)
-	{
-		//pRigidbody->AddForce({0,-9.8f,0});
+			auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+			if (rb)
+			{
+				//rb->AddForce({ 0,-9.8f,0 });
+			}
+		}
 	}
 }
 
@@ -111,19 +111,7 @@ void ParticleController::Show()
 	{
 		if (ImGui::Button("Change Texture"))
 		{
-			std::wstring path = openTextureDialog();
-
-			if (!path.empty())
-			{
-				for (auto& pParticle : m_pParticles)
-				{
-					auto sprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
-					if (sprite)
-					{
-						sprite->SetTexture(path);
-					}
-				}
-			}
+			changeTexture();
 		}
 	}
 
@@ -156,45 +144,58 @@ void ParticleController::Play()
 {
 	m_timer = 0;
 	m_isPause = false;
-
+	
 	for (auto& pParticle : m_pParticles)
 	{
+		// Transformをリセット
 		pParticle->GetTransform().SetPosition({ 0,0,0 });
 		pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
+
+		// Particleの寿命をリセット
 		auto particle = pParticle->FindComponent<Particle>(Component::Type::Particle);
 		if (particle)
 		{
 			particle->Restart();
 		}
-	}
 
-	for (auto& pRigidbody : m_pRigidbodies)
-	{
-		pRigidbody->SetEnabled(true);
+		// 物理演算をリセット
+		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (rb)
+		{
+			rb->SetEnabled(true);
 
-		pRigidbody->SetVelocity({
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f)
-		});
+			rb->SetVelocity({
+				GameRandom::GetRange(-1.0f, 1.0f),
+				GameRandom::GetRange(-1.0f, 1.0f),
+				GameRandom::GetRange(-1.0f, 1.0f)
+			});
+		}
 	}
 }
 
 void ParticleController::Pause()
 {
 	m_isPause = true;
-	for (auto& pRigidbody : m_pRigidbodies)
+	for (auto& pParticle : m_pParticles)
 	{
-		pRigidbody->SetEnabled(false);
+		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (rb)
+		{
+			rb->SetEnabled(false);
+		}
 	}
 }
 
 void ParticleController::Resume()
 {
 	m_isPause = false;
-	for (auto& pRigidbody : m_pRigidbodies)
+	for (auto& pParticle : m_pParticles)
 	{
-		pRigidbody->SetEnabled(true);
+		auto rb = pParticle->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+		if (rb)
+		{
+			rb->SetEnabled(true);
+		}
 	}
 }
 
@@ -217,4 +218,21 @@ std::wstring ParticleController::openTextureDialog()
 	}
 
 	return L"";
+}
+
+void ParticleController::changeTexture()
+{
+	std::wstring path = openTextureDialog();
+
+	if (!path.empty())
+	{
+		for (auto& pParticle : m_pParticles)
+		{
+			auto sprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
+			if (sprite)
+			{
+				sprite->SetTexture(path);
+			}
+		}
+	}
 }
