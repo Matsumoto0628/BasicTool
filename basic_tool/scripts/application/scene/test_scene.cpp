@@ -28,7 +28,7 @@ void TestScene::Setup()
 	{
 		auto& cameraGameObject = Instantiate("Camera");
 		auto& camera = cameraGameObject.AddComponent<Camera>(&cameraGameObject.GetTransform(), getContext()->GetWidth(), getContext()->GetHeight());
-		cameraGameObject.GetTransform().SetPosition({ 0,0,-10 });
+		cameraGameObject.GetTransform().SetPosition({ 0,2,-20 });
 
 		auto& particleControllerGameObject = Instantiate("ParticleController");
 		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), getContext(), &camera, &cameraGameObject.GetTransform());
