@@ -51,20 +51,17 @@ void ParticleController::Start()
 	for (int i = 0; i < PARTICLE_COUNT; i++)
 	{
 		auto& gameObject = SceneManager::GetCurrentScene()->Instantiate("Particle");
-		gameObject.GetTransform().SetParent(m_pTransform);
-		gameObject.GetTransform().SetLocalScale({ 0.1f,0.1f,0.1f });
-		gameObject.GetTransform().SetLocalPosition({ 0,0,0 });
 		auto& sprite = gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 30,30,30,1 });
 		auto& line = gameObject.AddComponent<Line>(m_pContext, m_pCamera, Vec4{ 1,0,0,1 });
 		auto& rb = gameObject.AddComponent<Rigidbody>(&gameObject.GetTransform());
-		rb.SetVelocity({
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f),
-			GameRandom::GetRange(-1.0f, 1.0f)
-		});
-		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform, &sprite, 2.0f);
+		auto& particle = gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform, &sprite, 2.0f);
+		gameObject.GetTransform().SetParent(m_pTransform);
+		gameObject.GetTransform().SetLocalScale({ 0.1f,0.1f,0.1f });
+		particle.Reset();
 		m_pParticles.push_back(&gameObject);
 	}
+
+	Play();
 }
 
 void ParticleController::Update()
@@ -72,9 +69,21 @@ void ParticleController::Update()
 	if (!m_isPause)
 	{
 		m_timer += GameTime::GetDeltaTime();
-		if (m_timer >= m_duration) // 時間を経過で再生し直す
+		if (m_timer >= m_duration) // 時間経過で再生し直す
 		{
+			m_timer = 0;
 			Play();
+		}
+		
+		if (!m_isBurst) 
+		{
+			m_playTimer += GameTime::GetDeltaTime();
+			if (m_playTimer >= m_span && m_idx <= PARTICLE_COUNT - 1)
+			{
+				m_playTimer = 0;
+				play(m_idx);
+				m_idx++;
+			}
 		}
 
 		// 非ポーズのときだけ寿命を更新する
@@ -89,7 +98,7 @@ void ParticleController::Update()
 			auto pRb = pParticleGameObject->FindComponent<Rigidbody>(Component::Type::Rigidbody);
 			if (pRb)
 			{
-				//rb->AddForce({ 0,-9.8f,0 });
+				pRb->AddForce({ 0,9.8f,0 });
 			}
 		}
 	}
@@ -142,34 +151,24 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 
 void ParticleController::Play()
 {
-	m_timer = 0;
 	m_isPause = false;
-	
+	m_idx = 0;
+	m_timer = 0;
+	m_playTimer = 0;
+
+	// パーティクルをリセット
 	for (auto& pParticleGameObject : m_pParticles)
 	{
-		// Transformをリセット
-		pParticleGameObject->GetTransform().SetPosition({ 0,0,0 });
-		pParticleGameObject->GetTransform().SetLocalPosition({ 0,0,0 });
-
-		// Particleの寿命をリセット
 		auto pParticle = pParticleGameObject->FindComponent<Particle>(Component::Type::Particle);
 		if (pParticle)
 		{
-			pParticle->Restart();
+			pParticle->Reset();
 		}
+	}
 
-		// 物理演算をリセット
-		auto pRb = pParticleGameObject->FindComponent<Rigidbody>(Component::Type::Rigidbody);
-		if (pRb)
-		{
-			pRb->SetEnabled(true);
-
-			pRb->SetVelocity({
-				GameRandom::GetRange(-1.0f, 1.0f),
-				GameRandom::GetRange(-1.0f, 1.0f),
-				GameRandom::GetRange(-1.0f, 1.0f)
-			});
-		}
+	if (m_isBurst) 
+	{
+		playBurst();
 	}
 }
 
@@ -234,5 +233,47 @@ void ParticleController::changeTexture()
 				pSprite->SetTexture(path);
 			}
 		}
+	}
+}
+
+void ParticleController::play(int idx)
+{
+	idx = max(idx, 0);
+	idx = min(idx, PARTICLE_COUNT - 1);
+	GameObject* pParticleGameObject = m_pParticles[idx];
+
+	// パーティクルをリセット
+	auto pParticle = pParticleGameObject->FindComponent<Particle>(Component::Type::Particle);
+	if (pParticle)
+	{
+		pParticle->Reset();
+	}
+
+	// スプライトを表示
+	auto pSprite = pParticleGameObject->FindComponent<Sprite>(Component::Type::Sprite);
+	if (pSprite)
+	{
+		pSprite->SetEnabled(true);
+	}
+
+	// 力を加える
+	auto pRb = pParticleGameObject->FindComponent<Rigidbody>(Component::Type::Rigidbody);
+	if (pRb)
+	{
+		pRb->SetEnabled(true);
+
+		pRb->SetVelocity({
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f),
+			GameRandom::GetRange(-1.0f, 1.0f)
+		});
+	}
+}
+
+void ParticleController::playBurst() 
+{
+	for (int i = 0; i < BURST_COUNT; i++) 
+	{
+		play(i);
 	}
 }

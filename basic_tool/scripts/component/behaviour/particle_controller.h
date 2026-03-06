@@ -40,6 +40,8 @@ public:
 private:
 	std::wstring openTextureDialog();
 	void changeTexture();
+	void play(int idx);
+	void playBurst();
 	Transform* const m_pTransform = nullptr;
 	const RenderContext* const m_pContext = nullptr;
 	const Camera* const m_pCamera = nullptr;
@@ -48,7 +50,12 @@ private:
 	float m_duration = 3;
 	float m_timer = 0;
 	float m_isPause = false;
+	int m_idx = 0;
+	float m_span = 0.01f;
+	float m_playTimer = 0;
+	bool m_isBurst = true;
 
 	// 定数
 	static const int PARTICLE_COUNT = 100;
+	static const int BURST_COUNT = 30;
 };
