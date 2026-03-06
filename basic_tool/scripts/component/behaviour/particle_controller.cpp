@@ -11,6 +11,7 @@
 #include "imgui.h"
 #include <windows.h>
 #include <commdlg.h>
+#include "game_time.h"
 
 ParticleController::ParticleController(
 	uint64_t id, 
@@ -53,7 +54,7 @@ void ParticleController::Start()
 		gameObject.GetTransform().SetParent(m_pTransform);
 		gameObject.GetTransform().SetLocalScale({ 0.1f,0.1f,0.1f });
 		gameObject.GetTransform().SetLocalPosition({ 0,0,0 });
-		gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 30,30,30,1 });
+		auto& sprite = gameObject.AddComponent<Sprite>(m_pContext, m_pCamera, &gameObject.GetTransform(), Vec4{ 30,30,30,1 });
 		auto& line = gameObject.AddComponent<Line>(m_pContext, m_pCamera, Vec4{ 1,0,0,1 });
 		auto& rb = gameObject.AddComponent<Rigidbody>(&gameObject.GetTransform());
 		rb.SetVelocity({
@@ -62,13 +63,22 @@ void ParticleController::Start()
 			GameRandom::GetRange(-1.0f, 1.0f)
 		});
 		m_pRigidbodies.push_back(&rb);
-		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform);
+		gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform, &sprite, 2.0f);
 		m_pParticles.push_back(&gameObject);
 	}
 }
 
 void ParticleController::Update()
 {
+	if (!m_isPause)
+	{
+		m_timer += GameTime::GetDeltaTime();
+		if (m_timer >= m_duration) 
+		{
+			Play();
+		}
+	}
+
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
 		//pRigidbody->AddForce({0,-9.8f,0});
@@ -98,7 +108,10 @@ void ParticleController::Show()
 				for (auto& pParticle : m_pParticles)
 				{
 					auto sprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
-					sprite->SetTexture(path);
+					if (sprite)
+					{
+						sprite->SetTexture(path);
+					}
 				}
 			}
 		}
@@ -131,10 +144,18 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 
 void ParticleController::Play()
 {
+	m_timer = 0;
+	m_isPause = false;
+
 	for (auto& pParticle : m_pParticles)
 	{
 		pParticle->GetTransform().SetPosition({ 0,0,0 });
 		pParticle->GetTransform().SetLocalPosition({ 0,0,0 });
+		auto particle = pParticle->FindComponent<Particle>(Component::Type::Particle);
+		if (particle)
+		{
+			particle->Restart();
+		}
 	}
 
 	for (auto& pRigidbody : m_pRigidbodies)
@@ -151,6 +172,7 @@ void ParticleController::Play()
 
 void ParticleController::Pause()
 {
+	m_isPause = true;
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
 		pRigidbody->SetEnabled(false);
@@ -159,6 +181,7 @@ void ParticleController::Pause()
 
 void ParticleController::Resume()
 {
+	m_isPause = false;
 	for (auto& pRigidbody : m_pRigidbodies)
 	{
 		pRigidbody->SetEnabled(true);
