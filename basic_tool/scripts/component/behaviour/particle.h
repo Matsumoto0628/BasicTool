@@ -22,7 +22,7 @@ public:
 	static std::unique_ptr<Particle> Deserialize(const Json& j, Transform* pTransform);
 	void SetIsLine(bool which) { m_isLine = which; }
 	bool GetIsLine() { return m_isLine; }
-	void Restart();
+	void Reset();
 	void UpdateLife();
 
 private:

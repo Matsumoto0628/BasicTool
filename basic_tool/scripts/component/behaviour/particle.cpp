@@ -87,11 +87,14 @@ std::unique_ptr<Particle> Particle::Deserialize(const Json& j, Transform* pTrans
 	return pComponent;
 }
 
-void Particle::Restart()
+void Particle::Reset()
 {
 	m_timer = 0;
-	m_pSprite->SetEnabled(true);
+	m_pTransform->SetPosition({ 0,0,0 });
+	m_pTransform->SetLocalPosition({ 0,0,0 });
+	m_pSprite->SetEnabled(false);
 	m_pSprite->SetColor(m_color);
+	m_pRb->SetVelocity({ 0,0,0 });
 }
 
 void Particle::UpdateLife() 
