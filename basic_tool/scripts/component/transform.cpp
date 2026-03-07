@@ -106,7 +106,7 @@ void Transform::Show()
     bool isChangeSca = false;
 
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader(("Transform"), ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader(("Transform")))
     {
         isChangePos = showVec3("Position", posX, posY, posZ);
         isChangeRot = showVec3("Rotation", rotX, rotY, rotZ, 360.0f);
