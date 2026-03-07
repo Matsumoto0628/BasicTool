@@ -82,7 +82,7 @@ bool Renderer::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/test_pos_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_vs.cso", &vsBlob);
     if (FAILED(hr)) 
     {
         return false;
@@ -148,7 +148,7 @@ bool Renderer::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"C:/Users/kanik/Desktop/DirectXProject/basic_tool/basic_tool/scripts/shader/test_pos_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;

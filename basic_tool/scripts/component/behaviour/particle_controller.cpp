@@ -280,7 +280,7 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 	pComponent->m_gravity = j.value("gravity", 0.0f);
 	pComponent->m_spread = j.value("spread", 1.0f);
 
-	pComponent->m_texturePath = j.value("texturePath", "SlimeBall.png");
+	pComponent->m_texturePath = j.value("texturePath", "image/SlimeBall.png");
 
 	if (j.contains("color"))
 	{
