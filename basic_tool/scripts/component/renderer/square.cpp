@@ -257,7 +257,7 @@ bool Square::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_vs.cso", &vsBlob);
+    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_color_vs.cso", &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -334,7 +334,7 @@ bool Square::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"scripts/shader/test_pos_color_ps.cso", &psBlob);
+    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_color_ps.cso", &psBlob);
     if (FAILED(hr))
     {
         return false;

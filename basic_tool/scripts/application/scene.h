@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "game_object.h"
+#include <filesystem>
 
 class RenderContext;
 class Rigidbody;
@@ -23,8 +24,9 @@ public:
 	GameObject* const FindGameObject(uint64_t id) const;
 	GameObject* const FindGameObject(std::string name) const;
 	RenderContext* const GetContext() const { return m_pContext; }
+	const HWND& GetWnd() const { return m_hWnd; }
 	void Serialize(std::string sceneName);
-	void Deserialize(std::string sceneName);
+	void Deserialize(std::string path, std::string sceneName);
 
 	template<typename T>
 		requires std::derived_from<T, Component>
@@ -46,16 +48,16 @@ public:
 protected:
 	Scene(HWND hWnd, RenderContext* const pContext);
 	void destroy();
-	const HWND& getWnd() const { return m_hWnd; }
 	const RenderContext* const getContext() const { return m_pContext; }
 	const std::vector<std::unique_ptr<GameObject>>& getGameObjects() const { return m_pGameObjects; }
 	void clearGameObjects() { m_pGameObjects.clear(); }
 	bool getIsRuntime() const { return s_isRuntime; }
 	void setIsRuntime(bool which) { s_isRuntime = which; }
+	static std::filesystem::path getExeDirectory();
 	
 private:
 	Scene() = delete;
-	void deserialize(std::string sceneName);
+	void deserialize(std::string path, std::string sceneName);
 	HWND m_hWnd = nullptr;
 	RenderContext* const m_pContext = nullptr;
 	std::vector<std::unique_ptr<GameObject>> m_pGameObjects;

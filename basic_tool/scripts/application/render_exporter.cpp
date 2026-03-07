@@ -5,9 +5,10 @@
 #include <string>
 #include "game_time.h"
 #include "game_input.h"
+#include <windows.h>
 
 // 定数
-const float RenderExporter::SHEET_INTERVAL = 0.1f;
+const float RenderExporter::SHEET_INTERVAL = 0.3f;
 
 RenderExporter::RenderExporter(RenderContext* pContext)
     : m_pContext{pContext}
@@ -98,7 +99,7 @@ void RenderExporter::updateSheet()
     }
 
     int x = m_sheetIndex % m_sheetNumW;
-    int y = m_sheetIndex / m_sheetNumH;
+    int y = m_sheetIndex / m_sheetNumW;
     m_pContext->GetDeviceContext()->CopySubresourceRegion(
         m_pSheetTexture.Get(),
         0,
@@ -116,7 +117,15 @@ void RenderExporter::updateSheet()
         m_sheetIndex = 0;
         m_isExport = false;
         m_pContext->GetDeviceContext()->Flush();
-        save(m_pSheetTexture.Get(), m_sheetName + L".png");
+
+        // exeと同じ階層のexportフォルダに保存
+        {
+            std::filesystem::path exeDir = getExeDirectory();
+            std::filesystem::path exportDir = exeDir / L"export";
+            std::filesystem::create_directories(exportDir);
+            std::filesystem::path filePath = exportDir / (m_sheetName + L".png");
+            save(m_pSheetTexture.Get(), filePath.wstring());
+        }
     }
 }
 
@@ -174,4 +183,12 @@ bool RenderExporter::save(ID3D11Texture2D* const texture, const std::wstring& fi
 
         return SUCCEEDED(hr);
     }
+}
+
+std::filesystem::path RenderExporter::getExeDirectory()
+{
+    wchar_t path[MAX_PATH];
+    GetModuleFileNameW(nullptr, path, MAX_PATH);
+
+    return std::filesystem::path(path).parent_path();
 }

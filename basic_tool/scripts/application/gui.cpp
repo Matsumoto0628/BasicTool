@@ -117,17 +117,26 @@ void Gui::drawMainMenu()
 
 		if (ImGui::BeginMenu("Edit"))
 		{
-			if (ImGui::MenuItem("Create Controller")) 
+			if (ImGui::MenuItem("Create")) 
 			{
 				auto pCameraGameObject = SceneManager::GetCurrentScene()->FindGameObject("Camera");
 				auto pCamera = pCameraGameObject->FindComponent<Camera>(Component::Type::Camera);
 				auto& particleControllerGameObject = SceneManager::GetCurrentScene()->Instantiate("ParticleController", true);
-				particleControllerGameObject.AddComponent<ParticleController>(
+				auto& controller = particleControllerGameObject.AddComponent<ParticleController>(
 					&particleControllerGameObject.GetTransform(), 
 					m_pContext, 
 					pCamera, 
 					&pCameraGameObject->GetTransform()
 				);
+
+				if (m_isPause)
+				{
+					controller.Pause();
+				}
+				else
+				{
+					controller.Resume();
+				}
 			}
 			ImGui::EndMenu();
 		}
@@ -314,7 +323,7 @@ void Gui::checkOpenFile()
 		{
 			std::filesystem::path path(fullPath);
 			std::string sceneName = path.stem().string();
-			SceneManager::GetCurrentScene()->Deserialize(sceneName);
+			SceneManager::GetCurrentScene()->Deserialize(fullPath, sceneName);
 		}
 	}
 }
@@ -394,14 +403,14 @@ void Gui::drawPlaybackControl()
 	{
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			for (auto& pComponent : *pGameObject->GetComponents())
+			auto pController = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
+			if (!pController)
 			{
-				if (pComponent->GetType() == Component::Type::ParticleController) 
-				{
-					auto controller = static_cast<ParticleController*>(pComponent.get());
-					controller->Play();
-				}
+				continue;
 			}
+
+			m_isPause = false;
+			pController->Play();
 		}
 	}
 
@@ -409,15 +418,24 @@ void Gui::drawPlaybackControl()
 
 	if (ImGui::Button("Pause"))
 	{
+		const bool isPause = m_isPause;
 		for (auto& pGameObject : *m_ppGameObjects)
 		{
-			for (auto& pComponent : *pGameObject->GetComponents())
+			auto pController = pGameObject->FindComponent<ParticleController>(Component::Type::ParticleController);
+			if (!pController) 
 			{
-				if (pComponent->GetType() == Component::Type::ParticleController)
-				{
-					auto controller = static_cast<ParticleController*>(pComponent.get());
-					controller->Pause();
-				}
+				continue;
+			}
+
+			if (isPause)
+			{
+				m_isPause = false;
+				pController->Resume();
+			}
+			else
+			{
+				m_isPause = true;
+				pController->Pause();
 			}
 		}
 	}

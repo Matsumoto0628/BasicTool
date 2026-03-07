@@ -41,6 +41,7 @@ private:
 	void applyLocal();
 	void applyMatrix();
 	void applyEulerAngles(const Vec3& eulerDeg);
+	bool showVec3(const char* label, float& x, float& y, float& z, float clamp = 1000.0f, float width = 60.0f);
 	Vec3 m_position;
 	Vec4 m_rotation;
 	Vec3 m_scale;

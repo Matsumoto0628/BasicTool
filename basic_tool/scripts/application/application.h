@@ -5,8 +5,10 @@
 class RenderContext;
 class SceneManager;
 
-// TODO: パーティクルの画像変更、動き、寿命を変更できるようにする
 // TODO: プリプロセッサ命令でunique_ptrでのメモリ確保を自作アロケータに変更できるようにする(game_objectとcomponent)
+// TODO: Spriteアニメーション対応
+// TODO: 再生中の色、スケール、回転の変化を実装
+// TODO: 3Dメッシュ対応
 class Application
 {
 public:

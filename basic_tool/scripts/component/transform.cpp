@@ -101,67 +101,28 @@ void Transform::Show()
     float scaX = m_scale.X();
     float scaY = m_scale.Y();
     float scaZ = m_scale.Z();
+    bool isChangePos = false;
+    bool isChangeRot = false;
+    bool isChangeSca = false;
 
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader("Transform"), ImGuiTreeNodeFlags_DefaultOpen)
+    if (ImGui::CollapsingHeader(("Transform")))
     {
-        ImGui::PushID("Position");
-        {
-            ImGui::Text("Position");
-            ImGui::SameLine();
-            ImGui::PushItemWidth(60);
-            ImGui::DragFloat("##x", &posX);
-            ImGui::SameLine();
-            ImGui::DragFloat("##y", &posY);
-            ImGui::SameLine();
-            ImGui::DragFloat("##z", &posZ);
-            ImGui::PopItemWidth();
-        }
-        ImGui::PopID();
-
-        ImGui::PushID("Rotation");
-        {
-            ImGui::Text("Rotation");
-            ImGui::SameLine();
-            ImGui::PushItemWidth(60);
-            ImGui::DragFloat("##x", &rotX);
-            ImGui::SameLine();
-            ImGui::DragFloat("##y", &rotY);
-            ImGui::SameLine();
-            ImGui::DragFloat("##z", &rotZ);
-            ImGui::PopItemWidth();
-        }
-        ImGui::PopID();
-
-        ImGui::PushID("Scale");
-        {
-            ImGui::Text("Scale");
-            ImGui::SameLine();
-            ImGui::PushItemWidth(60);
-            ImGui::DragFloat("##x", &scaX);
-            ImGui::SameLine();
-            ImGui::DragFloat("##y", &scaY);
-            ImGui::SameLine();
-            ImGui::DragFloat("##z", &scaZ);
-            ImGui::PopItemWidth();
-        }
-        ImGui::PopID();
+        isChangePos = showVec3("Position", posX, posY, posZ);
+        isChangeRot = showVec3("Rotation", rotX, rotY, rotZ, 360.0f);
+        isChangeSca = showVec3("Scale", scaX, scaY, scaZ);
     }
     ImGui::PopID();
 
-    rotX = static_cast<int>(rotX) % 360;
-    rotY = static_cast<int>(rotY) % 360;
-    rotZ = static_cast<int>(rotZ) % 360;
-
-    if (posX != m_position.X() || posY != m_position.Y() || posZ != m_position.Z())
+    if (isChangePos)
     {
         SetPosition({ posX, posY, posZ });
     }
-    if (rotX != m_eulerAngles.X() || rotY != m_eulerAngles.Y() || rotZ != m_eulerAngles.Z())
+    if (isChangeRot)
     {
         applyEulerAngles({ rotX, rotY, rotZ });
     }
-    if (scaX != m_scale.X() || scaY != m_scale.Y() || scaZ != m_scale.Z())
+    if (isChangeSca)
     {
         SetScale({ scaX, scaY, scaZ });
     }
@@ -244,4 +205,37 @@ void Transform::applyEulerAngles(const Vec3& eulerDeg)
     m_eulerAngles = eulerDeg;
     applyWorld();
     applyMatrix();
+}
+
+bool Transform::showVec3(const char* label, float& x, float& y, float& z, float clamp, float width)
+{
+    bool changed = false;
+
+    ImGui::PushID(label);
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, 70);
+
+    // 左カラム
+    ImGui::Text(label);
+    ImGui::NextColumn();
+    ImGui::PushItemWidth(width);
+
+    ImGui::Text("X");
+    ImGui::SameLine();
+    changed |= ImGui::DragFloat("##x", &x, 0.1f, -clamp, clamp);
+
+    ImGui::Text("Y");
+    ImGui::SameLine();
+    changed |= ImGui::DragFloat("##y", &y, 0.1f, -clamp, clamp);
+
+    ImGui::Text("Z");
+    ImGui::SameLine();
+    changed |= ImGui::DragFloat("##z", &z, 0.1f, -clamp, clamp);
+
+    ImGui::PopItemWidth();
+
+    ImGui::Columns(1);
+    ImGui::PopID();
+
+    return changed;
 }

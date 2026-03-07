@@ -77,6 +77,8 @@ void GameObject::Finalize()
 	{
 		pComponent->Finalize();
 	}
+
+	m_pComponents.clear();
 }
 
 void GameObject::Destroy()

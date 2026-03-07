@@ -2,6 +2,7 @@
 #include "render_context.h"
 #include "camera.h"
 #include <fstream>
+#include <windows.h>
 #include <nlohmann/json.hpp>
 using Json = nlohmann::ordered_json;
 
@@ -70,16 +71,20 @@ void Scene::Serialize(std::string sceneName)
 		}
 	}
 
-	std::ofstream file{ sceneName + ".json"};
+	std::filesystem::path exeDir = getExeDirectory();
+	std::filesystem::path sceneDir = exeDir / "scene";
+	std::filesystem::create_directories(sceneDir);
+	std::filesystem::path filePath = sceneDir / (sceneName + ".json");
+	std::ofstream file{ filePath };
 	file << j.dump(4);
 }
 
-void Scene::Deserialize(std::string sceneName)
+void Scene::Deserialize(std::string path, std::string sceneName)
 {
 	Terminate();
 	Initialize();
 
-	deserialize(sceneName);
+	deserialize(path, sceneName);
 
 	Start();
 }
@@ -88,7 +93,7 @@ void Scene::destroy()
 {
 	for (auto& pGameObject : m_pGameObjects)
 	{
-		if (!pGameObject->GetIsDestroy())
+		if (pGameObject->GetIsDestroy())
 		{
 			pGameObject->Finalize();
 		}
@@ -96,14 +101,14 @@ void Scene::destroy()
 
 	auto predicate = [](const auto& pGameObject) {
 		return pGameObject->GetIsDestroy();
-		};
+	};
 
 	std::erase_if(m_pGameObjects, predicate);
 }
 
-void Scene::deserialize(std::string sceneName)
+void Scene::deserialize(std::string path, std::string sceneName)
 {
-	std::ifstream file{ sceneName + ".json" };
+	std::ifstream file{ path };
 	Json j;
 	file >> j;
 	for (const auto& gameObjectJson : j[sceneName])
@@ -111,4 +116,11 @@ void Scene::deserialize(std::string sceneName)
 		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
 		gameObject.Deserialize(gameObjectJson);
 	}
+}
+
+std::filesystem::path Scene::getExeDirectory()
+{
+	wchar_t path[MAX_PATH];
+	GetModuleFileNameW(nullptr, path, MAX_PATH);
+	return std::filesystem::path(path).parent_path();
 }

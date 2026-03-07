@@ -74,6 +74,18 @@ void Rigidbody::AddForce(const Vec3& force)
     m_force += force;
 }
 
+void Rigidbody::AddImpulse(const Vec3& force)
+{
+    if (m_mass > 0) 
+    {
+        m_velocity += force / m_mass;
+    }
+    else 
+    {
+        m_velocity = { 0,0,0 };
+    }
+}
+
 void Rigidbody::SetVelocity(const Vec3& vel)
 {
     m_velocity = vel;

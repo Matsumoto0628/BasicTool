@@ -19,7 +19,7 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	m_pGui = std::make_unique<Gui>(getWnd(), getContext(), &getGameObjects());
+	m_pGui = std::make_unique<Gui>(GetWnd(), getContext(), &getGameObjects());
 	m_pGui->Initialize();
 }
 
@@ -28,7 +28,7 @@ void TestScene::Setup()
 	{
 		auto& cameraGameObject = Instantiate("Camera");
 		auto& camera = cameraGameObject.AddComponent<Camera>(&cameraGameObject.GetTransform(), getContext()->GetWidth(), getContext()->GetHeight());
-		cameraGameObject.GetTransform().SetPosition({ 0,0,-10 });
+		cameraGameObject.GetTransform().SetPosition({ 0,0,-50 });
 
 		auto& particleControllerGameObject = Instantiate("ParticleController");
 		particleControllerGameObject.AddComponent<ParticleController>(&particleControllerGameObject.GetTransform(), getContext(), &camera, &cameraGameObject.GetTransform());
