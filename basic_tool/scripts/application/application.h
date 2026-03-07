@@ -5,7 +5,6 @@
 class RenderContext;
 class SceneManager;
 
-// TODO: ビルド(初期データに使っている絶対パスに注意)
 // TODO: プリプロセッサ命令でunique_ptrでのメモリ確保を自作アロケータに変更できるようにする(game_objectとcomponent)
 // TODO: Spriteアニメーション対応
 // TODO: 再生中の色、スケール、回転の変化を実装
