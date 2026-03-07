@@ -108,6 +108,13 @@ void Particle::UpdateLife()
 	m_pSprite->SetColor(color);
 }
 
+void Particle::SetColor(const Vec4& col) 
+{
+	m_color = col;
+	const Vec4 color = { m_color.X(), m_color.Y(), m_color.Z(), m_color.W() * (1 - (m_timer / m_lifeTime)) };
+	m_pSprite->SetColor(color);
+}
+
 void Particle::drawLine()
 {
 	m_pLine->SetEnabled(m_isLine);

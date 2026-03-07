@@ -24,6 +24,8 @@ public:
 	bool GetIsLine() { return m_isLine; }
 	void Reset();
 	void UpdateLife();
+	void SetColor(const Vec4& col);
+	void SetLifeTime(float lifeTime) { m_lifeTime = lifeTime; }
 
 private:
 	Particle() = delete;
@@ -36,5 +38,5 @@ private:
 	float m_lifeTime = 3.0f;
 	float m_timer = 0;
 	Sprite* const m_pSprite = nullptr;
-	const Vec4 m_color;
+	Vec4 m_color;
 };
