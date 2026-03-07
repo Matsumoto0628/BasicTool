@@ -1,0 +1,75 @@
+#pragma once
+#include "renderer.h"
+#include <wincodec.h>
+#include <WICTextureLoader.h>
+#include <string>
+
+class RenderContext;
+class Camera;
+
+class Sprite : public Renderer
+{
+public:
+    Sprite(uint64_t id, const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
+    Sprite(const RenderContext* const pContext, const Camera* const pCamera, const Transform* const pTransform, const Vec4& color);
+    ~Sprite() override;
+    void Initialize() override;
+    void Start() override;
+    void Update() override;
+    void Draw() override;
+    void Finalize() override;
+    void Show() override;
+    Json Serialize() const override;
+	static std::unique_ptr<Sprite> Deserialize(const Json& j, const RenderContext* const pContext, const Transform* const pTransform);
+    bool SetTexture(const std::wstring& path);
+    void SetColor(const Vec4& color) { m_color = color; }
+    const Vec4& GetColor() const { return m_color; }
+
+protected:
+    bool initRasterizer() override;
+    bool initVertexBuffer() override;
+    bool initIndexBuffer() override;
+    bool initVertexShader() override;
+    bool initInputLayout(ID3DBlob* vsBlob) override;
+    bool initPixelShader() override;
+
+private:
+    struct Vertex
+    {
+        Vec3 pos;
+        Vec2 uv;
+    };
+    struct ConstantBufferA
+    {
+        float world[4][4];
+        float view[4][4];
+        float proj[4][4];
+    };
+    struct ConstantBufferB 
+    {
+        float color[4];
+    };
+    bool initSampler();
+    bool initTexture();
+    bool initDepthStencilNoMask();
+    bool initBlendNoColor();
+    bool initPixelShaderZOnly();
+    bool initConstantBufferA();
+    bool initConstantBufferB();
+    void updateConstantBufferA();
+    void updateConstantBufferB();
+    Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_pDepthStencilNoMaskState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11BlendState> m_pBlendNoColorState = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShaderZOnly = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferA = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBufferB = nullptr;
+    Vec4 m_color;
+
+    // 定数
+    static const int VERTEX_COUNT = 4;
+    static const UINT STRIDE = sizeof(Vertex);
+    static const UINT OFFSET = 0;
+    static const Vec4 BLEND_FACTOR;
+};

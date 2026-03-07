@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="application">
+      <UniqueIdentifier>{67cff518-8abe-451f-8a8d-a11120d5e536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="window">
+      <UniqueIdentifier>{f28cae38-8b5b-49f0-a124-93d52e718d19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{e34d6438-9394-4f97-b0bb-e8f4739920ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\backends">
+      <UniqueIdentifier>{49fbfc5e-f0d0-4983-95de-dceec14dd1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{135b9787-d335-4698-a234-db5f2e6dd5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{af14bdcc-995d-40fe-93f7-f5642451b440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component">
+      <UniqueIdentifier>{ab40463b-283f-4aba-bf78-2d392b8258f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\renderer">
+      <UniqueIdentifier>{8f60842e-f6eb-4063-a048-11654cb12e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\scene">
+      <UniqueIdentifier>{31c3718d-8cb4-476d-9838-7bd830f15963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{7daf72fc-326e-4050-9e55-5a065d32046d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\behaviour">
+      <UniqueIdentifier>{2e78256f-3117-4bad-b90a-86930e0c40a7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="scripts\main.cpp" />
+    <ClCompile Include="scripts\pch.cpp" />
+    <ClCompile Include="scripts\window\window.cpp">
+      <Filter>window</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\application.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\backends\imgui_impl_win32.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\mat4x4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\math\vec4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\transform.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\sphere.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\square.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\triangle_test.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\camera.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\game_object.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\gui.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\render_context.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\scene.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\scene\test_scene.cpp">
+      <Filter>application\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\rigidbody.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_time.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\line.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\particle.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\renderer\sprite.cpp">
+      <Filter>component\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_random.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\utility\game_input.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\camera_controller.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\scene_manager.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\behaviour\particle_controller.cpp">
+      <Filter>component\behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\component\component.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\application\render_exporter.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="scripts\pch.h" />
+    <ClInclude Include="scripts\window\window.h">
+      <Filter>window</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\application.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\backends\imgui_impl_dx11.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\backends\imgui_impl_win32.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\mat4x4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\vec4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\math\rotation_converter.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\transform.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\component.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\sphere.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\square.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\triangle_test.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\camera.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\game_object.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\gui.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\render_context.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene\test_scene.h">
+      <Filter>application\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\rigidbody.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_time.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\line.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\particle.h">
+      <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\renderer\sprite.h">
+      <Filter>component\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_random.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\utility\game_input.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\camera_controller.h">
+      <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\scene_manager.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\component\behaviour\particle_controller.h">
+      <Filter>component\behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\application\render_exporter.h">
+      <Filter>application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="scripts\shader\test_pos_color_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_pos_color_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_pos_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\test_pos_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_color_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_color_uv_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\z_only_pos_color_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\fullscreen_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\extract_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\blur_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\composite_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_uv_vs.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\texture_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="scripts\shader\z_only_pos_uv_ps.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

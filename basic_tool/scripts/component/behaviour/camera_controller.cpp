@@ -1,0 +1,109 @@
+#include "camera_controller.h"
+#include "transform.h"
+#include "game_input.h"
+#include "game_time.h"
+#include <Windows.h>
+#include "game_random.h"
+
+// 定数
+const float CameraController::m_speed = 5.0f;
+const float CameraController::m_sensitivity = 0.001f;
+
+CameraController::CameraController(uint64_t id, Transform* pTransform)
+: Component{ id, Type::CameraController },
+	m_pTransform{ pTransform }
+{
+}
+
+CameraController::CameraController(Transform* pTransform)
+	: CameraController{ GameRandom::GetUUID(), pTransform }
+{
+}
+
+CameraController::~CameraController()
+{
+}
+
+void CameraController::Initialize()
+{
+}
+
+void CameraController::Start()
+{
+}
+
+void CameraController::Update()
+{
+	if (GameInput::GetKey('W'))
+	{
+		m_pTransform->SetPosition(m_pTransform->GetPosition() + m_pTransform->GetForward() * m_speed * GameTime::GetDeltaTime());
+	}
+
+	if (GameInput::GetKey('S'))
+	{
+		m_pTransform->SetPosition(m_pTransform->GetPosition() - m_pTransform->GetForward() * m_speed * GameTime::GetDeltaTime());
+	}
+
+	if (GameInput::GetKey('A'))
+	{
+		m_pTransform->SetPosition(m_pTransform->GetPosition() - m_pTransform->GetRight() * m_speed * GameTime::GetDeltaTime());
+	}
+
+	if (GameInput::GetKey('D'))
+	{
+		m_pTransform->SetPosition(m_pTransform->GetPosition() + m_pTransform->GetRight() * m_speed * GameTime::GetDeltaTime());
+	}
+
+	if (GameInput::GetKeyDown(VK_LBUTTON))
+	{
+		while (ShowCursor(FALSE) >= 0) {}
+		GetCursorPos(&m_anchorPos);
+	}
+
+	if (GameInput::GetKey(VK_LBUTTON))
+	{
+		POINT cursorPos;
+		GetCursorPos(&cursorPos);
+
+		const float dx = cursorPos.x - m_anchorPos.x;
+		const float dy = cursorPos.y - m_anchorPos.y;
+		m_rotX += dy * m_sensitivity;
+		m_rotY += dx * m_sensitivity;
+		
+		const Vec4 rot = EulerToQuaternion({ m_rotX, m_rotY, 0 });
+		m_pTransform->SetRotation(rot);
+
+		SetCursorPos(m_anchorPos.x, m_anchorPos.y);
+	}
+
+	if (GameInput::GetKeyUp(VK_LBUTTON))
+	{
+		while (ShowCursor(TRUE) < 0) {}
+	}
+}
+
+void CameraController::Draw()
+{
+}
+
+void CameraController::Finalize()
+{
+}
+
+void CameraController::Show()
+{
+}
+
+Json CameraController::Serialize() const
+{
+	return {
+		{"id", GetID()},
+		{"type", GetType()}
+	};
+}
+
+std::unique_ptr<CameraController> CameraController::Deserialize(const Json& j, Transform* pTransform)
+{
+	auto pComponent = std::make_unique<CameraController>(j.at("id").get<uint64_t>(), pTransform);
+	return pComponent;
+}
