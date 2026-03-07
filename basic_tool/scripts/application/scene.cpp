@@ -2,6 +2,7 @@
 #include "render_context.h"
 #include "camera.h"
 #include <fstream>
+#include <windows.h>
 #include <nlohmann/json.hpp>
 using Json = nlohmann::ordered_json;
 
@@ -70,7 +71,11 @@ void Scene::Serialize(std::string sceneName)
 		}
 	}
 
-	std::ofstream file{ sceneName + ".json"};
+	std::filesystem::path exeDir = getExeDirectory();
+	std::filesystem::path sceneDir = exeDir / "scene";
+	std::filesystem::create_directories(sceneDir);
+	std::filesystem::path filePath = sceneDir / (sceneName + ".json");
+	std::ofstream file{ filePath };
 	file << j.dump(4);
 }
 
@@ -111,4 +116,11 @@ void Scene::deserialize(std::string path, std::string sceneName)
 		auto& gameObject = Instantiate(gameObjectJson.at("id").get<uint64_t>(), gameObjectJson.at("name").get<std::string>());
 		gameObject.Deserialize(gameObjectJson);
 	}
+}
+
+std::filesystem::path Scene::getExeDirectory()
+{
+	wchar_t path[MAX_PATH];
+	GetModuleFileNameW(nullptr, path, MAX_PATH);
+	return std::filesystem::path(path).parent_path();
 }
