@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "game_random.h"
 #include "scene_manager.h"
+#include "path_getter.h"
 
 // 定数
 const Vec4 Sprite::BLEND_FACTOR = { 0, 0, 0, 0 };
@@ -386,7 +387,10 @@ bool Sprite::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/texture_pos_uv_vs.cso", &vsBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"texture_pos_uv_vs.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -463,7 +467,10 @@ bool Sprite::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/texture_pos_uv_ps.cso", &psBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"texture_pos_uv_ps.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
     if (FAILED(hr))
     {
         return false;
@@ -487,9 +494,12 @@ bool Sprite::initPixelShader()
 
 bool Sprite::initTexture() 
 {
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"image";
+    std::filesystem::path filePath = exportDir / L"SlimeBall.png";
     HRESULT hr = DirectX::CreateWICTextureFromFile(
         getContext()->GetDevice(),
-        L"image/SlimeBall.png",
+        filePath.c_str(),
         nullptr,
         &m_pTexture
     );
@@ -556,7 +566,10 @@ bool Sprite::initPixelShaderZOnly()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/z_only_pos_uv_ps.cso", &psBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"z_only_pos_uv_ps.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
     if (FAILED(hr))
     {
         return false;

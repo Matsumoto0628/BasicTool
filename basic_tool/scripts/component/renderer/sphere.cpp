@@ -5,6 +5,7 @@
 #include "transform.h"
 #include "game_random.h"
 #include "scene_manager.h"
+#include "path_getter.h"
 
 const Vec4 Sphere::BLEND_FACTOR = { 0,0,0,0 };
 
@@ -250,7 +251,10 @@ bool Sphere::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_color_vs.cso", &vsBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"test_pos_color_vs.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -327,7 +331,10 @@ bool Sphere::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_color_ps.cso", &psBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"test_pos_color_ps.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
     if (FAILED(hr))
     {
         return false;

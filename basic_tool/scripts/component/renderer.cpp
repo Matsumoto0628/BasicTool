@@ -2,6 +2,7 @@
 #include "render_context.h"
 #include "camera.h"
 #include "transform.h"
+#include "path_getter.h"
 
 Renderer::Renderer(
     uint64_t id,
@@ -82,7 +83,10 @@ bool Renderer::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_vs.cso", &vsBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"test_pos_vs.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &vsBlob);
     if (FAILED(hr)) 
     {
         return false;
@@ -148,7 +152,10 @@ bool Renderer::initPixelShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/test_pos_ps.cso", &psBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"test_pos_ps.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
     if (FAILED(hr))
     {
         return false;

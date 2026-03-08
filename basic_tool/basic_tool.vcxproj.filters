@@ -242,6 +242,9 @@
     <ClInclude Include="scripts\application\render_exporter.h">
       <Filter>application</Filter>
     </ClInclude>
+    <ClInclude Include="scripts\utility\path_getter.h">
+      <Filter>utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="scripts\shader\test_pos_color_vs.hlsl">

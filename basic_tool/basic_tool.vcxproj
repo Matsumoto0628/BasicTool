@@ -223,6 +223,7 @@
     <ClInclude Include="scripts\utility\game_input.h" />
     <ClInclude Include="scripts\utility\game_time.h" />
     <ClInclude Include="scripts\utility\game_random.h" />
+    <ClInclude Include="scripts\utility\path_getter.h" />
     <ClInclude Include="scripts\window\window.h" />
   </ItemGroup>
   <ItemGroup>

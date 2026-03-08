@@ -39,7 +39,7 @@ public:
 	void Resume();
 private:
 	std::wstring openTextureDialog();
-	void applyTexture();
+	void applyTexture(std::wstring path);
 	void play(int idx);
 	void playBurst();
 	bool showColor(const char* label, int& r, int& g, int& b, float width = 60.0f);
@@ -62,7 +62,7 @@ private:
 	float m_lifeTime = 2.0f;
 	float m_gravity = 3.0f;
 	float m_spread = 1.0f;
-	std::string m_texturePath = "SlimeBall.png";
+	std::wstring m_texturePath = L"SlimeBall.png";
 
 	// 定数
 	static const int PARTICLE_COUNT = 100;

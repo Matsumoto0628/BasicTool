@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include "game_object.h"
-#include <filesystem>
 
 class RenderContext;
 class Rigidbody;
@@ -53,7 +52,6 @@ protected:
 	void clearGameObjects() { m_pGameObjects.clear(); }
 	bool getIsRuntime() const { return s_isRuntime; }
 	void setIsRuntime(bool which) { s_isRuntime = which; }
-	static std::filesystem::path getExeDirectory();
 	
 private:
 	Scene() = delete;
