@@ -5,7 +5,7 @@
 #include <string>
 #include "game_time.h"
 #include "game_input.h"
-#include <windows.h>
+#include "path_getter.h"
 
 // 定数
 const float RenderExporter::SHEET_INTERVAL = 0.3f;
@@ -120,7 +120,7 @@ void RenderExporter::updateSheet()
 
         // exeと同じ階層のexportフォルダに保存
         {
-            std::filesystem::path exeDir = getExeDirectory();
+            std::filesystem::path exeDir = PathGetter::GetExeDirectory();
             std::filesystem::path exportDir = exeDir / L"export";
             std::filesystem::create_directories(exportDir);
             std::filesystem::path filePath = exportDir / (m_sheetName + L".png");
@@ -183,12 +183,4 @@ bool RenderExporter::save(ID3D11Texture2D* const texture, const std::wstring& fi
 
         return SUCCEEDED(hr);
     }
-}
-
-std::filesystem::path RenderExporter::getExeDirectory()
-{
-    wchar_t path[MAX_PATH];
-    GetModuleFileNameW(nullptr, path, MAX_PATH);
-
-    return std::filesystem::path(path).parent_path();
 }

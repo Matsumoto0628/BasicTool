@@ -1,5 +1,6 @@
 #include "render_context.h"
 #include "render_exporter.h"
+#include "path_getter.h"
 
 // 定数
 const Vec4 RenderContext::BACK_BUFFER_COLOR = { 0, 0, 0, 0 };
@@ -556,7 +557,10 @@ bool RenderContext::initVertexShader()
 {
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
-    HRESULT hr = D3DReadFileToBlob(L"shader/fullscreen_vs.cso", &vsBlob);
+    std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+    std::filesystem::path exportDir = exeDir / L"shader";
+    std::filesystem::path filePath = exportDir / L"fullscreen_vs.cso";
+    HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &vsBlob);
     if (FAILED(hr))
     {
         return false;
@@ -584,7 +588,10 @@ bool RenderContext::initPixelShader()
 
     // extract
     {
-        HRESULT hr = D3DReadFileToBlob(L"shader/extract_pos_uv_ps.cso", &psBlob);
+        std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+        std::filesystem::path exportDir = exeDir / L"shader";
+        std::filesystem::path filePath = exportDir / L"extract_pos_uv_ps.cso";
+        HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
         if (FAILED(hr))
         {
             return false;
@@ -604,7 +611,10 @@ bool RenderContext::initPixelShader()
 
     // blur
     {
-        HRESULT hr = D3DReadFileToBlob(L"shader/blur_pos_uv_ps.cso", &psBlob);
+        std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+        std::filesystem::path exportDir = exeDir / L"shader";
+        std::filesystem::path filePath = exportDir / L"blur_pos_uv_ps.cso";
+        HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
         if (FAILED(hr))
         {
             return false;
@@ -624,7 +634,10 @@ bool RenderContext::initPixelShader()
 
     // composite
     {
-        HRESULT hr = D3DReadFileToBlob(L"shader/composite_pos_uv_ps.cso", &psBlob);
+        std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+        std::filesystem::path exportDir = exeDir / L"shader";
+        std::filesystem::path filePath = exportDir / L"composite_pos_uv_ps.cso";
+        HRESULT hr = D3DReadFileToBlob(filePath.c_str(), &psBlob);
         if (FAILED(hr))
         {
             return false;

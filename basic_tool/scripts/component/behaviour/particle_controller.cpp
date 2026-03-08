@@ -13,6 +13,7 @@
 #include <commdlg.h>
 #include "game_time.h"
 #include <filesystem>
+#include "path_getter.h"
 
 const float ParticleController::SIZE_MULTIPLIER = 0.1f;
 
@@ -60,6 +61,7 @@ void ParticleController::Start()
 		auto& particle = gameObject.AddComponent<Particle>(&gameObject.GetTransform(), &rb, &line, m_pCameraTransform, &sprite, m_lifeTime);
 		gameObject.GetTransform().SetParent(m_pTransform);
 		gameObject.GetTransform().SetLocalScale({ m_size * SIZE_MULTIPLIER, m_size * SIZE_MULTIPLIER ,m_size * SIZE_MULTIPLIER });
+		sprite.SetTexture(m_texturePath);
 		particle.Reset();
 		m_pParticles.push_back(&gameObject);
 	}
@@ -141,7 +143,8 @@ void ParticleController::Show()
 		ImGui::NextColumn();
 		if (ImGui::Button(std::filesystem::path(m_texturePath).filename().string().c_str()))
 		{
-			applyTexture();
+			std::wstring path = openTextureDialog();
+			applyTexture(path);
 		}
 		ImGui::NextColumn();
 
@@ -280,7 +283,11 @@ std::unique_ptr<ParticleController> ParticleController::Deserialize(const Json& 
 	pComponent->m_gravity = j.value("gravity", 0.0f);
 	pComponent->m_spread = j.value("spread", 1.0f);
 
-	pComponent->m_texturePath = j.value("texturePath", "image/SlimeBall.png");
+	std::filesystem::path exeDir = PathGetter::GetExeDirectory();
+	std::filesystem::path exportDir = exeDir / L"image";
+	std::filesystem::path filePath = exportDir / L"SlimeBall.png";
+	std::string path = j.value("texturePath", filePath.string());
+	pComponent->applyTexture(std::filesystem::path(path).wstring());
 
 	if (j.contains("color"))
 	{
@@ -366,20 +373,18 @@ std::wstring ParticleController::openTextureDialog()
 	return L"";
 }
 
-void ParticleController::applyTexture()
+void ParticleController::applyTexture(std::wstring path)
 {
-	std::wstring path = openTextureDialog();
-
 	if (!path.empty())
 	{
-		m_texturePath = std::filesystem::path(path).string();
+		m_texturePath = path;
 
 		for (auto& pParticle : m_pParticles)
 		{
 			auto pSprite = pParticle->FindComponent<Sprite>(Component::Type::Sprite);
 			if (pSprite)
 			{
-				pSprite->SetTexture(path);
+				pSprite->SetTexture(m_texturePath);
 			}
 		}
 	}

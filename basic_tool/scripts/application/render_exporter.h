@@ -1,5 +1,4 @@
 #pragma once
-#include <filesystem>
 
 class RenderContext;
 
@@ -19,7 +18,6 @@ private:
 	void initBox();
 	void updateSheet();
 	bool save(ID3D11Texture2D* const texture, const std::wstring& sheetName);
-	static std::filesystem::path getExeDirectory();
 	const RenderContext* const m_pContext = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pSheetTexture = nullptr;
 	bool m_isExport = false;
