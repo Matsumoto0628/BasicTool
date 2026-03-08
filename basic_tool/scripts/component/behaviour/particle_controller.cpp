@@ -252,7 +252,7 @@ Json ParticleController::Serialize() const
 		{"gravity", m_gravity},
 		{"spread", m_spread},
 
-		{"texturePath", m_texturePath},
+		{"texturePath", std::filesystem::path(m_texturePath).string()},
 
 		{"color", {
 			m_color.X(),
