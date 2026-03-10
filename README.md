@@ -1,8 +1,7 @@
 # EffectTool
 
-<img width="1198" height="712" alt="スクリーンショット 2026-03-10 165122" src="https://github.com/user-attachments/assets/56416fc5-1389-4679-ad12-e5c0fec13e10" />
-
 パーティクルのエフェクトを作成し、スプライトシートで出力するツール
+<img width="1198" height="712" alt="スクリーンショット 2026-03-10 165122" src="https://github.com/user-attachments/assets/56416fc5-1389-4679-ad12-e5c0fec13e10" />
 
 - **開発期間** : 1ヶ月
 - **制作人数** : 1人
@@ -15,8 +14,8 @@
 
 ### 参考書籍
 
-- 独習C++
-- Effective C++
+- 独習C++ — 柴田 望洋  
+- Effective C++ — Scott Meyers  
 
 <br>
 <br>
