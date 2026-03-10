@@ -97,9 +97,9 @@ https://github.com/Matsumoto0628/BasicTool/blob/8ab9197dc6c06e20f99159328d0ff070
 
 ### コンポーネント指向 : テンプレートによるジェネリック実装
 
-`ComponentHolder` にテンプレートを用いることで、型ごとにコードを書かずにあらゆるコンポーネントを追加・取得できる。
+`AddComponent` にテンプレートを用いることで、型ごとにコードを書かずにあらゆるコンポーネントを追加・取得できる。
 
-https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
+https://github.com/Matsumoto0628/BasicTool/blob/599d4ab5456ad18a16c00b71adc7803f27e8de68/basic_tool/scripts/application/game_object.h#L31-L43
 
 ---
 
