@@ -114,14 +114,6 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 <br>
 <br>
 
-## デモ
-
-<!-- デモ動画をここに挿入 -->
-<!-- [![デモ動画](images/thumbnail.png)](動画URL) -->
-
-<br>
-<br>
-
 ## インストール方法
 1. GitHubのReleasesページから `EffectTool.zip` をダウンロード
 2. ZIPを展開する
