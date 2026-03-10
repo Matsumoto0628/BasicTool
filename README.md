@@ -118,7 +118,10 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 3. `EffectTool.exe` を起動する
 > **Note:** 起動時にWindowsのセキュリティ警告が表示される場合があります。「詳細情報」>「実行」をクリックして続行してください。
 >
+
+<p>
 <img width="635" height="351" alt="スクリーンショット 2026-03-10 170632" src="https://github.com/user-attachments/assets/aeeba298-0234-4fc8-9850-3e16273bd5e7" />
+</p>
 
 <br>
 <br>
@@ -129,34 +132,44 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 
 1. 左側の **Hierarchy** パネルで `ParticleController` をクリック
 
+<p>
 <img width="597" height="353" alt="スクリーンショット 2026-03-10 174733" src="https://github.com/user-attachments/assets/c72c01fe-4c84-4d78-9dfc-ace483322748" />
+</p>
 
 2. 右側の **Inspector** パネルに `ParticleController` コンポーネントのプロパティが表示される
 
+<p>
 <img width="597" height="354" alt="スクリーンショット 2026-03-10 174744" src="https://github.com/user-attachments/assets/78808e83-6bdf-42e6-ba2c-0599dd364b5e" />
+</p>
 
 3. `Gravity` や `Color` などのパラメータを変更するとパーティクルがリアルタイムで変化する
 
+<p>
 <img width="597" height="354" alt="スクリーンショット 2026-03-10 174826" src="https://github.com/user-attachments/assets/1d31a757-f0da-4394-91f1-b5f3734cd952" />
+</p>
 
 
 ### 画像書き出し
 
 - **書き出し** : File > Export (出力先は、exeと同じ階層の `export/` フォルダ (固定))
 
+<p>
 <img width="210" height="185" alt="スクリーンショット 2026-03-10 173431" src="https://github.com/user-attachments/assets/98defda4-87f8-4ce5-8d08-952d3b7cf1ef" />
-
 <img width="444" height="167" alt="スクリーンショット 2026-03-10 173547" src="https://github.com/user-attachments/assets/3023beb6-85a7-4f29-8874-742580251f0d" />
+</p>
 
 
 
 ### 保存 & 読み込み
 
 - **保存** : File > Save
+<p>
 <img width="203" height="185" alt="スクリーンショット 2026-03-10 173424" src="https://github.com/user-attachments/assets/24c538d7-bf73-49c5-9678-ce09b069f4b9" />
 <img width="344" height="116" alt="スクリーンショット 2026-03-10 173517" src="https://github.com/user-attachments/assets/48d03fdd-1656-47c6-bf3b-4972bb5e62d8" />
+</p>
 
 - **読み込み** : File > Open
+<p>
 <img width="176" height="148" alt="スクリーンショット 2026-03-10 173416" src="https://github.com/user-attachments/assets/5e52d3d9-ac1b-4f54-a9ff-56556c99b61d" />
 <img width="364" height="161" alt="スクリーンショット 2026-03-10 173501" src="https://github.com/user-attachments/assets/ed2ba087-5aa9-43dd-a8da-817dabb25450" />
-
+</p>
