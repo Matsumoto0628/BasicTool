@@ -79,6 +79,8 @@ https://github.com/Matsumoto0628/BasicTool/blob/c1f91ebc48b1369e9637a90cabb5038f
 
 https://github.com/Matsumoto0628/BasicTool/blob/8ab9197dc6c06e20f99159328d0ff0701fbc7823/basic_tool/scripts/application/render_exporter.cpp#L103-L112
 
+---
+
 ### コンポーネント指向 : テンプレートによるジェネリック実装
 
 `ComponentHolder` にテンプレートを用いることで、型ごとにコードを書かずにあらゆるコンポーネントを追加・取得できる。
