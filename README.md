@@ -137,9 +137,9 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 
 - **書き出し** : File > Export (出力先は、exeと同じ階層の `export/` フォルダ (固定))
 
-<img width="421" height="371" alt="スクリーンショット 2026-03-10 173431" src="https://github.com/user-attachments/assets/98defda4-87f8-4ce5-8d08-952d3b7cf1ef" />
+<img width="210" height="185" alt="スクリーンショット 2026-03-10 173431" src="https://github.com/user-attachments/assets/98defda4-87f8-4ce5-8d08-952d3b7cf1ef" />
 
-<img width="888" height="337" alt="スクリーンショット 2026-03-10 173547" src="https://github.com/user-attachments/assets/3023beb6-85a7-4f29-8874-742580251f0d" />
+<img width="444" height="167" alt="スクリーンショット 2026-03-10 173547" src="https://github.com/user-attachments/assets/3023beb6-85a7-4f29-8874-742580251f0d" />
 
 
 
