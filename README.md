@@ -14,8 +14,8 @@
 
 ### 参考書籍
 
-- 独習C++ — 柴田 望洋  
-- Effective C++ — Scott Meyers  
+- 『独習C++ 新版』 高橋 航平
+- 『Effective C++』 Scott Meyers
 
 <br>
 <br>
