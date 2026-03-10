@@ -2,9 +2,7 @@
 
 パーティクルのエフェクトを作成し、スプライトシートで出力するツール
 
-<p>
-<img width="599" height="356" alt="スクリーンショット 2026-03-10 165122" src="https://github.com/user-attachments/assets/56416fc5-1389-4679-ad12-e5c0fec13e10" />
-</p>
+https://github.com/user-attachments/assets/64d4329e-9876-4dd1-8f61-f1ccf2dfcb33
 
 - **開発期間** : 1ヶ月
 - **制作人数** : 1人
