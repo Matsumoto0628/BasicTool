@@ -127,15 +127,21 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 
 ### エフェクトの編集
 
-<!-- スクリーンショットをここに挿入 -->
 1. 左側の **Hierarchy** パネルで `ParticleController` をクリック
 2. 右側の **Inspector** パネルに `ParticleController` コンポーネントのプロパティが表示される
 3. `Gravity` や `Color` などのパラメータを変更するとパーティクルがリアルタイムで変化する
 
+<!-- スクショ-->
+
 ### 画像書き出し
 
-<!-- スクリーンショットをここに挿入 -->
 - **書き出し** : File > Export (出力先は、exeと同じ階層の `export/` フォルダ (固定))
+
+<img width="421" height="371" alt="スクリーンショット 2026-03-10 173431" src="https://github.com/user-attachments/assets/98defda4-87f8-4ce5-8d08-952d3b7cf1ef" />
+
+<img width="888" height="337" alt="スクリーンショット 2026-03-10 173547" src="https://github.com/user-attachments/assets/3023beb6-85a7-4f29-8874-742580251f0d" />
+
+
 
 ### 保存 & 読み込み
 
