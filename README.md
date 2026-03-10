@@ -126,7 +126,7 @@ https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
 3. `EffectTool.exe` を起動する
 > **Note:** 起動時にWindowsのセキュリティ警告が表示される場合があります。「詳細情報」>「実行」をクリックして続行してください。
 >
-<img width="1269" height="702" alt="スクリーンショット 2026-03-10 170632" src="https://github.com/user-attachments/assets/aeeba298-0234-4fc8-9850-3e16273bd5e7" />
+<img width="635" height="351" alt="スクリーンショット 2026-03-10 170632" src="https://github.com/user-attachments/assets/aeeba298-0234-4fc8-9850-3e16273bd5e7" />
 
 <br>
 <br>
