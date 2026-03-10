@@ -77,7 +77,7 @@ https://github.com/Matsumoto0628/BasicTool/blob/c1f91ebc48b1369e9637a90cabb5038f
 
 1フレームずつオフスクリーンにレンダリングし、全フレームを1枚のPNGとして並べて出力する。
 
-https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
+https://github.com/Matsumoto0628/BasicTool/blob/8ab9197dc6c06e20f99159328d0ff0701fbc7823/basic_tool/scripts/application/render_exporter.cpp#L103-L112
 
 ### コンポーネント指向 : テンプレートによるジェネリック実装
 
