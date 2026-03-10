@@ -43,8 +43,6 @@
 - **UI** : ImGui
 - **データ** : nlohmann/json
 
----
-
 ### 選定理由
 
 #### ImGui
