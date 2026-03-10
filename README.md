@@ -43,6 +43,8 @@
 - **UI** : ImGui
 - **データ** : nlohmann/json
 
+---
+
 ### 選定理由
 
 #### ImGui
@@ -55,6 +57,8 @@
 
 ゲーム・ツール開発向けに特化しており、DirectXへの組み込みが数行で完了する。
 QtやwxWidgetsはGUIアプリ向けには強力だが、本ツールのような軽量なデバッグ・編集UIには過剰であるため、ImGuiを選定した。
+
+---
 
 #### nlohmann/json
 
@@ -80,14 +84,14 @@ https://github.com/Matsumoto0628/BasicTool/blob/c1f91ebc48b1369e9637a90cabb5038f
 https://github.com/Matsumoto0628/BasicTool/blob/8ab9197dc6c06e20f99159328d0ff0701fbc7823/basic_tool/scripts/application/render_exporter.cpp#L103-L112
 
 ---
-***
-___
 
 ### コンポーネント指向 : テンプレートによるジェネリック実装
 
 `ComponentHolder` にテンプレートを用いることで、型ごとにコードを書かずにあらゆるコンポーネントを追加・取得できる。
 
 https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
+
+---
 
 ### JSON によるセーブ & ロード
 
