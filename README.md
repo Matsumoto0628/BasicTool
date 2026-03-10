@@ -38,6 +38,9 @@
 そこで、**シンプルな操作でエフェクトを作成**し、 **スプライトシート形式で出力**することで  
 幅広い環境で活用できるツールを作成した。  
 
+<br>
+<br>
+
 ## 使用技術
 
 - **言語** : C++
@@ -72,6 +75,9 @@ QtやwxWidgetsはGUIアプリ向けには強力だが、本ツールのような
 保存データはバイナリ形式と迷ったが、テキスト形式であるJSONはGitで差分が見やすくバージョン管理がしやすい点を重視して選定した。
 nlohmann/jsonはヘッダーだけで導入が簡単なうえ、直感的なAPIでコードの可読性も高い。
 
+<br>
+<br>
+
 ## 技術的な工夫
 
 ### オフスクリーンレンダリングによるポストエフェクトとスプライトシート出力
@@ -100,10 +106,16 @@ https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
 
 https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
 
+<br>
+<br>
+
 ## デモ
 
 <!-- デモ動画をここに挿入 -->
 <!-- [![デモ動画](images/thumbnail.png)](動画URL) -->
+
+<br>
+<br>
 
 ## インストール方法
 
@@ -113,6 +125,10 @@ https://github.com/user/repo/blob/commit_hash/file.cpp#L10-L30
 3. `EffectTool.exe` を起動する
 
 > **Note:** 起動時にWindowsのセキュリティ警告が表示される場合があります。「詳細情報」>「実行」をクリックして続行してください。
+>
+
+<br>
+<br>
 
 ## 操作方法
 
