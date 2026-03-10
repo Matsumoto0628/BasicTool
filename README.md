@@ -147,7 +147,7 @@ https://github.com/Matsumoto0628/BasicTool/blob/01cca8b93f857d2883123619873389c2
 
 - **保存** : File > Save
 <img width="203" height="185" alt="スクリーンショット 2026-03-10 173424" src="https://github.com/user-attachments/assets/24c538d7-bf73-49c5-9678-ce09b069f4b9" />
-<img width="172" height="58" alt="スクリーンショット 2026-03-10 173517" src="https://github.com/user-attachments/assets/48d03fdd-1656-47c6-bf3b-4972bb5e62d8" />
+<img width="344" height="116" alt="スクリーンショット 2026-03-10 173517" src="https://github.com/user-attachments/assets/48d03fdd-1656-47c6-bf3b-4972bb5e62d8" />
 
 - **読み込み** : File > Open
 <img width="176" height="148" alt="スクリーンショット 2026-03-10 173416" src="https://github.com/user-attachments/assets/5e52d3d9-ac1b-4f54-a9ff-56556c99b61d" />
