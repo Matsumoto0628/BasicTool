@@ -1,6 +1,6 @@
 # EffectTool
 
-パーティクルのエフェクトを作成し、スプライトシートで出力するツール
+パーティクルのエフェクトを作成し、スプライトシートで出力するツール<br>
 [**ドキュメントはこちら**](https://matsumoto0628.github.io/BasicTool/annotated.html)
 
 https://github.com/user-attachments/assets/64d4329e-9876-4dd1-8f61-f1ccf2dfcb33
