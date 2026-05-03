@@ -1,3 +1,9 @@
+/**
+ * @file pch.h
+ * @brief プリコンパイル済みヘッダー
+ * @author Matsumoto0628
+ * @date 2026-05-03
+ */
 #pragma once
 
 // DirectX

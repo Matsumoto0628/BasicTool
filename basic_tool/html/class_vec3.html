@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: Vec3 クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_vec3.html','','class_vec3-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Vec3 クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>3成分ベクトルクラス  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="vec3_8h_source.html">vec3.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:aae7a1ffaa1108a30c281da216d1cd312" id="r_aae7a1ffaa1108a30c281da216d1cd312"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aae7a1ffaa1108a30c281da216d1cd312">Vec3</a> ()</td></tr>
+<tr class="memdesc:aae7a1ffaa1108a30c281da216d1cd312"><td class="mdescLeft">&#160;</td><td class="mdescRight">デフォルトコンストラクタ（全要素 0 で初期化）  <br /></td></tr>
+<tr class="memitem:a1f5422fc4645496196292fa5314ef77c" id="r_a1f5422fc4645496196292fa5314ef77c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1f5422fc4645496196292fa5314ef77c">~Vec3</a> ()</td></tr>
+<tr class="memitem:a842ccdcdb2b4c7ca7cef20e6e786a231" id="r_a842ccdcdb2b4c7ca7cef20e6e786a231"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a842ccdcdb2b4c7ca7cef20e6e786a231">Vec3</a> (float x, float y, float z)</td></tr>
+<tr class="memdesc:a842ccdcdb2b4c7ca7cef20e6e786a231"><td class="mdescLeft">&#160;</td><td class="mdescRight">各成分を指定するコンストラクタ  <br /></td></tr>
+<tr class="memitem:aa4ef5c113b6f94ab86ca4c1c239f78f1" id="r_aa4ef5c113b6f94ab86ca4c1c239f78f1"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa4ef5c113b6f94ab86ca4c1c239f78f1">operator+</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:aa4ef5c113b6f94ab86ca4c1c239f78f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの加算  <br /></td></tr>
+<tr class="memitem:a0ac93622c5a56f7254ab27692fb9cc5d" id="r_a0ac93622c5a56f7254ab27692fb9cc5d"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a0ac93622c5a56f7254ab27692fb9cc5d">operator+=</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a0ac93622c5a56f7254ab27692fb9cc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの加算代入  <br /></td></tr>
+<tr class="memitem:a419a92a56f90d48f8775d42d525d3816" id="r_a419a92a56f90d48f8775d42d525d3816"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a419a92a56f90d48f8775d42d525d3816">operator-</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a419a92a56f90d48f8775d42d525d3816"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの減算  <br /></td></tr>
+<tr class="memitem:adf9dac0e39bf6f8fb6927ed5c2457d79" id="r_adf9dac0e39bf6f8fb6927ed5c2457d79"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#adf9dac0e39bf6f8fb6927ed5c2457d79">operator-=</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;rhs)</td></tr>
+<tr class="memdesc:adf9dac0e39bf6f8fb6927ed5c2457d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの減算代入  <br /></td></tr>
+<tr class="memitem:a4356fb6efd461dda37a2900e14a4fbf5" id="r_a4356fb6efd461dda37a2900e14a4fbf5"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4356fb6efd461dda37a2900e14a4fbf5">operator*</a> (float s) const</td></tr>
+<tr class="memdesc:a4356fb6efd461dda37a2900e14a4fbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">スカラー乗算  <br /></td></tr>
+<tr class="memitem:a5ec9301f3ed392e0740c0d71d9a043fa" id="r_a5ec9301f3ed392e0740c0d71d9a043fa"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5ec9301f3ed392e0740c0d71d9a043fa">operator*=</a> (float s)</td></tr>
+<tr class="memdesc:a5ec9301f3ed392e0740c0d71d9a043fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">スカラー乗算代入  <br /></td></tr>
+<tr class="memitem:a025dfdb3b442357b2e424723f271c260" id="r_a025dfdb3b442357b2e424723f271c260"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a025dfdb3b442357b2e424723f271c260">operator/</a> (float s) const</td></tr>
+<tr class="memdesc:a025dfdb3b442357b2e424723f271c260"><td class="mdescLeft">&#160;</td><td class="mdescRight">スカラー除算  <br /></td></tr>
+<tr class="memitem:a4e2e608d4fa5b1ebd0c3952a53f092ce" id="r_a4e2e608d4fa5b1ebd0c3952a53f092ce"><td class="memItemLeft">const <a class="el" href="class_vec3.html">Vec3</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a4e2e608d4fa5b1ebd0c3952a53f092ce">operator/=</a> (float s)</td></tr>
+<tr class="memdesc:a4e2e608d4fa5b1ebd0c3952a53f092ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">スカラー除算代入  <br /></td></tr>
+<tr class="memitem:a0422dc963252712abbc6077bb1d6983e" id="r_a0422dc963252712abbc6077bb1d6983e"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0422dc963252712abbc6077bb1d6983e">X</a> () const</td></tr>
+<tr class="memdesc:a0422dc963252712abbc6077bb1d6983e"><td class="mdescLeft">&#160;</td><td class="mdescRight">X 成分を返す  <br /></td></tr>
+<tr class="memitem:a43ce0892b98b788b9f7b765029637a05" id="r_a43ce0892b98b788b9f7b765029637a05"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a43ce0892b98b788b9f7b765029637a05">Y</a> () const</td></tr>
+<tr class="memdesc:a43ce0892b98b788b9f7b765029637a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y 成分を返す  <br /></td></tr>
+<tr class="memitem:a62bf4acd50ca44b53228a94d4d630693" id="r_a62bf4acd50ca44b53228a94d4d630693"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a62bf4acd50ca44b53228a94d4d630693">Z</a> () const</td></tr>
+<tr class="memdesc:a62bf4acd50ca44b53228a94d4d630693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Z 成分を返す  <br /></td></tr>
+<tr class="memitem:a38a9efffc3f9413f3dd702abc73eb9a2" id="r_a38a9efffc3f9413f3dd702abc73eb9a2"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a38a9efffc3f9413f3dd702abc73eb9a2">Length</a> () const</td></tr>
+<tr class="memdesc:a38a9efffc3f9413f3dd702abc73eb9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの長さ（ノルム）を返す  <br /></td></tr>
+<tr class="memitem:a861e5a1fa9d0eedc71cdb5b551bd7849" id="r_a861e5a1fa9d0eedc71cdb5b551bd7849"><td class="memItemLeft"><a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a861e5a1fa9d0eedc71cdb5b551bd7849">Normalize</a> () const</td></tr>
+<tr class="memdesc:a861e5a1fa9d0eedc71cdb5b551bd7849"><td class="mdescLeft">&#160;</td><td class="mdescRight">正規化したベクトルを返す  <br /></td></tr>
+<tr class="memitem:a5c6ecfa61d5faf6b1b6f87817862b1b2" id="r_a5c6ecfa61d5faf6b1b6f87817862b1b2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5c6ecfa61d5faf6b1b6f87817862b1b2">ToFloat3</a> (float out[3]) const</td></tr>
+<tr class="memdesc:a5c6ecfa61d5faf6b1b6f87817862b1b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">float 配列に変換して出力する  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>3成分ベクトルクラス </p>
+<p>DirectXMath をラップすることで、SIMD を維持して高速に計算する。 nlohmann/json によるシリアライズ／デシリアライズにも対応している。 </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a id="aae7a1ffaa1108a30c281da216d1cd312" name="aae7a1ffaa1108a30c281da216d1cd312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae7a1ffaa1108a30c281da216d1cd312">&#9670;&#160;</a></span>Vec3() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec3::Vec3 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デフォルトコンストラクタ（全要素 0 で初期化） </p>
+
+</div>
+</div>
+<a id="a1f5422fc4645496196292fa5314ef77c" name="a1f5422fc4645496196292fa5314ef77c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f5422fc4645496196292fa5314ef77c">&#9670;&#160;</a></span>~Vec3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec3::~Vec3 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a842ccdcdb2b4c7ca7cef20e6e786a231" name="a842ccdcdb2b4c7ca7cef20e6e786a231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842ccdcdb2b4c7ca7cef20e6e786a231">&#9670;&#160;</a></span>Vec3() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec3::Vec3 </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>各成分を指定するコンストラクタ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X 成分 </td></tr>
+    <tr><td class="paramname">y</td><td>Y 成分 </td></tr>
+    <tr><td class="paramname">z</td><td>Z 成分 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="a38a9efffc3f9413f3dd702abc73eb9a2" name="a38a9efffc3f9413f3dd702abc73eb9a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38a9efffc3f9413f3dd702abc73eb9a2">&#9670;&#160;</a></span>Length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec3::Length </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの長さ（ノルム）を返す </p>
+
+</div>
+</div>
+<a id="a861e5a1fa9d0eedc71cdb5b551bd7849" name="a861e5a1fa9d0eedc71cdb5b551bd7849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861e5a1fa9d0eedc71cdb5b551bd7849">&#9670;&#160;</a></span>Normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec3.html">Vec3</a> Vec3::Normalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>正規化したベクトルを返す </p>
+
+</div>
+</div>
+<a id="a4356fb6efd461dda37a2900e14a4fbf5" name="a4356fb6efd461dda37a2900e14a4fbf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4356fb6efd461dda37a2900e14a4fbf5">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> Vec3::operator* </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スカラー乗算 </p>
+
+</div>
+</div>
+<a id="a5ec9301f3ed392e0740c0d71d9a043fa" name="a5ec9301f3ed392e0740c0d71d9a043fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ec9301f3ed392e0740c0d71d9a043fa">&#9670;&#160;</a></span>operator*=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> &amp; Vec3::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スカラー乗算代入 </p>
+
+</div>
+</div>
+<a id="aa4ef5c113b6f94ab86ca4c1c239f78f1" name="aa4ef5c113b6f94ab86ca4c1c239f78f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ef5c113b6f94ab86ca4c1c239f78f1">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> Vec3::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの加算 </p>
+
+</div>
+</div>
+<a id="a0ac93622c5a56f7254ab27692fb9cc5d" name="a0ac93622c5a56f7254ab27692fb9cc5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac93622c5a56f7254ab27692fb9cc5d">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> &amp; Vec3::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの加算代入 </p>
+
+</div>
+</div>
+<a id="a419a92a56f90d48f8775d42d525d3816" name="a419a92a56f90d48f8775d42d525d3816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a419a92a56f90d48f8775d42d525d3816">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> Vec3::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの減算 </p>
+
+</div>
+</div>
+<a id="adf9dac0e39bf6f8fb6927ed5c2457d79" name="adf9dac0e39bf6f8fb6927ed5c2457d79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf9dac0e39bf6f8fb6927ed5c2457d79">&#9670;&#160;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> &amp; Vec3::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの減算代入 </p>
+
+</div>
+</div>
+<a id="a025dfdb3b442357b2e424723f271c260" name="a025dfdb3b442357b2e424723f271c260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025dfdb3b442357b2e424723f271c260">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> Vec3::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スカラー除算 </p>
+
+</div>
+</div>
+<a id="a4e2e608d4fa5b1ebd0c3952a53f092ce" name="a4e2e608d4fa5b1ebd0c3952a53f092ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e2e608d4fa5b1ebd0c3952a53f092ce">&#9670;&#160;</a></span>operator/=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec3.html">Vec3</a> &amp; Vec3::operator/= </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スカラー除算代入 </p>
+
+</div>
+</div>
+<a id="a5c6ecfa61d5faf6b1b6f87817862b1b2" name="a5c6ecfa61d5faf6b1b6f87817862b1b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c6ecfa61d5faf6b1b6f87817862b1b2">&#9670;&#160;</a></span>ToFloat3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vec3::ToFloat3 </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>out</em></span>[3]</td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>float 配列に変換して出力する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>出力先配列（要素数 3 以上） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0422dc963252712abbc6077bb1d6983e" name="a0422dc963252712abbc6077bb1d6983e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0422dc963252712abbc6077bb1d6983e">&#9670;&#160;</a></span>X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec3::X </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>X 成分を返す </p>
+
+</div>
+</div>
+<a id="a43ce0892b98b788b9f7b765029637a05" name="a43ce0892b98b788b9f7b765029637a05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43ce0892b98b788b9f7b765029637a05">&#9670;&#160;</a></span>Y()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec3::Y </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Y 成分を返す </p>
+
+</div>
+</div>
+<a id="a62bf4acd50ca44b53228a94d4d630693" name="a62bf4acd50ca44b53228a94d4d630693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62bf4acd50ca44b53228a94d4d630693">&#9670;&#160;</a></span>Z()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec3::Z </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Z 成分を返す </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>scripts/math/<a class="el" href="vec3_8h_source.html">vec3.h</a></li>
+<li>scripts/math/<a class="el" href="vec3_8cpp.html">vec3.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_vec3.html">Vec3</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

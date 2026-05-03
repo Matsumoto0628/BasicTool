@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/component/transform.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('transform_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">transform.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="transform_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="component_8h.html">component.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using </span><a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> = nlohmann::ordered_json;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span><a class="code hl_class" href="class_game_object.html">GameObject</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_transform.html">   20</a></span><span class="keyword">class </span><a class="code hl_function" href="class_transform.html#a7b0b34053e1f52240f6cb2b28040c781">Transform</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_function" href="class_transform.html#a7b0b34053e1f52240f6cb2b28040c781">Transform</a>(<a class="code hl_class" href="class_game_object.html">GameObject</a>* <span class="keyword">const</span> pGameObject);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_function" href="class_transform.html#aa72e286c069850db80927b0e6554cd3e">~Transform</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_transform.html#aec135e995a1114b5328773ef539ab19c">   31</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#aec135e995a1114b5328773ef539ab19c">GetPosition</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_position; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_transform.html#aa5245a500ba1ba361d3248f81b987b3d">   33</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; <a class="code hl_function" href="class_transform.html#aa5245a500ba1ba361d3248f81b987b3d">GetRotation</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_rotation; }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_transform.html#aadaa0d796f6eb8abcceb22db251e5108">   35</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#aadaa0d796f6eb8abcceb22db251e5108">GetScale</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_scale; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_transform.html#af01df532dd64c483d80d274b0c21fe3e">   37</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#af01df532dd64c483d80d274b0c21fe3e">GetLocalPosition</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_localPosition; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_transform.html#a0f5b0865090515abf1ddc6042f29effa">   39</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; <a class="code hl_function" href="class_transform.html#a0f5b0865090515abf1ddc6042f29effa">GetLocalRotation</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_localRotation; }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_transform.html#a503fe06b9e94cf9cbbe687ad7a3adfb2">   41</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#a503fe06b9e94cf9cbbe687ad7a3adfb2">GetLocalScale</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_localScale; }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_transform.html#ade3e827e9a4c596952c9f7128ff540f3">   43</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_mat4x4.html">Mat4x4</a>&amp; <a class="code hl_function" href="class_transform.html#ade3e827e9a4c596952c9f7128ff540f3">GetMatrix</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_matrix; }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_transform.html#a8a7c2f7c3f6a1f6ec1cbfcd95f784464">   45</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#a8a7c2f7c3f6a1f6ec1cbfcd95f784464">GetForward</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_rotation.RotateVec3({ 0,0,1 }); }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_transform.html#a2d149c2a0969d28630f1f7ef72489af0">   47</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#a2d149c2a0969d28630f1f7ef72489af0">GetUp</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_rotation.RotateVec3({ 0,1,0 }); }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_transform.html#a471b679ab4a40ab9ae9eca48b50bb3ee">   49</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; <a class="code hl_function" href="class_transform.html#a471b679ab4a40ab9ae9eca48b50bb3ee">GetRight</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_rotation.RotateVec3({ 1,0,0 }); }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_transform.html#af7c3dd8d8595a5c373ec1ed405ad4a3e">   51</a></span>    <span class="keyword">const</span> std::vector&lt;Transform*&gt;&amp; <a class="code hl_function" href="class_transform.html#af7c3dd8d8595a5c373ec1ed405ad4a3e">GetChildren</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pChildren; }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_transform.html#ab36efc4e67af821d4ee97888e7ae74fa">   53</a></span>    <span class="keyword">const</span> <a class="code hl_function" href="class_transform.html#a7b0b34053e1f52240f6cb2b28040c781">Transform</a>* <span class="keyword">const</span> <a class="code hl_function" href="class_transform.html#ab36efc4e67af821d4ee97888e7ae74fa">GetParent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pParent; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_transform.html#acd3192c12cc36e2491cfd9c626c75626">   55</a></span>    <a class="code hl_class" href="class_game_object.html">GameObject</a>&amp; <a class="code hl_function" href="class_transform.html#acd3192c12cc36e2491cfd9c626c75626">GetGameObject</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *m_pGameObject; }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a6b2a79926ad16582fc195273188521c0">SetPosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; position);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a257c4e3dedc14c1b5dc4f82b4e170c7c">SetRotation</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; rotation);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a50cf91b186f05a96dda0bbf9517ec75e">SetScale</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; scale);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a1708401fa05768333a2cb20faab2ab39">SetLocalPosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; position);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#aa8c980c5c4e7dae03e2d1483ca9b3dc0">SetLocalRotation</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; rotation);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a29d4272566e6fd30a352d0a532679fc0">SetLocalScale</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; scale);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a66dbe5345a4e5de3aa534c774e3f4c4f">SetParent</a>(<a class="code hl_class" href="class_transform.html">Transform</a>* pParent);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a9792341c7880bff91eb27edefe534177">Show</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> <a class="code hl_function" href="class_transform.html#ae95588f7ad884a8284f6bc5f8124cff3">Serialize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transform.html#a2361771002a5ee21077983a5e3be21c9">Deserialize</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&amp; j);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_function" href="class_transform.html#a7b0b34053e1f52240f6cb2b28040c781">Transform</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> applyWorld();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">void</span> applyLocal();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> applyMatrix();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span> applyEulerAngles(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; eulerDeg);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">bool</span> showVec3(<span class="keyword">const</span> <span class="keywordtype">char</span>* label, <span class="keywordtype">float</span>&amp; x, <span class="keywordtype">float</span>&amp; y, <span class="keywordtype">float</span>&amp; z, <span class="keywordtype">float</span> clamp = 1000.0f, <span class="keywordtype">float</span> width = 60.0f);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a>   m_position;       </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_class" href="class_vec4.html">Vec4</a>   m_rotation;       </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a>   m_scale;          </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a>   m_localPosition;  </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_class" href="class_vec4.html">Vec4</a>   m_localRotation;  </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a>   m_localScale;     </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_class" href="class_mat4x4.html">Mat4x4</a> m_matrix;         </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_class" href="class_mat4x4.html">Mat4x4</a> m_world;          </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <a class="code hl_class" href="class_mat4x4.html">Mat4x4</a> m_local;          </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a>   m_eulerAngles;    </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    std::vector&lt;Transform*&gt; m_pChildren;          </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_class" href="class_transform.html">Transform</a>*              m_pParent = <span class="keyword">nullptr</span>;  </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_class" href="class_game_object.html">GameObject</a>* <span class="keyword">const</span> m_pGameObject = <span class="keyword">nullptr</span>;    </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>};</div>
+</div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdoc">シーン上のエンティティを表すゲームオブジェクトクラス</div><div class="ttdef"><b>Definition</b> game_object.h:23</div></div>
+<div class="ttc" id="aclass_mat4x4_html"><div class="ttname"><a href="class_mat4x4.html">Mat4x4</a></div><div class="ttdoc">4x4 行列クラス</div><div class="ttdef"><b>Definition</b> mat4x4.h:17</div></div>
+<div class="ttc" id="aclass_transform_html"><div class="ttname"><a href="class_transform.html">Transform</a></div><div class="ttdoc">ゲームオブジェクトの空間情報（位置・回転・スケール）を管理するクラス</div><div class="ttdef"><b>Definition</b> transform.h:21</div></div>
+<div class="ttc" id="aclass_transform_html_a0f5b0865090515abf1ddc6042f29effa"><div class="ttname"><a href="class_transform.html#a0f5b0865090515abf1ddc6042f29effa">Transform::GetLocalRotation</a></div><div class="ttdeci">const Vec4 &amp; GetLocalRotation() const</div><div class="ttdoc">ローカル回転（クォータニオン）を返す</div><div class="ttdef"><b>Definition</b> transform.h:39</div></div>
+<div class="ttc" id="aclass_transform_html_a1708401fa05768333a2cb20faab2ab39"><div class="ttname"><a href="class_transform.html#a1708401fa05768333a2cb20faab2ab39">Transform::SetLocalPosition</a></div><div class="ttdeci">void SetLocalPosition(const Vec3 &amp;position)</div><div class="ttdoc">ローカル位置を設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:47</div></div>
+<div class="ttc" id="aclass_transform_html_a2361771002a5ee21077983a5e3be21c9"><div class="ttname"><a href="class_transform.html#a2361771002a5ee21077983a5e3be21c9">Transform::Deserialize</a></div><div class="ttdeci">void Deserialize(const Json &amp;j)</div><div class="ttdoc">JSON からデシリアライズして値を設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:144</div></div>
+<div class="ttc" id="aclass_transform_html_a257c4e3dedc14c1b5dc4f82b4e170c7c"><div class="ttname"><a href="class_transform.html#a257c4e3dedc14c1b5dc4f82b4e170c7c">Transform::SetRotation</a></div><div class="ttdeci">void SetRotation(const Vec4 &amp;rotation)</div><div class="ttdoc">ワールド回転を設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:31</div></div>
+<div class="ttc" id="aclass_transform_html_a29d4272566e6fd30a352d0a532679fc0"><div class="ttname"><a href="class_transform.html#a29d4272566e6fd30a352d0a532679fc0">Transform::SetLocalScale</a></div><div class="ttdeci">void SetLocalScale(const Vec3 &amp;scale)</div><div class="ttdoc">ローカルスケールを設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:61</div></div>
+<div class="ttc" id="aclass_transform_html_a2d149c2a0969d28630f1f7ef72489af0"><div class="ttname"><a href="class_transform.html#a2d149c2a0969d28630f1f7ef72489af0">Transform::GetUp</a></div><div class="ttdeci">const Vec3 &amp; GetUp() const</div><div class="ttdoc">ワールド空間での上方向ベクトルを返す</div><div class="ttdef"><b>Definition</b> transform.h:47</div></div>
+<div class="ttc" id="aclass_transform_html_a471b679ab4a40ab9ae9eca48b50bb3ee"><div class="ttname"><a href="class_transform.html#a471b679ab4a40ab9ae9eca48b50bb3ee">Transform::GetRight</a></div><div class="ttdeci">const Vec3 &amp; GetRight() const</div><div class="ttdoc">ワールド空間での右方向ベクトルを返す</div><div class="ttdef"><b>Definition</b> transform.h:49</div></div>
+<div class="ttc" id="aclass_transform_html_a503fe06b9e94cf9cbbe687ad7a3adfb2"><div class="ttname"><a href="class_transform.html#a503fe06b9e94cf9cbbe687ad7a3adfb2">Transform::GetLocalScale</a></div><div class="ttdeci">const Vec3 &amp; GetLocalScale() const</div><div class="ttdoc">ローカルスケールを返す</div><div class="ttdef"><b>Definition</b> transform.h:41</div></div>
+<div class="ttc" id="aclass_transform_html_a50cf91b186f05a96dda0bbf9517ec75e"><div class="ttname"><a href="class_transform.html#a50cf91b186f05a96dda0bbf9517ec75e">Transform::SetScale</a></div><div class="ttdeci">void SetScale(const Vec3 &amp;scale)</div><div class="ttdoc">ワールドスケールを設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:40</div></div>
+<div class="ttc" id="aclass_transform_html_a66dbe5345a4e5de3aa534c774e3f4c4f"><div class="ttname"><a href="class_transform.html#a66dbe5345a4e5de3aa534c774e3f4c4f">Transform::SetParent</a></div><div class="ttdeci">void SetParent(Transform *pParent)</div><div class="ttdoc">親トランスフォームを設定して親子関係を構築する</div><div class="ttdef"><b>Definition</b> transform.cpp:68</div></div>
+<div class="ttc" id="aclass_transform_html_a6b2a79926ad16582fc195273188521c0"><div class="ttname"><a href="class_transform.html#a6b2a79926ad16582fc195273188521c0">Transform::SetPosition</a></div><div class="ttdeci">void SetPosition(const Vec3 &amp;position)</div><div class="ttdoc">ワールド位置を設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:24</div></div>
+<div class="ttc" id="aclass_transform_html_a7b0b34053e1f52240f6cb2b28040c781"><div class="ttname"><a href="class_transform.html#a7b0b34053e1f52240f6cb2b28040c781">Transform::Transform</a></div><div class="ttdeci">Transform(GameObject *const pGameObject)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition</b> transform.cpp:4</div></div>
+<div class="ttc" id="aclass_transform_html_a8a7c2f7c3f6a1f6ec1cbfcd95f784464"><div class="ttname"><a href="class_transform.html#a8a7c2f7c3f6a1f6ec1cbfcd95f784464">Transform::GetForward</a></div><div class="ttdeci">const Vec3 &amp; GetForward() const</div><div class="ttdoc">ワールド空間での前方向ベクトルを返す</div><div class="ttdef"><b>Definition</b> transform.h:45</div></div>
+<div class="ttc" id="aclass_transform_html_a9792341c7880bff91eb27edefe534177"><div class="ttname"><a href="class_transform.html#a9792341c7880bff91eb27edefe534177">Transform::Show</a></div><div class="ttdeci">void Show()</div><div class="ttdoc">ImGui を使ったインスペクター表示処理</div><div class="ttdef"><b>Definition</b> transform.cpp:93</div></div>
+<div class="ttc" id="aclass_transform_html_aa5245a500ba1ba361d3248f81b987b3d"><div class="ttname"><a href="class_transform.html#aa5245a500ba1ba361d3248f81b987b3d">Transform::GetRotation</a></div><div class="ttdeci">const Vec4 &amp; GetRotation() const</div><div class="ttdoc">ワールド回転（クォータニオン）を返す</div><div class="ttdef"><b>Definition</b> transform.h:33</div></div>
+<div class="ttc" id="aclass_transform_html_aa72e286c069850db80927b0e6554cd3e"><div class="ttname"><a href="class_transform.html#aa72e286c069850db80927b0e6554cd3e">Transform::~Transform</a></div><div class="ttdeci">~Transform()</div><div class="ttdef"><b>Definition</b> transform.cpp:20</div></div>
+<div class="ttc" id="aclass_transform_html_aa8c980c5c4e7dae03e2d1483ca9b3dc0"><div class="ttname"><a href="class_transform.html#aa8c980c5c4e7dae03e2d1483ca9b3dc0">Transform::SetLocalRotation</a></div><div class="ttdeci">void SetLocalRotation(const Vec4 &amp;rotation)</div><div class="ttdoc">ローカル回転を設定する</div><div class="ttdef"><b>Definition</b> transform.cpp:54</div></div>
+<div class="ttc" id="aclass_transform_html_aadaa0d796f6eb8abcceb22db251e5108"><div class="ttname"><a href="class_transform.html#aadaa0d796f6eb8abcceb22db251e5108">Transform::GetScale</a></div><div class="ttdeci">const Vec3 &amp; GetScale() const</div><div class="ttdoc">ワールドスケールを返す</div><div class="ttdef"><b>Definition</b> transform.h:35</div></div>
+<div class="ttc" id="aclass_transform_html_ab36efc4e67af821d4ee97888e7ae74fa"><div class="ttname"><a href="class_transform.html#ab36efc4e67af821d4ee97888e7ae74fa">Transform::GetParent</a></div><div class="ttdeci">const Transform *const GetParent() const</div><div class="ttdoc">親トランスフォームを返す（なければ nullptr）</div><div class="ttdef"><b>Definition</b> transform.h:53</div></div>
+<div class="ttc" id="aclass_transform_html_acd3192c12cc36e2491cfd9c626c75626"><div class="ttname"><a href="class_transform.html#acd3192c12cc36e2491cfd9c626c75626">Transform::GetGameObject</a></div><div class="ttdeci">GameObject &amp; GetGameObject() const</div><div class="ttdoc">このトランスフォームが属するゲームオブジェクトを返す</div><div class="ttdef"><b>Definition</b> transform.h:55</div></div>
+<div class="ttc" id="aclass_transform_html_ade3e827e9a4c596952c9f7128ff540f3"><div class="ttname"><a href="class_transform.html#ade3e827e9a4c596952c9f7128ff540f3">Transform::GetMatrix</a></div><div class="ttdeci">const Mat4x4 &amp; GetMatrix() const</div><div class="ttdoc">ワールド変換行列を返す</div><div class="ttdef"><b>Definition</b> transform.h:43</div></div>
+<div class="ttc" id="aclass_transform_html_ae95588f7ad884a8284f6bc5f8124cff3"><div class="ttname"><a href="class_transform.html#ae95588f7ad884a8284f6bc5f8124cff3">Transform::Serialize</a></div><div class="ttdeci">Json Serialize() const</div><div class="ttdoc">JSON にシリアライズして返す</div><div class="ttdef"><b>Definition</b> transform.cpp:131</div></div>
+<div class="ttc" id="aclass_transform_html_aec135e995a1114b5328773ef539ab19c"><div class="ttname"><a href="class_transform.html#aec135e995a1114b5328773ef539ab19c">Transform::GetPosition</a></div><div class="ttdeci">const Vec3 &amp; GetPosition() const</div><div class="ttdoc">ワールド位置を返す</div><div class="ttdef"><b>Definition</b> transform.h:31</div></div>
+<div class="ttc" id="aclass_transform_html_af01df532dd64c483d80d274b0c21fe3e"><div class="ttname"><a href="class_transform.html#af01df532dd64c483d80d274b0c21fe3e">Transform::GetLocalPosition</a></div><div class="ttdeci">const Vec3 &amp; GetLocalPosition() const</div><div class="ttdoc">ローカル位置を返す</div><div class="ttdef"><b>Definition</b> transform.h:37</div></div>
+<div class="ttc" id="aclass_transform_html_af7c3dd8d8595a5c373ec1ed405ad4a3e"><div class="ttname"><a href="class_transform.html#af7c3dd8d8595a5c373ec1ed405ad4a3e">Transform::GetChildren</a></div><div class="ttdeci">const std::vector&lt; Transform * &gt; &amp; GetChildren() const</div><div class="ttdoc">子トランスフォームのリストを返す</div><div class="ttdef"><b>Definition</b> transform.h:51</div></div>
+<div class="ttc" id="aclass_vec3_html"><div class="ttname"><a href="class_vec3.html">Vec3</a></div><div class="ttdoc">3成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec3.h:19</div></div>
+<div class="ttc" id="aclass_vec4_html"><div class="ttname"><a href="class_vec4.html">Vec4</a></div><div class="ttdoc">4成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec4.h:19</div></div>
+<div class="ttc" id="acomponent_8h_html"><div class="ttname"><a href="component_8h.html">component.h</a></div><div class="ttdoc">コンポーネント基底クラス</div></div>
+<div class="ttc" id="agame__object_8h_html_ad25d13049e8f7c36517ed84e807a7e89"><div class="ttname"><a href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a></div><div class="ttdeci">nlohmann::ordered_json Json</div><div class="ttdef"><b>Definition</b> game_object.h:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_a0738e9b900b46687315e6ae1079a286.html">component</a></li><li class="navelem"><a href="transform_8h.html">transform.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

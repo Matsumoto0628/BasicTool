@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/component/renderer.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('renderer_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">renderer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="renderer_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="component_8h.html">component.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="class_render_context.html">RenderContext</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="class_camera.html">Camera</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="class_transform.html">Transform</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_renderer.html">   20</a></span><span class="keyword">class </span><a class="code hl_function" href="class_renderer.html#a1282023f95e773eca7da67286bb411bd">Renderer</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_component.html#a8208d7927df1298ca79951ba1f99e293">Component</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_renderer.html#add2012f269f157754034e7b5475a8927">   23</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_renderer.html#add2012f269f157754034e7b5475a8927">~Renderer</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="class_renderer.html#a1282023f95e773eca7da67286bb411bd">Renderer</a>(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        uint64_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="class_component.html#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a> type,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">const</span> <a class="code hl_class" href="class_render_context.html">RenderContext</a>* <span class="keyword">const</span> pContext,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>* <span class="keyword">const</span> pCamera,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">const</span> <a class="code hl_class" href="class_transform.html">Transform</a>* <span class="keyword">const</span> pTransform,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        D3D11_PRIMITIVE_TOPOLOGY topology</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    );</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#af9940afafa984e4cd344e1e426ad1c09">initDepthStencil</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a7ec8d3708e4301fc095639afd9eb5af8">initBlend</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a5fbe270f3bce8e3da120a50de081b22a">initRasterizer</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a5815dc74d56364d416144d9a69b4cf34">initVertexShader</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a081e614201b4ab73cfbbd505d2cef642">initInputLayout</a>(ID3DBlob* vsBlob);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a5b7aefb9d213e7bc5168d37b69dd7142">initPixelShader</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_renderer.html#a3edda7488661ff877a05e7977950ff8d">   59</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#a3edda7488661ff877a05e7977950ff8d">initVertexBuffer</a>() = 0;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_renderer.html#ae69f576d6d796811bc4440aede29b9de">   61</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_renderer.html#ae69f576d6d796811bc4440aede29b9de">initIndexBuffer</a>() = 0;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_renderer.html#a7256b697dd5d1a8b17b79786ae36d8d8">   64</a></span>    D3D11_PRIMITIVE_TOPOLOGY <a class="code hl_function" href="class_renderer.html#a7256b697dd5d1a8b17b79786ae36d8d8">getTopology</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_topology; }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_renderer.html#ac4a60aaf11e4769650ea9078654169ce">   66</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_render_context.html">RenderContext</a>* <span class="keyword">const</span> <a class="code hl_function" href="class_renderer.html#ac4a60aaf11e4769650ea9078654169ce">getContext</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pContext; }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_renderer.html#a1938d39805ef73c0c28806637a454320">   68</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>* <span class="keyword">const</span> <a class="code hl_function" href="class_renderer.html#a1938d39805ef73c0c28806637a454320">getCamera</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pCamera; }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_renderer.html#a4f69a1017a9b1a5334f4845624c03f00">   70</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="class_transform.html">Transform</a>* <span class="keyword">const</span> <a class="code hl_function" href="class_renderer.html#a4f69a1017a9b1a5334f4845624c03f00">getTransform</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pTransform; }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// 本来はprivateにすべきだが、このクラスは共通処理をまとめているのでリソースは共有する</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="class_renderer.html#ab8ab168cb15a443355b0f61524c8ab06">   73</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11VertexShader&gt;      <a class="code hl_variable" href="class_renderer.html#ab8ab168cb15a443355b0f61524c8ab06">m_pVertexShader</a>      = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="class_renderer.html#ae96c613a14825cff9d768fd71b30b3a0">   74</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11PixelShader&gt;       <a class="code hl_variable" href="class_renderer.html#ae96c613a14825cff9d768fd71b30b3a0">m_pPixelShader</a>       = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="class_renderer.html#a23657955a1b58d1742285149da396e67">   75</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11InputLayout&gt;       <a class="code hl_variable" href="class_renderer.html#a23657955a1b58d1742285149da396e67">m_pInputLayout</a>       = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_renderer.html#a7dd4f040a307962c6936a6f17c22d846">   76</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11Buffer&gt;            <a class="code hl_variable" href="class_renderer.html#a7dd4f040a307962c6936a6f17c22d846">m_pVertexBuffer</a>      = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_renderer.html#ad749a9dba57664ea11d48e5f09c5d2f4">   77</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11Buffer&gt;            <a class="code hl_variable" href="class_renderer.html#ad749a9dba57664ea11d48e5f09c5d2f4">m_pIndexBuffer</a>       = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_renderer.html#a43945201a50017150f6d7ce6e7cc5754">   78</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11BlendState&gt;        <a class="code hl_variable" href="class_renderer.html#a43945201a50017150f6d7ce6e7cc5754">m_pBlendState</a>        = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_renderer.html#a1d5b3e60e540c710e9b1445dd5d79abe">   79</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11DepthStencilState&gt; <a class="code hl_variable" href="class_renderer.html#a1d5b3e60e540c710e9b1445dd5d79abe">m_pDepthStencilState</a> = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="class_renderer.html#aa9703f5017a0c31cf89b4f92da272ec2">   80</a></span>    Microsoft::WRL::ComPtr&lt;ID3D11RasterizerState&gt;   <a class="code hl_variable" href="class_renderer.html#aa9703f5017a0c31cf89b4f92da272ec2">m_pRasterizerState</a>   = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_function" href="class_renderer.html#a1282023f95e773eca7da67286bb411bd">Renderer</a>() = <span class="keyword">delete</span>; <span class="comment">// 必ずRenderContextを渡して初期化</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    D3D11_PRIMITIVE_TOPOLOGY   m_topology;            </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">const</span> <a class="code hl_class" href="class_render_context.html">RenderContext</a>* <span class="keyword">const</span> m_pContext   = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>* <span class="keyword">const</span>        m_pCamera    = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">const</span> <a class="code hl_class" href="class_transform.html">Transform</a>* <span class="keyword">const</span>     m_pTransform = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
+</div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">ビュー行列・プロジェクション行列を管理するカメラコンポーネント</div><div class="ttdef"><b>Definition</b> camera.h:17</div></div>
+<div class="ttc" id="aclass_component_html_a8208d7927df1298ca79951ba1f99e293"><div class="ttname"><a href="class_component.html#a8208d7927df1298ca79951ba1f99e293">Component::Component</a></div><div class="ttdeci">Component(Type type)</div><div class="ttdoc">種別を指定するコンストラクタ（新規作成時）</div><div class="ttdef"><b>Definition</b> component.cpp:4</div></div>
+<div class="ttc" id="aclass_component_html_afd50861fbf83f7ff7777a5e6dd7b7ca4"><div class="ttname"><a href="class_component.html#afd50861fbf83f7ff7777a5e6dd7b7ca4">Component::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">コンポーネントの種別を表す列挙型</div><div class="ttdef"><b>Definition</b> component.h:48</div></div>
+<div class="ttc" id="aclass_render_context_html"><div class="ttname"><a href="class_render_context.html">RenderContext</a></div><div class="ttdoc">DirectX11 デバイス・スワップチェーン・HDR ポストエフェクトを管理するクラス</div><div class="ttdef"><b>Definition</b> render_context.h:16</div></div>
+<div class="ttc" id="aclass_renderer_html_a081e614201b4ab73cfbbd505d2cef642"><div class="ttname"><a href="class_renderer.html#a081e614201b4ab73cfbbd505d2cef642">Renderer::initInputLayout</a></div><div class="ttdeci">virtual bool initInputLayout(ID3DBlob *vsBlob)</div><div class="ttdoc">入力レイアウトを初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:120</div></div>
+<div class="ttc" id="aclass_renderer_html_a1282023f95e773eca7da67286bb411bd"><div class="ttname"><a href="class_renderer.html#a1282023f95e773eca7da67286bb411bd">Renderer::Renderer</a></div><div class="ttdeci">Renderer(uint64_t id, const Type type, const RenderContext *const pContext, const Camera *const pCamera, const Transform *const pTransform, D3D11_PRIMITIVE_TOPOLOGY topology)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition</b> renderer.cpp:7</div></div>
+<div class="ttc" id="aclass_renderer_html_a1938d39805ef73c0c28806637a454320"><div class="ttname"><a href="class_renderer.html#a1938d39805ef73c0c28806637a454320">Renderer::getCamera</a></div><div class="ttdeci">const Camera *const getCamera() const</div><div class="ttdoc">カメラを返す</div><div class="ttdef"><b>Definition</b> renderer.h:68</div></div>
+<div class="ttc" id="aclass_renderer_html_a1d5b3e60e540c710e9b1445dd5d79abe"><div class="ttname"><a href="class_renderer.html#a1d5b3e60e540c710e9b1445dd5d79abe">Renderer::m_pDepthStencilState</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11DepthStencilState &gt; m_pDepthStencilState</div><div class="ttdoc">深度ステンシルステート</div><div class="ttdef"><b>Definition</b> renderer.h:79</div></div>
+<div class="ttc" id="aclass_renderer_html_a23657955a1b58d1742285149da396e67"><div class="ttname"><a href="class_renderer.html#a23657955a1b58d1742285149da396e67">Renderer::m_pInputLayout</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11InputLayout &gt; m_pInputLayout</div><div class="ttdoc">入力レイアウト</div><div class="ttdef"><b>Definition</b> renderer.h:75</div></div>
+<div class="ttc" id="aclass_renderer_html_a3edda7488661ff877a05e7977950ff8d"><div class="ttname"><a href="class_renderer.html#a3edda7488661ff877a05e7977950ff8d">Renderer::initVertexBuffer</a></div><div class="ttdeci">virtual bool initVertexBuffer()=0</div><div class="ttdoc">頂点バッファを初期化する（純粋仮想）</div></div>
+<div class="ttc" id="aclass_renderer_html_a43945201a50017150f6d7ce6e7cc5754"><div class="ttname"><a href="class_renderer.html#a43945201a50017150f6d7ce6e7cc5754">Renderer::m_pBlendState</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11BlendState &gt; m_pBlendState</div><div class="ttdoc">ブレンドステート</div><div class="ttdef"><b>Definition</b> renderer.h:78</div></div>
+<div class="ttc" id="aclass_renderer_html_a4f69a1017a9b1a5334f4845624c03f00"><div class="ttname"><a href="class_renderer.html#a4f69a1017a9b1a5334f4845624c03f00">Renderer::getTransform</a></div><div class="ttdeci">const Transform *const getTransform() const</div><div class="ttdoc">トランスフォームを返す</div><div class="ttdef"><b>Definition</b> renderer.h:70</div></div>
+<div class="ttc" id="aclass_renderer_html_a5815dc74d56364d416144d9a69b4cf34"><div class="ttname"><a href="class_renderer.html#a5815dc74d56364d416144d9a69b4cf34">Renderer::initVertexShader</a></div><div class="ttdeci">virtual bool initVertexShader()</div><div class="ttdoc">頂点シェーダーをコンパイルして初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:82</div></div>
+<div class="ttc" id="aclass_renderer_html_a5b7aefb9d213e7bc5168d37b69dd7142"><div class="ttname"><a href="class_renderer.html#a5b7aefb9d213e7bc5168d37b69dd7142">Renderer::initPixelShader</a></div><div class="ttdeci">virtual bool initPixelShader()</div><div class="ttdoc">ピクセルシェーダーをコンパイルして初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:151</div></div>
+<div class="ttc" id="aclass_renderer_html_a5fbe270f3bce8e3da120a50de081b22a"><div class="ttname"><a href="class_renderer.html#a5fbe270f3bce8e3da120a50de081b22a">Renderer::initRasterizer</a></div><div class="ttdeci">virtual bool initRasterizer()</div><div class="ttdoc">ラスタライザーステートを初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:65</div></div>
+<div class="ttc" id="aclass_renderer_html_a7256b697dd5d1a8b17b79786ae36d8d8"><div class="ttname"><a href="class_renderer.html#a7256b697dd5d1a8b17b79786ae36d8d8">Renderer::getTopology</a></div><div class="ttdeci">D3D11_PRIMITIVE_TOPOLOGY getTopology() const</div><div class="ttdoc">プリミティブトポロジーを返す</div><div class="ttdef"><b>Definition</b> renderer.h:64</div></div>
+<div class="ttc" id="aclass_renderer_html_a7dd4f040a307962c6936a6f17c22d846"><div class="ttname"><a href="class_renderer.html#a7dd4f040a307962c6936a6f17c22d846">Renderer::m_pVertexBuffer</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11Buffer &gt; m_pVertexBuffer</div><div class="ttdoc">頂点バッファ</div><div class="ttdef"><b>Definition</b> renderer.h:76</div></div>
+<div class="ttc" id="aclass_renderer_html_a7ec8d3708e4301fc095639afd9eb5af8"><div class="ttname"><a href="class_renderer.html#a7ec8d3708e4301fc095639afd9eb5af8">Renderer::initBlend</a></div><div class="ttdeci">virtual bool initBlend()</div><div class="ttdoc">ブレンドステートを初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:42</div></div>
+<div class="ttc" id="aclass_renderer_html_aa9703f5017a0c31cf89b4f92da272ec2"><div class="ttname"><a href="class_renderer.html#aa9703f5017a0c31cf89b4f92da272ec2">Renderer::m_pRasterizerState</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11RasterizerState &gt; m_pRasterizerState</div><div class="ttdoc">ラスタライザーステート</div><div class="ttdef"><b>Definition</b> renderer.h:80</div></div>
+<div class="ttc" id="aclass_renderer_html_ab8ab168cb15a443355b0f61524c8ab06"><div class="ttname"><a href="class_renderer.html#ab8ab168cb15a443355b0f61524c8ab06">Renderer::m_pVertexShader</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11VertexShader &gt; m_pVertexShader</div><div class="ttdoc">頂点シェーダー</div><div class="ttdef"><b>Definition</b> renderer.h:73</div></div>
+<div class="ttc" id="aclass_renderer_html_ac4a60aaf11e4769650ea9078654169ce"><div class="ttname"><a href="class_renderer.html#ac4a60aaf11e4769650ea9078654169ce">Renderer::getContext</a></div><div class="ttdeci">const RenderContext *const getContext() const</div><div class="ttdoc">レンダリングコンテキストを返す</div><div class="ttdef"><b>Definition</b> renderer.h:66</div></div>
+<div class="ttc" id="aclass_renderer_html_ad749a9dba57664ea11d48e5f09c5d2f4"><div class="ttname"><a href="class_renderer.html#ad749a9dba57664ea11d48e5f09c5d2f4">Renderer::m_pIndexBuffer</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11Buffer &gt; m_pIndexBuffer</div><div class="ttdoc">インデックスバッファ</div><div class="ttdef"><b>Definition</b> renderer.h:77</div></div>
+<div class="ttc" id="aclass_renderer_html_add2012f269f157754034e7b5475a8927"><div class="ttname"><a href="class_renderer.html#add2012f269f157754034e7b5475a8927">Renderer::~Renderer</a></div><div class="ttdeci">virtual ~Renderer()=default</div></div>
+<div class="ttc" id="aclass_renderer_html_ae69f576d6d796811bc4440aede29b9de"><div class="ttname"><a href="class_renderer.html#ae69f576d6d796811bc4440aede29b9de">Renderer::initIndexBuffer</a></div><div class="ttdeci">virtual bool initIndexBuffer()=0</div><div class="ttdoc">インデックスバッファを初期化する（純粋仮想）</div></div>
+<div class="ttc" id="aclass_renderer_html_ae96c613a14825cff9d768fd71b30b3a0"><div class="ttname"><a href="class_renderer.html#ae96c613a14825cff9d768fd71b30b3a0">Renderer::m_pPixelShader</a></div><div class="ttdeci">Microsoft::WRL::ComPtr&lt; ID3D11PixelShader &gt; m_pPixelShader</div><div class="ttdoc">ピクセルシェーダー</div><div class="ttdef"><b>Definition</b> renderer.h:74</div></div>
+<div class="ttc" id="aclass_renderer_html_af9940afafa984e4cd344e1e426ad1c09"><div class="ttname"><a href="class_renderer.html#af9940afafa984e4cd344e1e426ad1c09">Renderer::initDepthStencil</a></div><div class="ttdeci">virtual bool initDepthStencil()</div><div class="ttdoc">深度ステンシルステートを初期化する</div><div class="ttdef"><b>Definition</b> renderer.cpp:23</div></div>
+<div class="ttc" id="aclass_transform_html"><div class="ttname"><a href="class_transform.html">Transform</a></div><div class="ttdoc">ゲームオブジェクトの空間情報（位置・回転・スケール）を管理するクラス</div><div class="ttdef"><b>Definition</b> transform.h:21</div></div>
+<div class="ttc" id="acomponent_8h_html"><div class="ttname"><a href="component_8h.html">component.h</a></div><div class="ttdoc">コンポーネント基底クラス</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_a0738e9b900b46687315e6ae1079a286.html">component</a></li><li class="navelem"><a href="renderer_8h.html">renderer.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

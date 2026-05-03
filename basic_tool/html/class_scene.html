@@ -1,0 +1,924 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: Scene クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_scene.html','','class_scene-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Scene クラス<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>すべてのシーンの基底クラス  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="scene_8h_source.html">scene.h</a>&gt;</code></p>
+<div class="dynheader">
+Scene の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_scene.png" usemap="#Scene_map" alt=""/>
+  <map id="Scene_map" name="Scene_map">
+<area href="class_test_scene.html" title="動作確認用のテストシーン" alt="TestScene" shape="rect" coords="0,56,71,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:af6e09d91ebd10ae9cc7c12c39d06386c" id="r_af6e09d91ebd10ae9cc7c12c39d06386c"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#af6e09d91ebd10ae9cc7c12c39d06386c">~Scene</a> ()=default</td></tr>
+<tr class="memitem:acb3e6fc9fa8ce199ff10a00d86834386" id="r_acb3e6fc9fa8ce199ff10a00d86834386"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#acb3e6fc9fa8ce199ff10a00d86834386">Initialize</a> ()=0</td></tr>
+<tr class="memdesc:acb3e6fc9fa8ce199ff10a00d86834386"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソースを初期化する  <br /></td></tr>
+<tr class="memitem:a0329ea984ee28d11dc3cd225359d0240" id="r_a0329ea984ee28d11dc3cd225359d0240"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a0329ea984ee28d11dc3cd225359d0240">Setup</a> ()=0</td></tr>
+<tr class="memdesc:a0329ea984ee28d11dc3cd225359d0240"><td class="mdescLeft">&#160;</td><td class="mdescRight">シーンのゲームオブジェクトを構築する  <br /></td></tr>
+<tr class="memitem:aa6ddc7631708f3599e6d6a62520d9c7f" id="r_aa6ddc7631708f3599e6d6a62520d9c7f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aa6ddc7631708f3599e6d6a62520d9c7f">Start</a> ()=0</td></tr>
+<tr class="memdesc:aa6ddc7631708f3599e6d6a62520d9c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームプレイ開始時に一度だけ呼ばれる  <br /></td></tr>
+<tr class="memitem:ab99ec7aff3ed995985ddb764ffb78f8e" id="r_ab99ec7aff3ed995985ddb764ffb78f8e"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab99ec7aff3ed995985ddb764ffb78f8e">Update</a> ()=0</td></tr>
+<tr class="memdesc:ab99ec7aff3ed995985ddb764ffb78f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレーム更新処理  <br /></td></tr>
+<tr class="memitem:a8680672fd30bb4b345e6fab918e31ecd" id="r_a8680672fd30bb4b345e6fab918e31ecd"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a8680672fd30bb4b345e6fab918e31ecd">Draw</a> ()=0</td></tr>
+<tr class="memdesc:a8680672fd30bb4b345e6fab918e31ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレーム描画処理  <br /></td></tr>
+<tr class="memitem:adc7413de9c8fb8701f785a80cd8b9d48" id="r_adc7413de9c8fb8701f785a80cd8b9d48"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#adc7413de9c8fb8701f785a80cd8b9d48">Terminate</a> ()=0</td></tr>
+<tr class="memdesc:adc7413de9c8fb8701f785a80cd8b9d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームプレイ終了時に呼ばれる  <br /></td></tr>
+<tr class="memitem:a25094bc4ce047ca23503c748b6f2acce" id="r_a25094bc4ce047ca23503c748b6f2acce"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a25094bc4ce047ca23503c748b6f2acce">Finalize</a> ()=0</td></tr>
+<tr class="memdesc:a25094bc4ce047ca23503c748b6f2acce"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソースを解放する  <br /></td></tr>
+<tr class="memitem:a3d21a31a032f1f95d1f749959172825e" id="r_a3d21a31a032f1f95d1f749959172825e"><td class="memItemLeft"><a class="el" href="class_game_object.html">GameObject</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a3d21a31a032f1f95d1f749959172825e">Instantiate</a> (std::string name, bool isSerialize=false)</td></tr>
+<tr class="memdesc:a3d21a31a032f1f95d1f749959172825e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームオブジェクトを生成してシーンに登録する（UUID 自動発行）  <br /></td></tr>
+<tr class="memitem:a8e4f3ad718dc2f495e0edf92b61365f8" id="r_a8e4f3ad718dc2f495e0edf92b61365f8"><td class="memItemLeft"><a class="el" href="class_game_object.html">GameObject</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8e4f3ad718dc2f495e0edf92b61365f8">Instantiate</a> (uint64_t id, std::string name, bool isSerialize=false)</td></tr>
+<tr class="memdesc:a8e4f3ad718dc2f495e0edf92b61365f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームオブジェクトを生成してシーンに登録する（ID 指定）  <br /></td></tr>
+<tr class="memitem:a305e30debc7124456e0f13cd83762021" id="r_a305e30debc7124456e0f13cd83762021"><td class="memItemLeft"><a class="el" href="class_game_object.html">GameObject</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#a305e30debc7124456e0f13cd83762021">FindGameObject</a> (uint64_t id) const</td></tr>
+<tr class="memdesc:a305e30debc7124456e0f13cd83762021"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID でゲームオブジェクトを検索して返す  <br /></td></tr>
+<tr class="memitem:aa9e9b3d81824235bd6522b9e5a7b67ca" id="r_aa9e9b3d81824235bd6522b9e5a7b67ca"><td class="memItemLeft"><a class="el" href="class_game_object.html">GameObject</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#aa9e9b3d81824235bd6522b9e5a7b67ca">FindGameObject</a> (std::string name) const</td></tr>
+<tr class="memdesc:aa9e9b3d81824235bd6522b9e5a7b67ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">名前でゲームオブジェクトを検索して返す  <br /></td></tr>
+<tr class="memitem:a0edd90c233504c8941442579d456b808" id="r_a0edd90c233504c8941442579d456b808"><td class="memItemLeft"><a class="el" href="class_render_context.html">RenderContext</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#a0edd90c233504c8941442579d456b808">GetContext</a> () const</td></tr>
+<tr class="memdesc:a0edd90c233504c8941442579d456b808"><td class="mdescLeft">&#160;</td><td class="mdescRight">レンダリングコンテキストを返す  <br /></td></tr>
+<tr class="memitem:a9259da6f2b7b13356f68e65f2f2db6d0" id="r_a9259da6f2b7b13356f68e65f2f2db6d0"><td class="memItemLeft">const HWND &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9259da6f2b7b13356f68e65f2f2db6d0">GetWnd</a> () const</td></tr>
+<tr class="memdesc:a9259da6f2b7b13356f68e65f2f2db6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウハンドルを返す  <br /></td></tr>
+<tr class="memitem:ac1ce66b2a0a3c6e859155a81e97e5125" id="r_ac1ce66b2a0a3c6e859155a81e97e5125"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac1ce66b2a0a3c6e859155a81e97e5125">Serialize</a> (std::string sceneName)</td></tr>
+<tr class="memdesc:ac1ce66b2a0a3c6e859155a81e97e5125"><td class="mdescLeft">&#160;</td><td class="mdescRight">シーンをファイルにシリアライズする  <br /></td></tr>
+<tr class="memitem:a6d21299fc89a1910b1d49ff209aa5e0c" id="r_a6d21299fc89a1910b1d49ff209aa5e0c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6d21299fc89a1910b1d49ff209aa5e0c">Deserialize</a> (std::string path, std::string sceneName)</td></tr>
+<tr class="memdesc:a6d21299fc89a1910b1d49ff209aa5e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイルからシーンをデシリアライズする  <br /></td></tr>
+<tr class="memitem:ae2ceffce977fe04dafd1fad7aa58b2cb" id="r_ae2ceffce977fe04dafd1fad7aa58b2cb"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</td></tr>
+<tr class="memitem:ae2ceffce977fe04dafd1fad7aa58b2cb template"><td class="memItemLeft">T *const&#160;</td><td class="memItemRight"><a class="el" href="#ae2ceffce977fe04dafd1fad7aa58b2cb">FindComponent</a> (uint64_t id) const</td></tr>
+<tr class="memdesc:ae2ceffce977fe04dafd1fad7aa58b2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID でコンポーネントを横断検索して返す  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a577d747ca16b565093a33bb5f16d935a" id="r_a577d747ca16b565093a33bb5f16d935a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a577d747ca16b565093a33bb5f16d935a">Scene</a> (HWND hWnd, <a class="el" href="class_render_context.html">RenderContext</a> *const pContext)</td></tr>
+<tr class="memdesc:a577d747ca16b565093a33bb5f16d935a"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <br /></td></tr>
+<tr class="memitem:ac92977ffe219894cf8278204e627e00b" id="r_ac92977ffe219894cf8278204e627e00b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac92977ffe219894cf8278204e627e00b">destroy</a> ()</td></tr>
+<tr class="memdesc:ac92977ffe219894cf8278204e627e00b"><td class="mdescLeft">&#160;</td><td class="mdescRight">破棄フラグが立ったゲームオブジェクトを削除する  <br /></td></tr>
+<tr class="memitem:a39ad85e50cb1fb2230dde621876f3f7e" id="r_a39ad85e50cb1fb2230dde621876f3f7e"><td class="memItemLeft">const <a class="el" href="class_render_context.html">RenderContext</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#a39ad85e50cb1fb2230dde621876f3f7e">getContext</a> () const</td></tr>
+<tr class="memdesc:a39ad85e50cb1fb2230dde621876f3f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">レンダリングコンテキストを返す（const 版）  <br /></td></tr>
+<tr class="memitem:a5e3e9e2145b780bb78ba4120b8fc1b5e" id="r_a5e3e9e2145b780bb78ba4120b8fc1b5e"><td class="memItemLeft">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5e3e9e2145b780bb78ba4120b8fc1b5e">getGameObjects</a> () const</td></tr>
+<tr class="memdesc:a5e3e9e2145b780bb78ba4120b8fc1b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームオブジェクトリストを返す  <br /></td></tr>
+<tr class="memitem:a74216c796459178f15db129dd123a603" id="r_a74216c796459178f15db129dd123a603"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a74216c796459178f15db129dd123a603">clearGameObjects</a> ()</td></tr>
+<tr class="memdesc:a74216c796459178f15db129dd123a603"><td class="mdescLeft">&#160;</td><td class="mdescRight">全ゲームオブジェクトを削除する  <br /></td></tr>
+<tr class="memitem:a11efe672c18f31841e537e39954b0b4f" id="r_a11efe672c18f31841e537e39954b0b4f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a11efe672c18f31841e537e39954b0b4f">getIsRuntime</a> () const</td></tr>
+<tr class="memdesc:a11efe672c18f31841e537e39954b0b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ランタイム（再生）状態かどうかを返す  <br /></td></tr>
+<tr class="memitem:a8a24f812eb7df255009538b574233e37" id="r_a8a24f812eb7df255009538b574233e37"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8a24f812eb7df255009538b574233e37">setIsRuntime</a> (bool which)</td></tr>
+<tr class="memdesc:a8a24f812eb7df255009538b574233e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">ランタイム状態を設定する  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>すべてのシーンの基底クラス </p>
+<p>ゲームオブジェクトの生成・検索・シリアライズ機能を提供する。 派生クラスは Initialize/Setup/Start/Update/Draw/Terminate/Finalize を実装する。 </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a id="af6e09d91ebd10ae9cc7c12c39d06386c" name="af6e09d91ebd10ae9cc7c12c39d06386c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e09d91ebd10ae9cc7c12c39d06386c">&#9670;&#160;</a></span>~Scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Scene::~Scene </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a577d747ca16b565093a33bb5f16d935a" name="a577d747ca16b565093a33bb5f16d935a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577d747ca16b565093a33bb5f16d935a">&#9670;&#160;</a></span>Scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Scene::Scene </td>
+          <td>(</td>
+          <td class="paramtype">HWND</td>          <td class="paramname"><span class="paramname"><em>hWnd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_render_context.html">RenderContext</a> *const</td>          <td class="paramname"><span class="paramname"><em>pContext</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hWnd</td><td>ウィンドウハンドル </td></tr>
+    <tr><td class="paramname">pContext</td><td>レンダリングコンテキスト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="a74216c796459178f15db129dd123a603" name="a74216c796459178f15db129dd123a603"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74216c796459178f15db129dd123a603">&#9670;&#160;</a></span>clearGameObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::clearGameObjects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>全ゲームオブジェクトを削除する </p>
+
+</div>
+</div>
+<a id="a6d21299fc89a1910b1d49ff209aa5e0c" name="a6d21299fc89a1910b1d49ff209aa5e0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d21299fc89a1910b1d49ff209aa5e0c">&#9670;&#160;</a></span>Deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::Deserialize </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>sceneName</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ファイルからシーンをデシリアライズする </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>ファイルパス </td></tr>
+    <tr><td class="paramname">sceneName</td><td>シーン名（ファイル名） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac92977ffe219894cf8278204e627e00b" name="ac92977ffe219894cf8278204e627e00b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac92977ffe219894cf8278204e627e00b">&#9670;&#160;</a></span>destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::destroy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>破棄フラグが立ったゲームオブジェクトを削除する </p>
+
+</div>
+</div>
+<a id="a8680672fd30bb4b345e6fab918e31ecd" name="a8680672fd30bb4b345e6fab918e31ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8680672fd30bb4b345e6fab918e31ecd">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Draw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>毎フレーム描画処理 </p>
+
+<p><a class="el" href="class_test_scene.html#a198824913f789732c410e31ca547136b">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="a25094bc4ce047ca23503c748b6f2acce" name="a25094bc4ce047ca23503c748b6f2acce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25094bc4ce047ca23503c748b6f2acce">&#9670;&#160;</a></span>Finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Finalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>リソースを解放する </p>
+
+<p><a class="el" href="class_test_scene.html#ada6fc50a96864a1d00ca754c681482b5">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="ae2ceffce977fe04dafd1fad7aa58b2cb" name="ae2ceffce977fe04dafd1fad7aa58b2cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2ceffce977fe04dafd1fad7aa58b2cb">&#9670;&#160;</a></span>FindComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T *const Scene::FindComponent </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ID でコンポーネントを横断検索して返す </p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td><a class="el" href="class_component.html" title="すべてのコンポーネントの基底クラス">Component</a> の派生クラス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>コンポーネント ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>見つかったコンポーネントへのポインタ、なければ nullptr </dd></dl>
+
+</div>
+</div>
+<a id="aa9e9b3d81824235bd6522b9e5a7b67ca" name="aa9e9b3d81824235bd6522b9e5a7b67ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e9b3d81824235bd6522b9e5a7b67ca">&#9670;&#160;</a></span>FindGameObject() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_object.html">GameObject</a> *const Scene::FindGameObject </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>名前でゲームオブジェクトを検索して返す </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>オブジェクト名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>見つかったオブジェクトへのポインタ、なければ nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a305e30debc7124456e0f13cd83762021" name="a305e30debc7124456e0f13cd83762021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a305e30debc7124456e0f13cd83762021">&#9670;&#160;</a></span>FindGameObject() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_object.html">GameObject</a> *const Scene::FindGameObject </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ID でゲームオブジェクトを検索して返す </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>オブジェクト ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>見つかったオブジェクトへのポインタ、なければ nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a0edd90c233504c8941442579d456b808" name="a0edd90c233504c8941442579d456b808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0edd90c233504c8941442579d456b808">&#9670;&#160;</a></span>GetContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_context.html">RenderContext</a> *const Scene::GetContext </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>レンダリングコンテキストを返す </p>
+
+</div>
+</div>
+<a id="a39ad85e50cb1fb2230dde621876f3f7e" name="a39ad85e50cb1fb2230dde621876f3f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ad85e50cb1fb2230dde621876f3f7e">&#9670;&#160;</a></span>getContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_render_context.html">RenderContext</a> *const Scene::getContext </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>レンダリングコンテキストを返す（const 版） </p>
+
+</div>
+</div>
+<a id="a5e3e9e2145b780bb78ba4120b8fc1b5e" name="a5e3e9e2145b780bb78ba4120b8fc1b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3e9e2145b780bb78ba4120b8fc1b5e">&#9670;&#160;</a></span>getGameObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp; Scene::getGameObjects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ゲームオブジェクトリストを返す </p>
+
+</div>
+</div>
+<a id="a11efe672c18f31841e537e39954b0b4f" name="a11efe672c18f31841e537e39954b0b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11efe672c18f31841e537e39954b0b4f">&#9670;&#160;</a></span>getIsRuntime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Scene::getIsRuntime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ランタイム（再生）状態かどうかを返す </p>
+
+</div>
+</div>
+<a id="a9259da6f2b7b13356f68e65f2f2db6d0" name="a9259da6f2b7b13356f68e65f2f2db6d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9259da6f2b7b13356f68e65f2f2db6d0">&#9670;&#160;</a></span>GetWnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const HWND &amp; Scene::GetWnd </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ウィンドウハンドルを返す </p>
+
+</div>
+</div>
+<a id="acb3e6fc9fa8ce199ff10a00d86834386" name="acb3e6fc9fa8ce199ff10a00d86834386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3e6fc9fa8ce199ff10a00d86834386">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>リソースを初期化する </p>
+
+<p><a class="el" href="class_test_scene.html#a521497a11f17980eb53d84196b962043">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="a3d21a31a032f1f95d1f749959172825e" name="a3d21a31a032f1f95d1f749959172825e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d21a31a032f1f95d1f749959172825e">&#9670;&#160;</a></span>Instantiate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_object.html">GameObject</a> &amp; Scene::Instantiate </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isSerialize</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ゲームオブジェクトを生成してシーンに登録する（UUID 自動発行） </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>オブジェクト名 </td></tr>
+    <tr><td class="paramname">isSerialize</td><td>シリアライズ対象かどうか </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>生成したゲームオブジェクトへの参照 </dd></dl>
+
+</div>
+</div>
+<a id="a8e4f3ad718dc2f495e0edf92b61365f8" name="a8e4f3ad718dc2f495e0edf92b61365f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e4f3ad718dc2f495e0edf92b61365f8">&#9670;&#160;</a></span>Instantiate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_object.html">GameObject</a> &amp; Scene::Instantiate </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isSerialize</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ゲームオブジェクトを生成してシーンに登録する（ID 指定） </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>オブジェクト ID </td></tr>
+    <tr><td class="paramname">name</td><td>オブジェクト名 </td></tr>
+    <tr><td class="paramname">isSerialize</td><td>シリアライズ対象かどうか </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>生成したゲームオブジェクトへの参照 </dd></dl>
+
+</div>
+</div>
+<a id="ac1ce66b2a0a3c6e859155a81e97e5125" name="ac1ce66b2a0a3c6e859155a81e97e5125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ce66b2a0a3c6e859155a81e97e5125">&#9670;&#160;</a></span>Serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::Serialize </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>sceneName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>シーンをファイルにシリアライズする </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sceneName</td><td>シーン名（ファイル名） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8a24f812eb7df255009538b574233e37" name="a8a24f812eb7df255009538b574233e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a24f812eb7df255009538b574233e37">&#9670;&#160;</a></span>setIsRuntime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::setIsRuntime </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>which</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ランタイム状態を設定する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">which</td><td>true で再生中 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0329ea984ee28d11dc3cd225359d0240" name="a0329ea984ee28d11dc3cd225359d0240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0329ea984ee28d11dc3cd225359d0240">&#9670;&#160;</a></span>Setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>シーンのゲームオブジェクトを構築する </p>
+
+<p><a class="el" href="class_test_scene.html#a2ca81c994215846a91d1442701a3805a">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="aa6ddc7631708f3599e6d6a62520d9c7f" name="aa6ddc7631708f3599e6d6a62520d9c7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ddc7631708f3599e6d6a62520d9c7f">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ゲームプレイ開始時に一度だけ呼ばれる </p>
+
+<p><a class="el" href="class_test_scene.html#a2ffb50e40ae7c251e9613bc4eda97653">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="adc7413de9c8fb8701f785a80cd8b9d48" name="adc7413de9c8fb8701f785a80cd8b9d48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc7413de9c8fb8701f785a80cd8b9d48">&#9670;&#160;</a></span>Terminate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Terminate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ゲームプレイ終了時に呼ばれる </p>
+
+<p><a class="el" href="class_test_scene.html#a082acab6e57c1fce29d3266f933a50c7">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="ab99ec7aff3ed995985ddb764ffb78f8e" name="ab99ec7aff3ed995985ddb764ffb78f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99ec7aff3ed995985ddb764ffb78f8e">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::Update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>毎フレーム更新処理 </p>
+
+<p><a class="el" href="class_test_scene.html#aefdd62b1881950125370e70dfb3b0a34">TestScene</a>で実装されています。</p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>scripts/application/<a class="el" href="scene_8h_source.html">scene.h</a></li>
+<li>scripts/application/<a class="el" href="scene_8cpp.html">scene.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_scene.html">Scene</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

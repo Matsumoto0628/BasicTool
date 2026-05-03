@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/application/scene/test_scene.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('test__scene_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">test_scene.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="test__scene_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="scene_8h.html">scene.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="class_render_context.html">RenderContext</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="class_gui.html">Gui</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_test_scene.html">   18</a></span><span class="keyword">class </span><a class="code hl_function" href="class_test_scene.html#a1d9094618abd2dcb3e3c5ff0ca3da1f2">TestScene</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_scene.html#a577d747ca16b565093a33bb5f16d935a">Scene</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_function" href="class_test_scene.html#a1d9094618abd2dcb3e3c5ff0ca3da1f2">TestScene</a>(HWND hWnd, <a class="code hl_class" href="class_render_context.html">RenderContext</a>* <span class="keyword">const</span> pContext);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_function" href="class_test_scene.html#a2b795cb6074e9d9deb8e51afa5ba5f58">~TestScene</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#a521497a11f17980eb53d84196b962043">Initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#a2ca81c994215846a91d1442701a3805a">Setup</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#a2ffb50e40ae7c251e9613bc4eda97653">Start</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#aefdd62b1881950125370e70dfb3b0a34">Update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#a198824913f789732c410e31ca547136b">Draw</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#a082acab6e57c1fce29d3266f933a50c7">Terminate</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_scene.html#ada6fc50a96864a1d00ca754c681482b5">Finalize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="class_test_scene.html#a1d9094618abd2dcb3e3c5ff0ca3da1f2">TestScene</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::unique_ptr&lt;Gui&gt; m_pGui = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="ttc" id="aclass_gui_html"><div class="ttname"><a href="class_gui.html">Gui</a></div><div class="ttdoc">ImGui を使ってヒエラルキー・インスペクター・メニューを表示するエディター GUI クラス</div><div class="ttdef"><b>Definition</b> gui.h:19</div></div>
+<div class="ttc" id="aclass_render_context_html"><div class="ttname"><a href="class_render_context.html">RenderContext</a></div><div class="ttdoc">DirectX11 デバイス・スワップチェーン・HDR ポストエフェクトを管理するクラス</div><div class="ttdef"><b>Definition</b> render_context.h:16</div></div>
+<div class="ttc" id="aclass_scene_html_a577d747ca16b565093a33bb5f16d935a"><div class="ttname"><a href="class_scene.html#a577d747ca16b565093a33bb5f16d935a">Scene::Scene</a></div><div class="ttdeci">Scene(HWND hWnd, RenderContext *const pContext)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition</b> scene.cpp:11</div></div>
+<div class="ttc" id="aclass_test_scene_html_a082acab6e57c1fce29d3266f933a50c7"><div class="ttname"><a href="class_test_scene.html#a082acab6e57c1fce29d3266f933a50c7">TestScene::Terminate</a></div><div class="ttdeci">void Terminate() override</div><div class="ttdoc">ゲームプレイ終了時に呼ばれる</div><div class="ttdef"><b>Definition</b> test_scene.cpp:68</div></div>
+<div class="ttc" id="aclass_test_scene_html_a198824913f789732c410e31ca547136b"><div class="ttname"><a href="class_test_scene.html#a198824913f789732c410e31ca547136b">TestScene::Draw</a></div><div class="ttdeci">void Draw() override</div><div class="ttdoc">毎フレーム描画処理</div><div class="ttdef"><b>Definition</b> test_scene.cpp:60</div></div>
+<div class="ttc" id="aclass_test_scene_html_a1d9094618abd2dcb3e3c5ff0ca3da1f2"><div class="ttname"><a href="class_test_scene.html#a1d9094618abd2dcb3e3c5ff0ca3da1f2">TestScene::TestScene</a></div><div class="ttdeci">TestScene(HWND hWnd, RenderContext *const pContext)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition</b> test_scene.cpp:11</div></div>
+<div class="ttc" id="aclass_test_scene_html_a2b795cb6074e9d9deb8e51afa5ba5f58"><div class="ttname"><a href="class_test_scene.html#a2b795cb6074e9d9deb8e51afa5ba5f58">TestScene::~TestScene</a></div><div class="ttdeci">~TestScene()</div><div class="ttdef"><b>Definition</b> test_scene.cpp:16</div></div>
+<div class="ttc" id="aclass_test_scene_html_a2ca81c994215846a91d1442701a3805a"><div class="ttname"><a href="class_test_scene.html#a2ca81c994215846a91d1442701a3805a">TestScene::Setup</a></div><div class="ttdeci">void Setup() override</div><div class="ttdoc">シーンのゲームオブジェクトを構築する</div><div class="ttdef"><b>Definition</b> test_scene.cpp:26</div></div>
+<div class="ttc" id="aclass_test_scene_html_a2ffb50e40ae7c251e9613bc4eda97653"><div class="ttname"><a href="class_test_scene.html#a2ffb50e40ae7c251e9613bc4eda97653">TestScene::Start</a></div><div class="ttdeci">void Start() override</div><div class="ttdoc">ゲームプレイ開始時に一度だけ呼ばれる</div><div class="ttdef"><b>Definition</b> test_scene.cpp:38</div></div>
+<div class="ttc" id="aclass_test_scene_html_a521497a11f17980eb53d84196b962043"><div class="ttname"><a href="class_test_scene.html#a521497a11f17980eb53d84196b962043">TestScene::Initialize</a></div><div class="ttdeci">void Initialize() override</div><div class="ttdoc">リソースを初期化する</div><div class="ttdef"><b>Definition</b> test_scene.cpp:20</div></div>
+<div class="ttc" id="aclass_test_scene_html_ada6fc50a96864a1d00ca754c681482b5"><div class="ttname"><a href="class_test_scene.html#ada6fc50a96864a1d00ca754c681482b5">TestScene::Finalize</a></div><div class="ttdeci">void Finalize() override</div><div class="ttdoc">リソースを解放する</div><div class="ttdef"><b>Definition</b> test_scene.cpp:82</div></div>
+<div class="ttc" id="aclass_test_scene_html_aefdd62b1881950125370e70dfb3b0a34"><div class="ttname"><a href="class_test_scene.html#aefdd62b1881950125370e70dfb3b0a34">TestScene::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdoc">毎フレーム更新処理</div><div class="ttdef"><b>Definition</b> test_scene.cpp:48</div></div>
+<div class="ttc" id="ascene_8h_html"><div class="ttname"><a href="scene_8h.html">scene.h</a></div><div class="ttdoc">シーン基底クラス</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_f3474cf9f9f5f48651dee8dce6e69bfd.html">application</a></li><li class="navelem"><a href="dir_3c4f7a30794be22d5fa6c066595c67d7.html">scene</a></li><li class="navelem"><a href="test__scene_8h.html">test_scene.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/component/behaviour/camera_controller.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('camera__controller_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">camera_controller.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="camera__controller_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="component_8h.html">component.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="class_transform.html">Transform</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_camera_controller.html">   17</a></span><span class="keyword">class </span><a class="code hl_function" href="class_camera_controller.html#ab983d86129d164baa305e51bbd47389e">CameraController</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_component.html#a8208d7927df1298ca79951ba1f99e293">Component</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="class_camera_controller.html#ab983d86129d164baa305e51bbd47389e">CameraController</a>(uint64_t <span class="keywordtype">id</span>, <a class="code hl_class" href="class_transform.html">Transform</a>* pTransform);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="class_camera_controller.html#ab983d86129d164baa305e51bbd47389e">CameraController</a>(<a class="code hl_class" href="class_transform.html">Transform</a>* pTransform);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_function" href="class_camera_controller.html#a9ecb9436179d1436803822196cd949e6">~CameraController</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a2b153bb7444c056a87832660c8a99e5a">Initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a0f69bc6c910ae5e8823f3d48dfed10f7">Start</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a4eb7b4d5f0a2ceff46933c3e0b321ee8">Update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a60c132add050e20d96526ca92023f53f">Draw</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a937a6ee7f7e30493a8b29d507089e18a">Finalize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_controller.html#a023d501dd72331ad36ebdc17adfd4018">Show</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> <a class="code hl_function" href="class_camera_controller.html#a830cda22b54a11be672e59c8636eaf28">Serialize</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> std::unique_ptr&lt;CameraController&gt; <a class="code hl_function" href="class_camera_controller.html#adf2bbe2d0d13a425e11573c95ad52dd7">Deserialize</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&amp; j, <a class="code hl_class" href="class_transform.html">Transform</a>* pTransform);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="class_camera_controller.html#ab983d86129d164baa305e51bbd47389e">CameraController</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_transform.html">Transform</a>* <span class="keyword">const</span> m_pTransform = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    POINT m_anchorPos;                       </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">float</span> m_rotX;                            </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">float</span> m_rotY;                            </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">float</span> m_speed;       </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">float</span> m_sensitivity; </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+</div>
+<div class="ttc" id="aclass_camera_controller_html_a023d501dd72331ad36ebdc17adfd4018"><div class="ttname"><a href="class_camera_controller.html#a023d501dd72331ad36ebdc17adfd4018">CameraController::Show</a></div><div class="ttdeci">void Show() override</div><div class="ttdoc">ImGui を使ったインスペクター表示処理</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:93</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a0f69bc6c910ae5e8823f3d48dfed10f7"><div class="ttname"><a href="class_camera_controller.html#a0f69bc6c910ae5e8823f3d48dfed10f7">CameraController::Start</a></div><div class="ttdeci">void Start() override</div><div class="ttdoc">開始時処理（シーン開始後に一度だけ呼ばれる）</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:31</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a2b153bb7444c056a87832660c8a99e5a"><div class="ttname"><a href="class_camera_controller.html#a2b153bb7444c056a87832660c8a99e5a">CameraController::Initialize</a></div><div class="ttdeci">void Initialize() override</div><div class="ttdoc">初期化処理（リソース確保など）</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:27</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a4eb7b4d5f0a2ceff46933c3e0b321ee8"><div class="ttname"><a href="class_camera_controller.html#a4eb7b4d5f0a2ceff46933c3e0b321ee8">CameraController::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdoc">毎フレーム更新処理</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:35</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a60c132add050e20d96526ca92023f53f"><div class="ttname"><a href="class_camera_controller.html#a60c132add050e20d96526ca92023f53f">CameraController::Draw</a></div><div class="ttdeci">void Draw() override</div><div class="ttdoc">毎フレーム描画処理</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:85</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a830cda22b54a11be672e59c8636eaf28"><div class="ttname"><a href="class_camera_controller.html#a830cda22b54a11be672e59c8636eaf28">CameraController::Serialize</a></div><div class="ttdeci">Json Serialize() const override</div><div class="ttdoc">JSON にシリアライズして返す</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:97</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a937a6ee7f7e30493a8b29d507089e18a"><div class="ttname"><a href="class_camera_controller.html#a937a6ee7f7e30493a8b29d507089e18a">CameraController::Finalize</a></div><div class="ttdeci">void Finalize() override</div><div class="ttdoc">終了時リソース解放処理</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:89</div></div>
+<div class="ttc" id="aclass_camera_controller_html_a9ecb9436179d1436803822196cd949e6"><div class="ttname"><a href="class_camera_controller.html#a9ecb9436179d1436803822196cd949e6">CameraController::~CameraController</a></div><div class="ttdeci">~CameraController()</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:23</div></div>
+<div class="ttc" id="aclass_camera_controller_html_ab983d86129d164baa305e51bbd47389e"><div class="ttname"><a href="class_camera_controller.html#ab983d86129d164baa305e51bbd47389e">CameraController::CameraController</a></div><div class="ttdeci">CameraController(uint64_t id, Transform *pTransform)</div><div class="ttdoc">デシリアライズ用コンストラクタ</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:12</div></div>
+<div class="ttc" id="aclass_camera_controller_html_adf2bbe2d0d13a425e11573c95ad52dd7"><div class="ttname"><a href="class_camera_controller.html#adf2bbe2d0d13a425e11573c95ad52dd7">CameraController::Deserialize</a></div><div class="ttdeci">static std::unique_ptr&lt; CameraController &gt; Deserialize(const Json &amp;j, Transform *pTransform)</div><div class="ttdoc">JSON から CameraController を生成して返す</div><div class="ttdef"><b>Definition</b> camera_controller.cpp:105</div></div>
+<div class="ttc" id="aclass_component_html_a8208d7927df1298ca79951ba1f99e293"><div class="ttname"><a href="class_component.html#a8208d7927df1298ca79951ba1f99e293">Component::Component</a></div><div class="ttdeci">Component(Type type)</div><div class="ttdoc">種別を指定するコンストラクタ（新規作成時）</div><div class="ttdef"><b>Definition</b> component.cpp:4</div></div>
+<div class="ttc" id="aclass_transform_html"><div class="ttname"><a href="class_transform.html">Transform</a></div><div class="ttdoc">ゲームオブジェクトの空間情報（位置・回転・スケール）を管理するクラス</div><div class="ttdef"><b>Definition</b> transform.h:21</div></div>
+<div class="ttc" id="acomponent_8h_html"><div class="ttname"><a href="component_8h.html">component.h</a></div><div class="ttdoc">コンポーネント基底クラス</div></div>
+<div class="ttc" id="agame__object_8h_html_ad25d13049e8f7c36517ed84e807a7e89"><div class="ttname"><a href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a></div><div class="ttdeci">nlohmann::ordered_json Json</div><div class="ttdef"><b>Definition</b> game_object.h:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_a0738e9b900b46687315e6ae1079a286.html">component</a></li><li class="navelem"><a href="dir_3c47dc8c1c4c0759c30121f71f37a6c2.html">behaviour</a></li><li class="navelem"><a href="camera__controller_8h.html">camera_controller.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

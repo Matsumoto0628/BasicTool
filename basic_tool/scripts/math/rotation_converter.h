@@ -1,12 +1,25 @@
+/**
+ * @file rotation_converter.h
+ * @brief 回転変換ユーティリティ関数群
+ * @author Matsumoto0628
+ * @date 2026-05-03
+ */
 #pragma once
 #include <DirectXMath.h>
 
-// 定数
+/** @brief 円周率 */
 const float PI = 3.14159265358979323846f;
 
+/** @brief 度数をラジアンに変換する */
 inline float DegToRad(float deg) { return deg * PI / 180.0f; }
+/** @brief ラジアンを度数に変換する */
 inline float RadToDeg(float rad) { return rad * 180.0f / PI; }
 
+/**
+ * @brief オイラー角（ラジアン）をクォータニオンに変換する
+ * @param euler オイラー角（X=Pitch, Y=Yaw, Z=Roll、単位はラジアン）
+ * @return クォータニオン（Vec4）
+ */
 inline Vec4 EulerToQuaternion(const Vec3& euler)
 {
     DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationRollPitchYaw(
@@ -23,6 +36,12 @@ inline Vec4 EulerToQuaternion(const Vec3& euler)
     );
 }
 
+/**
+ * @brief 任意軸と回転角からクォータニオンを生成する
+ * @param axis 回転軸（単位ベクトル）
+ * @param rad  回転角（ラジアン）
+ * @return クォータニオン（Vec4）
+ */
 inline Vec4 AxisToQuaternion(const Vec3& axis, float rad)
 {
     DirectX::XMVECTOR axisVec = DirectX::XMVectorSet(
@@ -42,6 +61,11 @@ inline Vec4 AxisToQuaternion(const Vec3& axis, float rad)
     );
 }
 
+/**
+ * @brief クォータニオンをオイラー角（ラジアン）に変換する
+ * @param q クォータニオン（Vec4）
+ * @return オイラー角（X=Pitch, Y=Yaw, Z=Roll、単位はラジアン）
+ */
 inline Vec3 QuaternionToEuler(const Vec4& q)
 {
     DirectX::XMVECTOR quat = DirectX::XMVectorSet(q.X(), q.Y(), q.Z(), q.W());
@@ -59,6 +83,12 @@ inline Vec3 QuaternionToEuler(const Vec4& q)
     return Vec3(pitch, yaw, roll);
 }
 
+/**
+ * @brief 前方向ベクトルと上方向ベクトルからクォータニオンを生成する
+ * @param forward 前方向ベクトル（単位ベクトル）
+ * @param up      上方向ベクトル（単位ベクトル）
+ * @return クォータニオン（Vec4）
+ */
 inline Vec4 LookRotation(const Vec3& forward, const Vec3& up)
 {
     DirectX::XMVECTOR f = DirectX::XMVectorSet(forward.X(), forward.Y(), forward.Z(), 0);
