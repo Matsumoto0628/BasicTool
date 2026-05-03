@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/math/vec4.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('vec4_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">vec4.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vec4_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;DirectXMath.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using </span><a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> = nlohmann::ordered_json;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_vec4.html">   18</a></span><span class="keyword">class </span><a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="class_vec4.html#a3c8428ad7cfa4fe9e82ea571ab0ad119">~Vec4</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, <span class="keywordtype">float</span> w);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> <a class="code hl_function" href="class_vec4.html#af5797e265f4f3eb62c21b2c70f37a82e">operator+</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> <a class="code hl_function" href="class_vec4.html#a2008f3523560b2790f02c11558f86166">operator-</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> <a class="code hl_function" href="class_vec4.html#a7c250dcada081a3be237af8a498aa296">operator*</a>(<span class="keywordtype">float</span> s) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_vec4.html#a3249ccca5525b0a9f0d791b38c09c8ea">X</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_vec4.html#a4a5537a10a71274db79ecba0c5d56f49">Y</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_vec4.html#ae67e2f105b43129c311f6761cdc07e01">Z</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_vec4.html#ac3ed6e9da99cf907f1958ab3525be6ab">W</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_vec4.html#a4eb731c3e56eb2eab155f38a1c888834">Length</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> <a class="code hl_function" href="class_vec4.html#a04d386349ff43b5c6c0759df64e7a51b">Normalize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> <a class="code hl_function" href="class_vec4.html#a606522fe63c3dc02abfa24439a30574a">MultiplyQuaternion</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="class_vec3.html">Vec3</a> <a class="code hl_function" href="class_vec4.html#a854ac61170859479b9bd0e8e05e71e94">RotateVec3</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vec4.html#af339a093e1b637de3a25bde4a39099c0">ToFloat4</a>(<span class="keywordtype">float</span> out[4]) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a>(<span class="keyword">const</span> DirectX::XMVECTOR&amp; v);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    DirectX::XMVECTOR vec;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="vec4_8h.html#abc4fe98ef1859297024ab0916eaa8c8e">   74</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="vec4_8h.html#abc4fe98ef1859297024ab0916eaa8c8e">to_json</a>(<a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&amp; j, <span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; v)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    j = { v.<a class="code hl_function" href="class_vec4.html#a3249ccca5525b0a9f0d791b38c09c8ea">X</a>(), v.<a class="code hl_function" href="class_vec4.html#a4a5537a10a71274db79ecba0c5d56f49">Y</a>(), v.<a class="code hl_function" href="class_vec4.html#ae67e2f105b43129c311f6761cdc07e01">Z</a>(), v.<a class="code hl_function" href="class_vec4.html#ac3ed6e9da99cf907f1958ab3525be6ab">W</a>()};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="vec4_8h.html#a014496042398d3739d7aa7fa2ea122e4">   80</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="vec4_8h.html#a014496042398d3739d7aa7fa2ea122e4">from_json</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&amp; j, <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; v)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">float</span> x = j.at(0).get&lt;<span class="keywordtype">float</span>&gt;();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">float</span> y = j.at(1).get&lt;<span class="keywordtype">float</span>&gt;();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">float</span> z = j.at(2).get&lt;<span class="keywordtype">float</span>&gt;();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">float</span> w = j.at(3).get&lt;<span class="keywordtype">float</span>&gt;();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    v = <a class="code hl_class" href="class_vec4.html">Vec4</a>(x, y, z, w);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+</div>
+<div class="ttc" id="aclass_vec3_html"><div class="ttname"><a href="class_vec3.html">Vec3</a></div><div class="ttdoc">3成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec3.h:19</div></div>
+<div class="ttc" id="aclass_vec4_html"><div class="ttname"><a href="class_vec4.html">Vec4</a></div><div class="ttdoc">4成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec4.h:19</div></div>
+<div class="ttc" id="aclass_vec4_html_a04d386349ff43b5c6c0759df64e7a51b"><div class="ttname"><a href="class_vec4.html#a04d386349ff43b5c6c0759df64e7a51b">Vec4::Normalize</a></div><div class="ttdeci">Vec4 Normalize() const</div><div class="ttdoc">正規化したベクトルを返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:61</div></div>
+<div class="ttc" id="aclass_vec4_html_a2008f3523560b2790f02c11558f86166"><div class="ttname"><a href="class_vec4.html#a2008f3523560b2790f02c11558f86166">Vec4::operator-</a></div><div class="ttdeci">const Vec4 operator-(const Vec4 &amp;rhs) const</div><div class="ttdoc">ベクトルの減算</div><div class="ttdef"><b>Definition</b> vec4.cpp:26</div></div>
+<div class="ttc" id="aclass_vec4_html_a3249ccca5525b0a9f0d791b38c09c8ea"><div class="ttname"><a href="class_vec4.html#a3249ccca5525b0a9f0d791b38c09c8ea">Vec4::X</a></div><div class="ttdeci">float X() const</div><div class="ttdoc">X 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:36</div></div>
+<div class="ttc" id="aclass_vec4_html_a3c8428ad7cfa4fe9e82ea571ab0ad119"><div class="ttname"><a href="class_vec4.html#a3c8428ad7cfa4fe9e82ea571ab0ad119">Vec4::~Vec4</a></div><div class="ttdeci">~Vec4()</div><div class="ttdef"><b>Definition</b> vec4.cpp:7</div></div>
+<div class="ttc" id="aclass_vec4_html_a4a5537a10a71274db79ecba0c5d56f49"><div class="ttname"><a href="class_vec4.html#a4a5537a10a71274db79ecba0c5d56f49">Vec4::Y</a></div><div class="ttdeci">float Y() const</div><div class="ttdoc">Y 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:41</div></div>
+<div class="ttc" id="aclass_vec4_html_a4eb731c3e56eb2eab155f38a1c888834"><div class="ttname"><a href="class_vec4.html#a4eb731c3e56eb2eab155f38a1c888834">Vec4::Length</a></div><div class="ttdeci">float Length() const</div><div class="ttdoc">ベクトルの長さ（ノルム）を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:56</div></div>
+<div class="ttc" id="aclass_vec4_html_a55a46de1fc067fd2d696ea5be485ce3c"><div class="ttname"><a href="class_vec4.html#a55a46de1fc067fd2d696ea5be485ce3c">Vec4::Vec4</a></div><div class="ttdeci">Vec4()</div><div class="ttdoc">デフォルトコンストラクタ（全要素 0 で初期化）</div><div class="ttdef"><b>Definition</b> vec4.cpp:2</div></div>
+<div class="ttc" id="aclass_vec4_html_a606522fe63c3dc02abfa24439a30574a"><div class="ttname"><a href="class_vec4.html#a606522fe63c3dc02abfa24439a30574a">Vec4::MultiplyQuaternion</a></div><div class="ttdeci">Vec4 MultiplyQuaternion(const Vec4 &amp;rhs) const</div><div class="ttdoc">クォータニオン同士の積（合成回転）を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:68</div></div>
+<div class="ttc" id="aclass_vec4_html_a7c250dcada081a3be237af8a498aa296"><div class="ttname"><a href="class_vec4.html#a7c250dcada081a3be237af8a498aa296">Vec4::operator*</a></div><div class="ttdeci">const Vec4 operator*(float s) const</div><div class="ttdoc">スカラー乗算</div><div class="ttdef"><b>Definition</b> vec4.cpp:31</div></div>
+<div class="ttc" id="aclass_vec4_html_a854ac61170859479b9bd0e8e05e71e94"><div class="ttname"><a href="class_vec4.html#a854ac61170859479b9bd0e8e05e71e94">Vec4::RotateVec3</a></div><div class="ttdeci">Vec3 RotateVec3(const Vec3 &amp;rhs) const</div><div class="ttdoc">クォータニオンで Vec3 を回転させた結果を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:73</div></div>
+<div class="ttc" id="aclass_vec4_html_ac3ed6e9da99cf907f1958ab3525be6ab"><div class="ttname"><a href="class_vec4.html#ac3ed6e9da99cf907f1958ab3525be6ab">Vec4::W</a></div><div class="ttdeci">float W() const</div><div class="ttdoc">W 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:51</div></div>
+<div class="ttc" id="aclass_vec4_html_ae67e2f105b43129c311f6761cdc07e01"><div class="ttname"><a href="class_vec4.html#ae67e2f105b43129c311f6761cdc07e01">Vec4::Z</a></div><div class="ttdeci">float Z() const</div><div class="ttdoc">Z 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:46</div></div>
+<div class="ttc" id="aclass_vec4_html_af339a093e1b637de3a25bde4a39099c0"><div class="ttname"><a href="class_vec4.html#af339a093e1b637de3a25bde4a39099c0">Vec4::ToFloat4</a></div><div class="ttdeci">void ToFloat4(float out[4]) const</div><div class="ttdoc">float 配列に変換して出力する</div><div class="ttdef"><b>Definition</b> vec4.cpp:84</div></div>
+<div class="ttc" id="aclass_vec4_html_af5797e265f4f3eb62c21b2c70f37a82e"><div class="ttname"><a href="class_vec4.html#af5797e265f4f3eb62c21b2c70f37a82e">Vec4::operator+</a></div><div class="ttdeci">const Vec4 operator+(const Vec4 &amp;rhs) const</div><div class="ttdoc">ベクトルの加算</div><div class="ttdef"><b>Definition</b> vec4.cpp:21</div></div>
+<div class="ttc" id="agame__object_8h_html_ad25d13049e8f7c36517ed84e807a7e89"><div class="ttname"><a href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a></div><div class="ttdeci">nlohmann::ordered_json Json</div><div class="ttdef"><b>Definition</b> game_object.h:14</div></div>
+<div class="ttc" id="avec4_8h_html_a014496042398d3739d7aa7fa2ea122e4"><div class="ttname"><a href="vec4_8h.html#a014496042398d3739d7aa7fa2ea122e4">from_json</a></div><div class="ttdeci">void from_json(const Json &amp;j, Vec4 &amp;v)</div><div class="ttdoc">JSON から Vec4 にデシリアライズする</div><div class="ttdef"><b>Definition</b> vec4.h:80</div></div>
+<div class="ttc" id="avec4_8h_html_abc4fe98ef1859297024ab0916eaa8c8e"><div class="ttname"><a href="vec4_8h.html#abc4fe98ef1859297024ab0916eaa8c8e">to_json</a></div><div class="ttdeci">void to_json(Json &amp;j, const Vec4 &amp;v)</div><div class="ttdoc">Vec4 を JSON にシリアライズする</div><div class="ttdef"><b>Definition</b> vec4.h:74</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_d598b04a50ecb49d2edc21f8fcffbb4f.html">math</a></li><li class="navelem"><a href="vec4_8h.html">vec4.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

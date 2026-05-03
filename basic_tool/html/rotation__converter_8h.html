@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/math/rotation_converter.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('rotation__converter_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">rotation_converter.h ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>回転変換ユーティリティ関数群  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &lt;DirectXMath.h&gt;</code><br />
+</div>
+<p><a href="rotation__converter_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:a116293816763dfdfd39b4bc70c38b465" id="r_a116293816763dfdfd39b4bc70c38b465"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a116293816763dfdfd39b4bc70c38b465">DegToRad</a> (float deg)</td></tr>
+<tr class="memdesc:a116293816763dfdfd39b4bc70c38b465"><td class="mdescLeft">&#160;</td><td class="mdescRight">度数をラジアンに変換する  <br /></td></tr>
+<tr class="memitem:a02a3e34ecc7f2a48193151ae91a92434" id="r_a02a3e34ecc7f2a48193151ae91a92434"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a02a3e34ecc7f2a48193151ae91a92434">RadToDeg</a> (float rad)</td></tr>
+<tr class="memdesc:a02a3e34ecc7f2a48193151ae91a92434"><td class="mdescLeft">&#160;</td><td class="mdescRight">ラジアンを度数に変換する  <br /></td></tr>
+<tr class="memitem:a8864e8dce511ba81cc0378ba7d40809c" id="r_a8864e8dce511ba81cc0378ba7d40809c"><td class="memItemLeft"><a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8864e8dce511ba81cc0378ba7d40809c">EulerToQuaternion</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;euler)</td></tr>
+<tr class="memdesc:a8864e8dce511ba81cc0378ba7d40809c"><td class="mdescLeft">&#160;</td><td class="mdescRight">オイラー角（ラジアン）をクォータニオンに変換する  <br /></td></tr>
+<tr class="memitem:aad1b3ecc4547600aeff4d391ba313d8d" id="r_aad1b3ecc4547600aeff4d391ba313d8d"><td class="memItemLeft"><a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#aad1b3ecc4547600aeff4d391ba313d8d">AxisToQuaternion</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;axis, float rad)</td></tr>
+<tr class="memdesc:aad1b3ecc4547600aeff4d391ba313d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">任意軸と回転角からクォータニオンを生成する  <br /></td></tr>
+<tr class="memitem:a6084fdf5855a455b8a94a61234edbf4f" id="r_a6084fdf5855a455b8a94a61234edbf4f"><td class="memItemLeft"><a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6084fdf5855a455b8a94a61234edbf4f">QuaternionToEuler</a> (const <a class="el" href="class_vec4.html">Vec4</a> &amp;q)</td></tr>
+<tr class="memdesc:a6084fdf5855a455b8a94a61234edbf4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">クォータニオンをオイラー角（ラジアン）に変換する  <br /></td></tr>
+<tr class="memitem:a6fbb62c23101330e37fdc521bb40c8d6" id="r_a6fbb62c23101330e37fdc521bb40c8d6"><td class="memItemLeft"><a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6fbb62c23101330e37fdc521bb40c8d6">LookRotation</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;forward, const <a class="el" href="class_vec3.html">Vec3</a> &amp;up)</td></tr>
+<tr class="memdesc:a6fbb62c23101330e37fdc521bb40c8d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">前方向ベクトルと上方向ベクトルからクォータニオンを生成する  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:aa08a577393243b86dfd2a97e61443673" id="r_aa08a577393243b86dfd2a97e61443673"><td class="memItemLeft">const float&#160;</td><td class="memItemRight"><a class="el" href="#aa08a577393243b86dfd2a97e61443673">PI</a> = 3.14159265358979323846f</td></tr>
+<tr class="memdesc:aa08a577393243b86dfd2a97e61443673"><td class="mdescLeft">&#160;</td><td class="mdescRight">円周率  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>回転変換ユーティリティ関数群 </p>
+<dl class="section author"><dt>著者</dt><dd>Matsumoto0628 </dd></dl>
+<dl class="section date"><dt>日付</dt><dd>2026-05-03 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="aad1b3ecc4547600aeff4d391ba313d8d" name="aad1b3ecc4547600aeff4d391ba313d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad1b3ecc4547600aeff4d391ba313d8d">&#9670;&#160;</a></span>AxisToQuaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec4.html">Vec4</a> AxisToQuaternion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>axis</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>rad</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>任意軸と回転角からクォータニオンを生成する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">axis</td><td>回転軸（単位ベクトル） </td></tr>
+    <tr><td class="paramname">rad</td><td>回転角（ラジアン） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>クォータニオン（Vec4） </dd></dl>
+
+</div>
+</div>
+<a id="a116293816763dfdfd39b4bc70c38b465" name="a116293816763dfdfd39b4bc70c38b465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a116293816763dfdfd39b4bc70c38b465">&#9670;&#160;</a></span>DegToRad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DegToRad </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>度数をラジアンに変換する </p>
+
+</div>
+</div>
+<a id="a8864e8dce511ba81cc0378ba7d40809c" name="a8864e8dce511ba81cc0378ba7d40809c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8864e8dce511ba81cc0378ba7d40809c">&#9670;&#160;</a></span>EulerToQuaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec4.html">Vec4</a> EulerToQuaternion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>euler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>オイラー角（ラジアン）をクォータニオンに変換する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">euler</td><td>オイラー角（X=Pitch, Y=Yaw, Z=Roll、単位はラジアン） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>クォータニオン（Vec4） </dd></dl>
+
+</div>
+</div>
+<a id="a6fbb62c23101330e37fdc521bb40c8d6" name="a6fbb62c23101330e37fdc521bb40c8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fbb62c23101330e37fdc521bb40c8d6">&#9670;&#160;</a></span>LookRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec4.html">Vec4</a> LookRotation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>forward</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>up</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>前方向ベクトルと上方向ベクトルからクォータニオンを生成する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">forward</td><td>前方向ベクトル（単位ベクトル） </td></tr>
+    <tr><td class="paramname">up</td><td>上方向ベクトル（単位ベクトル） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>クォータニオン（Vec4） </dd></dl>
+
+</div>
+</div>
+<a id="a6084fdf5855a455b8a94a61234edbf4f" name="a6084fdf5855a455b8a94a61234edbf4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6084fdf5855a455b8a94a61234edbf4f">&#9670;&#160;</a></span>QuaternionToEuler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec3.html">Vec3</a> QuaternionToEuler </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec4.html">Vec4</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>q</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>クォータニオンをオイラー角（ラジアン）に変換する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>クォータニオン（Vec4） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>オイラー角（X=Pitch, Y=Yaw, Z=Roll、単位はラジアン） </dd></dl>
+
+</div>
+</div>
+<a id="a02a3e34ecc7f2a48193151ae91a92434" name="a02a3e34ecc7f2a48193151ae91a92434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02a3e34ecc7f2a48193151ae91a92434">&#9670;&#160;</a></span>RadToDeg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RadToDeg </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>rad</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ラジアンを度数に変換する </p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">変数詳解</h2>
+<a id="aa08a577393243b86dfd2a97e61443673" name="aa08a577393243b86dfd2a97e61443673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa08a577393243b86dfd2a97e61443673">&#9670;&#160;</a></span>PI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float PI = 3.14159265358979323846f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>円周率 </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_d598b04a50ecb49d2edc21f8fcffbb4f.html">math</a></li><li class="navelem"><a href="rotation__converter_8h.html">rotation_converter.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

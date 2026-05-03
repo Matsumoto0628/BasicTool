@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/math/rotation_converter.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('rotation__converter_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">rotation_converter.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="rotation__converter_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;DirectXMath.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#aa08a577393243b86dfd2a97e61443673">   11</a></span><span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="rotation__converter_8h.html#aa08a577393243b86dfd2a97e61443673">PI</a> = 3.14159265358979323846f;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#a116293816763dfdfd39b4bc70c38b465">   14</a></span><span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code hl_function" href="rotation__converter_8h.html#a116293816763dfdfd39b4bc70c38b465">DegToRad</a>(<span class="keywordtype">float</span> deg) { <span class="keywordflow">return</span> deg * <a class="code hl_variable" href="rotation__converter_8h.html#aa08a577393243b86dfd2a97e61443673">PI</a> / 180.0f; }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#a02a3e34ecc7f2a48193151ae91a92434">   16</a></span><span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code hl_function" href="rotation__converter_8h.html#a02a3e34ecc7f2a48193151ae91a92434">RadToDeg</a>(<span class="keywordtype">float</span> rad) { <span class="keywordflow">return</span> rad * 180.0f / <a class="code hl_variable" href="rotation__converter_8h.html#aa08a577393243b86dfd2a97e61443673">PI</a>; }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#a8864e8dce511ba81cc0378ba7d40809c">   23</a></span><span class="keyword">inline</span> <a class="code hl_class" href="class_vec4.html">Vec4</a> <a class="code hl_function" href="rotation__converter_8h.html#a8864e8dce511ba81cc0378ba7d40809c">EulerToQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; euler)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationRollPitchYaw(</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        euler.<a class="code hl_function" href="class_vec3.html#a0422dc963252712abbc6077bb1d6983e">X</a>(),</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        euler.<a class="code hl_function" href="class_vec3.html#a43ce0892b98b788b9f7b765029637a05">Y</a>(),</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        euler.<a class="code hl_function" href="class_vec3.html#a62bf4acd50ca44b53228a94d4d630693">Z</a>()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    );</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        DirectX::XMVectorGetX(quat),</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        DirectX::XMVectorGetY(quat),</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        DirectX::XMVectorGetZ(quat),</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        DirectX::XMVectorGetW(quat)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    );</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#aad1b3ecc4547600aeff4d391ba313d8d">   45</a></span><span class="keyword">inline</span> <a class="code hl_class" href="class_vec4.html">Vec4</a> <a class="code hl_function" href="rotation__converter_8h.html#aad1b3ecc4547600aeff4d391ba313d8d">AxisToQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; axis, <span class="keywordtype">float</span> rad)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    DirectX::XMVECTOR axisVec = DirectX::XMVectorSet(</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        axis.<a class="code hl_function" href="class_vec3.html#a0422dc963252712abbc6077bb1d6983e">X</a>(),</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        axis.<a class="code hl_function" href="class_vec3.html#a43ce0892b98b788b9f7b765029637a05">Y</a>(),</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        axis.<a class="code hl_function" href="class_vec3.html#a62bf4acd50ca44b53228a94d4d630693">Z</a>(),</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        0.0f</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    );</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationAxis(axisVec, rad);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>(</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        DirectX::XMVectorGetX(quat),</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        DirectX::XMVectorGetY(quat),</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        DirectX::XMVectorGetZ(quat),</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        DirectX::XMVectorGetW(quat)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    );</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#a6084fdf5855a455b8a94a61234edbf4f">   69</a></span><span class="keyword">inline</span> <a class="code hl_class" href="class_vec3.html">Vec3</a> <a class="code hl_function" href="rotation__converter_8h.html#a6084fdf5855a455b8a94a61234edbf4f">QuaternionToEuler</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>&amp; q)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>{</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    DirectX::XMVECTOR quat = DirectX::XMVectorSet(q.<a class="code hl_function" href="class_vec4.html#a3249ccca5525b0a9f0d791b38c09c8ea">X</a>(), q.<a class="code hl_function" href="class_vec4.html#a4a5537a10a71274db79ecba0c5d56f49">Y</a>(), q.<a class="code hl_function" href="class_vec4.html#ae67e2f105b43129c311f6761cdc07e01">Z</a>(), q.<a class="code hl_function" href="class_vec4.html#ac3ed6e9da99cf907f1958ab3525be6ab">W</a>());</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// 回転行列に変換</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    DirectX::XMMATRIX m = DirectX::XMMatrixRotationQuaternion(quat);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">float</span> pitch, yaw, roll;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// LH座標系用の抽出</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    pitch = asinf(-DirectX::XMVectorGetZ(m.r[1]));               <span class="comment">// X回転</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    yaw = atan2f(DirectX::XMVectorGetZ(m.r[0]), DirectX::XMVectorGetZ(m.r[2])); <span class="comment">// Y回転</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    roll = atan2f(DirectX::XMVectorGetX(m.r[1]), DirectX::XMVectorGetY(m.r[1])); <span class="comment">// Z回転</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>(pitch, yaw, roll);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="rotation__converter_8h.html#a6fbb62c23101330e37fdc521bb40c8d6">   92</a></span><span class="keyword">inline</span> <a class="code hl_class" href="class_vec4.html">Vec4</a> <a class="code hl_function" href="rotation__converter_8h.html#a6fbb62c23101330e37fdc521bb40c8d6">LookRotation</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; forward, <span class="keyword">const</span> <a class="code hl_class" href="class_vec3.html">Vec3</a>&amp; up)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    DirectX::XMVECTOR f = DirectX::XMVectorSet(forward.<a class="code hl_function" href="class_vec3.html#a0422dc963252712abbc6077bb1d6983e">X</a>(), forward.<a class="code hl_function" href="class_vec3.html#a43ce0892b98b788b9f7b765029637a05">Y</a>(), forward.<a class="code hl_function" href="class_vec3.html#a62bf4acd50ca44b53228a94d4d630693">Z</a>(), 0);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    DirectX::XMVECTOR u = DirectX::XMVectorSet(up.<a class="code hl_function" href="class_vec3.html#a0422dc963252712abbc6077bb1d6983e">X</a>(), up.<a class="code hl_function" href="class_vec3.html#a43ce0892b98b788b9f7b765029637a05">Y</a>(), up.<a class="code hl_function" href="class_vec3.html#a62bf4acd50ca44b53228a94d4d630693">Z</a>(), 0);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    DirectX::XMMATRIX view = DirectX::XMMatrixLookToLH(</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        DirectX::XMVectorZero(), <span class="comment">// eye</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        f,                       <span class="comment">// forward</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        u                        <span class="comment">// up</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    );</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    DirectX::XMMATRIX rot = DirectX::XMMatrixInverse(<span class="keyword">nullptr</span>, view);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationMatrix(rot);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="class_vec4.html">Vec4</a>(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        DirectX::XMVectorGetX(quat),</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        DirectX::XMVectorGetY(quat),</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        DirectX::XMVectorGetZ(quat),</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        DirectX::XMVectorGetW(quat)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    );</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+</div>
+<div class="ttc" id="aclass_vec3_html"><div class="ttname"><a href="class_vec3.html">Vec3</a></div><div class="ttdoc">3成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec3.h:19</div></div>
+<div class="ttc" id="aclass_vec3_html_a0422dc963252712abbc6077bb1d6983e"><div class="ttname"><a href="class_vec3.html#a0422dc963252712abbc6077bb1d6983e">Vec3::X</a></div><div class="ttdeci">float X() const</div><div class="ttdoc">X 成分を返す</div><div class="ttdef"><b>Definition</b> vec3.cpp:64</div></div>
+<div class="ttc" id="aclass_vec3_html_a43ce0892b98b788b9f7b765029637a05"><div class="ttname"><a href="class_vec3.html#a43ce0892b98b788b9f7b765029637a05">Vec3::Y</a></div><div class="ttdeci">float Y() const</div><div class="ttdoc">Y 成分を返す</div><div class="ttdef"><b>Definition</b> vec3.cpp:69</div></div>
+<div class="ttc" id="aclass_vec3_html_a62bf4acd50ca44b53228a94d4d630693"><div class="ttname"><a href="class_vec3.html#a62bf4acd50ca44b53228a94d4d630693">Vec3::Z</a></div><div class="ttdeci">float Z() const</div><div class="ttdoc">Z 成分を返す</div><div class="ttdef"><b>Definition</b> vec3.cpp:74</div></div>
+<div class="ttc" id="aclass_vec4_html"><div class="ttname"><a href="class_vec4.html">Vec4</a></div><div class="ttdoc">4成分ベクトルクラス</div><div class="ttdef"><b>Definition</b> vec4.h:19</div></div>
+<div class="ttc" id="aclass_vec4_html_a3249ccca5525b0a9f0d791b38c09c8ea"><div class="ttname"><a href="class_vec4.html#a3249ccca5525b0a9f0d791b38c09c8ea">Vec4::X</a></div><div class="ttdeci">float X() const</div><div class="ttdoc">X 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:36</div></div>
+<div class="ttc" id="aclass_vec4_html_a4a5537a10a71274db79ecba0c5d56f49"><div class="ttname"><a href="class_vec4.html#a4a5537a10a71274db79ecba0c5d56f49">Vec4::Y</a></div><div class="ttdeci">float Y() const</div><div class="ttdoc">Y 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:41</div></div>
+<div class="ttc" id="aclass_vec4_html_ac3ed6e9da99cf907f1958ab3525be6ab"><div class="ttname"><a href="class_vec4.html#ac3ed6e9da99cf907f1958ab3525be6ab">Vec4::W</a></div><div class="ttdeci">float W() const</div><div class="ttdoc">W 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:51</div></div>
+<div class="ttc" id="aclass_vec4_html_ae67e2f105b43129c311f6761cdc07e01"><div class="ttname"><a href="class_vec4.html#ae67e2f105b43129c311f6761cdc07e01">Vec4::Z</a></div><div class="ttdeci">float Z() const</div><div class="ttdoc">Z 成分を返す</div><div class="ttdef"><b>Definition</b> vec4.cpp:46</div></div>
+<div class="ttc" id="arotation__converter_8h_html_a02a3e34ecc7f2a48193151ae91a92434"><div class="ttname"><a href="rotation__converter_8h.html#a02a3e34ecc7f2a48193151ae91a92434">RadToDeg</a></div><div class="ttdeci">float RadToDeg(float rad)</div><div class="ttdoc">ラジアンを度数に変換する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:16</div></div>
+<div class="ttc" id="arotation__converter_8h_html_a116293816763dfdfd39b4bc70c38b465"><div class="ttname"><a href="rotation__converter_8h.html#a116293816763dfdfd39b4bc70c38b465">DegToRad</a></div><div class="ttdeci">float DegToRad(float deg)</div><div class="ttdoc">度数をラジアンに変換する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:14</div></div>
+<div class="ttc" id="arotation__converter_8h_html_a6084fdf5855a455b8a94a61234edbf4f"><div class="ttname"><a href="rotation__converter_8h.html#a6084fdf5855a455b8a94a61234edbf4f">QuaternionToEuler</a></div><div class="ttdeci">Vec3 QuaternionToEuler(const Vec4 &amp;q)</div><div class="ttdoc">クォータニオンをオイラー角（ラジアン）に変換する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:69</div></div>
+<div class="ttc" id="arotation__converter_8h_html_a6fbb62c23101330e37fdc521bb40c8d6"><div class="ttname"><a href="rotation__converter_8h.html#a6fbb62c23101330e37fdc521bb40c8d6">LookRotation</a></div><div class="ttdeci">Vec4 LookRotation(const Vec3 &amp;forward, const Vec3 &amp;up)</div><div class="ttdoc">前方向ベクトルと上方向ベクトルからクォータニオンを生成する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:92</div></div>
+<div class="ttc" id="arotation__converter_8h_html_a8864e8dce511ba81cc0378ba7d40809c"><div class="ttname"><a href="rotation__converter_8h.html#a8864e8dce511ba81cc0378ba7d40809c">EulerToQuaternion</a></div><div class="ttdeci">Vec4 EulerToQuaternion(const Vec3 &amp;euler)</div><div class="ttdoc">オイラー角（ラジアン）をクォータニオンに変換する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:23</div></div>
+<div class="ttc" id="arotation__converter_8h_html_aa08a577393243b86dfd2a97e61443673"><div class="ttname"><a href="rotation__converter_8h.html#aa08a577393243b86dfd2a97e61443673">PI</a></div><div class="ttdeci">const float PI</div><div class="ttdoc">円周率</div><div class="ttdef"><b>Definition</b> rotation_converter.h:11</div></div>
+<div class="ttc" id="arotation__converter_8h_html_aad1b3ecc4547600aeff4d391ba313d8d"><div class="ttname"><a href="rotation__converter_8h.html#aad1b3ecc4547600aeff4d391ba313d8d">AxisToQuaternion</a></div><div class="ttdeci">Vec4 AxisToQuaternion(const Vec3 &amp;axis, float rad)</div><div class="ttdoc">任意軸と回転角からクォータニオンを生成する</div><div class="ttdef"><b>Definition</b> rotation_converter.h:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_d598b04a50ecb49d2edc21f8fcffbb4f.html">math</a></li><li class="navelem"><a href="rotation__converter_8h.html">rotation_converter.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

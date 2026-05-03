@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: scripts/window/window.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('window_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">window.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="window_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_window.html">   13</a></span><span class="keyword">class </span><a class="code hl_function" href="class_window.html#a49bb6150e2dea093b032330cab1d3cf3">Window</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_window.html#a49bb6150e2dea093b032330cab1d3cf3">Window</a>(HINSTANCE hInstance);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6">~Window</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_window.html#a41cab6dae60380563b8bc593e87f0c87">Initialize</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_window.html#ac686c7c04de804af983ab66e07a452d1">Finalize</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_window.html#adc0083e42c2a904032f86290133c6069">MessageLoop</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static</span> LRESULT CALLBACK <a class="code hl_function" href="class_window.html#a1e780f9ea5acb6db8fdafd96eaae74e8">MainWndProc</a>(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_window.html#a505f97a3623db7e57a19776f73a0823b">   37</a></span>    HWND <a class="code hl_function" href="class_window.html#a505f97a3623db7e57a19776f73a0823b">GetWindowHandle</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_hWnd; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    WNDCLASS m_wc;           </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    HWND m_hWnd = <span class="keyword">nullptr</span>;   </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    SIZE m_sizeWindow;       </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    MSG m_msg = {};          </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    HINSTANCE m_hInstance;   </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// 定数</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// インスタンス間で1つなので、staticにして宣言のみ行う</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// 整数型以外や古いコンパイラの場合は定義をソースで行う</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// 配列の数で使うのであれば、enumハックを使う</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> WIDTH = 960;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> HEIGHT = 540;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* NAME_WINDOW;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="ttc" id="aclass_window_html_a1e780f9ea5acb6db8fdafd96eaae74e8"><div class="ttname"><a href="class_window.html#a1e780f9ea5acb6db8fdafd96eaae74e8">Window::MainWndProc</a></div><div class="ttdeci">static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)</div><div class="ttdoc">ウィンドウプロシージャ（静的コールバック）</div><div class="ttdef"><b>Definition</b> window.cpp:110</div></div>
+<div class="ttc" id="aclass_window_html_a245d821e6016fa1f6970ccbbedd635f6"><div class="ttname"><a href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6">Window::~Window</a></div><div class="ttdeci">~Window()</div><div class="ttdef"><b>Definition</b> window.cpp:18</div></div>
+<div class="ttc" id="aclass_window_html_a41cab6dae60380563b8bc593e87f0c87"><div class="ttname"><a href="class_window.html#a41cab6dae60380563b8bc593e87f0c87">Window::Initialize</a></div><div class="ttdeci">bool Initialize()</div><div class="ttdoc">ウィンドウを作成して表示する</div><div class="ttdef"><b>Definition</b> window.cpp:26</div></div>
+<div class="ttc" id="aclass_window_html_a49bb6150e2dea093b032330cab1d3cf3"><div class="ttname"><a href="class_window.html#a49bb6150e2dea093b032330cab1d3cf3">Window::Window</a></div><div class="ttdeci">Window(HINSTANCE hInstance)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition</b> window.cpp:11</div></div>
+<div class="ttc" id="aclass_window_html_a505f97a3623db7e57a19776f73a0823b"><div class="ttname"><a href="class_window.html#a505f97a3623db7e57a19776f73a0823b">Window::GetWindowHandle</a></div><div class="ttdeci">HWND GetWindowHandle() const</div><div class="ttdoc">ウィンドウハンドルを返す</div><div class="ttdef"><b>Definition</b> window.h:37</div></div>
+<div class="ttc" id="aclass_window_html_ac686c7c04de804af983ab66e07a452d1"><div class="ttname"><a href="class_window.html#ac686c7c04de804af983ab66e07a452d1">Window::Finalize</a></div><div class="ttdeci">void Finalize()</div><div class="ttdoc">ウィンドウリソースを解放する</div><div class="ttdef"><b>Definition</b> window.cpp:84</div></div>
+<div class="ttc" id="aclass_window_html_adc0083e42c2a904032f86290133c6069"><div class="ttname"><a href="class_window.html#adc0083e42c2a904032f86290133c6069">Window::MessageLoop</a></div><div class="ttdeci">bool MessageLoop()</div><div class="ttdoc">メッセージをポンプし、WM_QUIT が来たら false を返す</div><div class="ttdef"><b>Definition</b> window.cpp:92</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html">scripts</a></li><li class="navelem"><a href="dir_c0d83babb28cd439c5ac6ad7abcd852f.html">window</a></li><li class="navelem"><a href="window_8h.html">window.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

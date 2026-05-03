@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: Vec4 クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_vec4.html','','class_vec4-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Vec4 クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>4成分ベクトルクラス  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="vec4_8h_source.html">vec4.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a55a46de1fc067fd2d696ea5be485ce3c" id="r_a55a46de1fc067fd2d696ea5be485ce3c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a55a46de1fc067fd2d696ea5be485ce3c">Vec4</a> ()</td></tr>
+<tr class="memdesc:a55a46de1fc067fd2d696ea5be485ce3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">デフォルトコンストラクタ（全要素 0 で初期化）  <br /></td></tr>
+<tr class="memitem:a3c8428ad7cfa4fe9e82ea571ab0ad119" id="r_a3c8428ad7cfa4fe9e82ea571ab0ad119"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3c8428ad7cfa4fe9e82ea571ab0ad119">~Vec4</a> ()</td></tr>
+<tr class="memitem:a30a58c8f861e5bba31f4798866de00a1" id="r_a30a58c8f861e5bba31f4798866de00a1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a30a58c8f861e5bba31f4798866de00a1">Vec4</a> (float x, float y, float z, float w)</td></tr>
+<tr class="memdesc:a30a58c8f861e5bba31f4798866de00a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">各成分を指定するコンストラクタ  <br /></td></tr>
+<tr class="memitem:af5797e265f4f3eb62c21b2c70f37a82e" id="r_af5797e265f4f3eb62c21b2c70f37a82e"><td class="memItemLeft">const <a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#af5797e265f4f3eb62c21b2c70f37a82e">operator+</a> (const <a class="el" href="class_vec4.html">Vec4</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:af5797e265f4f3eb62c21b2c70f37a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの加算  <br /></td></tr>
+<tr class="memitem:a2008f3523560b2790f02c11558f86166" id="r_a2008f3523560b2790f02c11558f86166"><td class="memItemLeft">const <a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2008f3523560b2790f02c11558f86166">operator-</a> (const <a class="el" href="class_vec4.html">Vec4</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a2008f3523560b2790f02c11558f86166"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの減算  <br /></td></tr>
+<tr class="memitem:a7c250dcada081a3be237af8a498aa296" id="r_a7c250dcada081a3be237af8a498aa296"><td class="memItemLeft">const <a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7c250dcada081a3be237af8a498aa296">operator*</a> (float s) const</td></tr>
+<tr class="memdesc:a7c250dcada081a3be237af8a498aa296"><td class="mdescLeft">&#160;</td><td class="mdescRight">スカラー乗算  <br /></td></tr>
+<tr class="memitem:a3249ccca5525b0a9f0d791b38c09c8ea" id="r_a3249ccca5525b0a9f0d791b38c09c8ea"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a3249ccca5525b0a9f0d791b38c09c8ea">X</a> () const</td></tr>
+<tr class="memdesc:a3249ccca5525b0a9f0d791b38c09c8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">X 成分を返す  <br /></td></tr>
+<tr class="memitem:a4a5537a10a71274db79ecba0c5d56f49" id="r_a4a5537a10a71274db79ecba0c5d56f49"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4a5537a10a71274db79ecba0c5d56f49">Y</a> () const</td></tr>
+<tr class="memdesc:a4a5537a10a71274db79ecba0c5d56f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y 成分を返す  <br /></td></tr>
+<tr class="memitem:ae67e2f105b43129c311f6761cdc07e01" id="r_ae67e2f105b43129c311f6761cdc07e01"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ae67e2f105b43129c311f6761cdc07e01">Z</a> () const</td></tr>
+<tr class="memdesc:ae67e2f105b43129c311f6761cdc07e01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Z 成分を返す  <br /></td></tr>
+<tr class="memitem:ac3ed6e9da99cf907f1958ab3525be6ab" id="r_ac3ed6e9da99cf907f1958ab3525be6ab"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ac3ed6e9da99cf907f1958ab3525be6ab">W</a> () const</td></tr>
+<tr class="memdesc:ac3ed6e9da99cf907f1958ab3525be6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">W 成分を返す  <br /></td></tr>
+<tr class="memitem:a4eb731c3e56eb2eab155f38a1c888834" id="r_a4eb731c3e56eb2eab155f38a1c888834"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4eb731c3e56eb2eab155f38a1c888834">Length</a> () const</td></tr>
+<tr class="memdesc:a4eb731c3e56eb2eab155f38a1c888834"><td class="mdescLeft">&#160;</td><td class="mdescRight">ベクトルの長さ（ノルム）を返す  <br /></td></tr>
+<tr class="memitem:a04d386349ff43b5c6c0759df64e7a51b" id="r_a04d386349ff43b5c6c0759df64e7a51b"><td class="memItemLeft"><a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a04d386349ff43b5c6c0759df64e7a51b">Normalize</a> () const</td></tr>
+<tr class="memdesc:a04d386349ff43b5c6c0759df64e7a51b"><td class="mdescLeft">&#160;</td><td class="mdescRight">正規化したベクトルを返す  <br /></td></tr>
+<tr class="memitem:a606522fe63c3dc02abfa24439a30574a" id="r_a606522fe63c3dc02abfa24439a30574a"><td class="memItemLeft"><a class="el" href="class_vec4.html">Vec4</a>&#160;</td><td class="memItemRight"><a class="el" href="#a606522fe63c3dc02abfa24439a30574a">MultiplyQuaternion</a> (const <a class="el" href="class_vec4.html">Vec4</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a606522fe63c3dc02abfa24439a30574a"><td class="mdescLeft">&#160;</td><td class="mdescRight">クォータニオン同士の積（合成回転）を返す  <br /></td></tr>
+<tr class="memitem:a854ac61170859479b9bd0e8e05e71e94" id="r_a854ac61170859479b9bd0e8e05e71e94"><td class="memItemLeft"><a class="el" href="class_vec3.html">Vec3</a>&#160;</td><td class="memItemRight"><a class="el" href="#a854ac61170859479b9bd0e8e05e71e94">RotateVec3</a> (const <a class="el" href="class_vec3.html">Vec3</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a854ac61170859479b9bd0e8e05e71e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">クォータニオンで <a class="el" href="class_vec3.html" title="3成分ベクトルクラス">Vec3</a> を回転させた結果を返す  <br /></td></tr>
+<tr class="memitem:af339a093e1b637de3a25bde4a39099c0" id="r_af339a093e1b637de3a25bde4a39099c0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af339a093e1b637de3a25bde4a39099c0">ToFloat4</a> (float out[4]) const</td></tr>
+<tr class="memdesc:af339a093e1b637de3a25bde4a39099c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">float 配列に変換して出力する  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>4成分ベクトルクラス </p>
+<p>位置の同次座標や、クォータニオンによる回転表現として使用する。 nlohmann/json によるシリアライズ／デシリアライズにも対応している。 </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a id="a55a46de1fc067fd2d696ea5be485ce3c" name="a55a46de1fc067fd2d696ea5be485ce3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a46de1fc067fd2d696ea5be485ce3c">&#9670;&#160;</a></span>Vec4() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec4::Vec4 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デフォルトコンストラクタ（全要素 0 で初期化） </p>
+
+</div>
+</div>
+<a id="a3c8428ad7cfa4fe9e82ea571ab0ad119" name="a3c8428ad7cfa4fe9e82ea571ab0ad119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c8428ad7cfa4fe9e82ea571ab0ad119">&#9670;&#160;</a></span>~Vec4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec4::~Vec4 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30a58c8f861e5bba31f4798866de00a1" name="a30a58c8f861e5bba31f4798866de00a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a58c8f861e5bba31f4798866de00a1">&#9670;&#160;</a></span>Vec4() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec4::Vec4 </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>w</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>各成分を指定するコンストラクタ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X 成分 </td></tr>
+    <tr><td class="paramname">y</td><td>Y 成分 </td></tr>
+    <tr><td class="paramname">z</td><td>Z 成分 </td></tr>
+    <tr><td class="paramname">w</td><td>W 成分 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="a4eb731c3e56eb2eab155f38a1c888834" name="a4eb731c3e56eb2eab155f38a1c888834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb731c3e56eb2eab155f38a1c888834">&#9670;&#160;</a></span>Length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec4::Length </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの長さ（ノルム）を返す </p>
+
+</div>
+</div>
+<a id="a606522fe63c3dc02abfa24439a30574a" name="a606522fe63c3dc02abfa24439a30574a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606522fe63c3dc02abfa24439a30574a">&#9670;&#160;</a></span>MultiplyQuaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec4.html">Vec4</a> Vec4::MultiplyQuaternion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec4.html">Vec4</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>クォータニオン同士の積（合成回転）を返す </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>右辺のクォータニオン </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a04d386349ff43b5c6c0759df64e7a51b" name="a04d386349ff43b5c6c0759df64e7a51b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04d386349ff43b5c6c0759df64e7a51b">&#9670;&#160;</a></span>Normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec4.html">Vec4</a> Vec4::Normalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>正規化したベクトルを返す </p>
+
+</div>
+</div>
+<a id="a7c250dcada081a3be237af8a498aa296" name="a7c250dcada081a3be237af8a498aa296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c250dcada081a3be237af8a498aa296">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec4.html">Vec4</a> Vec4::operator* </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スカラー乗算 </p>
+
+</div>
+</div>
+<a id="af5797e265f4f3eb62c21b2c70f37a82e" name="af5797e265f4f3eb62c21b2c70f37a82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5797e265f4f3eb62c21b2c70f37a82e">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec4.html">Vec4</a> Vec4::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec4.html">Vec4</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの加算 </p>
+
+</div>
+</div>
+<a id="a2008f3523560b2790f02c11558f86166" name="a2008f3523560b2790f02c11558f86166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2008f3523560b2790f02c11558f86166">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_vec4.html">Vec4</a> Vec4::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec4.html">Vec4</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ベクトルの減算 </p>
+
+</div>
+</div>
+<a id="a854ac61170859479b9bd0e8e05e71e94" name="a854ac61170859479b9bd0e8e05e71e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a854ac61170859479b9bd0e8e05e71e94">&#9670;&#160;</a></span>RotateVec3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vec3.html">Vec3</a> Vec4::RotateVec3 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>クォータニオンで <a class="el" href="class_vec3.html" title="3成分ベクトルクラス">Vec3</a> を回転させた結果を返す </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>回転させるベクトル </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af339a093e1b637de3a25bde4a39099c0" name="af339a093e1b637de3a25bde4a39099c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af339a093e1b637de3a25bde4a39099c0">&#9670;&#160;</a></span>ToFloat4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vec4::ToFloat4 </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>out</em></span>[4]</td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>float 配列に変換して出力する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>出力先配列（要素数 4 以上） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3ed6e9da99cf907f1958ab3525be6ab" name="ac3ed6e9da99cf907f1958ab3525be6ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3ed6e9da99cf907f1958ab3525be6ab">&#9670;&#160;</a></span>W()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec4::W </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>W 成分を返す </p>
+
+</div>
+</div>
+<a id="a3249ccca5525b0a9f0d791b38c09c8ea" name="a3249ccca5525b0a9f0d791b38c09c8ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3249ccca5525b0a9f0d791b38c09c8ea">&#9670;&#160;</a></span>X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec4::X </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>X 成分を返す </p>
+
+</div>
+</div>
+<a id="a4a5537a10a71274db79ecba0c5d56f49" name="a4a5537a10a71274db79ecba0c5d56f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5537a10a71274db79ecba0c5d56f49">&#9670;&#160;</a></span>Y()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec4::Y </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Y 成分を返す </p>
+
+</div>
+</div>
+<a id="ae67e2f105b43129c311f6761cdc07e01" name="ae67e2f105b43129c311f6761cdc07e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae67e2f105b43129c311f6761cdc07e01">&#9670;&#160;</a></span>Z()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Vec4::Z </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Z 成分を返す </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>scripts/math/<a class="el" href="vec4_8h_source.html">vec4.h</a></li>
+<li>scripts/math/<a class="el" href="vec4_8cpp.html">vec4.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_vec4.html">Vec4</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

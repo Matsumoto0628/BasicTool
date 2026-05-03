@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: Component クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_component.html','','class_component-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Component クラス<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>すべてのコンポーネントの基底クラス  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="component_8h_source.html">component.h</a>&gt;</code></p>
+<div class="dynheader">
+Component の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_component.png" usemap="#Component_map" alt=""/>
+  <map id="Component_map" name="Component_map">
+<area href="class_camera.html" title="ビュー行列・プロジェクション行列を管理するカメラコンポーネント" alt="Camera" shape="rect" coords="0,56,112,80"/>
+<area href="class_camera_controller.html" title="マウス入力でカメラのトランスフォームを操作するコンポーネント" alt="CameraController" shape="rect" coords="122,56,234,80"/>
+<area href="class_particle.html" title="単一パーティクルの寿命・描画・物理を管理するコンポーネント" alt="Particle" shape="rect" coords="244,56,356,80"/>
+<area href="class_particle_controller.html" title="複数のパーティクルをプールして管理するパーティクルシステムコンポーネント" alt="ParticleController" shape="rect" coords="366,56,478,80"/>
+<area href="class_renderer.html" title="DirectX11 描画に共通する初期化処理を提供するレンダラー基底クラス" alt="Renderer" shape="rect" coords="488,56,600,80"/>
+<area href="class_rigidbody.html" title="質量・速度・力を扱う剛体物理コンポーネント" alt="Rigidbody" shape="rect" coords="610,56,722,80"/>
+<area href="class_line.html" title="2 点間を結ぶ線分を描画するレンダラーコンポーネント" alt="Line" shape="rect" coords="244,112,356,136"/>
+<area href="class_sphere.html" title="球メッシュを生成して描画するレンダラーコンポーネント" alt="Sphere" shape="rect" coords="366,112,478,136"/>
+<area href="class_sprite.html" title="テクスチャを貼ったビルボードスプライトを描画するレンダラーコンポーネント" alt="Sprite" shape="rect" coords="488,112,600,136"/>
+<area href="class_square.html" title="単色の四角形ポリゴンを描画するレンダラーコンポーネント" alt="Square" shape="rect" coords="610,112,722,136"/>
+<area href="class_triangle_test.html" title="動作確認用の単純な三角形を描画するレンダラーコンポーネント" alt="TriangleTest" shape="rect" coords="732,112,844,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:afd50861fbf83f7ff7777a5e6dd7b7ca4" id="r_afd50861fbf83f7ff7777a5e6dd7b7ca4"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a> { <br />
+&#160;&#160;<a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a6adf97f83acf6453d4a6a4b1070f3754">None</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a967d35e40f3f95b1f538bd248640bf3b">Camera</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a4914f4cf70151c13db3f06a8ca9ef1da">Rigidbody</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a5e5500cb2b82eb72d550de644bd1b64b">Triangle</a>
+, <br />
+&#160;&#160;<a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4aceb46ca115d05c51aa5a16a8867c3304">Square</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a4803e6b9e63dabf04de980788d6a13c4">Line</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4ab7095f057db3fefa7325ad93a04e14fd">Sphere</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a5c43515ada57456f7c31d3dfd54db273">CameraController</a>
+, <br />
+&#160;&#160;<a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4ae53062e466e6d11fe465c7bf46f71af1">ParticleController</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a5e9328c486b44b9a58bca20f7f2064f4">Particle</a>
+, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4a51f2b7b14433aa22c67d1f4fc18943cd">Sprite</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:afd50861fbf83f7ff7777a5e6dd7b7ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントの種別を表す列挙型  <a href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">[詳解]</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab8378fa275af98e568a7e91d33d867af" id="r_ab8378fa275af98e568a7e91d33d867af"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#ab8378fa275af98e568a7e91d33d867af">~Component</a> ()</td></tr>
+<tr class="memitem:aa70de899a5dd52f6237049519bbaa8f1" id="r_aa70de899a5dd52f6237049519bbaa8f1"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aa70de899a5dd52f6237049519bbaa8f1">Initialize</a> ()=0</td></tr>
+<tr class="memdesc:aa70de899a5dd52f6237049519bbaa8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">初期化処理（リソース確保など）  <br /></td></tr>
+<tr class="memitem:a52bfe338a161f0cdd1c1c7da21dce505" id="r_a52bfe338a161f0cdd1c1c7da21dce505"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a52bfe338a161f0cdd1c1c7da21dce505">Start</a> ()=0</td></tr>
+<tr class="memdesc:a52bfe338a161f0cdd1c1c7da21dce505"><td class="mdescLeft">&#160;</td><td class="mdescRight">開始時処理（シーン開始後に一度だけ呼ばれる）  <br /></td></tr>
+<tr class="memitem:abda56474d6ccfbdab47cb5e0cd595c2b" id="r_abda56474d6ccfbdab47cb5e0cd595c2b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abda56474d6ccfbdab47cb5e0cd595c2b">Update</a> ()=0</td></tr>
+<tr class="memdesc:abda56474d6ccfbdab47cb5e0cd595c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレーム更新処理  <br /></td></tr>
+<tr class="memitem:a20ad65a155d63eaa24bd1dc4a6b9fb02" id="r_a20ad65a155d63eaa24bd1dc4a6b9fb02"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a20ad65a155d63eaa24bd1dc4a6b9fb02">Draw</a> ()=0</td></tr>
+<tr class="memdesc:a20ad65a155d63eaa24bd1dc4a6b9fb02"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレーム描画処理  <br /></td></tr>
+<tr class="memitem:a33aa3ce361b2590d4f7f4c72b2224633" id="r_a33aa3ce361b2590d4f7f4c72b2224633"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a33aa3ce361b2590d4f7f4c72b2224633">Finalize</a> ()=0</td></tr>
+<tr class="memdesc:a33aa3ce361b2590d4f7f4c72b2224633"><td class="mdescLeft">&#160;</td><td class="mdescRight">終了時リソース解放処理  <br /></td></tr>
+<tr class="memitem:a7aa154f5c881552dc03ffaef657d1a67" id="r_a7aa154f5c881552dc03ffaef657d1a67"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a7aa154f5c881552dc03ffaef657d1a67">Show</a> ()=0</td></tr>
+<tr class="memdesc:a7aa154f5c881552dc03ffaef657d1a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">ImGui を使ったインスペクター表示処理  <br /></td></tr>
+<tr class="memitem:af470fa65fba44da1162fcbf89d51d11b" id="r_af470fa65fba44da1162fcbf89d51d11b"><td class="memItemLeft">virtual <a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&#160;</td><td class="memItemRight"><a class="el" href="#af470fa65fba44da1162fcbf89d51d11b">Serialize</a> () const =0</td></tr>
+<tr class="memdesc:af470fa65fba44da1162fcbf89d51d11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON にシリアライズして返す  <br /></td></tr>
+<tr class="memitem:aeec08b7371bd9e71a2553f80c546dc7d" id="r_aeec08b7371bd9e71a2553f80c546dc7d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeec08b7371bd9e71a2553f80c546dc7d">SetEnabled</a> (bool flag)</td></tr>
+<tr class="memdesc:aeec08b7371bd9e71a2553f80c546dc7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントの有効・無効を設定する  <br /></td></tr>
+<tr class="memitem:ad81e177ae9711fcea451dd4da85879ab" id="r_ad81e177ae9711fcea451dd4da85879ab"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad81e177ae9711fcea451dd4da85879ab">GetEnabled</a> () const</td></tr>
+<tr class="memdesc:ad81e177ae9711fcea451dd4da85879ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントが有効かどうかを返す  <br /></td></tr>
+<tr class="memitem:a836d05c848f6d180e72683c4b5e7ee22" id="r_a836d05c848f6d180e72683c4b5e7ee22"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a836d05c848f6d180e72683c4b5e7ee22">GetID</a> () const</td></tr>
+<tr class="memdesc:a836d05c848f6d180e72683c4b5e7ee22"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントの一意な ID を返す  <br /></td></tr>
+<tr class="memitem:af3434d545be9f482b1b3d41911bf852a" id="r_af3434d545be9f482b1b3d41911bf852a"><td class="memItemLeft"><a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a>&#160;</td><td class="memItemRight"><a class="el" href="#af3434d545be9f482b1b3d41911bf852a">GetType</a> () const</td></tr>
+<tr class="memdesc:af3434d545be9f482b1b3d41911bf852a"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントの種別を返す  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a8208d7927df1298ca79951ba1f99e293" id="r_a8208d7927df1298ca79951ba1f99e293"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8208d7927df1298ca79951ba1f99e293">Component</a> (<a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a> type)</td></tr>
+<tr class="memdesc:a8208d7927df1298ca79951ba1f99e293"><td class="mdescLeft">&#160;</td><td class="mdescRight">種別を指定するコンストラクタ（新規作成時）  <br /></td></tr>
+<tr class="memitem:aada16f53eb174b332d67f2862089a346" id="r_aada16f53eb174b332d67f2862089a346"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aada16f53eb174b332d67f2862089a346">Component</a> (uint64_t id, <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a> type)</td></tr>
+<tr class="memdesc:aada16f53eb174b332d67f2862089a346"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID と種別を指定するコンストラクタ（デシリアライズ時）  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>すべてのコンポーネントの基底クラス </p>
+<p>仮想関数テーブルによるオーバーヘッドはあるが、std::vector で一括管理するために 純粋仮想関数を用いたポリモーフィズムを採用している。 </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">列挙型メンバ詳解</h2>
+<a id="afd50861fbf83f7ff7777a5e6dd7b7ca4" name="afd50861fbf83f7ff7777a5e6dd7b7ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">&#9670;&#160;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Component::Type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントの種別を表す列挙型 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a6adf97f83acf6453d4a6a4b1070f3754" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a967d35e40f3f95b1f538bd248640bf3b" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a967d35e40f3f95b1f538bd248640bf3b"></a>Camera&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a4914f4cf70151c13db3f06a8ca9ef1da" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a4914f4cf70151c13db3f06a8ca9ef1da"></a>Rigidbody&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a5e5500cb2b82eb72d550de644bd1b64b" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a5e5500cb2b82eb72d550de644bd1b64b"></a>Triangle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4aceb46ca115d05c51aa5a16a8867c3304" name="afd50861fbf83f7ff7777a5e6dd7b7ca4aceb46ca115d05c51aa5a16a8867c3304"></a>Square&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a4803e6b9e63dabf04de980788d6a13c4" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a4803e6b9e63dabf04de980788d6a13c4"></a>Line&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4ab7095f057db3fefa7325ad93a04e14fd" name="afd50861fbf83f7ff7777a5e6dd7b7ca4ab7095f057db3fefa7325ad93a04e14fd"></a>Sphere&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a5c43515ada57456f7c31d3dfd54db273" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a5c43515ada57456f7c31d3dfd54db273"></a>CameraController&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4ae53062e466e6d11fe465c7bf46f71af1" name="afd50861fbf83f7ff7777a5e6dd7b7ca4ae53062e466e6d11fe465c7bf46f71af1"></a>ParticleController&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a5e9328c486b44b9a58bca20f7f2064f4" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a5e9328c486b44b9a58bca20f7f2064f4"></a>Particle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd50861fbf83f7ff7777a5e6dd7b7ca4a51f2b7b14433aa22c67d1f4fc18943cd" name="afd50861fbf83f7ff7777a5e6dd7b7ca4a51f2b7b14433aa22c67d1f4fc18943cd"></a>Sprite&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a id="ab8378fa275af98e568a7e91d33d867af" name="ab8378fa275af98e568a7e91d33d867af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8378fa275af98e568a7e91d33d867af">&#9670;&#160;</a></span>~Component()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component::~Component </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8208d7927df1298ca79951ba1f99e293" name="a8208d7927df1298ca79951ba1f99e293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8208d7927df1298ca79951ba1f99e293">&#9670;&#160;</a></span>Component() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component::Component </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>種別を指定するコンストラクタ（新規作成時） </p>
+
+</div>
+</div>
+<a id="aada16f53eb174b332d67f2862089a346" name="aada16f53eb174b332d67f2862089a346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada16f53eb174b332d67f2862089a346">&#9670;&#160;</a></span>Component() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component::Component </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ID と種別を指定するコンストラクタ（デシリアライズ時） </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="a20ad65a155d63eaa24bd1dc4a6b9fb02" name="a20ad65a155d63eaa24bd1dc4a6b9fb02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20ad65a155d63eaa24bd1dc4a6b9fb02">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Draw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>毎フレーム描画処理 </p>
+
+<p><a class="el" href="class_camera.html#a452fba2ef103efae4aef3de935fd1cee">Camera</a>, <a class="el" href="class_camera_controller.html#a60c132add050e20d96526ca92023f53f">CameraController</a>, <a class="el" href="class_line.html#a3bc723c3abadb1838ef9349dce09e08e">Line</a>, <a class="el" href="class_particle.html#ac00073be33412247552efd2f654376a6">Particle</a>, <a class="el" href="class_particle_controller.html#aaf72284413a159b19671c7bf55e2322a">ParticleController</a>, <a class="el" href="class_rigidbody.html#a16be2c66365c05c2a119bd94329e78b6">Rigidbody</a>, <a class="el" href="class_sphere.html#a181798282dbe2510aed5bcbb0e41966d">Sphere</a>, <a class="el" href="class_sprite.html#a19dae127e873faf0adf984210bb5edad">Sprite</a>, <a class="el" href="class_square.html#a57d4609d70fe758c81aafd66dd1e5746">Square</a>, <a class="el" href="class_triangle_test.html#ad017d2fd48ace8f64d451b436704058f">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="a33aa3ce361b2590d4f7f4c72b2224633" name="a33aa3ce361b2590d4f7f4c72b2224633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33aa3ce361b2590d4f7f4c72b2224633">&#9670;&#160;</a></span>Finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Finalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>終了時リソース解放処理 </p>
+
+<p><a class="el" href="class_camera.html#aae9408127b61c0bb60caebe1a608fb69">Camera</a>, <a class="el" href="class_camera_controller.html#a937a6ee7f7e30493a8b29d507089e18a">CameraController</a>, <a class="el" href="class_line.html#ab059ab1ce250a036acbbac3e1f931d57">Line</a>, <a class="el" href="class_particle.html#a641df6a57847701c1618cdd89daed4bb">Particle</a>, <a class="el" href="class_particle_controller.html#ac293c9a36a6f6dfa9245f5605d691f0c">ParticleController</a>, <a class="el" href="class_rigidbody.html#a266ba1682ff8acb3df54144fc71a5fff">Rigidbody</a>, <a class="el" href="class_sphere.html#a7a302d923d008aaa7648804b7ecb0bb2">Sphere</a>, <a class="el" href="class_sprite.html#ac1d5da82f032da0a502258eef3bb410d">Sprite</a>, <a class="el" href="class_square.html#a2bef9eafd272a6e0f70f5b4cc2b3d937">Square</a>, <a class="el" href="class_triangle_test.html#ac837093dfd644d9eac028843d63c0dd4">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="ad81e177ae9711fcea451dd4da85879ab" name="ad81e177ae9711fcea451dd4da85879ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81e177ae9711fcea451dd4da85879ab">&#9670;&#160;</a></span>GetEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Component::GetEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントが有効かどうかを返す </p>
+
+</div>
+</div>
+<a id="a836d05c848f6d180e72683c4b5e7ee22" name="a836d05c848f6d180e72683c4b5e7ee22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a836d05c848f6d180e72683c4b5e7ee22">&#9670;&#160;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t Component::GetID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントの一意な ID を返す </p>
+
+</div>
+</div>
+<a id="af3434d545be9f482b1b3d41911bf852a" name="af3434d545be9f482b1b3d41911bf852a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3434d545be9f482b1b3d41911bf852a">&#9670;&#160;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#afd50861fbf83f7ff7777a5e6dd7b7ca4">Type</a> Component::GetType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントの種別を返す </p>
+
+</div>
+</div>
+<a id="aa70de899a5dd52f6237049519bbaa8f1" name="aa70de899a5dd52f6237049519bbaa8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa70de899a5dd52f6237049519bbaa8f1">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初期化処理（リソース確保など） </p>
+
+<p><a class="el" href="class_camera.html#aee0b1ecd370acf1cba68d134d628a1e7">Camera</a>, <a class="el" href="class_camera_controller.html#a2b153bb7444c056a87832660c8a99e5a">CameraController</a>, <a class="el" href="class_line.html#afa72c4abbe9a04415de64d7faca27205">Line</a>, <a class="el" href="class_particle.html#ae638b53097a4aa250ffa9698bbd7213d">Particle</a>, <a class="el" href="class_particle_controller.html#a8f5da3b8aaa85e7a9aa7ded7760a4aaf">ParticleController</a>, <a class="el" href="class_rigidbody.html#a104b0cae69d3d507223a3893a0765a9b">Rigidbody</a>, <a class="el" href="class_sphere.html#a012b0a664d5ab93c6372ed141c85e155">Sphere</a>, <a class="el" href="class_sprite.html#a3c6d89dffc2f19327a2cde263834b004">Sprite</a>, <a class="el" href="class_square.html#a1214dec1a886bbc3c2de5da892cd80bf">Square</a>, <a class="el" href="class_triangle_test.html#ae53bfaa461e5bbb2669b7d4ff46eb6cc">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="af470fa65fba44da1162fcbf89d51d11b" name="af470fa65fba44da1162fcbf89d51d11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af470fa65fba44da1162fcbf89d51d11b">&#9670;&#160;</a></span>Serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> Component::Serialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>JSON にシリアライズして返す </p>
+
+<p><a class="el" href="class_camera.html#aa01bb1763f737f4dd2c540c3f42fdec5">Camera</a>, <a class="el" href="class_camera_controller.html#a830cda22b54a11be672e59c8636eaf28">CameraController</a>, <a class="el" href="class_line.html#aa1ddc607ce46946b9cce64393192611f">Line</a>, <a class="el" href="class_particle.html#ad9c1c9f5713d02c24adc34b361985a8b">Particle</a>, <a class="el" href="class_particle_controller.html#a51957a561fda0c8ff4cf01d5c987c40a">ParticleController</a>, <a class="el" href="class_rigidbody.html#a26ee4cd46fcc954f8bd648812a2fc217">Rigidbody</a>, <a class="el" href="class_sphere.html#a93f97ab2aeb484f99610dd87bd89fcae">Sphere</a>, <a class="el" href="class_sprite.html#abea7be44b72ccc8a698886ec272af3ba">Sprite</a>, <a class="el" href="class_square.html#a2b39721aeec9825301af9d9ff2b0b729">Square</a>, <a class="el" href="class_triangle_test.html#a9db670bad4ab1a7ea400730b5c8625e0">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="aeec08b7371bd9e71a2553f80c546dc7d" name="aeec08b7371bd9e71a2553f80c546dc7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec08b7371bd9e71a2553f80c546dc7d">&#9670;&#160;</a></span>SetEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::SetEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>flag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントの有効・無効を設定する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flag</td><td>true で有効、false で無効 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7aa154f5c881552dc03ffaef657d1a67" name="a7aa154f5c881552dc03ffaef657d1a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa154f5c881552dc03ffaef657d1a67">&#9670;&#160;</a></span>Show()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Show </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ImGui を使ったインスペクター表示処理 </p>
+
+<p><a class="el" href="class_camera.html#ac766cb2b3167d7902e86eb5988c7c315">Camera</a>, <a class="el" href="class_camera_controller.html#a023d501dd72331ad36ebdc17adfd4018">CameraController</a>, <a class="el" href="class_line.html#afe5c0b1c8fb0333898afbb4f6f90ad5a">Line</a>, <a class="el" href="class_particle.html#af1665f3daa1560a35ae642598e6ac9ac">Particle</a>, <a class="el" href="class_particle_controller.html#a095ab6f7349a273ea99c24acccbb4a0c">ParticleController</a>, <a class="el" href="class_rigidbody.html#a27eb0a57de46faab4a5bef85a45a51b4">Rigidbody</a>, <a class="el" href="class_sphere.html#ac194e2befab6f6002387d2fd00d18b10">Sphere</a>, <a class="el" href="class_sprite.html#ac61aa05340287168f833159bf4fbd1ae">Sprite</a>, <a class="el" href="class_square.html#a714ad5d0b6e02db97338e685a052766a">Square</a>, <a class="el" href="class_triangle_test.html#a527c7e55c59d5f0d42475645aa57cd1f">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="a52bfe338a161f0cdd1c1c7da21dce505" name="a52bfe338a161f0cdd1c1c7da21dce505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52bfe338a161f0cdd1c1c7da21dce505">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>開始時処理（シーン開始後に一度だけ呼ばれる） </p>
+
+<p><a class="el" href="class_camera.html#ad1e1e6737506ba97eece8b71a3862db7">Camera</a>, <a class="el" href="class_camera_controller.html#a0f69bc6c910ae5e8823f3d48dfed10f7">CameraController</a>, <a class="el" href="class_line.html#a421b443b66e7160eb917f6a9b71643dd">Line</a>, <a class="el" href="class_particle.html#a93941bed29feb68fafc03d70af3adcf9">Particle</a>, <a class="el" href="class_particle_controller.html#a5f31f120b1f1872e887d0c1750620621">ParticleController</a>, <a class="el" href="class_rigidbody.html#ace551581d54778232545b50e13d18d66">Rigidbody</a>, <a class="el" href="class_sphere.html#a153dc9181418882caefc22a147d286b8">Sphere</a>, <a class="el" href="class_sprite.html#a3b646a59059c8b3c58d57c9fc6a75720">Sprite</a>, <a class="el" href="class_square.html#aa32e9011540da01c3240319effdf5bd6">Square</a>, <a class="el" href="class_triangle_test.html#af6b41844953c52d028a0a21d25c951e9">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="abda56474d6ccfbdab47cb5e0cd595c2b" name="abda56474d6ccfbdab47cb5e0cd595c2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abda56474d6ccfbdab47cb5e0cd595c2b">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::Update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>毎フレーム更新処理 </p>
+
+<p><a class="el" href="class_camera.html#adba920a003ec354ebaa7d78496d168f1">Camera</a>, <a class="el" href="class_camera_controller.html#a4eb7b4d5f0a2ceff46933c3e0b321ee8">CameraController</a>, <a class="el" href="class_line.html#aed6a6a0137e7dd62393c561e528173b2">Line</a>, <a class="el" href="class_particle.html#a5a9726012eda059e7b3bdfe75854d3a9">Particle</a>, <a class="el" href="class_particle_controller.html#aeb5ac2f4dc3b940d42f0404d247d2e73">ParticleController</a>, <a class="el" href="class_rigidbody.html#a3882dbd531e2c74718cdbfbf1b88df89">Rigidbody</a>, <a class="el" href="class_sphere.html#a5e72970f207683a3cf5fe430f6a62e15">Sphere</a>, <a class="el" href="class_sprite.html#abf9aed9b32d23e5b80e3881e24f145fd">Sprite</a>, <a class="el" href="class_square.html#a7fec36e8a460b3e057726c97c2e10d9c">Square</a>, <a class="el" href="class_triangle_test.html#aa600764d233c7d923dc5c99a7059f731">TriangleTest</a>で実装されています。</p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>scripts/component/<a class="el" href="component_8h_source.html">component.h</a></li>
+<li>scripts/component/<a class="el" href="component_8cpp.html">component.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_component.html">Component</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Effect Tool: GameObject クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Effect Tool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_game_object.html','','class_game_object-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">GameObject クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>シーン上のエンティティを表すゲームオブジェクトクラス  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="game__object_8h_source.html">game_object.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a8fc91690eb75534ed1fec908562df0e0" id="r_a8fc91690eb75534ed1fec908562df0e0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8fc91690eb75534ed1fec908562df0e0">GameObject</a> (std::string name, bool isSerialize)</td></tr>
+<tr class="memdesc:a8fc91690eb75534ed1fec908562df0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">新規生成用コンストラクタ（UUID を自動発行）  <br /></td></tr>
+<tr class="memitem:aac7a0a20c3a70b6afdc350ae62bd5b6e" id="r_aac7a0a20c3a70b6afdc350ae62bd5b6e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aac7a0a20c3a70b6afdc350ae62bd5b6e">GameObject</a> (uint64_t id, std::string name, bool isSerialize)</td></tr>
+<tr class="memdesc:aac7a0a20c3a70b6afdc350ae62bd5b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">デシリアライズ用コンストラクタ（既存 ID を指定）  <br /></td></tr>
+<tr class="memitem:ab82dfdb656f9051c0587e6593b2dda97" id="r_ab82dfdb656f9051c0587e6593b2dda97"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab82dfdb656f9051c0587e6593b2dda97">~GameObject</a> ()</td></tr>
+<tr class="memitem:a433dbfdad0ffccd29cfe60062323e621" id="r_a433dbfdad0ffccd29cfe60062323e621"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a433dbfdad0ffccd29cfe60062323e621">Initialize</a> ()</td></tr>
+<tr class="memdesc:a433dbfdad0ffccd29cfe60062323e621"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントの初期化を行う  <br /></td></tr>
+<tr class="memitem:aa27714b4172ebff2f7cddcf63b325ac7" id="r_aa27714b4172ebff2f7cddcf63b325ac7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa27714b4172ebff2f7cddcf63b325ac7">Start</a> ()</td></tr>
+<tr class="memdesc:aa27714b4172ebff2f7cddcf63b325ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">全コンポーネントの <a class="el" href="#aa27714b4172ebff2f7cddcf63b325ac7" title="全コンポーネントの Start() を呼び出す">Start()</a> を呼び出す  <br /></td></tr>
+<tr class="memitem:a1bd14aa169f501f94f1721943d716535" id="r_a1bd14aa169f501f94f1721943d716535"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1bd14aa169f501f94f1721943d716535">Update</a> ()</td></tr>
+<tr class="memdesc:a1bd14aa169f501f94f1721943d716535"><td class="mdescLeft">&#160;</td><td class="mdescRight">全コンポーネントの <a class="el" href="#a1bd14aa169f501f94f1721943d716535" title="全コンポーネントの Update() を呼び出す">Update()</a> を呼び出す  <br /></td></tr>
+<tr class="memitem:ad3ac1deac50048cf7a1a19eb0e61ad26" id="r_ad3ac1deac50048cf7a1a19eb0e61ad26"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad3ac1deac50048cf7a1a19eb0e61ad26">Draw</a> ()</td></tr>
+<tr class="memdesc:ad3ac1deac50048cf7a1a19eb0e61ad26"><td class="mdescLeft">&#160;</td><td class="mdescRight">全コンポーネントの <a class="el" href="#ad3ac1deac50048cf7a1a19eb0e61ad26" title="全コンポーネントの Draw() を呼び出す">Draw()</a> を呼び出す  <br /></td></tr>
+<tr class="memitem:a9800a9dcc709907dd90a0204748ce513" id="r_a9800a9dcc709907dd90a0204748ce513"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9800a9dcc709907dd90a0204748ce513">Finalize</a> ()</td></tr>
+<tr class="memdesc:a9800a9dcc709907dd90a0204748ce513"><td class="mdescLeft">&#160;</td><td class="mdescRight">全コンポーネントの <a class="el" href="#a9800a9dcc709907dd90a0204748ce513" title="全コンポーネントの Finalize() を呼び出す">Finalize()</a> を呼び出す  <br /></td></tr>
+<tr class="memitem:abf1959fad10ea04673a182029f1f81b9" id="r_abf1959fad10ea04673a182029f1f81b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abf1959fad10ea04673a182029f1f81b9">Destroy</a> ()</td></tr>
+<tr class="memdesc:abf1959fad10ea04673a182029f1f81b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">次フレームでの破棄フラグを立てる  <br /></td></tr>
+<tr class="memitem:a448e068a71a4232829f2f1d28a18d00b" id="r_a448e068a71a4232829f2f1d28a18d00b"><td class="memItemLeft"><a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a>&#160;</td><td class="memItemRight"><a class="el" href="#a448e068a71a4232829f2f1d28a18d00b">Serialize</a> () const</td></tr>
+<tr class="memdesc:a448e068a71a4232829f2f1d28a18d00b"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON にシリアライズして返す  <br /></td></tr>
+<tr class="memitem:a31004fc2b3ce92d9ec507e56c254f9b3" id="r_a31004fc2b3ce92d9ec507e56c254f9b3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a31004fc2b3ce92d9ec507e56c254f9b3">Deserialize</a> (const <a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> &amp;j)</td></tr>
+<tr class="memdesc:a31004fc2b3ce92d9ec507e56c254f9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON からデシリアライズしてコンポーネントを復元する  <br /></td></tr>
+<tr class="memitem:ad0ff6c403c9a323598de86a28204601f" id="r_ad0ff6c403c9a323598de86a28204601f"><td class="memItemLeft"><a class="el" href="class_transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad0ff6c403c9a323598de86a28204601f">GetTransform</a> ()</td></tr>
+<tr class="memdesc:ad0ff6c403c9a323598de86a28204601f"><td class="mdescLeft">&#160;</td><td class="mdescRight">トランスフォームへの参照を返す  <br /></td></tr>
+<tr class="memitem:a02415b6afb13e816106ea3dfcf5da249" id="r_a02415b6afb13e816106ea3dfcf5da249"><td class="memItemLeft">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_component.html">Component</a> &gt; &gt; *const&#160;</td><td class="memItemRight"><a class="el" href="#a02415b6afb13e816106ea3dfcf5da249">GetComponents</a> () const</td></tr>
+<tr class="memdesc:a02415b6afb13e816106ea3dfcf5da249"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントリストへのポインタを返す  <br /></td></tr>
+<tr class="memitem:a862adb1db3e65db1eaf285465e9bff85" id="r_a862adb1db3e65db1eaf285465e9bff85"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a862adb1db3e65db1eaf285465e9bff85">GetID</a> () const</td></tr>
+<tr class="memdesc:a862adb1db3e65db1eaf285465e9bff85"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトの一意な ID を返す  <br /></td></tr>
+<tr class="memitem:ab25d5f9100bad8eee3b9e02f16fa5c91" id="r_ab25d5f9100bad8eee3b9e02f16fa5c91"><td class="memItemLeft">const std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab25d5f9100bad8eee3b9e02f16fa5c91">GetName</a> () const</td></tr>
+<tr class="memdesc:ab25d5f9100bad8eee3b9e02f16fa5c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト名を返す  <br /></td></tr>
+<tr class="memitem:aca47c1cbe649f26540b16995b38e6f35" id="r_aca47c1cbe649f26540b16995b38e6f35"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aca47c1cbe649f26540b16995b38e6f35">GetIsDestroy</a> () const</td></tr>
+<tr class="memdesc:aca47c1cbe649f26540b16995b38e6f35"><td class="mdescLeft">&#160;</td><td class="mdescRight">破棄フラグが立っているかどうかを返す  <br /></td></tr>
+<tr class="memitem:a453d4568b8df409256499a2596b6ba9a" id="r_a453d4568b8df409256499a2596b6ba9a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a453d4568b8df409256499a2596b6ba9a">GetIsSerialize</a> () const</td></tr>
+<tr class="memdesc:a453d4568b8df409256499a2596b6ba9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">シリアライズ対象かどうかを返す  <br /></td></tr>
+<tr class="memitem:affae3bc5869559a6beddfe0c07d6e33d" id="r_affae3bc5869559a6beddfe0c07d6e33d"><td class="memTemplParams" colspan="2">template&lt;typename T, typename... Args&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</td></tr>
+<tr class="memitem:affae3bc5869559a6beddfe0c07d6e33d template"><td class="memItemLeft">T &amp;&#160;</td><td class="memItemRight"><a class="el" href="#affae3bc5869559a6beddfe0c07d6e33d">AddComponent</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:affae3bc5869559a6beddfe0c07d6e33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントを生成してアタッチし、参照を返す  <br /></td></tr>
+<tr class="memitem:a5a8487ee2b43ff7a6f65550686c0a0bf" id="r_a5a8487ee2b43ff7a6f65550686c0a0bf"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</td></tr>
+<tr class="memitem:a5a8487ee2b43ff7a6f65550686c0a0bf template"><td class="memItemLeft">T *const&#160;</td><td class="memItemRight"><a class="el" href="#a5a8487ee2b43ff7a6f65550686c0a0bf">FindComponent</a> (<a class="el" href="class_component.html#afd50861fbf83f7ff7777a5e6dd7b7ca4">Component::Type</a> type) const</td></tr>
+<tr class="memdesc:a5a8487ee2b43ff7a6f65550686c0a0bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した種別のコンポーネントを検索して返す  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>シーン上のエンティティを表すゲームオブジェクトクラス </p>
+<p><a class="el" href="class_transform.html" title="ゲームオブジェクトの空間情報（位置・回転・スケール）を管理するクラス">Transform</a> を持ち、任意の <a class="el" href="class_component.html" title="すべてのコンポーネントの基底クラス">Component</a> を複数アタッチできる。 シリアライズ対応で、JSON による保存・読み込みが可能。 </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a id="a8fc91690eb75534ed1fec908562df0e0" name="a8fc91690eb75534ed1fec908562df0e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc91690eb75534ed1fec908562df0e0">&#9670;&#160;</a></span>GameObject() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject::GameObject </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isSerialize</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>新規生成用コンストラクタ（UUID を自動発行） </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>オブジェクト名 </td></tr>
+    <tr><td class="paramname">isSerialize</td><td>シリアライズ対象かどうか </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aac7a0a20c3a70b6afdc350ae62bd5b6e" name="aac7a0a20c3a70b6afdc350ae62bd5b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7a0a20c3a70b6afdc350ae62bd5b6e">&#9670;&#160;</a></span>GameObject() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject::GameObject </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isSerialize</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デシリアライズ用コンストラクタ（既存 ID を指定） </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>オブジェクト ID </td></tr>
+    <tr><td class="paramname">name</td><td>オブジェクト名 </td></tr>
+    <tr><td class="paramname">isSerialize</td><td>シリアライズ対象かどうか </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab82dfdb656f9051c0587e6593b2dda97" name="ab82dfdb656f9051c0587e6593b2dda97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82dfdb656f9051c0587e6593b2dda97">&#9670;&#160;</a></span>~GameObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject::~GameObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">関数詳解</h2>
+<a id="affae3bc5869559a6beddfe0c07d6e33d" name="affae3bc5869559a6beddfe0c07d6e33d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affae3bc5869559a6beddfe0c07d6e33d">&#9670;&#160;</a></span>AddComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename... Args&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; GameObject::AddComponent </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントを生成してアタッチし、参照を返す </p>
+<p>生成したコンポーネントを返すことで GetComponent の呼び出しを省略できる。</p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td><a class="el" href="class_component.html" title="すべてのコンポーネントの基底クラス">Component</a> の派生クラス </td></tr>
+    <tr><td class="paramname">Args</td><td>コンストラクタ引数の型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>コンストラクタ引数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>アタッチしたコンポーネントへの参照 </dd></dl>
+
+</div>
+</div>
+<a id="a31004fc2b3ce92d9ec507e56c254f9b3" name="a31004fc2b3ce92d9ec507e56c254f9b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31004fc2b3ce92d9ec507e56c254f9b3">&#9670;&#160;</a></span>Deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Deserialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>JSON からデシリアライズしてコンポーネントを復元する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>JSON オブジェクト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abf1959fad10ea04673a182029f1f81b9" name="abf1959fad10ea04673a182029f1f81b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf1959fad10ea04673a182029f1f81b9">&#9670;&#160;</a></span>Destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Destroy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>次フレームでの破棄フラグを立てる </p>
+
+</div>
+</div>
+<a id="ad3ac1deac50048cf7a1a19eb0e61ad26" name="ad3ac1deac50048cf7a1a19eb0e61ad26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ac1deac50048cf7a1a19eb0e61ad26">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Draw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全コンポーネントの <a class="el" href="#ad3ac1deac50048cf7a1a19eb0e61ad26" title="全コンポーネントの Draw() を呼び出す">Draw()</a> を呼び出す </p>
+
+</div>
+</div>
+<a id="a9800a9dcc709907dd90a0204748ce513" name="a9800a9dcc709907dd90a0204748ce513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9800a9dcc709907dd90a0204748ce513">&#9670;&#160;</a></span>Finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Finalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全コンポーネントの <a class="el" href="#a9800a9dcc709907dd90a0204748ce513" title="全コンポーネントの Finalize() を呼び出す">Finalize()</a> を呼び出す </p>
+
+</div>
+</div>
+<a id="a5a8487ee2b43ff7a6f65550686c0a0bf" name="a5a8487ee2b43ff7a6f65550686c0a0bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a8487ee2b43ff7a6f65550686c0a0bf">&#9670;&#160;</a></span>FindComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; <br />
+requires std::derived_from&lt;T, <a class="el" href="class_component.html">Component</a>&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T *const GameObject::FindComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_component.html#afd50861fbf83f7ff7777a5e6dd7b7ca4">Component::Type</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指定した種別のコンポーネントを検索して返す </p>
+<p>見つからない場合は nullptr を返す。</p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td><a class="el" href="class_component.html" title="すべてのコンポーネントの基底クラス">Component</a> の派生クラス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>検索する種別 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>見つかったコンポーネントへのポインタ、なければ nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a02415b6afb13e816106ea3dfcf5da249" name="a02415b6afb13e816106ea3dfcf5da249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02415b6afb13e816106ea3dfcf5da249">&#9670;&#160;</a></span>GetComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_component.html">Component</a> &gt; &gt; *const GameObject::GetComponents </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンポーネントリストへのポインタを返す </p>
+
+</div>
+</div>
+<a id="a862adb1db3e65db1eaf285465e9bff85" name="a862adb1db3e65db1eaf285465e9bff85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a862adb1db3e65db1eaf285465e9bff85">&#9670;&#160;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t GameObject::GetID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>オブジェクトの一意な ID を返す </p>
+
+</div>
+</div>
+<a id="aca47c1cbe649f26540b16995b38e6f35" name="aca47c1cbe649f26540b16995b38e6f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca47c1cbe649f26540b16995b38e6f35">&#9670;&#160;</a></span>GetIsDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameObject::GetIsDestroy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>破棄フラグが立っているかどうかを返す </p>
+
+</div>
+</div>
+<a id="a453d4568b8df409256499a2596b6ba9a" name="a453d4568b8df409256499a2596b6ba9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a453d4568b8df409256499a2596b6ba9a">&#9670;&#160;</a></span>GetIsSerialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameObject::GetIsSerialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>シリアライズ対象かどうかを返す </p>
+
+</div>
+</div>
+<a id="ab25d5f9100bad8eee3b9e02f16fa5c91" name="ab25d5f9100bad8eee3b9e02f16fa5c91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25d5f9100bad8eee3b9e02f16fa5c91">&#9670;&#160;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string GameObject::GetName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>オブジェクト名を返す </p>
+
+</div>
+</div>
+<a id="ad0ff6c403c9a323598de86a28204601f" name="ad0ff6c403c9a323598de86a28204601f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0ff6c403c9a323598de86a28204601f">&#9670;&#160;</a></span>GetTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_transform.html">Transform</a> &amp; GameObject::GetTransform </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>トランスフォームへの参照を返す </p>
+
+</div>
+</div>
+<a id="a433dbfdad0ffccd29cfe60062323e621" name="a433dbfdad0ffccd29cfe60062323e621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a433dbfdad0ffccd29cfe60062323e621">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンポーネントの初期化を行う </p>
+
+</div>
+</div>
+<a id="a448e068a71a4232829f2f1d28a18d00b" name="a448e068a71a4232829f2f1d28a18d00b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448e068a71a4232829f2f1d28a18d00b">&#9670;&#160;</a></span>Serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="game__object_8h.html#ad25d13049e8f7c36517ed84e807a7e89">Json</a> GameObject::Serialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>JSON にシリアライズして返す </p>
+
+</div>
+</div>
+<a id="aa27714b4172ebff2f7cddcf63b325ac7" name="aa27714b4172ebff2f7cddcf63b325ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa27714b4172ebff2f7cddcf63b325ac7">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全コンポーネントの <a class="el" href="#aa27714b4172ebff2f7cddcf63b325ac7" title="全コンポーネントの Start() を呼び出す">Start()</a> を呼び出す </p>
+
+</div>
+</div>
+<a id="a1bd14aa169f501f94f1721943d716535" name="a1bd14aa169f501f94f1721943d716535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd14aa169f501f94f1721943d716535">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObject::Update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全コンポーネントの <a class="el" href="#a1bd14aa169f501f94f1721943d716535" title="全コンポーネントの Update() を呼び出す">Update()</a> を呼び出す </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>scripts/application/<a class="el" href="game__object_8h_source.html">game_object.h</a></li>
+<li>scripts/application/<a class="el" href="game__object_8cpp.html">game_object.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_game_object.html">GameObject</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>
